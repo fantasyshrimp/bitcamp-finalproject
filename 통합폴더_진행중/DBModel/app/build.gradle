@@ -1,0 +1,35 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'eclipse'
+    id 'application'
+}
+
+eclipse {
+    project {
+        name = "DBModel"
+    }
+    jdt {
+      sourceCompatibility = 17
+      targetCompatibility = 17
+      javaRuntimeName = "JavaSE-17"
+    }
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13.2'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.1-jre'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'dbmodel.App'
+}
+
