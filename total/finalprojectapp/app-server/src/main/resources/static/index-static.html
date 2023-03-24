@@ -122,7 +122,7 @@
       aria-labelledby="exampleModalToggleLabel"
       tabindex="-1"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered" style="width: 400px">
         <div class="modal-content bg-dark ps-5 pe-5">
           <div class="modal-header">
             <h1
@@ -137,23 +137,25 @@
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
+            <div></div>
           </div>
-          <div class="modal-body text-light" style="height: 300px">
+          <div class="modal-body text-light" style="height: 250px">
             <form>
               <div class="">
-                <label for="recipient-name" class="col-form-label">
+                <label for="recipient-name" class="col-form-label mt-4">
                   사용자의 아이디를 입력해주세요.
                 </label>
                 <input
                   type="text"
-                  class="form-control bg-dark text-light"
+                  class="form-control bg-dark text-light mb-2"
                   id="recipient-name"
                   placeholder="example@abcmail.com"
                 />
+                <a href="#" class="text-white-50">비밀번호를 잊으셨나요?</a>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-between mb-">
             <button
               class="btn btn-primary"
               data-bs-target="#exampleModalToggle2"
