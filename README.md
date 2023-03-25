@@ -5,7 +5,7 @@ UI 프로토타입:
 
 ## 팀 소개
 
-> 5팀: 오병현, 윤종광, 전서린, 전태산, 한대호
+> 신지윤 [@zyoonshin](https://github.com/zyoonshin), 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun), 윤종광 [@jongkwangyun](https://github.com/jongkwangyun), 전태산 [@zyoonshin](https://github.com/zyoonshin), 한대호 [@das7945](https://github.com/das7945)
 
 ## Stacks 📚
 
