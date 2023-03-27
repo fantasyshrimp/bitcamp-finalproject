@@ -3,6 +3,9 @@
     <meta charset="UTF-8" />
     <title>Artify</title>
 
+    <!-- jQuery 라이브러리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <!-- css 설정 reset -->
     <link rel="stylesheet" href="reset.css" />
 
@@ -122,7 +125,7 @@
       aria-labelledby="exampleModalToggleLabel"
       tabindex="-1"
     >
-      <div class="modal-dialog modal-dialog-centered" style="width: 400px">
+      <div class="modal-dialog modal-dialog-centered" style="width: 450px">
         <div class="modal-content bg-dark ps-5 pe-5">
           <div class="modal-header">
             <h1
@@ -142,29 +145,30 @@
           <div class="modal-body text-light" style="height: 250px">
             <form>
               <div class="">
-                <label for="recipient-name" class="col-form-label mt-4">
-                  사용자의 아이디를 입력해주세요.
+                <label for="user-email" class="col-form-label mt-4">
+                  사용자의 이메일 주소를 입력해주세요.
                 </label>
                 <input
                   type="text"
                   class="form-control bg-dark text-light mb-2"
-                  id="recipient-name"
-                  placeholder="example@abcmail.com"
+                  id="user-email"
+                  placeholder="이메일 주소"
                 />
-                <a href="#" class="text-white-50">비밀번호를 잊으셨나요?</a>
+                <a href="#" class="text-white-50">이메일 주소를 잊으셨나요?</a>
               </div>
             </form>
           </div>
-          <div class="modal-footer justify-content-between mb-">
+          <div class="modal-footer justify-content-between mb-1">
             <button
               class="btn btn-primary"
-              data-bs-target="#exampleModalToggle2"
+              data-bs-target="#"
               data-bs-toggle="modal"
             >
               신규가입
             </button>
             <button
               class="btn btn-primary"
+              id="login-next"
               data-bs-target="#exampleModalToggle2"
               data-bs-toggle="modal"
             >
@@ -181,14 +185,14 @@
       aria-labelledby="exampleModalToggleLabel2"
       tabindex="-1"
     >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark">
+      <div class="modal-dialog modal-dialog-centered" style="width: 450px">
+        <div class="modal-content bg-dark ps-5 pe-5">
           <div class="modal-header">
             <h1
-              class="modal-title fs-5 text-light"
+              class="modal-title fs-5 text-center text-light"
               id="exampleModalToggleLabel2"
             >
-              Modal 2
+              반갑습니다!
             </h1>
             <button
               type="button"
@@ -196,17 +200,45 @@
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
+            <div></div>
           </div>
-          <div class="modal-body text-light" style="height: 300px">
-            비밀번호
+          <div class="modal-body text-light" style="height: 250px">
+            <form>
+              <div class="">
+                <label for="user-password" class="col-form-label mt-4">
+                  사용자의 비밀번호를 입력해주세요.
+                </label>
+                <input
+                  type="text"
+                  class="form-control bg-dark text-light mb-2"
+                  id="user-email2"
+                  readonly
+                />
+                <input
+                  type="password"
+                  class="form-control bg-dark text-light mb-2"
+                  id="user-password"
+                  placeholder="비밀번호"
+                  autocomplete="off"
+                />
+                <a href="#" class="text-white-50">비밀번호를 잊으셨나요?</a>
+              </div>
+            </form>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-between mb-1">
             <button
               class="btn btn-primary"
               data-bs-target="#exampleModalToggle"
               data-bs-toggle="modal"
             >
-              Back to first
+              이전
+            </button>
+            <button
+              class="btn btn-primary"
+              data-bs-target="#"
+              data-bs-toggle="modal"
+            >
+              로그인
             </button>
           </div>
         </div>
@@ -231,6 +263,6 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <!-- 만든 React 컴포넌트를 실행. -->
-    <script src="./app.js"></script>
+    <script src="./appStatic.js"></script>
   </body>
 </html>
