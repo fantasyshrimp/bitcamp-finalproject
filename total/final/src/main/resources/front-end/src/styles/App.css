@@ -43,7 +43,7 @@
   line-height: 70px;
 }
 
-#login-btn:hover {
+#login-btn:hover, #title:hover {
   color: dimgrey;
 }
 
