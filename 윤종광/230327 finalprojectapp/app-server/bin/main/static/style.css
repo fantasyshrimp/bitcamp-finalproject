@@ -1,0 +1,22 @@
+footer {
+  height: 70px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.modal-header,
+.modal-footer {
+  border: 0;
+}
+
+/* 모달 창을 옆으로 넘기는 효과를 구현하기 위한 CSS 스타일링 */
+.modal-slide .modal-dialog {
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-slide.show .modal-dialog {
+  transform: translate3d(0, 0, 0);
+}
