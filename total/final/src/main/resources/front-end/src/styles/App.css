@@ -43,7 +43,8 @@
   line-height: 70px;
 }
 
-#login-btn:hover, #title:hover {
+#login-btn:hover,
+#title:hover {
   color: dimgrey;
 }
 
@@ -106,8 +107,11 @@
 }
 
 #footer {
-  width: 99.5%;
-  height: 10vh;
+  width: 99.9%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 #small-font {
