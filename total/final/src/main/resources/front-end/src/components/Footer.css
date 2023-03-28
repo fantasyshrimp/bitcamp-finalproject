@@ -1,0 +1,14 @@
+#footer {
+    width: 99.9%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  
+  #small-font {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 3%;
+    color: white;
+  }
