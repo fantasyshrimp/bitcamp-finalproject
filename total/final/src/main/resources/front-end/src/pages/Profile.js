@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/images.css";
+import "../styles/images.css";
 import Images from "./Images";
 
 function Profile() {
