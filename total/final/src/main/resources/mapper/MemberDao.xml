@@ -28,14 +28,4 @@
     values(#{nickname}, #{email}, sha2(#{password},256), 0)
   </insert>
   
-  <select id="findByEmail" parameterType="member" resultType="memberMap">
-    select
-      member_id,
-      email
-    from
-      aim_member
-    where
-      email=#{email}
-  </select>
-  
   </mapper>
