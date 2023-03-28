@@ -8,6 +8,7 @@ function Navbar() {
         <Link to="/"><h1 id="title">Artify</h1></Link>
         <Link to="/Feed/"><h1 id="title">Feed</h1></Link>
         <Link to="/Profile"><h1 id="title">Profile</h1></Link>
+        <Link to="/Test1"><h1 id="title">Test1</h1></Link>
         <div id="modal-back">
           <Modal />
         </div>

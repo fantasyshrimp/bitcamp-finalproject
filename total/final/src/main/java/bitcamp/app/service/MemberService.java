@@ -8,4 +8,5 @@ public interface MemberService {
   List<Member> list(String keyword);
   void update(Member member);
   void delete(int no);
+  Member get(int no);
 }

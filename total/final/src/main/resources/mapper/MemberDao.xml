@@ -36,4 +36,28 @@
     where
       email=#{email}
   </select>
+  
+  
+  <select id="findByNo" parameterType="int" resultType="member">
+    select
+      member_no,
+      name,
+      email,
+      pw,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      state,
+      auth
+    from
+      aim_member
+    where
+      member_no=#{no}
+  </select>
+  
+  
   </mapper>
