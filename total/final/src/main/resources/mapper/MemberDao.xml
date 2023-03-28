@@ -27,8 +27,6 @@
     insert into aim_member(name, email, pw, pt)
     values(#{nickname}, #{email}, sha2(#{password},256), 0)
   </insert>
-  
-<<<<<<< HEAD
   <select id="findByEmail" parameterType="String" resultType="member">
     select
       member_no,
@@ -38,7 +36,4 @@
     where
       email=#{email}
   </select>
-  
-=======
->>>>>>> 95a743f3d5eeda9508b43bb04ff9f04b5d0c2e90
   </mapper>
