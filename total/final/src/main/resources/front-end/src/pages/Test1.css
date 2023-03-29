@@ -1,35 +1,33 @@
 * {
 }
 
-div.col{
-    width: 100px;
-    height: 150px;
-    text-align: center;
-    vertical-align: middle;
-    background-color: white;
-    color: black;
-
+div.col {
+  width: 100px;
+  height: 150px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  color: black;
 }
 
-div.col>div{
-    text-align: center;
-    vertical-align: middle;
-    color: black;
-    height: 100%;
-    border-color: 1px black;
-
+div.col > div {
+  text-align: center;
+  vertical-align: middle;
+  color: black;
+  height: 100%;
+  border-color: 1px black;
 }
 
 span {
-    width: 100px;
-    height: 150px;
-    text-align: center;
-    vertical-align: middle;
+  width: 100px;
+  height: 150px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 #data-container {
-    width: 500px;
-    height: 500px;
+  width: 500px;
+  height: 500px;
 
-    border: 1px white;
+  border: 1px white;
 }

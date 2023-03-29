@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import axios from "axios";
 
+function isScrolledToBottom() {
+  return (
+    window.scrollY + window.innerHeight >= document.documentElement.scrollHeight
+  );
+}
+
 function Tagbar() {
   return (
     <div id="tag-bar">
@@ -19,13 +25,31 @@ function List() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/boards")
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error));
+    loadData();
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    function handleScroll() {
+      if (isScrolledToBottom()) {
+        loadData();
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [data]);
+
+  async function loadData() {
+    const response = await axios.get("http://localhost:8080/api/boards", {
+      params: {
+        page: data.length / 10,
+      },
+    });
+    setData((prevData) => [...prevData, ...response.data]);
+  }
 
   return (
     <div id="feed-main">

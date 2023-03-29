@@ -4,7 +4,23 @@ import { Button, Modal, Form } from "react-bootstrap";
 import "./Navbar.css";
 import axios from "axios";
 
+axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
+
 function Navbar() {
+  let [currentUser, setCurrentUser] = useState("");
+
+  const AuthBtn = () => {
+    if (currentUser === "") {
+      return (
+        <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      );
+    } else {
+      return (
+        <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      );
+    }
+  };
+
   return (
     <div id="nav-bar">
       <Link to="/">
@@ -17,17 +33,54 @@ function Navbar() {
         <h1 id="title">Profile</h1>
       </Link>
       <div id="modal-back">
-        <LoginModal />
+        <AuthBtn />
       </div>
     </div>
   );
 }
 
-function LoginModal() {
+function Logout(props) {
+  let [currentUser, setCurrentUser] = [useState(props.currentUser)];
+  setCurrentUser = props.setCurrentUser;
+
+  const handleLogoutClick = () => {
+    axios
+      .get("http://localhost:8080/auth/logout")
+      .then((response) => {
+        setCurrentUser("");
+      })
+      .catch((error) => {
+        alert("로그아웃 중 오류 발생!");
+      });
+  };
+
+  return (
+    <>
+      <p id="logout-btn" onClick={handleLogoutClick}>
+        Logout
+      </p>
+    </>
+  );
+}
+
+function Login(props) {
   const [show, setShow] = useState(false);
+  let [currentUser, setCurrentUser] = [useState(props.currentUser)];
+  setCurrentUser = props.setCurrentUser;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const ShowUser = () => {
+    axios
+      .get("http://localhost:8080/auth/user")
+      .then((response) => {
+        setCurrentUser(response.data.data.nickname);
+      })
+      .catch((error) => {
+        alert("로그인 유저 가져오는 중 오류 발생!");
+      });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,23 +93,16 @@ function LoginModal() {
         },
       })
       .then((response) => {
-        console.log(response);
+        if (response.data.status === "success") {
+          ShowUser();
+          handleClose();
+        } else {
+          console.log(response);
+        }
       })
       .catch((error) => {
-        alert("응답 실패");
+        alert("로그인 중 오류 발생");
       });
-
-    //   fetch("/auth/login", {
-    //     method: "POST",
-    //     body: formData,
-    //   })
-    //     .then((response) => {
-    //       alert("응답 성공적으로 옴");
-    //       console.log(response);
-    //     })
-    //     .catch((error) => {
-    //       alert("응답 에러 발생");
-    //     });
   }
 
   return (

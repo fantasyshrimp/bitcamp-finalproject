@@ -12,7 +12,7 @@ UI 프로토타입:
 ### Tools 🛠️
 
 <a href="#"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
-<a href="#"><img src="https://img.shields.io/badge/EclipseIDE-#2C2255?style=flat-square&logo=EclipseIDE&logoColor=black"/></a>
+<a href="#"><img src="https://img.shields.io/badge/EclipseIDE-#2C2255?style=flat-square&logo=EclipseIDE&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/></a>
 
@@ -22,6 +22,7 @@ UI 프로토타입:
 <a href="#"><img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"></a>
 <a href="#"><img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"></a>
+<a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
 
 ## 2023-03-02 목
 
