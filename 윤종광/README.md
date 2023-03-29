@@ -235,4 +235,11 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 ```
 
+자바로 로그 확인시 HttpSession 객체가 동일함 확인된다.
+
+```java
+bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionImpl@b4acd491
+bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionImpl@b4acd491
+```
+
 참고 : https://blog.voidmainvoid.net/499

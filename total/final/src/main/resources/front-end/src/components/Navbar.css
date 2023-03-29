@@ -13,11 +13,13 @@
 }
 
 #login-btn:hover,
+#logout-btn:hover,
 #title:hover {
   color: dimgrey;
 }
 
-#login-btn {
+#login-btn,
+#logout-btn {
   float: right;
   margin-right: 10px;
   line-height: 70px;

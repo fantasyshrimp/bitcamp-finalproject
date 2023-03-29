@@ -35,7 +35,7 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
-      log.info(session);/////////////
+
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
     } else {
@@ -44,10 +44,18 @@ public class AuthController {
     }
   }
 
+  @GetMapping("logout")
+  public Object logout(HttpSession session) {
+    session.invalidate();
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
   @GetMapping("user")
   public Object user(HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
-    log.info(session);/////////////
+
     if (loginUser != null) {
       return new RestResult()
           .setStatus(RestStatus.SUCCESS)
