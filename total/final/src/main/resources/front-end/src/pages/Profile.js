@@ -1,13 +1,13 @@
 import React from "react";
+import "../styles/images.css";
+import Images from "./Images";
 
-function Profile() {  
-    return (
-      <div id="body">
-        <div id="body-sub">
-          <p id="big-font">Profile</p>
-        </div>
-      </div>
-    );
-  }
+function Profile() {
+  return (
+    <div id="body">
+      <Images />
+    </div>
+  );
+}
 
 export default Profile;

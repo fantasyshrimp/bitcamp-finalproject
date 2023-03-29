@@ -1,6 +1,8 @@
 package bitcamp.app.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,15 @@ public class DefaultMemberService implements MemberService{
   }
 
   @Override
+  public Member get(String email, String password) {
+    Map<String,Object> paramMap = new HashMap<>();
+    paramMap.put("email", email);
+    paramMap.put("password", password);
+
+    return memberDao.findByEmailAndPassword(paramMap);
+  }
+
+  @Override
   public void update(Member member) {
 
   }
@@ -33,5 +44,6 @@ public class DefaultMemberService implements MemberService{
   public void delete(int no) {
 
   }
+
 
 }

@@ -23,9 +23,44 @@
   </resultMap>
 
   <insert id="insert" parameterType="member" 
-          useGeneratedKeys="true" keyProperty="no" keyColumn="member_id">
+          useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
     insert into aim_member(name, email, pw, pt)
     values(#{nickname}, #{email}, sha2(#{password},256), 0)
   </insert>
+  
+  <select id="findByEmail" parameterType="String" resultType="member"> <!-- resultMap="memberMap" 과 동일 -->
+    select
+      member_no,
+      email
+    from
+      aim_member
+    where
+      email=#{email}
+  </select>
+  
+  <select id="findByEmailAndPassword" parameterType="map" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      email=#{email}
+      and pwd=sha2(#{password},256)
+  </select>
+  
+  
   
   </mapper>
