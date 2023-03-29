@@ -1,4 +1,5 @@
 /*
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -11,7 +12,9 @@ body {
   padding: 0.5%;
 }
 
+
 이 친구들 열면 다른페이지가 깨짐 왜지?????
+
 */
 
 img {
@@ -22,18 +25,18 @@ img {
   border-radius: 5%;
 }
 
-.container {
+.image_container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.row {
+.image_row {
   display: flex;
 }
 
-.col {
+.image_col {
   display: flex;
   flex-direction: column;
 }
