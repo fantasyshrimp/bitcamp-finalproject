@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import axios from "axios";
+// import View from "../utils/View";
 
 function isScrolledToBottom() {
   return (
@@ -11,6 +12,16 @@ function isScrolledToBottom() {
 function Tagbar() {
   return (
     <div id="tag-bar">
+      <div id="tag">
+        HOT
+        <div
+          id="tag-image"
+          style={{
+            backgroundImage: `url(/campfire.png)`,
+            backgroundSize: "cover",
+          }}
+        ></div>
+      </div>
       <div id="tag">Animal</div>
       <div id="tag">Anime</div>
       <div id="tag">Fashion</div>
@@ -57,21 +68,41 @@ function List() {
         <div
           id="feed-list"
           className="feed-list"
-          key={item.fileName}
-          style={{
-            backgroundImage: `url(${item.fileName})`,
-            backgroundSize: "cover",
-          }}
+          // key={item.fileName}
+          // style={{
+          //   backgroundImage: `url(${item.fileName})`,
+          //   backgroundSize: "cover",
+          // }}
+          key={item.boardNo}
+          // onClick={() => View(item.boardNo)}
         >
           <div id="feed-writer" className="feed-item">
-            <p id="feed-small-font" key={item.writerName}>
-              {item.writerName}
-            </p>
+            <div
+              id="feed-writer-pic"
+              style={{
+                backgroundImage: `url(/logo512.png)`,
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <div id="feed-writer-name">
+              <p id="feed-small-font" key={item.writerName}>
+                {item.writerName}
+              </p>
+            </div>
           </div>
           <div id="feed-like" className="feed-item">
-            <p id="feed-small-font" key={item.likeCnt}>
-              {item.likeCnt}
-            </p>
+            <div id="feed-like-cnt">
+              <p id="feed-small-font-right" key={item.likeCnt}>
+                {item.likeCnt}
+              </p>
+            </div>
+            <div
+              id="feed-like-icon"
+              style={{
+                backgroundImage: `url(/heart.png)`,
+                backgroundSize: "cover",
+              }}
+            ></div>
           </div>
           <div id="feed-content" className="feed-item">
             <p id="feed-small-font" key={item.originContent}>
@@ -83,6 +114,21 @@ function List() {
     </div>
   );
 }
+
+// function View({ boardNo }) {
+//   const [data, setData] = useState([]);
+
+//   console.log("d");
+
+//   useEffect(() => {
+//     axios
+//       .get(`http://localhost:8080/api/boards/${boardNo}`)
+//       .then((response) => setData(response.data))
+//       .catch((error) => console.log(error));
+//   }, [boardNo]);
+
+//   return <div></div>;
+// }
 
 function Feed() {
   return (

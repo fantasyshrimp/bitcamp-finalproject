@@ -29,7 +29,6 @@ public class Member implements Serializable {
       pattern = "yyyy-MM-dd")
   private Date createdDate;
 
-
   @JsonFormat(
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd")

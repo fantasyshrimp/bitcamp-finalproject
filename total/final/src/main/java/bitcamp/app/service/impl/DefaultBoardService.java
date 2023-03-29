@@ -25,6 +25,16 @@ public class DefaultBoardService implements BoardService{
   }
 
   @Override
+  public Board get(int no) {
+    return boardDao.findByNo(no);
+  }
+
+  @Override
+  public List<Board> getByMemberNo(int memberNo) {
+    return boardDao.findByMemberNo(memberNo);
+  }
+
+  @Override
   public void update(Board board) {
 
   }
@@ -33,5 +43,6 @@ public class DefaultBoardService implements BoardService{
   public void delete(int no) {
 
   }
+
 
 }
