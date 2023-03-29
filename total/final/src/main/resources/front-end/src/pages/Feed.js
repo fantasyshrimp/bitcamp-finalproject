@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import axios from "axios";
-
-const Modal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <div>
-      <button onClick={openModal}>모달창 열기</button>
-      {isOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>모달창 내용</h2>
-            <button onClick={closeModal}>닫기</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+// import View from "../utils/View";
 
 function isScrolledToBottom() {
   return (
@@ -93,11 +68,13 @@ function List() {
         <div
           id="feed-list"
           className="feed-list"
-          key={item.fileName}
-          style={{
-            backgroundImage: `url(${item.fileName})`,
-            backgroundSize: "cover",
-          }}
+          // key={item.fileName}
+          // style={{
+          //   backgroundImage: `url(${item.fileName})`,
+          //   backgroundSize: "cover",
+          // }}
+          key={item.boardNo}
+          // onClick={() => View(item.boardNo)}
         >
           <div id="feed-writer" className="feed-item">
             <div
@@ -137,6 +114,21 @@ function List() {
     </div>
   );
 }
+
+// function View({ boardNo }) {
+//   const [data, setData] = useState([]);
+
+//   console.log("d");
+
+//   useEffect(() => {
+//     axios
+//       .get(`http://localhost:8080/api/boards/${boardNo}`)
+//       .then((response) => setData(response.data))
+//       .catch((error) => console.log(error));
+//   }, [boardNo]);
+
+//   return <div></div>;
+// }
 
 function Feed() {
   return (

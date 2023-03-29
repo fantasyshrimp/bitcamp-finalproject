@@ -46,4 +46,28 @@
     RAND();
   </select>
   
+    <select id="findByNo" resultMap="boardMap" parameterType="int">
+    select 
+      b.board_no, 
+      b.origin_content, 
+      b.trans_content,
+      b.tag, 
+      b.like_cnt, 
+      b.view_cnt, 
+      b.board_public, 
+      b.reply_public, 
+      b.report_cnt, 
+      b.write_dt, 
+      b.update_dt, 
+      m.name, 
+      i.img_no, 
+      i.filename 
+    from 
+      aim_board b
+      inner join aim_member m on b.member_no = m.member_no 
+      inner join aim_generated_img i on b.board_no = i.board_no 
+    where 
+      b.board_no=#{no}
+  </select>
+  
   </mapper>

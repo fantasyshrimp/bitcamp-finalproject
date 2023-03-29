@@ -133,3 +133,10 @@
   background-blend-mode: multiply;
   cursor: pointer;
 }
+
+.modal {
+  border: 1px solid wheat;
+  width: 1000px;
+  height: 1000px;
+  background-color: wheat;
+}
