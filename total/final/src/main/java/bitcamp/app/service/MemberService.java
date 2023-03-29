@@ -6,6 +6,7 @@ import bitcamp.app.vo.Member;
 public interface MemberService {
   void add(Member member);
   List<Member> list(String keyword);
+  Member get(String email, String password);
   void update(Member member);
   void delete(int no);
 }
