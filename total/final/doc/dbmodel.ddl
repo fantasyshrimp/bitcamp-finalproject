@@ -793,3 +793,4 @@ ALTER TABLE aim_report_reply
   REFERENCES aim_report ( -- 신고유형
   report_no -- 신고유형번호
   );
+  

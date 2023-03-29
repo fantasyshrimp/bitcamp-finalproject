@@ -4,7 +4,7 @@ function Images() {
   return (
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col" style={{ width: "100px" }}>
           <img src="https://storage.googleapis.com/pai-images/1140c9aeeca0410d9644b599aa8bae29.jpeg" />
           <img src="https://storage.googleapis.com/pai-images/2e1621341a5b419888cd79d9274f4c6b.jpeg" />
         </div>

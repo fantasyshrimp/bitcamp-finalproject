@@ -1,6 +1,6 @@
--- 신규 database 생성
-create database project;
-use project;
+-- 신규 database 생성(studydb 사용?)
+-- create database project;
+-- use project;
 
 -- 회원 insert
 INSERT INTO aim_member (name, email, pw, gender, filename, addr, pt, info, birth_dt, tel, state, auth)

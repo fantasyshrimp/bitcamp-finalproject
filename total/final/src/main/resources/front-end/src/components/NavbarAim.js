@@ -28,6 +28,21 @@ function LoginModal() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    fetch("/auth/login", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        alert("응답 성공적으로 옴");
+      })
+      .catch((error) => {
+        alert("응답 에러 발생");
+      });
+  };
+
   return (
     <>
       <p id="login-btn" onClick={handleShow}>
@@ -39,33 +54,27 @@ function LoginModal() {
           <Modal.Title className="text-dark">반갑습니다!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="email">
               <Form.Label className="text-dark">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
+              <Form.Control type="email" placeholder="name@example.com" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-dark">
                 사용자의 비밀번호를 입력해주세요
               </Form.Label>
               <Form.Control type="password" placeholder="" />
             </Form.Group>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" type="submit">
+              Log In
+            </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Log In
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
