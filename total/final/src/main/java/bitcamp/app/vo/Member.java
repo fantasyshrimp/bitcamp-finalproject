@@ -28,7 +28,7 @@ public class Member {
   @JsonFormat(
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd")
-  private Date birthDate;
+  private Date birthDate; //db에 데이터 잘못들어간듯
 
   @JsonFormat(
       shape = Shape.STRING,

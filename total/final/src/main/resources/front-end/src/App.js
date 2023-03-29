@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
-import Test1 from "./pages/Test1";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Feed" element={<Feed />}></Route>
           <Route path="/Profile" element={<Profile />}></Route>
-          <Route path="/Test1" element={<Test1 />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

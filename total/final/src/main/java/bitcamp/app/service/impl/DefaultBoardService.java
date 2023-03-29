@@ -30,6 +30,11 @@ public class DefaultBoardService implements BoardService{
   }
 
   @Override
+  public List<Board> getByMemberNo(int memberNo) {
+    return boardDao.findByMemberNo(memberNo);
+  }
+
+  @Override
   public void update(Board board) {
 
   }

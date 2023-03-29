@@ -1,19 +1,25 @@
 package bitcamp.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.app.service.BoardService;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
+import bitcamp.util.RestResult;
+import bitcamp.util.RestStatus;
 
 @RestController
 // @RequestMapping("/member")
 public class MemberController {
   @Autowired private MemberService memberService;
+  @Autowired private BoardService boardService;
 
   @PostMapping
   public void insert(@RequestBody Member member) {
@@ -32,7 +38,13 @@ public class MemberController {
 
   @GetMapping("/api/{no}")
   public Object view(@PathVariable int no) {
-    return memberService.get(no);
+    Map<String, Object> data = new HashMap<>();
+    data.put("member", memberService.get(no));
+    data.put("boards", boardService.getByMemberNo(no));
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData(data);
   }
 
 }
