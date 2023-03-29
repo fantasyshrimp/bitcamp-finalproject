@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Modal, Form } from "react-bootstrap";
 import "./Navbar.css";
+import axios from "axios";
+
+axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbar() {
   return (
@@ -16,33 +19,49 @@ function Navbar() {
         <h1 id="title">Profile</h1>
       </Link>
       <div id="modal-back">
-        <LoginModal />
+        <Login />
       </div>
     </div>
   );
 }
 
-function LoginModal() {
+function ShowUser() {
+  axios
+    .get("http://localhost:8080/auth/user")
+    .then((response) => console.log(response))
+    .catch((error) => {
+      alert("로그인 유저 가져오는 중 오류 발생!");
+    });
+}
+
+function Login() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    fetch("/auth/login", {
-      method: "POST",
-      body: formData,
-    })
+
+    axios
+      .post("http://localhost:8080/auth/login", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
-        alert("응답 성공적으로 옴");
-        console.log(response);
+        if (response.data.status === "success") {
+          ShowUser();
+          // window.location.href = "./";
+        } else {
+          console.log(response);
+        }
       })
       .catch((error) => {
-        alert("응답 에러 발생");
+        alert("로그인 중 오류 발생");
       });
-  };
+  }
 
   return (
     <>
@@ -65,13 +84,17 @@ function LoginModal() {
               <Form.Label className="text-dark">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
-              <Form.Control type="email" placeholder="name@example.com" />
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="name@example.com"
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-dark">
                 사용자의 비밀번호를 입력해주세요
               </Form.Label>
-              <Form.Control type="password" placeholder="" />
+              <Form.Control type="password" name="password" />
             </Form.Group>
             <Button variant="secondary" onClick={handleClose}>
               Close

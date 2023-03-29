@@ -1,0 +1,238 @@
+# 시행착오 기록
+
+## 3월29일 수
+
+### 1. NotSerializableException
+
+App.java 실행시 이런 오류가 떴다.
+NotSerializableException 이 눈에 띈다.
+찾아보니 객체를 byte stream 으로 변환할때 Serializable 선언을 하지 않아서이다.
+Member.java 클래스에 implemets Serializable 붙이니 해결된다.
+원래 안붙여도 에러 발생하지 않아야 하지만 버그로 인해 발생하는 것 같다.
+에러가 떴다가 안떴다가 한다.
+
+```bash
+.   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.5)
+
+2023-03-29T17:05:54.591+09:00  INFO 13796 --- [  restartedMain] bitcamp.app.App                          : Starting App using Java 17.0.5 with PID 13796 (C:\Users\bitcamp\git\bitcamp-finalproject\total\final\bin\main started by bitcamp in C:\Users\bitcamp\git\bitcamp-finalproject\total\final)
+2023-03-29T17:05:54.591+09:00  INFO 13796 --- [  restartedMain] bitcamp.app.App                          : No active profile set, falling back to 1 default profile: "default"
+2023-03-29T17:05:54.761+09:00  WARN 13796 --- [  restartedMain] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2023-03-29T17:05:54.762+09:00  INFO 13796 --- [  restartedMain] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2023-03-29T17:05:54.762+09:00  INFO 13796 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 169 ms
+2023-03-29T17:05:54.870+09:00  INFO 13796 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-29T17:05:54.877+09:00  WARN 13796 --- [  restartedMain] io.undertow.servlet                      : UT015008: Failed to load development mode persistent sessions
+
+java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: bitcamp.app.vo.Member
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1751) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:514) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:472) ~[na:na]
+	at java.base/java.util.HashMap.readObject(HashMap.java:1552) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.invokeReadObject(ObjectStreamClass.java:1231) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2434) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2268) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1744) ~[na:na]
+	at java.base/java.io.ObjectInputStream$FieldValues.<init>(ObjectInputStream.java:2617) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2468) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2268) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1744) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:514) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:472) ~[na:na]
+	at java.base/java.util.HashMap.readObject(HashMap.java:1552) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.invokeReadObject(ObjectStreamClass.java:1231) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2434) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2268) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1744) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:514) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:472) ~[na:na]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.readSession(FileSessionPersistence.java:109) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.load(FileSessionPersistence.java:94) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.load(FileSessionPersistence.java:89) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.loadSessionAttributes(FileSessionPersistence.java:77) ~[spring-boot-3.0.5.jar:3.0.5]
+	at io.undertow.servlet.handlers.SessionRestoringHandler.start(SessionRestoringHandler.java:74) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:568) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:559) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:42) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl.start(DeploymentManagerImpl.java:601) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at org.springframework.boot.web.embedded.undertow.DeploymentManagerHttpHandlerFactory$DeploymentManagerHandler.<init>(DeploymentManagerHttpHandlerFactory.java:65) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.DeploymentManagerHttpHandlerFactory.getHandler(DeploymentManagerHttpHandlerFactory.java:46) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.UndertowWebServer.createHttpHandler(UndertowWebServer.java:172) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.UndertowServletWebServer.createHttpHandler(UndertowServletWebServer.java:72) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.UndertowWebServer.createUndertowServer(UndertowWebServer.java:164) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.UndertowWebServer.start(UndertowWebServer.java:116) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356) ~[spring-context-6.0.7.jar:6.0.7]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:934) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:587) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.5.jar:3.0.5]
+	at bitcamp.app.App.main(App.java:15) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-3.0.5.jar:3.0.5]
+Caused by: java.io.NotSerializableException: bitcamp.app.vo.Member
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1197) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:354) ~[na:na]
+	at java.base/java.util.LinkedHashMap.internalWriteEntries(LinkedHashMap.java:334) ~[na:na]
+	at java.base/java.util.HashMap.writeObject(HashMap.java:1497) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1201) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1526) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1448) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1191) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1582) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1539) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1448) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1191) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:354) ~[na:na]
+	at java.base/java.util.LinkedHashMap.internalWriteEntries(LinkedHashMap.java:334) ~[na:na]
+	at java.base/java.util.HashMap.writeObject(HashMap.java:1497) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1201) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1526) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1448) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1191) ~[na:na]
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:354) ~[na:na]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.save(FileSessionPersistence.java:69) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.save(FileSessionPersistence.java:62) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.FileSessionPersistence.persistSessions(FileSessionPersistence.java:53) ~[spring-boot-3.0.5.jar:3.0.5]
+	at io.undertow.servlet.handlers.SessionRestoringHandler.stop(SessionRestoringHandler.java:108) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl$3.call(DeploymentManagerImpl.java:617) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl$3.call(DeploymentManagerImpl.java:612) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:42) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at io.undertow.servlet.core.DeploymentManagerImpl.stop(DeploymentManagerImpl.java:626) ~[undertow-servlet-2.3.4.Final.jar:2.3.4.Final]
+	at org.springframework.boot.web.embedded.undertow.DeploymentManagerHttpHandlerFactory$DeploymentManagerHandler.close(DeploymentManagerHttpHandlerFactory.java:80) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.embedded.undertow.UndertowWebServer.stop(UndertowWebServer.java:273) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.stop(WebServerStartStopLifecycle.java:53) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.context.SmartLifecycle.stop(SmartLifecycle.java:117) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1045) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173) ~[spring-boot-3.0.5.jar:3.0.5]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1003) ~[spring-context-6.0.7.jar:6.0.7]
+	at org.springframework.boot.devtools.restart.Restarter.stop(Restarter.java:308) ~[spring-boot-devtools-3.0.5.jar:3.0.5]
+	at org.springframework.boot.devtools.restart.Restarter.lambda$restart$1(Restarter.java:250) ~[spring-boot-devtools-3.0.5.jar:3.0.5]
+	at org.springframework.boot.devtools.restart.Restarter$LeakSafeThread.run(Restarter.java:614) ~[spring-boot-devtools-3.0.5.jar:3.0.5]
+
+2023-03-29T17:05:54.879+09:00  INFO 13796 --- [  restartedMain] io.undertow                              : starting server: Undertow - 2.3.4.Final
+2023-03-29T17:05:54.890+09:00  INFO 13796 --- [  restartedMain] o.s.b.w.e.undertow.UndertowWebServer     : Undertow started on port(s) 8080 (http)
+2023-03-29T17:05:54.893+09:00  INFO 13796 --- [  restartedMain] bitcamp.app.App                          : Started App in 0.32 seconds (process running for 317.194)
+2023-03-29T17:05:54.894+09:00  INFO 13796 --- [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-03-29T17:07:36.479+09:00  INFO 13796 --- [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2023-03-29T17:07:36.481+09:00  INFO 13796 --- [      Thread-15] io.undertow                              : stopping server: Undertow - 2.3.4.Final
+```
+
+```java
+package bitcamp.myapp.vo;
+
+import java.io.Serializable;
+import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import lombok.Data;
+
+@Data
+public class Member implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  private int no;
+  private String name;
+  private String email;
+  private String password;
+  private String tel;
+
+  //Jackson 라이브러리가 Date 타입 값을 JSON 문자열로 변환할 때 사용할 규칙을 설정한다.
+  @JsonFormat(
+      shape = Shape.STRING,
+      pattern = "yyyy-MM-dd")
+  private Date createdDate;
+}
+```
+
+### 2. AuthController.java 에서 각 매핑 메서드마다 HttpSession 객체가 다른 문제
+
+login 후 user 정보를 가져올때 아무리해도 가져오지를 못했다.
+
+자바로 하나씩 로그 찍으면서 확인해보니 AuthController 에서
+@PostMapping("login") 의 HttpSession 객체와
+@RequestMapping("user") 의 HttpSession 객체가 다른 것을 발견했다.
+
+```bash
+bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionImpl@b4acd491
+bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionImpl@f313ba63
+```
+
+몇시간을 찾다가 발견한 한 블로그에서 해답을 찾았다.
+
+원인은 SpringBoot 환경에서 axios 라는 Promise 기반 HTTP 클라이언트를 사용하였다.
+또한, 아래와 같이 특수한 상황이 있었다.
+
+- server : localhost:8080
+- client : localhost:3000
+- client는 server로 axios 요청을 함
+
+해결 방안은 다음과 같습니다. (블로그 참고함)
+
+1. CORS 문제
+   크로스 도메인에 대응하여 spring boot에 다음과 같은 옵션을 줬습니다.
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowCredentials(true)  // 추가
+                .allowedHeaders("*")
+                .allowedOrigins("http://localhost:3000");
+    }
+}
+```
+
+2. withCredential 문제
+   axios 전역변수에 다음과 같이 설정하여 헤더에 session id가 넘어가도록 설정하였습니다.
+
+```javascript
+import axios from "axios";
+axios.defaults.withCredentials = true;
+```
+
+참고 : https://blog.voidmainvoid.net/499

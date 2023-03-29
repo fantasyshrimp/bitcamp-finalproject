@@ -3,6 +3,7 @@ package bitcamp.app.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
+      log.info(session);/////////////
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
     } else {
@@ -42,7 +44,19 @@ public class AuthController {
     }
   }
 
-
+  @GetMapping("user")
+  public Object user(HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    log.info(session);/////////////
+    if (loginUser != null) {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setData(loginUser);
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
 
 }
 
