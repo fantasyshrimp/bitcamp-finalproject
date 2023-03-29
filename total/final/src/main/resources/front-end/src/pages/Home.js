@@ -18,7 +18,7 @@ function Home() {
       <Row className="bg-dark" style={{ height: "400px" }}>
         <Col xl={2}></Col>
         <Col xl={4} className="text-light">
-          <div style={{ fontSize: "150px" }}>Artify</div>
+          <div style={{ fontSize: "150px" }}>{hello}</div>
           <div>
             <a
               className="border text-light p-1"
