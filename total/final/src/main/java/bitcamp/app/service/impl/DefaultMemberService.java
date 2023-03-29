@@ -44,6 +44,12 @@ public class DefaultMemberService implements MemberService{
   public void delete(int no) {
 
   }
+  @Override
+  public Member get(int no) {
+    return memberDao.findByNo(no);
+  }
+
+
 
 
 }

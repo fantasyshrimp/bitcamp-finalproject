@@ -38,6 +38,27 @@
       email=#{email}
   </select>
   
+  <select id="findByNo" parameterType="int" resultType="member">
+    select
+      member_no,
+      name,
+      email,
+      pw,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      state,
+      auth
+    from
+      aim_member
+    where
+      member_no=#{no}
+  </select>
+
   <select id="findByEmailAndPassword" parameterType="map" resultMap="memberMap">
     select
       member_no,
@@ -58,9 +79,7 @@
       aim_member
     where
       email=#{email}
-      and pwd=sha2(#{password},256)
+      and pw=sha2(#{password},256)
   </select>
-  
-  
-  
+
   </mapper>
