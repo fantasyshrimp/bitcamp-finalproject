@@ -3,6 +3,8 @@ package bitcamp.app.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,9 @@ import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
 
 @Service
-public class DefaultMemberService implements MemberService{
+public class DefaultMemberService implements MemberService {
+
+  Logger log = LogManager.getLogger(getClass());
 
   @Autowired private MemberDao memberDao;
 
@@ -31,6 +35,8 @@ public class DefaultMemberService implements MemberService{
     Map<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("password", password);
+
+    log.info(paramMap.toString());
 
     return memberDao.findByEmailAndPassword(paramMap);
   }

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Modal, Form } from "react-bootstrap";
 import "./Navbar.css";
+import axios from "axios";
 
 function Navbar() {
   return (
@@ -28,21 +29,35 @@ function LoginModal() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    fetch("/auth/login", {
-      method: "POST",
-      body: formData,
-    })
+
+    axios
+      .post("http://localhost:8080/auth/login", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
-        alert("응답 성공적으로 옴");
         console.log(response);
       })
       .catch((error) => {
-        alert("응답 에러 발생");
+        alert("응답 실패");
       });
-  };
+
+    //   fetch("/auth/login", {
+    //     method: "POST",
+    //     body: formData,
+    //   })
+    //     .then((response) => {
+    //       alert("응답 성공적으로 옴");
+    //       console.log(response);
+    //     })
+    //     .catch((error) => {
+    //       alert("응답 에러 발생");
+    //     });
+  }
 
   return (
     <>
@@ -65,13 +80,17 @@ function LoginModal() {
               <Form.Label className="text-dark">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
-              <Form.Control type="email" placeholder="name@example.com" />
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="name@example.com"
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-dark">
                 사용자의 비밀번호를 입력해주세요
               </Form.Label>
-              <Form.Control type="password" placeholder="" />
+              <Form.Control type="password" name="password" />
             </Form.Group>
             <Button variant="secondary" onClick={handleClose}>
               Close

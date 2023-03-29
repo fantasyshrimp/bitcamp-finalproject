@@ -30,6 +30,8 @@ public class AuthController {
       String password,
       HttpSession session) {
 
+    log.info("login 들어옴");
+
     Member member = memberService.get(email, password);
 
     if (member != null) {
