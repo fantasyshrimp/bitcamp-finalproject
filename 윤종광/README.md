@@ -1,6 +1,14 @@
-# 시행착오 기록
+# **작업내용 및 시행착오 기록**
 
-## 3월29일 수
+# 3월29일 수
+
+## 작업내용
+
+### 1. java Member 객체 birthDate (Date)과 DB 의 birth_dt (CHAR(6)) 타입 달라 java Member 객체 String 타입으로 수정
+
+### 2. 로그인/로그아웃 DB 로 데이터 요청 및 응답 받는것 진행 완료
+
+## 시행착오
 
 ### 1. NotSerializableException
 
