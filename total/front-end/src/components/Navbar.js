@@ -62,9 +62,10 @@ function SignupBtn(props) {
       })
       .then((response) => {
         if (response.data.status === "success") {
+          alert("가입이 완료 되었습니다");
           handleClose();
         } else {
-          console.log(response);
+          alert("가입 양식이 맞지 않습니다");
         }
       })
       .catch((error) => {
@@ -121,6 +122,18 @@ function SignupBtn(props) {
     } else {
       document.querySelector("#passwordHelpBlock").innerText =
         "비밀번호는 영어, 숫자를 포함해 총 10글자 이상이어야 합니다.";
+    }
+  }
+
+  function checkBothPasswordSame(e) {
+    const password = document.getElementsByName("password")[0].value;
+    const passwordConfirm = e.target.value;
+
+    if (password === passwordConfirm) {
+      document.querySelector("#passwordConfirmHelpBlock").innerText = "";
+    } else {
+      document.querySelector("#passwordConfirmHelpBlock").innerText =
+        "비밀번호가 일치하지 않습니다.";
     }
   }
 
@@ -185,14 +198,17 @@ function SignupBtn(props) {
                 name="password"
                 onChange={checkPasswordChar}
               />
-              <Form.Text id="passwordHelpBlock" muted>
-                비밀번호는 영어, 숫자를 포함해 총 10글자 이상이어야 합니다.
-              </Form.Text>
+              <Form.Text id="passwordHelpBlock" muted></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label className="text-dark">비밀번호 확인</Form.Label>
-              <Form.Control type="password" name="password2" />
+              <Form.Control
+                type="password"
+                name="passwordConfirm"
+                onChange={checkBothPasswordSame}
+              />
+              <Form.Text id="passwordConfirmHelpBlock" muted></Form.Text>
             </Form.Group>
 
             <Button variant="secondary" onClick={handleClose}>

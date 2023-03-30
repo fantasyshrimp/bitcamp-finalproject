@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
+import bitcamp.util.PasswordChecker;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
@@ -57,19 +58,32 @@ public class AuthController {
   }
 
   @PostMapping("signup")
-  public Object login(
+  public Object signup(
       String nickname,
       String email,
       String password,
       HttpSession session) {
 
-    Member member = new Member();
-    member.setNickname(nickname);
-    member.setEmail(email);
-    member.setPassword(password);
+    if(nickname.length() <= 50 ||
+        email.contains("@") ||
+        PasswordChecker.isValidPassword(password)) {
+
+      Member member = new Member();
+      member.setNickname(nickname);
+      member.setEmail(email);
+      member.setPassword(password);
+
+      memberService.add(member);
+
+      session.setAttribute("loginUser", member);
+
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS);
+    }
 
     return new RestResult()
-        .setStatus(RestStatus.SUCCESS);
+        .setErrorCode(ErrorCode.rest.CONTROLLER_EXCEPTION)
+        .setStatus(RestStatus.FAILURE);
   }
 
   @PostMapping("login")
