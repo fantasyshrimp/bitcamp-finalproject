@@ -101,7 +101,7 @@ public class AuthController {
           .setStatus(RestStatus.SUCCESS);
     } else {
       return new RestResult()
-          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setErrorCode(ErrorCode.rest.NO_DATA)
           .setStatus(RestStatus.FAILURE);
     }
   }

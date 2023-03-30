@@ -6,8 +6,23 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
+function getCurrentUser(cb) {
+  axios
+    .get("http://localhost:8080/auth/user")
+    .then((response) => {
+      if (response.data.status === "success") {
+        cb(response.data.data.nickname);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("로그인 유저 가져오는 중 오류 발생!");
+    });
+}
+
 function Navbar() {
   let [currentUser, setCurrentUser] = useState("");
+  getCurrentUser(setCurrentUser);
 
   const AuthBtn = () => {
     if (currentUser === "") {
@@ -19,7 +34,9 @@ function Navbar() {
       );
     } else {
       return (
-        <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <>
+          <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        </>
       );
     }
   };
@@ -49,29 +66,6 @@ function SignupBtn(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  function handleSignupSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    axios
-      .post("http://localhost:8080/auth/signup", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        if (response.data.status === "success") {
-          alert("가입이 완료 되었습니다");
-          handleClose();
-        } else {
-          alert("가입 양식이 맞지 않습니다");
-        }
-      })
-      .catch((error) => {
-        alert("회원가입 중 오류 발생");
-      });
-  }
 
   function checkEmail() {
     const email = document.getElementsByName("email")[0].value;
@@ -135,6 +129,30 @@ function SignupBtn(props) {
       document.querySelector("#passwordConfirmHelpBlock").innerText =
         "비밀번호가 일치하지 않습니다.";
     }
+  }
+
+  function handleSignupSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    axios
+      .post("http://localhost:8080/auth/signup", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.data.status === "success") {
+          alert("가입이 완료 되었습니다");
+          handleClose();
+          window.location.href = "./";
+        } else {
+          alert("가입 양식이 맞지 않습니다");
+        }
+      })
+      .catch((error) => {
+        alert("회원가입 중 오류 발생");
+      });
   }
 
   return (
@@ -256,17 +274,6 @@ function Login(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const ShowUser = () => {
-    axios
-      .get("http://localhost:8080/auth/user")
-      .then((response) => {
-        setCurrentUser(response.data.data.nickname);
-      })
-      .catch((error) => {
-        alert("로그인 유저 가져오는 중 오류 발생!");
-      });
-  };
-
   function handleLoginSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -279,10 +286,10 @@ function Login(props) {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          ShowUser();
+          getCurrentUser(setCurrentUser);
           handleClose();
         } else {
-          console.log(response);
+          alert("이메일 또는 비밀번호가 틀렸습니다.");
         }
       })
       .catch((error) => {
