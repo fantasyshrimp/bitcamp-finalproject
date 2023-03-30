@@ -14,12 +14,14 @@
 
 #login-btn:hover,
 #logout-btn:hover,
+#signup-btn:hover,
 #title:hover {
   color: dimgrey;
 }
 
 #login-btn,
-#logout-btn {
+#logout-btn,
+#signup-btn {
   float: right;
   margin-right: 10px;
   line-height: 70px;
