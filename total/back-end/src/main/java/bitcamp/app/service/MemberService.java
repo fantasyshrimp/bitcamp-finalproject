@@ -7,6 +7,8 @@ public interface MemberService {
   void add(Member member);
   List<Member> list(String keyword);
   Member get(String email, String password);
+  Member getByEmail(String email);
+  Member getByNickname(String nickname);
   void update(Member member);
   void delete(int no);
   Member get(int no);

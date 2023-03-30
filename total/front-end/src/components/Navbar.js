@@ -72,8 +72,56 @@ function SignupBtn(props) {
       });
   }
 
-  function checkNickname(e) {
-    console.log(e.target);
+  function checkEmail() {
+    const email = document.getElementsByName("email")[0].value;
+
+    axios
+      .get("http://localhost:8080/auth/checkemail", {
+        params: { email: email },
+      })
+      .then((response) => {
+        if (response.data.status === "success") {
+          alert("이미 가입된 이메일입니다.");
+        } else {
+          alert("사용가능한 이메일입니다.");
+          // emailChecked = true
+        }
+      })
+      .catch((error) => {
+        alert("이메일 중복확인 중 오류 발생");
+      });
+  }
+
+  function checkNickname() {
+    const nickname = document.getElementsByName("nickname")[0].value;
+
+    axios
+      .get("http://localhost:8080/auth/checknickname", {
+        params: { nickname: nickname },
+      })
+      .then((response) => {
+        if (response.data.status === "success") {
+          alert("이미 사용중인 닉네임입니다.");
+        } else {
+          alert("사용가능한 닉네임입니다.");
+          // nicknameChecked = true
+        }
+      })
+      .catch((error) => {
+        alert("닉네임 중복확인 중 오류 발생");
+      });
+  }
+
+  function checkPasswordChar(e) {
+    const regex =
+      /^(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+~`|}{[\]\\:';"<>,./?-]{10,}$/;
+    const isValid = regex.test(e.target.value);
+    if (isValid) {
+      document.querySelector("#passwordHelpBlock").innerText = "";
+    } else {
+      document.querySelector("#passwordHelpBlock").innerText =
+        "비밀번호는 영어, 숫자를 포함해 총 10글자 이상이어야 합니다.";
+    }
   }
 
   return (
@@ -94,6 +142,24 @@ function SignupBtn(props) {
 
         <Modal.Body>
           <Form onSubmit={handleSignupSubmit}>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label className="text-dark">이메일</Form.Label>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="name@example.com"
+                />
+                <Button
+                  variant="outline-secondary"
+                  id="checkEmailBtn"
+                  onClick={checkEmail}
+                >
+                  중복확인
+                </Button>
+              </InputGroup>
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="nickname">
               <Form.Label className="text-dark">닉네임</Form.Label>
               <InputGroup className="mb-3">
@@ -112,27 +178,16 @@ function SignupBtn(props) {
               </InputGroup>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label className="text-dark">이메일</Form.Label>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="name@example.com"
-                />
-                <Button variant="outline-secondary" id="checkEmailBtn">
-                  중복확인
-                </Button>
-              </InputGroup>
-            </Form.Group>
-
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-dark">비밀번호</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
-                placeholder="10자리 이상 영문, 숫자 혼합"
+                onChange={checkPasswordChar}
               />
+              <Form.Text id="passwordHelpBlock" muted>
+                비밀번호는 영어, 숫자를 포함해 총 10글자 이상이어야 합니다.
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password2">

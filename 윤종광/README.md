@@ -10,7 +10,15 @@
 
 ## 시행착오
 
-### 1. NotSerializableException
+### 1. resultType="member" == resultMap="memberMap"
+
+Mapper 파일에서 위 둘은 동일하다. 위에 다음과 같이 설정했기 때문이다.
+<resultMap type="member" id="memberMap">
+
+그래서 아래처럼 사용할 수 있다.
+<select id="findByEmail" parameterType="String" resultType="member"> <!-- resultMap="memberMap" 과 동일 -->
+
+### 2. NotSerializableException
 
 App.java 실행시 이런 오류가 떴다.
 NotSerializableException 이 눈에 띈다.
@@ -190,7 +198,7 @@ public class Member implements Serializable {
 }
 ```
 
-### 2. AuthController.java 에서 각 매핑 메서드마다 HttpSession 객체가 다른 문제
+### 3. AuthController.java 에서 각 매핑 메서드마다 HttpSession 객체가 다른 문제
 
 login 후 user 정보를 가져올때 아무리해도 가져오지를 못했다.
 
@@ -251,3 +259,13 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 ```
 
 참고 : https://blog.voidmainvoid.net/499
+
+# 3월30일 목
+
+## 작업내용
+
+### 1.
+
+## 시행착오
+
+### 1.
