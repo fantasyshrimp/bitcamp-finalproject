@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
