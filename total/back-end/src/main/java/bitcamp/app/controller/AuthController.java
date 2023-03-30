@@ -25,6 +25,22 @@ public class AuthController {
 
   @Autowired private MemberService memberService;
 
+  @PostMapping("signup")
+  public Object login(
+      String nickname,
+      String email,
+      String password,
+      HttpSession session) {
+
+    Member member = new Member();
+    member.setNickname(nickname);
+    member.setEmail(email);
+    member.setPassword(password);
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
   @PostMapping("login")
   public Object login(
       String email,

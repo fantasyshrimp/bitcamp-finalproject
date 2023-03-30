@@ -72,6 +72,10 @@ function SignupBtn(props) {
       });
   }
 
+  function checkNickname(e) {
+    console.log(e.target);
+  }
+
   return (
     <>
       <p id="signup-btn" onClick={handleShow}>
@@ -87,6 +91,7 @@ function SignupBtn(props) {
         <Modal.Header closeButton>
           <Modal.Title className="text-dark">회원가입</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <Form onSubmit={handleSignupSubmit}>
             <Form.Group className="mb-3" controlId="nickname">
@@ -97,7 +102,11 @@ function SignupBtn(props) {
                   name="nickname"
                   placeholder="nickname"
                 />
-                <Button variant="outline-secondary" id="checkEmailBtn">
+                <Button
+                  variant="outline-secondary"
+                  id="checkNicknameBtn"
+                  onClick={checkNickname}
+                >
                   중복확인
                 </Button>
               </InputGroup>
