@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import React, { useState } from "react";
-import Navbar from "./components/Navbar";
+import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+        <Navbars />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Feed" element={<Feed />}></Route>
