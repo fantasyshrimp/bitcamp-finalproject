@@ -1,0 +1,14 @@
+.auth-modal-backdrop {
+  background-color: #00000000;
+}
+
+.auth-modal-dialog {
+  margin-right: 0;
+  margin-top: 60px;
+  width: 150px;
+}
+
+.auth-modal-link {
+  text-decoration: none;
+  color: black;
+}
