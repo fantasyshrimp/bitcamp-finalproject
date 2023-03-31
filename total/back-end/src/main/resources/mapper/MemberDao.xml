@@ -28,16 +28,6 @@
     values(#{nickname}, #{email}, sha2(#{password},256), 0)
   </insert>
   
-  <select id="findByEmail" parameterType="String" resultType="member"> <!-- resultMap="memberMap" 과 동일 -->
-    select
-      member_no,
-      email
-    from
-      aim_member
-    where
-      email=#{email}
-  </select>
-  
   <select id="findByNo" parameterType="int" resultMap="memberMap">
     select
       member_no,
@@ -74,6 +64,50 @@
     where
       email=#{email}
       and pw=sha2(#{password},256)
+  </select>
+  
+  <select id="findByEmail" parameterType="String" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      email=#{email}
+  </select>
+
+  <select id="findByNickname" parameterType="string" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      name=#{nickname}
   </select>
 
   </mapper>
