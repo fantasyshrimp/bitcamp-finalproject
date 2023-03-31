@@ -45,10 +45,11 @@
 .profile-info > .profile-detail {
     color: azure;
     position: relative;
-    top: 30px;
+    top: 10px;
 }
 
 .profile-info > .profile-detail li {
     float: left;
     margin-right: 50px;
+    list-style-type: none;
 }
