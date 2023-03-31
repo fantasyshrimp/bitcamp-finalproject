@@ -33,6 +33,7 @@ function Navbars() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/Feed/">Feed</Nav.Link>
+            <Nav.Link href="/Profile/">pppp</Nav.Link>
             <Nav.Link>
               <Post />
             </Nav.Link>

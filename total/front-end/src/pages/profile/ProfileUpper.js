@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from 'react-modal';
-import axios from "axios";
 import "./ProfileUpper.css";
+import SmallProfile from "./SmallProfile";
 
 Modal.setAppElement('#root');
 
@@ -10,7 +10,6 @@ function ProfileUpper(props) {
 
   const openModal = () => {
     setModalIsOpen(true);
-    console.log(props.following);
   };
 
   const closeModal = () => {
@@ -26,11 +25,9 @@ function ProfileUpper(props) {
             <div className="profile-info">
                 <div className="profile-name">{props.member.nickname}</div>
                 <div className="profile-detail">
-                    <ul>
-                        <li onClick={openModal}>followers</li>
-                        <li>following</li>
-                        <li>likes</li>
-                    </ul>
+                  <div onClick={openModal}> followers</div>
+                  <div> followers</div>
+                  <div> likes</div>                    
                 </div>
             </div>
 
@@ -40,11 +37,13 @@ function ProfileUpper(props) {
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
         style={{
         overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
-        content: { width: '300px', height: '800px', margin: 'auto' }}}
+        content: { width: '450px', height: '800px', margin: 'auto', backgroundColor: '#000000' }}}
         >
         <div>
         {props.followings.map((following) => (
-            <div>{following.nickname}</div>))} 
+            <SmallProfile modalClose={closeModal}
+              no={following.no} imgUrl={following.profilePhoto} nickname={following.nickname} height='100' />
+            ))} 
         </div>
         </Modal>
     </>
