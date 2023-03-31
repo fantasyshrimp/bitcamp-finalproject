@@ -3,30 +3,13 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import axios from "axios";
 import Post from "./Post";
-import { SignupBtn, Logout, Login } from "./auth";
+import { AuthBtn } from "./auth";
 import getCurrentUser from "./getCurrentUser";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbar() {
   let [currentUser, setCurrentUser] = useState("");
   getCurrentUser(setCurrentUser);
-
-  const AuthBtn = () => {
-    if (currentUser === "") {
-      return (
-        <>
-          <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
-          <SignupBtn />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        </>
-      );
-    }
-  };
 
   return (
     <div id="nav-bar">
@@ -43,7 +26,7 @@ function Navbar() {
         <Post />
       </div>
       <div>
-        <AuthBtn />
+        <AuthBtn currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </div>
     </div>
   );
