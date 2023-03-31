@@ -43,7 +43,7 @@
     from 
       aim_board b
       inner join aim_member m on b.member_no = m.member_no 
-      inner join aim_generated_img i on b.board_no = i.board_no  
+      inner join aim_generated_img i on b.board_no = i.board_no   
     Order by 
     RAND();
   </select>
@@ -63,7 +63,7 @@
       b.update_dt, 
       m.name, 
       i.img_no, 
-      i.filename 
+      i.img_filename 
     from 
       aim_board b
       inner join aim_member m on b.member_no = m.member_no 
