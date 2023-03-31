@@ -16,7 +16,6 @@
 }
 
 #feed-modal-pic {
-  border: 1px solid red;
   width: 98%;
   height: 93%;
   border-radius: 10px;
@@ -36,7 +35,6 @@
 }
 
 #feed-modal-propic {
-  border: 1px solid purple;
   width: 40px;
   height: 40px;
   margin-top: 5px;

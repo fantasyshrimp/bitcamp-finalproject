@@ -8,6 +8,7 @@
     <id column="board_no" property="boardNo"/>
     <result column="member_no" property="writerNo"/>
     <result column="name" property="writerName"/>
+    <result column="filename" property="writerPic"/>
     <result column="origin_content" property="originContent"/>
     <result column="trans_content" property="transContent"/>
     <result column="tag" property="tag"/>
@@ -19,7 +20,7 @@
     <result column="write_dt" property="writeDt"/>
     <result column="update_dt" property="updateDt"/>
     <result column="img_no" property="photoNo"/>
-    <result column="filename" property="fileName"/>
+    <result column="img_filename" property="fileName"/>
   </resultMap>
 
   <select id="findAll" resultMap="boardMap" parameterType="string">
@@ -36,8 +37,9 @@
       b.write_dt, 
       b.update_dt, 
       m.name, 
+      m.filename, 
       i.img_no, 
-      i.filename 
+      i.img_filename 
     from 
       aim_board b
       inner join aim_member m on b.member_no = m.member_no 

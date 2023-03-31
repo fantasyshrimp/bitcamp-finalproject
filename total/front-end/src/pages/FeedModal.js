@@ -5,8 +5,14 @@ function FeedModal(props) {
   console.log(props);
   return (
     <>
-      <div id="feed-modal-image">
-        <div id="feed-modal-pic">
+      <div id="feed-modal-image" style={{ display: "table" }}>
+        <div
+          id="feed-modal-pic"
+          style={{
+            backgroundImage: `url(${props.data.fileName})`,
+            backgroundSize: "contain",
+          }}
+        >
           <div
             id="modal-like-icon"
             style={{
@@ -18,11 +24,17 @@ function FeedModal(props) {
       </div>
       <div id="feed-modal-content">
         <div id="feed-modal-profile">
-          <div id="feed-modal-propic"></div>
-          <div id="feed-modal-writer">9690039obh</div>
-          <div id="feed-modal-follow">
-            <img id="modal-image" src="/follow.png" alt=""></img>
+          <div
+            id="feed-modal-propic"
+            style={{
+              backgroundImage: `url(${props.data.writerPic})`,
+              backgroundSize: "cover",
+            }}
+          ></div>
+          <div id="feed-modal-writer" key={props.data.writerName}>
+            {props.data.writerName}
           </div>
+          <div id="feed-modal-follow"></div>
           {/* <div id="feed-modal-setting">설정</div> */}
           {/* <div
             id="feed-modal-like"

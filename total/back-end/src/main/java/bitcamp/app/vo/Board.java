@@ -10,6 +10,7 @@ public class Board {
   private int boardNo;
   private int writerNo;
   private String writerName;
+  private String writerPic;
   private String originContent;
   private String transContent;
   private String tag;

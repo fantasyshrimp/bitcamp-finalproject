@@ -13,6 +13,8 @@ function FeedList(props) {
     setModalOpen(true);
   }
 
+  console.log(props.item.writerPic);
+
   return (
     <>
       <div
@@ -62,8 +64,9 @@ function FeedList(props) {
         <div id="feed-writer" className="feed-item">
           <div
             id="feed-writer-pic"
+            key={props.item.writerPic}
             style={{
-              backgroundImage: `url(/logo512.png)`,
+              backgroundImage: `url(${props.item.writerPic})`,
               backgroundSize: "cover",
             }}
           ></div>
