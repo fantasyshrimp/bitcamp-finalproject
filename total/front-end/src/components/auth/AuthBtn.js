@@ -17,7 +17,6 @@ function AuthBtn(props) {
           <Nav.Link onClick={handleClickUser}>
             반가워요! {currentUser.nickname}
           </Nav.Link>
-          <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </>
       ) : (
         <>
@@ -29,7 +28,13 @@ function AuthBtn(props) {
           </Nav.Link>
         </>
       )}
-      <AuthModal show={show} setShow={setShow} />
+
+      <AuthModal
+        show={show}
+        setShow={setShow}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+      />
     </>
   );
 }
