@@ -23,6 +23,8 @@ function FeedList(props) {
         key={props.item.fileName}
         style={{
           backgroundImage: `url(${props.item.fileName})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
           backgroundSize: "cover",
         }}
         onClick={() => {

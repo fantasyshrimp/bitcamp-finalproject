@@ -21,6 +21,8 @@ function FeedModal(props) {
           id="feed-modal-pic"
           style={{
             backgroundImage: `url(${props.data.fileName})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center",
             backgroundSize: "cover",
           }}
         >
