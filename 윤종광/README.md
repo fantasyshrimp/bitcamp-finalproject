@@ -274,6 +274,7 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 
 → 해당 정규표현식 패턴은 다음과 같은 의미를 갖습니다:
 
+```
 (?=._[a-z]): 소문자가 최소한 하나 이상 포함되어 있어야 함
 (?=._\d): 숫자가 최소한 하나 이상 포함되어 있어야 함
 [A-Za-z\d!@#$%^&*()_+~\|}{
@@ -282,9 +283,53 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 ^: 문자열의 시작
 $: 문자열의 끝
 따라서 이 정규표현식은 "소문자와 숫자가 최소한 하나 이상 포함되어 있으며, 대소문자, 숫자, 특수문자 중에서 적어도 10개 이상의 문자로 이루어진 문자열"을 검사하는 패턴입니다.
+```
 
 ### 3. 로그인 유지 구현
 
 ## 시행착오
 
 ### 1.
+
+# 3월31일 금
+
+## 작업내용
+
+### 1. 로그인 유지 기능 구현
+
+## 시행착오
+
+### 1. Navbar 무한 로딩 현상 해결
+
+Navbar 가 무한 로딩하는 현상이 있어 chatGPT 에게 문의했다.
+
+```
+이 코드에서는 getCurrentUser 함수가 비동기적으로 호출되므로, 데이터가 로드되기 전에 currentUser의 상태가 설정될 수 없습니다. 이러한 문제가 발생하면 컴포넌트가 무한 로딩됩니다.
+
+이를 해결하기 위해서는 getCurrentUser 함수가 완료될 때까지 기다리도록 코드를 수정해야합니다. 이를 위해 Navbars 함수 내부에서 getCurrentUser 함수를 호출하는 대신, useEffect hook을 사용하여 컴포넌트가 마운트될 때 한 번 호출하도록 변경해야합니다.
+```
+
+기존 코드이다. 이 코드를 수정하였다.
+
+```javascript
+function Navbars() {
+  let [currentUser, setCurrentUser] = useState("");
+
+  getCurrentUser(setCurrentUser);
+
+  // 생략
+}
+```
+
+````javascript
+function Navbars() {
+  let [currentUser, setCurrentUser] = useState("");
+
+  useEffect(() => {
+    getCurrentUser(setCurrentUser);
+  }, [])
+
+	// 생략
+}
+	```
+````

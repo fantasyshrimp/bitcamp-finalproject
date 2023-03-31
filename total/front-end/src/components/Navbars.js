@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from "axios";
 import { Post, Searchs } from "./";
@@ -8,7 +8,10 @@ axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthC
 
 function Navbars() {
   let [currentUser, setCurrentUser] = useState("");
-  getCurrentUser(setCurrentUser);
+
+  useEffect(() => {
+    getCurrentUser(setCurrentUser);
+  }, []);
 
   return (
     <Navbar expand="md" bg="dark" variant="dark">

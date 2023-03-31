@@ -4,7 +4,9 @@ import { Nav } from "react-bootstrap";
 
 function AuthBtn(props) {
   let [currentUser, setCurrentUser] = [useState(props.currentUser)];
+  currentUser = props.currentUser;
   setCurrentUser = props.setCurrentUser;
+  const nickname = currentUser.nickname;
 
   if (props.currentUser === "") {
     return (
@@ -20,6 +22,7 @@ function AuthBtn(props) {
   } else {
     return (
       <>
+        <div className="text-light">{}</div>
         <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </>
     );
