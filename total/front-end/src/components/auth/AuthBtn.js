@@ -1,40 +1,37 @@
 import React, { useState } from "react";
-import { SignupBtn, Login, Logout, ProfileModal } from "../auth";
+import { SignupBtn, Login, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
 
 function AuthBtn(props) {
-  let [currentUser, setCurrentUser] = [useState(props.currentUser)];
-  currentUser = props.currentUser;
-  setCurrentUser = props.setCurrentUser;
-  const nickname = currentUser.nickname;
+  const [show, setShow] = useState(false);
+  const { currentUser, setCurrentUser } = props;
 
   const handleClickUser = () => {
-    return (
-      <>
-        <ProfileModal show={true} />
-      </>
-    );
+    setShow(true);
   };
 
-  if (props.currentUser === "") {
-    return (
-      <>
-        <Nav.Link>
-          <SignupBtn />
-        </Nav.Link>
-        <Nav.Link>
-          <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        </Nav.Link>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Nav.Link onClick={handleClickUser}>반가워요! {nickname}</Nav.Link>
-        <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      </>
-    );
-  }
+  return (
+    <>
+      {currentUser ? (
+        <>
+          <Nav.Link onClick={handleClickUser}>
+            반가워요! {currentUser.nickname}
+          </Nav.Link>
+          <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        </>
+      ) : (
+        <>
+          <Nav.Link>
+            <SignupBtn />
+          </Nav.Link>
+          <Nav.Link>
+            <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          </Nav.Link>
+        </>
+      )}
+      <AuthModal show={show} setShow={setShow} />
+    </>
+  );
 }
 
 export default AuthBtn;

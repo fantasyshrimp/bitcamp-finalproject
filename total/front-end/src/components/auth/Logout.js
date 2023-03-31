@@ -11,7 +11,7 @@ function Logout(props) {
     axios
       .get("http://localhost:8080/auth/logout")
       .then((response) => {
-        setCurrentUser("");
+        setCurrentUser(null);
         window.location.reload();
       })
       .catch((error) => {

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import getCurrentUser from "../getCurrentUser";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -30,8 +29,8 @@ function Login(props) {
       .then((response) => {
         console.log(response);
         if (response.data.status === "success") {
-          getCurrentUser(setCurrentUser);
           handleClose();
+          window.location.reload();
         } else {
           alert("이메일 또는 비밀번호가 틀렸습니다.");
         }
