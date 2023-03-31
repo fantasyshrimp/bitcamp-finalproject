@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artify</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">Artify</div>
+    <div class="start-screen">start</div>
+    <div class="main-content-1">
+      <div class="sticky">
+        <div class="section section-1">
+          <div class="title">Animal</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/9308912874c14a118f9064981ab8d57c.jpeg"
+            />
+          </div>
+        </div>
+        <div class="section section-2">
+          <div class="title">Anime</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/6e1355eaf9fe4b389ecea5daa0b55d21.jpeg"
+            />
+          </div>
+        </div>
+        <div class="section section-3">
+          <div class="title">Fashion</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/ef60aeb888644c2d8176ef01f1a85c70.jpeg"
+            />
+          </div>
+        </div>
+        <div class="section section-4">
+          <div class="title">Food</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/509b6a9c7c234438b215e5fceb41a8c8.jpeg"
+            />
+          </div>
+        </div>
+        <div class="section section-5">
+          <div class="title">Landscapes</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/49208e9f77144eb8a7ca35b6a1c26fc3.jpeg"
+            />
+          </div>
+        </div>
+        <div class="section section-6">
+          <div class="title">Sci-Fi</div>
+          <div class="content">
+            <img
+              src="https://storage.googleapis.com/pai-images/c2bd4950e4954373ada01b6c9da498c2.jpeg"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class FolderScroll {
+        constructor(wrapper, sticky) {
+          this.wrapper = wrapper;
+          this.sticky = sticky;
+          this.children = this.sticky.querySelectorAll(".section");
+          this.length = this.children.length;
+          this.headerVh = 6;
+          this.contentVh = 96 - this.headerVh * this.length;
+          this.start = 0;
+          this.end = 0;
+        }
+
+        init() {
+          this.start = this.wrapper.offsetTop + 100;
+          this.end =
+            this.wrapper.offsetTop +
+            this.wrapper.offsetHeight -
+            innerHeight -
+            100;
+
+          this.children.forEach((child, i) => {
+            child.style.bottom =
+              -(100 - this.headerVh * (this.length - i)) + "vh";
+            child.querySelector(".title").style.height = this.headerVh + "vh";
+            child.querySelector(".content").style.height =
+              this.contentVh + "vh";
+          });
+        }
+
+        animate() {
+          this.children.forEach((child, i) => {
+            const unit = (this.end - this.start) / this.length;
+            const s = this.start + unit * i + 100;
+            const e = this.start + unit * (i + 1);
+
+            if (scrollY <= s) {
+              child.style.transform = `translate3d(0, 0, 0)`;
+            } else if (scrollY >= e) {
+              child.style.transform = `translate3d(0, ${-this.contentVh}%, 0)`;
+            } else {
+              child.style.transform = `translate3d(0, ${
+                ((scrollY - s) / (unit - 100)) * -this.contentVh
+              }%, 0)`;
+            }
+          });
+        }
+      }
+
+      const mainContent1 = document.querySelector(".main-content-1");
+      const sticky = document.querySelector(".sticky");
+      const folderScroll = new FolderScroll(mainContent1, sticky);
+      folderScroll.init();
+
+      window.addEventListener("resize", () => {
+        folderScroll.init();
+      });
+      window.addEventListener("scroll", () => {
+        folderScroll.animate();
+      });
+    </script>
+  </body>
+</html>
