@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Modal from 'react-modal';
+import axios from "axios";
 import "./ProfileUpper.css";
 
-function ProfileUpper(props) {
+Modal.setAppElement('#root');
+
+function ProfileUpper(props) {     
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+    console.log(props.following);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
     return (
-        <div className="profileUpper">
-            <div className="profile-image">{props.member.profilePhoto}</div>
+    <>
+        <div id="profileUpper">
+            <div className="profile-image" 
+              style={{ 
+                backgroundImage: `url(${props.member.profilePhoto})`,
+                backgroundSize: 'cover' }}></div>
             <div className="profile-info">
                 <div className="profile-name">{props.member.nickname}</div>
                 <div className="profile-detail">
                     <ul>
-                        <li>followers</li>
+                        <li onClick={openModal}>followers</li>
                         <li>following</li>
                         <li>likes</li>
                     </ul>
@@ -19,26 +37,17 @@ function ProfileUpper(props) {
 
         </div>
 
-
-    // <div className="ProfileUpper row">
-    //     <div className="ProfileUpper col">
-    //         <div className="profile-image">{props.member.profilePhoto}</div>
-    //     </div>
-    //     <div className="ProfileUpper col">
-    //         <div className="nickname"><span>{props.member.nickname}</span></div>
-    //         <div className="info">
-    //             <ul>
-    //                 <li>followers {}</li>
-    //                 <li>following {}</li>
-    //                 <li>likes {}</li>
-    //             </ul>
-    //         </div>
-    //     </div>
-    //     <div className="ProfileUpper col">col3</div>
-    //     <div className="ProfileUpper col">col4</div>
-    //     <div className="ProfileUpper col">col5</div>
-    //     <div className="ProfileUpper col">col6</div>
-    // </div>
+        <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
+        style={{
+        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
+        content: { width: '300px', height: '800px', margin: 'auto' }}}
+        >
+        <div>
+        {props.followings.map((following) => (
+            <div>{following.nickname}</div>))} 
+        </div>
+        </Modal>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 package bitcamp.app.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import bitcamp.app.dao.FollowDao;
 import bitcamp.app.dao.MemberDao;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
@@ -18,6 +20,7 @@ public class DefaultMemberService implements MemberService {
   Logger log = LogManager.getLogger(getClass());
 
   @Autowired private MemberDao memberDao;
+  @Autowired private FollowDao followDao;
 
   @Transactional
   @Override
@@ -53,6 +56,24 @@ public class DefaultMemberService implements MemberService {
   @Override
   public Member get(int no) {
     return memberDao.findByNo(no);
+  }
+
+  @Override
+  public List<Member> getFollowings(int no) {
+    List<Member> memberList = new ArrayList<>();
+    followDao.findAllFollowingNumbers(no).forEach((followingNo) -> {
+      memberList.add(get(followingNo));
+    });
+    return memberList;
+  }
+
+  @Override
+  public List<Member> getFollowers(int no) {
+    List<Member> memberList = new ArrayList<>();
+    followDao.findAllFollowerNumbers(no).forEach((followerNo) -> {
+      memberList.add(get(followerNo));
+    });
+    return memberList;
   }
 
 

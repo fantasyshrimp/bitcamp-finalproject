@@ -4,14 +4,19 @@ import Images from "./Images";
 import ProfileUpper from "./ProfileUpper";
 import ProfileUnder from "./ProfileUnder";
 
-function Profile() {
+function Profile(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  let memberNo = 5;
+  if (props.memberNo != undefined) {
+    memberNo = props.memberNo;
+  }
+
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/" + 5)
+      .get("http://localhost:8080/api/" + memberNo)
       .then((response) => {
         setData(response["data"]["data"]);
         setIsLoading(false);
@@ -31,7 +36,7 @@ function Profile() {
 
   return (
     <>
-      <ProfileUpper member={data["member"]} />
+      <ProfileUpper member={data["member"]} followings={data["followingList"]} followers={data["followerList"]} />
       <ProfileUnder boards={data["boards"]} />
       {/* <div id="body">
       <Images />

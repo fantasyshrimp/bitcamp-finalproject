@@ -1,17 +1,18 @@
 
-.profileUpper {
+#profileUpper {
     width: 100%;
     height: 140px;
 
     background-color: #9999990f;
     box-sizing: border-box;
+    position: relative;
 }
 
-.profileUpper > div {
+#profileUpper > div {
     display: inline-block;
 }
 
-.profileUpper > .profile-image {
+#profileUpper > .profile-image {
     width: 100px;
     height: 100px;
 
@@ -21,22 +22,30 @@
     box-sizing: border-box;
     border-radius: 10%;
 
-    margin-top: 20px;
-    margin-left: 20px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+
 
 }
 
-.profileUpper > .profile-info {
+#profileUpper > .profile-info {
     height: 100px;
-    margin-left: 20px;
+    position: absolute;
+    display: inline;
+    top: 30px;
+    left: 140px;
 }
 
 .profile-info > .profile-name {
+    font-size: xx-large;
     color: azure;
 }
 
 .profile-info > .profile-detail {
     color: azure;
+    position: relative;
+    top: 30px;
 }
 
 .profile-info > .profile-detail li {

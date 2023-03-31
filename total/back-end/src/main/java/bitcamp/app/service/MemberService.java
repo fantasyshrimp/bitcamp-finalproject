@@ -10,4 +10,6 @@ public interface MemberService {
   void update(Member member);
   void delete(int no);
   Member get(int no);
+  List<Member> getFollowings(int no);
+  List<Member> getFollowers(int no);
 }

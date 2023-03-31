@@ -41,6 +41,8 @@ public class MemberController {
     Map<String, Object> data = new HashMap<>();
     data.put("member", memberService.get(no));
     data.put("boards", boardService.getByMemberNo(no));
+    data.put("followingList", memberService.getFollowings(no));
+    data.put("followerList", memberService.getFollowers(no));
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)

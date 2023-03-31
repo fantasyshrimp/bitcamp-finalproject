@@ -1,23 +1,9 @@
-import React, {useState} from "react";
-import Modal from 'react-modal';
-
-Modal.setAppElement('#root');
+import React from "react";
 
 function ContentBoard(props) {
- 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const openModal = () => {
-    setModalIsOpen(true);
-    console.log(props.board);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
     return (
       <>  
-        <div  onClick={openModal} 
+        <div 
           id="feed-list"
           className="feed-list"
           key={props.board.boardNo}
@@ -58,14 +44,7 @@ function ContentBoard(props) {
         </div>       
         
         
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
-         style={{
-          overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
-          content: { width: '300px', height: '800px', margin: 'auto' }}}
-         >
-        <h2>Modal Title</h2>
-        <button onClick={closeModal}>Close Modal</button>
-        </Modal>
+
       </>
   );
 }
