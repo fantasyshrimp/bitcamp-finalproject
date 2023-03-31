@@ -20,11 +20,11 @@ Mapper 파일에서 위 둘은 동일하다. 위에 다음과 같이 설정했�
 
 ### 2. NotSerializableException
 
-App.java 실행시 이런 오류가 떴다.
-NotSerializableException 이 눈에 띈다.
-찾아보니 객체를 byte stream 으로 변환할때 Serializable 선언을 하지 않아서이다.
-Member.java 클래스에 implemets Serializable 붙이니 해결된다.
-원래 안붙여도 에러 발생하지 않아야 하지만 버그로 인해 발생하는 것 같다.
+App.java 실행시 이런 오류가 떴다.  
+NotSerializableException 이 눈에 띈다.  
+찾아보니 객체를 byte stream 으로 변환할때 Serializable 선언을 하지 않아서이다.  
+Member.java 클래스에 implemets Serializable 붙이니 해결된다.  
+원래 안붙여도 에러 발생하지 않아야 하지만 버그로 인해 발생하는 것 같다.  
 에러가 떴다가 안떴다가 한다.
 
 ```bash
@@ -264,7 +264,9 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 
 ## 작업내용
 
-### 1. 비밀번호 정규표현식 작성
+### 1. 이메일, 닉네임 중복 확인 구현
+
+### 2. 비밀번호 체크 정규표현식 작성
 
 ^(?=._[a-z])(?=._\\d)[A-Za-z\\d!@#$%^&*()_+~`|}{\\[\\]\\\\:';\"<>,./?-]{10,}$
 
@@ -280,6 +282,8 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 ^: 문자열의 시작
 $: 문자열의 끝
 따라서 이 정규표현식은 "소문자와 숫자가 최소한 하나 이상 포함되어 있으며, 대소문자, 숫자, 특수문자 중에서 적어도 10개 이상의 문자로 이루어진 문자열"을 검사하는 패턴입니다.
+
+### 3. 로그인 유지 구현
 
 ## 시행착오
 

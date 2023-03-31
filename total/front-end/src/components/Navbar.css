@@ -15,8 +15,17 @@
 #login-btn:hover,
 #logout-btn:hover,
 #signup-btn:hover,
-#title:hover {
+#title:hover,
+#post:hover {
   color: dimgrey;
+  cursor: pointer;
+}
+
+#post {
+  float: left;
+  margin-left: 10px;
+  line-height: 70px;
+  color: white;
 }
 
 #login-btn,
