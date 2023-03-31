@@ -41,7 +41,7 @@ function List() {
 
   useEffect(() => {
     function handleScroll() {
-      if (isScrolledToBottom() && data.length % 10 === 0) {
+      if (isScrolledToBottom()) {
         loadData();
       }
     }

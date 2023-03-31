@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
+import bitcamp.util.ErrorCode;
+import bitcamp.util.PasswordChecker;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +27,65 @@ public class AuthController {
 
   @Autowired private MemberService memberService;
 
+  @GetMapping("checkemail")
+  public Object checkemail(String email) {
+    Member member = memberService.getByEmail(email);
+
+    if (member != null) {
+      return new RestResult()
+          .setData(member)
+          .setStatus(RestStatus.SUCCESS);
+    } else {
+      return new RestResult()
+          .setData(ErrorCode.rest.NO_DATA)
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @GetMapping("checknickname")
+  public Object checknickname(String nickname) {
+    Member member = memberService.getByNickname(nickname);
+
+    if (member != null) {
+      return new RestResult()
+          .setData(member)
+          .setStatus(RestStatus.SUCCESS);
+    } else {
+      return new RestResult()
+          .setData(ErrorCode.rest.NO_DATA)
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PostMapping("signup")
+  public Object signup(
+      String nickname,
+      String email,
+      String password,
+      HttpSession session) {
+
+    if(nickname.length() <= 50 ||
+        email.contains("@") ||
+        PasswordChecker.isValidPassword(password)) {
+
+      Member member = new Member();
+      member.setNickname(nickname);
+      member.setEmail(email);
+      member.setPassword(password);
+
+      memberService.add(member);
+
+      session.setAttribute("loginUser", member);
+
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS);
+    }
+
+    return new RestResult()
+        .setErrorCode(ErrorCode.rest.CONTROLLER_EXCEPTION)
+        .setStatus(RestStatus.FAILURE);
+  }
+
   @PostMapping("login")
   public Object login(
       String email,
@@ -40,6 +101,7 @@ public class AuthController {
           .setStatus(RestStatus.SUCCESS);
     } else {
       return new RestResult()
+          .setErrorCode(ErrorCode.rest.NO_DATA)
           .setStatus(RestStatus.FAILURE);
     }
   }

@@ -10,6 +10,7 @@ public class Board {
   private int boardNo;
   private int writerNo;
   private String writerName;
+  private String writerPic;
   private String originContent;
   private String transContent;
   private String tag;
@@ -21,6 +22,7 @@ public class Board {
   private int photoNo;
   private String fileName;
 
+
   @JsonFormat(
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd")
@@ -30,4 +32,9 @@ public class Board {
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd")
   private Date updateDt;
+
+  @JsonFormat(
+      shape = Shape.STRING,
+      pattern = "yyyy-MM-dd")
+  private Date replyWriteDt;
 }
