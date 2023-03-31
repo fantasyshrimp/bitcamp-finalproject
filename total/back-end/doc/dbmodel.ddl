@@ -261,7 +261,7 @@ ALTER TABLE aim_pt_get_log
 -- 그림
 CREATE TABLE aim_generated_img (
   img_no   INTEGER      NOT NULL COMMENT '그림번호', -- 그림번호
-  filename VARCHAR(255) NOT NULL COMMENT '파일이름', -- 파일이름
+  img_filename VARCHAR(255) NOT NULL COMMENT '파일이름', -- 파일이름
   board_no INTEGER      NOT NULL COMMENT '게시글 번호' -- 게시글 번호
 )
 COMMENT '그림';
