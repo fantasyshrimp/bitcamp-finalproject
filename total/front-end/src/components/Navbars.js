@@ -14,7 +14,7 @@ function Navbars() {
   }, []);
 
   return (
-    <Navbar expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container fluid>
         <Navbar.Brand href="/">Artify</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -26,8 +26,12 @@ function Navbars() {
               <Post />
             </Nav.Link>
           </Nav>
+
           <Nav>
             <Searchs />
+          </Nav>
+
+          <Nav>
             <AuthBtn
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}

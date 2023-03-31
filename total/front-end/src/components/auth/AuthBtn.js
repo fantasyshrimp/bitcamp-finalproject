@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SignupBtn, Login, Logout } from "../auth";
+import { SignupBtn, Login, Logout, ProfileModal } from "../auth";
 import { Nav } from "react-bootstrap";
 
 function AuthBtn(props) {
@@ -7,6 +7,14 @@ function AuthBtn(props) {
   currentUser = props.currentUser;
   setCurrentUser = props.setCurrentUser;
   const nickname = currentUser.nickname;
+
+  const handleClickUser = () => {
+    return (
+      <>
+        <ProfileModal show={true} />
+      </>
+    );
+  };
 
   if (props.currentUser === "") {
     return (
@@ -22,7 +30,7 @@ function AuthBtn(props) {
   } else {
     return (
       <>
-        <div className="text-light">{}</div>
+        <Nav.Link onClick={handleClickUser}>반가워요! {nickname}</Nav.Link>
         <Logout currentUser={currentUser} setCurrentUser={setCurrentUser} />
       </>
     );

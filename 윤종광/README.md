@@ -1,4 +1,4 @@
-# **작업내용 및 시행착오 기록**
+# _작업내용 및 시행착오 기록_
 
 # 3월29일 수
 
@@ -13,10 +13,16 @@
 ### 1. resultType="member" == resultMap="memberMap"
 
 Mapper 파일에서 위 둘은 동일하다. 위에 다음과 같이 설정했기 때문이다.
+
+```HTML
 <resultMap type="member" id="memberMap">
+```
 
 그래서 아래처럼 사용할 수 있다.
+
+```HTML
 <select id="findByEmail" parameterType="String" resultType="member"> <!-- resultMap="memberMap" 과 동일 -->
+```
 
 ### 2. NotSerializableException
 
@@ -268,11 +274,15 @@ bitcamp.app.controller.AuthController    : io.undertow.servlet.spec.HttpSessionI
 
 ### 2. 비밀번호 체크 정규표현식 작성
 
+```javascript
 ^(?=._[a-z])(?=._\\d)[A-Za-z\\d!@#$%^&*()_+~`|}{\\[\\]\\\\:';\"<>,./?-]{10,}$
+```
 
-정규표현식 패턴 한글로 해석해줘
+chatGPT 에 정규표현식 해석 요청했다.
 
-→ 해당 정규표현식 패턴은 다음과 같은 의미를 갖습니다:
+Q. 정규표현식 패턴 한글로 해석해줘
+
+A. 해당 정규표현식 패턴은 다음과 같은 의미를 갖습니다:
 
 ```
 (?=._[a-z]): 소문자가 최소한 하나 이상 포함되어 있어야 함
@@ -309,7 +319,7 @@ Navbar 가 무한 로딩하는 현상이 있어 chatGPT 에게 문의했다.
 이를 해결하기 위해서는 getCurrentUser 함수가 완료될 때까지 기다리도록 코드를 수정해야합니다. 이를 위해 Navbars 함수 내부에서 getCurrentUser 함수를 호출하는 대신, useEffect hook을 사용하여 컴포넌트가 마운트될 때 한 번 호출하도록 변경해야합니다.
 ```
 
-기존 코드이다. 이 코드를 수정하였다.
+기존 코드이다. 무한 로딩이 발생한다.
 
 ```javascript
 function Navbars() {
@@ -321,6 +331,8 @@ function Navbars() {
 }
 ```
 
+아래는 수정한 코드이다.
+
 ````javascript
 function Navbars() {
   let [currentUser, setCurrentUser] = useState("");
@@ -331,5 +343,7 @@ function Navbars() {
 
 	// 생략
 }
-	```
+```
+
+
 ````
