@@ -32,7 +32,7 @@ function FeedModal(props) {
         }
       })
       .catch((error) => {
-        alert(error);
+        alert("로그인하고 하셈");
       });
   };
 
