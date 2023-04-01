@@ -4,16 +4,56 @@ import "./FeedModal.css";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
+  const [value, setValue] = useState("");
+  const [isUpdated, setIsUpdated] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("submitted value:", value);
+
+    axios
+      .post(
+        "http://localhost:8080/api/reply",
+        {},
+        {
+          params: {
+            boardNo: props.data.boardNo,
+            content: value,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === "success") {
+          setIsUpdated(!isUpdated);
+          setValue("");
+        } else {
+          alert("입력실패");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/reply/${props.data.boardNo}`)
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [isUpdated]);
 
   console.log(props.data.boardNo);
   console.log(data);
+
+  if (!Array.isArray(data)) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div id="feed-modal-image" style={{ display: "table" }}>
@@ -67,7 +107,20 @@ function FeedModal(props) {
           </div>
         </div>
         <div id="feed-modal-commentinput">
-          <input id="feed-modal-inputbox"></input>
+          <form onSubmit={handleSubmit}>
+            <input
+              id="feed-modal-inputbox"
+              type="text"
+              name="content"
+              value={value}
+              onChange={handleChange}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  setValue(event.target.value);
+                }
+              }}
+            />
+          </form>
         </div>
         <div id="feed-modal-comscroll">
           {data.map((item) => (

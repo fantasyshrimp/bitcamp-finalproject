@@ -16,4 +16,9 @@ public class DefaultReplyService implements ReplyService{
   public List<Reply> get(int no) {
     return replyDao.findByNo(no);
   }
+
+  @Override
+  public void insert(Reply reply) {
+    replyDao.insert(reply);
+  }
 }

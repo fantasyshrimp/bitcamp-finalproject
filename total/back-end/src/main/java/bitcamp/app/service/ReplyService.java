@@ -5,4 +5,5 @@ import bitcamp.app.vo.Reply;
 
 public interface ReplyService {
   List<Reply> get(int no);
+  void insert(Reply reply);
 }

@@ -7,4 +7,5 @@ import bitcamp.app.vo.Reply;
 @Mapper
 public interface ReplyDao {
   List<Reply> findByNo(int no);
+  void insert(Reply reply);
 }
