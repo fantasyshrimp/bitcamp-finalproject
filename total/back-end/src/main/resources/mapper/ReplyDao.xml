@@ -20,7 +20,7 @@
     values(#{boardNo}, #{writerNo}, #{content})
   </insert>
   
-    <select id="findByNo" resultMap="replyMap" parameterType="int">
+   <select id="findByNo" resultMap="replyMap" parameterType="int">
     select 
       r.reply_no, 
       r.board_no, 
@@ -35,7 +35,13 @@
     where 
       r.board_no=#{no}
     ORDER BY r.reply_no desc
-  </select>
+   </select>
+  
+   <select id="CountCommentLike" resultType="int" parameterType="int">
+	SELECT COUNT(DISTINCT member_no) AS like_count
+	FROM aim_like_reply
+	WHERE reply_no = #{no};
+   </select>
   
   
   </mapper>

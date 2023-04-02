@@ -32,7 +32,7 @@ function FeedModal(props) {
         }
       })
       .catch((error) => {
-        alert("로그인하고 하셈");
+        alert("로그인 후 입력가능합니다.");
       });
   };
 
@@ -144,6 +144,11 @@ function FeedModal(props) {
                   </div>
                   <div id="feed-modal-commentcontent" key={item.content}>
                     {item.content}
+                  <div id="feed-modal-commentutil">
+                    <div id="feed-modal-commentlike">좋아요 0개</div>
+                    <div id="feed-modal-commentreport">신고하기</div>
+                    <div id="feed-modal-commentdelete">삭제하기</div>
+                  </div>
                   </div>
                 </div>
                 <div id="feed-modal-commentheart"></div>

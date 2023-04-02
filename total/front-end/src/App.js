@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Feed from "./pages/Feed";
+import Feed from "./pages/Feed/Feed";
 import Profile from "./pages/profile/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
