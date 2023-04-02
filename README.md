@@ -1,5 +1,5 @@
 UI 프로토타입:
-피그잼 정의: https://www.figma.com/file/OqWG6u7P5kjgVNeTgq2srb/Untitled?node-id=0%3A1&t=hjTiM5AJYNiQOjdK-0
+피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
 
 # bitcamp-finalproject
 
