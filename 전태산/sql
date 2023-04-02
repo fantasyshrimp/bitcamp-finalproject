@@ -15,3 +15,5 @@ insert into aim_follow(following_no, follower_no) value
 (8,5),
 (7,5),
 (6,5);
+
+insert into aim_follow(following_no,follower_no) values(12, 5);

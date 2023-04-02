@@ -5,9 +5,20 @@
 <mapper namespace="bitcamp.app.dao.FollowDao">
 
   <resultMap type="follow" id="followMap">
-    <id column="following_no" property="following_no"/>
-    <id column="follower_no" property="follower_no"/>
+    <id column="following_no" property="followingNo"/>
+    <id column="follower_no" property="followerNo"/>
   </resultMap>
+  
+  <insert id="insert" parameterType="follow">
+    insert into aim_follow(following_no, follower_no) 
+    values(#{followingNo}, #{followerNo})
+  </insert>
+  
+  <delete id="delete" parameterType="follow">
+    delete from aim_follow 
+    where following_no=#{followingNo} and follower_no=#{followerNo} 
+  </delete>
+  
 
   <select id="findAllFollowingNumbers" parameterType="int" resultType="java.lang.Integer">
     select
@@ -15,7 +26,7 @@
     from
       aim_follow 
     where
-      following_no=#{following_no}
+      following_no=#{followingNo}
   </select>
   
   <select id="findAllFollowerNumbers" parameterType="int" resultType="java.lang.Integer">
@@ -24,7 +35,16 @@
     from
       aim_follow 
     where
-      follower_no=#{follower_no}
+      follower_no=#{followerNo}
   </select>
-
-  </mapper>
+  
+  <select id="checkState" parameterType="follow" resultType="int">
+  select 
+    count(follower_no)
+  from 
+    aim_follow
+  where 
+    following_no=#{followingNo} and follower_no=#{followerNo}    
+</select>
+  
+</mapper>

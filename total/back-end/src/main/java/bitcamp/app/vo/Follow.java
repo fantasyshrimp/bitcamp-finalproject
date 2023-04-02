@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 public class Follow implements Serializable {
   private static final long serialVersionUID = 1L;
-  private int following_no;
-  private int follower_no;
+  private int followingNo;
+  private int followerNo;
 
   @JsonFormat(
       shape = Shape.STRING,

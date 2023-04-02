@@ -12,7 +12,7 @@ function Profile() {
   const location = useLocation();
   const { no } = location.state || {};
 
-  let memberNo = no ? no : 5;
+  let memberNo = no ? no : 12;
   console.log(no +"프로필 로드됨");
   useEffect(() => {
     axios
@@ -33,9 +33,9 @@ function Profile() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
+  // 이 각 데이터를 던져주는 부분을 각각 요청해서 받아오게 해야할듯
   return (
-    <>
+    <> 
       <ProfileUpper member={data["member"]} followings={data["followingList"]} followers={data["followerList"]} />
       <ProfileUnder boards={data["boards"]} />
     </>
