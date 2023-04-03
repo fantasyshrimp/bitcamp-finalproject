@@ -26,6 +26,7 @@
   <select id="findAll" resultMap="boardMap" parameterType="string">
     select 
       b.board_no, 
+      b.member_no, 
       b.origin_content, 
       b.trans_content,
       b.tag, 
@@ -75,6 +76,7 @@
   <select id="findByMemberNo" resultMap="boardMap" parameterType="int">
     select 
       board_no, 
+      member_no, 
       origin_content, 
       trans_content,
       tag, 

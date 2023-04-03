@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
+import FollowBtn from "../profile/FollowBtn";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
@@ -53,6 +54,8 @@ function FeedModal(props) {
     return <div>Loading...</div>;
   }
 
+  console.log(props.data);
+
   return (
     <>
       <div id="feed-modal-image" style={{ display: "table" }}>
@@ -86,7 +89,9 @@ function FeedModal(props) {
           <div id="feed-modal-writer" key={props.data.writerName}>
             {props.data.writerName}
           </div>
-          <div id="feed-modal-follow"></div>
+          <div id="feed-modal-follow">
+            <FollowBtn followerNo={props.data.writerNo} />
+          </div>
           {/* <div id="feed-modal-setting">설정</div> */}
           {/* <div
             id="feed-modal-like"
