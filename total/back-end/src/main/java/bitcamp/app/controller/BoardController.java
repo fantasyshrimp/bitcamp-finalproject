@@ -27,7 +27,7 @@ public class BoardController {
 
   @Autowired private BoardService boardService;
 
-  @PostMapping("boards")
+  @PostMapping
   public Object insert(int writerNo, String originContent) {
 
     return new RestResult()

@@ -9,6 +9,7 @@ import lombok.Data;
 public class Board {
   private int boardNo;
   private String originContent;
+  private String summaryContent;
   private String transContent;
   private String tag;
   private int likeCnt;
