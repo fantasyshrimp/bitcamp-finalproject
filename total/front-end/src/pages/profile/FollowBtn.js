@@ -8,7 +8,6 @@ function FollowBtn(props) {
     useEffect(() => {
       axios.get("http://localhost:8080/follow/" + props.followerNo)
       .then((response) => {       
-        console.log(props.followerNo +"번이랑 팔로우하나?") ;
         if (response.data.data === "follow") {
           setfollowState(true);
         } else {
