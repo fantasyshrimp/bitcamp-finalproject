@@ -13,6 +13,7 @@ public class Reply {
   private String writerName;
   private String writerPic;
   private String content;
+  private int memberNo;
 
   @JsonFormat(
       shape = Shape.STRING,

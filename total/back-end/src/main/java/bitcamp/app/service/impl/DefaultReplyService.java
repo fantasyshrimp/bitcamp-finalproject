@@ -31,4 +31,23 @@ public class DefaultReplyService implements ReplyService{
   public void commentDelete(int no) {
     replyDao.commentDelete(no);
   }
+
+  @Override
+  public boolean checkLikeState(Reply reply) {
+    if (replyDao.checkLikeState(reply) == 1) {
+      return true;
+    }
+    return false;
+
+  }
+
+  @Override
+  public void like(Reply reply) {
+    replyDao.like(reply);
+  }
+
+  @Override
+  public void unlike(Reply reply) {
+    replyDao.unlike(reply);
+  }
 }
