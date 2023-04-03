@@ -1,8 +1,16 @@
 @font-face {
-  font-family: "LeeSeoyun";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
-    format("woff");
+  font-family: "PuradakGentleGothicR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.1/PuradakGentleGothicR.woff2")
+    format("woff2");
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -12,21 +20,21 @@
 }
 
 .description {
-  width: 600px;
+  width: 80%;
   position: absolute;
   z-index: 999;
   color: aliceblue;
   top: 20%;
-  left: 20%;
+  left: 10%;
 }
 
 .description h1 {
-  font-family: "LeeSeoyun";
+  font-family: "PuradakGentleGothicR";
   font-size: 46px;
 }
 
 .description p {
-  font-family: "LeeSeoyun";
+  font-family: "LINESeedKR-Bd";
   font-size: 23px;
 }
 
