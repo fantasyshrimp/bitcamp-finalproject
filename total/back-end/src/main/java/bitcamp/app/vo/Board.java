@@ -8,9 +8,6 @@ import lombok.Data;
 @Data
 public class Board {
   private int boardNo;
-  private int writerNo;
-  private String writerName;
-  private String writerPic;
   private String originContent;
   private String transContent;
   private String tag;
@@ -21,6 +18,7 @@ public class Board {
   private int reportCnt;
   private int photoNo;
   private String fileName;
+  private Member writer;
 
 
   @JsonFormat(

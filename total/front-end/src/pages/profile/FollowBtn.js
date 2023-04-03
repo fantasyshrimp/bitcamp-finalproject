@@ -8,7 +8,6 @@ function FollowBtn(props) {
     useEffect(() => {
       axios.get("http://localhost:8080/follow/" + props.followerNo)
       .then((response) => {       
-        console.log(props.followerNo +"번이랑 팔로우하나?") ;
         if (response.data.data === "follow") {
           setfollowState(true);
         } else {
@@ -31,7 +30,8 @@ function FollowBtn(props) {
         if (followState) {
             axios.delete("http://localhost:8080/follow/" + props.followerNo)
             .then((response) => {
-              //console.log(response);
+              console.log(response);
+              console.log(props.followerNo + "번 언팔");
             })
             .catch((error) => {
               console.error(error);
@@ -42,7 +42,8 @@ function FollowBtn(props) {
               followerNo: props.followerNo
             })
             .then((response) => {
-              //console.log(response);
+              console.log(response);
+              console.log(props.followerNo + "번 팔로우");
             })
             .catch((error) => {
               console.error(error);

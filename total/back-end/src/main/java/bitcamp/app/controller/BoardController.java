@@ -16,7 +16,7 @@ import bitcamp.util.RestStatus;
 
 @RestController
 // @RequestMapping("/member")
-@RequestMapping("/api")
+@RequestMapping("/boards")
 public class BoardController {
 
   Logger log = LogManager.getLogger(getClass());
@@ -34,13 +34,13 @@ public class BoardController {
         .setStatus(RestStatus.SUCCESS);
   }
 
-  @GetMapping("/boards")
+  @GetMapping
   public List<Board> list(String keyword) {
 
     return boardService.list(keyword);
   }
 
-  @GetMapping("/boards/{no}")
+  @GetMapping("{no}")
   public Board view(@PathVariable int no) {
 
     return boardService.get(no);

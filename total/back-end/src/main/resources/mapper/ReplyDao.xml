@@ -7,18 +7,21 @@
   <resultMap type="reply" id="replyMap">
     <id column="reply_no" property="replyNo"/>
     <result column="board_no" property="boardNo"/>
-    <result column="member_no" property="writerNo"/>
     <result column="content" property="content"/>
     <result column="write_dt" property="writeDt"/>
-    <result column="name" property="writerName"/>
-    <result column="filename" property="writerPic"/>
+    
+        <association property="writer" javaType="member">
+      <id column="member_no" property="no"/>
+      <result column="name" property="nickname"/>
+      <result column="filename" property="profilePhoto"/>
+    </association>
   </resultMap>
   
- <insert id="insert" parameterType="reply" 
+   <insert id="insert" parameterType="reply" 
           useGeneratedKeys="true" keyProperty="replyNo" keyColumn="reply_no">
     insert into aim_reply(board_no, member_no, content)
-    values(#{boardNo}, #{writerNo}, #{content})
-  </insert>
+    values(#{boardNo}, #{writer.no}, #{content})
+   </insert>
   
    <select id="findByNo" resultMap="replyMap" parameterType="int">
     select 
@@ -37,11 +40,39 @@
     ORDER BY r.reply_no desc
    </select>
   
-   <select id="CountCommentLike" resultType="int" parameterType="int">
-	SELECT COUNT(DISTINCT member_no) AS like_count
-	FROM aim_like_reply
-	WHERE reply_no = #{no};
+   <select id="countCommentLike" resultType="int" parameterType="int">
+	  SELECT COUNT(DISTINCT member_no) AS like_count
+	  FROM aim_like_reply
+	  WHERE reply_no = #{no};
    </select>
+   
+   <delete id="commentDelete" parameterType="int">
+    delete from aim_reply
+    where reply_no=#{no}
+   </delete>
   
+   <insert id="like" parameterType="reply">
+    insert into aim_like_reply(member_no, reply_no)
+    values(#{memberNo}, #{replyNo})
+   </insert>
+   
+   <delete id="unlike" parameterType="reply">
+    delete from aim_like_reply 
+    where member_no=#{memberNo} and reply_No=#{replyNo} 
+   </delete>
+  
+    <delete id="unlikeAll" parameterType="int">
+    delete from aim_like_reply 
+    where reply_No=#{no} 
+   </delete>
+  
+   <select id="checkLikeState" resultType="int" parameterType="reply">
+    select 
+     count(reply_no)
+    from 
+     aim_like_reply
+    where 
+     member_no=#{memberNo} and reply_no=#{replyNo}
+   </select>
   
   </mapper>
