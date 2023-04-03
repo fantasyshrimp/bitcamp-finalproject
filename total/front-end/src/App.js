@@ -13,7 +13,6 @@ function App() {
     <div>
       <BrowserRouter>
         <Navbars />
-        <Main />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Feed" element={<Feed />}></Route>
