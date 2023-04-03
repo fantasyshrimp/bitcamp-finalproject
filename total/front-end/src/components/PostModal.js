@@ -3,9 +3,8 @@ import { Button, Modal, Form, InputGroup } from "react-bootstrap";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function Post() {
-  const [show, setShow] = useState(false);
-  let [currentUser, setCurrentUser] = useState("");
+function PostModal(props) {
+  const { show, setShow } = props;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,8 +13,6 @@ function Post() {
 
   return (
     <>
-      <div onClick={handleShow}>Post</div>
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -32,7 +29,7 @@ function Post() {
               <Form.Label></Form.Label>
               <Form.Control
                 as="textarea"
-                rows={6}
+                rows={10}
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!"
                 style={{ resize: "none" }}
               />
@@ -48,4 +45,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default PostModal;

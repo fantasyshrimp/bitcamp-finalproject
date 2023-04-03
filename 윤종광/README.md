@@ -305,7 +305,7 @@ $: 문자열의 끝
 
 ## 작업내용
 
-### 1. 로그인 유지 기능 구현
+### 1. 사용자 프로필 클릭시 작은 모달창 구현(내 프로필, 설정, 로그아웃)
 
 ## 시행착오
 
@@ -333,16 +333,51 @@ function Navbars() {
 
 아래는 수정한 코드이다.
 
-````javascript
+```javascript
 function Navbars() {
   let [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     getCurrentUser(setCurrentUser);
-  }, [])
+  }, []);
 
-	// 생략
+  // 생략
 }
 ```
 
-````
+아래처럼 다시 수정하였다.
+
+```javascript
+function Navbars() {
+  let [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("http://localhost:8080/auth/user");
+        if (result.data.status == "success") {
+          setCurrentUser(result.data.data);
+        } else {
+          setCurrentUser(null);
+        }
+      } catch (error) {
+        alert("로그인 유저 가져오는 중 오류 발생!");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 생략
+}
+```
+
+# 4월3일 월
+
+## 작업내용
+
+### 1. 사용자 프로필 클릭시 작은 모달창 구현(글쓰기)
+
+## 시행착오
+
+### 1.

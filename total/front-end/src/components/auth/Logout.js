@@ -4,8 +4,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function Logout(props) {
-  let [currentUser, setCurrentUser] = [useState(props.currentUser)];
-  setCurrentUser = props.setCurrentUser;
+  let { currentUser, setCurrentUser } = props;
 
   const handleLogoutClick = () => {
     axios

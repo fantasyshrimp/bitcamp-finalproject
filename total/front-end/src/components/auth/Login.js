@@ -5,8 +5,7 @@ axios.defaults.withCredentials = true;
 
 function Login(props) {
   const [show, setShow] = useState(false);
-  let [currentUser, setCurrentUser] = [useState(props.currentUser)];
-  setCurrentUser = props.setCurrentUser;
+  let { currentUser, setCurrentUser } = props;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
