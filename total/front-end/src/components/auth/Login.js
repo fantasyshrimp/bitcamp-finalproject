@@ -10,7 +10,7 @@ function Login(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function handleLoginSubmit() {
+  function handleClickLogin() {
     const email = document.getElementsByName("email")[0].value;
     const password = document.getElementsByName("password")[0].value;
 
@@ -76,7 +76,7 @@ function Login(props) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" type="button" onClick={handleLoginSubmit}>
+            <Button variant="primary" type="button" onClick={handleClickLogin}>
               Log In
             </Button>
           </Form>

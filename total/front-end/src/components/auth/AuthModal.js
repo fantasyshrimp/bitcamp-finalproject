@@ -14,13 +14,13 @@ function AuthModal(props) {
 
   const handleClose = () => setShow(false);
 
-  const handlePostModalClick = (e) => {
+  const handleClickPostModal = (e) => {
     e.preventDefault();
     setPostShow(true);
     setShow(false);
   };
 
-  const handleLogoutClick = () => {
+  const handleClickLogout = () => {
     handleClose();
 
     axios
@@ -50,7 +50,7 @@ function AuthModal(props) {
             <a
               href=""
               className="auth-modal-link"
-              onClick={handlePostModalClick}
+              onClick={handleClickPostModal}
             >
               <Pencil
                 style={{
@@ -95,7 +95,7 @@ function AuthModal(props) {
             </a>
           </div>
           <div className="mb-0">
-            <a href="/" className="auth-modal-link" onClick={handleLogoutClick}>
+            <a href="/" className="auth-modal-link" onClick={handleClickLogout}>
               <BoxArrowRight
                 style={{
                   fontSize: "1.4rem",

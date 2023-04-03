@@ -376,8 +376,48 @@ function Navbars() {
 
 ## 작업내용
 
-### 1. 사용자 프로필 클릭시 작은 모달창 구현(글쓰기)
+### 1. 사용자 프로필에서 글쓰기 구현
+
+### 2. 네이버 API 요약 기능 구현
+
+### 3. 네이버 API 번역 기능 구현
 
 ## 시행착오
 
-### 1.
+### 1. setCurrentUser() 로 값 설정 완료 후 실행할 함수 지정은 useEffect() 사용
+
+setCurrentUser() 밑에 handleClovaSummary() 를 넣으니 첫 클릭시 정보 못가져오고 두 번째 클릭시 가져온다.
+이유는 setState() 함수는 비동기로 실행되기 때문이다.
+
+setState() 함수 실행이 완료된 후 실행할 함수를 지정할때 useEffect 를 사용한다.
+useEffect(1st, 2nd) 에서 2nd 에 [값] 을 전달하면, 그 값이 변경될때 useEffect 를 실행한다.
+
+````javascript
+  useEffect(() => {
+    if (currentUser !== null) {
+      handleClovaSummary();
+    }
+  }, [currentUser]);
+
+  const HandleClickGenerate = () => {
+    axios("http://localhost:8080/auth/user")
+      .then((response) => {
+        if (response.data.status == "success") {
+          setCurrentUser(response.data.data);
+        } else {
+          setCurrentUser(null);
+          alert("로그인 후 이용하세요");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("로그인 유저 가져오는 중 오류 발생!");
+      });
+  };
+
+  const handleClovaSummary = () => {}
+	```
+
+### 2.
+````

@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 function Logout(props) {
   let { currentUser, setCurrentUser } = props;
 
-  const handleLogoutClick = () => {
+  const handleClickLogout = () => {
     axios
       .get("http://localhost:8080/auth/logout")
       .then((response) => {
@@ -21,7 +21,7 @@ function Logout(props) {
   return (
     <>
       <Nav.Link>
-        <div onClick={handleLogoutClick}>Logout</div>
+        <div onClick={handleClickLogout}>Logout</div>
       </Nav.Link>
     </>
   );
