@@ -14,7 +14,7 @@ import bitcamp.app.vo.Member;
 
 @RestController
 // @RequestMapping("/member")
-@RequestMapping("/api")
+@RequestMapping("/boards")
 public class BoardController {
   @Autowired private BoardService boardService;
 
@@ -23,13 +23,13 @@ public class BoardController {
 
   }
 
-  @GetMapping("/boards")
+  @GetMapping
   public List<Board> list(String keyword) {
 
     return boardService.list(keyword);
   }
 
-  @GetMapping("/boards/{no}")
+  @GetMapping("{no}")
   public Board view(@PathVariable int no) {
 
     return boardService.get(no);

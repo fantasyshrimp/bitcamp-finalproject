@@ -3,7 +3,6 @@ import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
 import FollowBtn from "../profile/FollowBtn";
-import CommentLike from "./CommentLike";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
@@ -15,7 +14,7 @@ function FeedModal(props) {
 
     axios
       .post(
-        "http://localhost:8080/api/reply",
+        "http://localhost:8080/reply",
         {},
         {
           params: {
@@ -47,7 +46,7 @@ function FeedModal(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/reply/${props.data.boardNo}`)
+      .get(`http://localhost:8080/reply/${props.data.boardNo}`)
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, [isUpdated]);
@@ -55,8 +54,6 @@ function FeedModal(props) {
   if (!Array.isArray(data)) {
     return <div>Loading...</div>;
   }
-
-  console.log(props.data);
 
   return (
     <>
@@ -84,15 +81,15 @@ function FeedModal(props) {
           <div
             id="feed-modal-propic"
             style={{
-              backgroundImage: `url(${props.data.writerPic})`,
+              backgroundImage: `url(${props.data.writer.profilePhoto})`,
               backgroundSize: "cover",
             }}
           ></div>
-          <div id="feed-modal-writer" key={props.data.writerName}>
-            {props.data.writerName}
+          <div id="feed-modal-writer" key={props.data.writer.nickname}>
+            {props.data.writer.nickname}
           </div>
           <div id="feed-modal-follow">
-            <FollowBtn followerNo={props.data.writerNo} />
+            <FollowBtn followerNo={props.data.writer.no} />
           </div>
           {/* <div id="feed-modal-setting">설정</div> */}
           {/* <div
@@ -135,14 +132,14 @@ function FeedModal(props) {
                 <div
                   id="feed-modal-commentpic"
                   style={{
-                    backgroundImage: `url(${item.writerPic})`,
+                    backgroundImage: `url(${item.writer.profilePhoto})`,
                     backgroundSize: "cover",
                   }}
                 ></div>
                 <div id="feed-modal-com">
                   <div id="feed-modal-commentwriter">
-                    <div id="feed-modal-comwriter" key={item.writerName}>
-                      {item.writerName}
+                    <div id="feed-modal-comwriter" key={item.writer.nickname}>
+                      {item.writer.nickname}
                     </div>
                     <div id="feed-modal-comdt" key={item.writeDt}>
                       {item.writeDt}
@@ -152,12 +149,11 @@ function FeedModal(props) {
                     {item.content}
                     <CommentUtil
                       commentNo={item.replyNo}
-                      writerNo={item.writerNo}
+                      writerNo={item.writer.no}
                       onUpdate={handleUpdate}
                     />
                   </div>
                 </div>
-                <CommentLike replyNo={item.replyNo} />
               </div>
             </>
           ))}

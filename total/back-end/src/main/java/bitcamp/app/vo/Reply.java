@@ -9,11 +9,9 @@ import lombok.Data;
 public class Reply {
   private int replyNo;
   private int boardNo;
-  private int writerNo;
-  private String writerName;
-  private String writerPic;
   private String content;
   private int memberNo;
+  private Member writer;
 
   @JsonFormat(
       shape = Shape.STRING,

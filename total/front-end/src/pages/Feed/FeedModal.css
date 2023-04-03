@@ -235,7 +235,15 @@
   margin-top: 14px;
 }
 
-#feed-modal-commentheart:hover {
+#feed-modal-replylike {
+  float: left;
+  width: 13px;
+  height: 13px;
+  margin-top: 1.5px;
+  margin-left: 5px;
+}
+
+#feed-modal-replylike:hover {
   cursor: pointer;
 }
 

@@ -18,17 +18,17 @@ import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/reply")
 public class ReplyController {
   @Autowired private ReplyService replyService;
 
-  @PostMapping("/reply")
+  @PostMapping
   public Object insert(
       Reply reply,
       HttpSession session) {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
-    reply.setWriterNo(loginUser.getNo());
+    reply.setWriter(loginUser);
 
     System.out.println(reply);
     replyService.insert(reply);
@@ -37,13 +37,13 @@ public class ReplyController {
         .setStatus(RestStatus.SUCCESS);
   }
 
-  @GetMapping("/reply/{no}")
+  @GetMapping("{no}")
   public List<Reply> view(@PathVariable int no) {
 
     return replyService.get(no);
   }
 
-  @GetMapping("/reply/like/{no}")
+  @GetMapping("/like/{no}")
   public List<Integer> countCommentLike(@PathVariable int no, HttpSession session) {
     List<Integer> list = new ArrayList<>();
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -57,7 +57,7 @@ public class ReplyController {
     return list;
   }
 
-  @DeleteMapping("/reply/delete/{no}")
+  @DeleteMapping("/delete/{no}")
   public Object commentDelete(@PathVariable int no) {
 
     replyService.commentDelete(no);
@@ -66,7 +66,7 @@ public class ReplyController {
         .setStatus(RestStatus.SUCCESS);
   }
 
-  @GetMapping("/reply/islike/{no}")
+  @GetMapping("/islike/{no}")
   public Object checkLikeState(@PathVariable int no, HttpSession session) {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -94,7 +94,7 @@ public class ReplyController {
         .setData("like");
   }
 
-  @PostMapping("/reply/like")
+  @PostMapping("/like")
   public Object like(Reply reply, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
 
@@ -106,7 +106,7 @@ public class ReplyController {
         .setStatus(RestStatus.SUCCESS);
   }
 
-  @DeleteMapping("/reply/like/{no}")
+  @DeleteMapping("/like/{no}")
   public Object unlike(@PathVariable int no, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
 

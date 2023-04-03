@@ -13,4 +13,5 @@ public interface ReplyDao {
   int checkLikeState(Reply reply);
   void like(Reply reply);
   void unlike(Reply reply);
+  void unlikeAll(int no);
 }

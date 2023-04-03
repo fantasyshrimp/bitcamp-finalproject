@@ -6,9 +6,6 @@
 
   <resultMap type="board" id="boardMap">
     <id column="board_no" property="boardNo"/>
-    <result column="member_no" property="writerNo"/>
-    <result column="name" property="writerName"/>
-    <result column="filename" property="writerPic"/>
     <result column="origin_content" property="originContent"/>
     <result column="trans_content" property="transContent"/>
     <result column="tag" property="tag"/>
@@ -21,6 +18,12 @@
     <result column="update_dt" property="updateDt"/>
     <result column="img_no" property="photoNo"/>
     <result column="img_filename" property="fileName"/>
+    
+    <association property="writer" javaType="member">
+      <id column="member_no" property="no"/>
+      <result column="name" property="nickname"/>
+      <result column="filename" property="profilePhoto"/>
+    </association>
   </resultMap>
 
   <select id="findAll" resultMap="boardMap" parameterType="string">
@@ -75,22 +78,27 @@
   
   <select id="findByMemberNo" resultMap="boardMap" parameterType="int">
     select 
-      board_no, 
-      member_no, 
-      origin_content, 
-      trans_content,
-      tag, 
-      like_cnt, 
-      view_cnt, 
-      board_public, 
-      reply_public, 
-      report_cnt, 
-      write_dt, 
-      update_dt
+      b.board_no, 
+      b.origin_content, 
+      b.trans_content,
+      b.tag, 
+      b.like_cnt, 
+      b.view_cnt, 
+      b.board_public, 
+      b.reply_public, 
+      b.report_cnt, 
+      b.write_dt, 
+      b.update_dt, 
+      m.name, 
+      m.filename, 
+      i.img_no, 
+      i.img_filename 
     from 
-      aim_board
+      aim_board b
+      inner join aim_member m on b.member_no = m.member_no 
+      inner join aim_generated_img i on b.board_no = i.board_no 
     where 
-      member_no=#{no}
+      m.member_no=#{no}
   </select>
   
   
