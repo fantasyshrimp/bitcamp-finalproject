@@ -48,5 +48,23 @@
     where reply_no=#{no}
    </delete>
   
+   <insert id="like" parameterType="reply">
+    insert into aim_like_reply(member_no, reply_no)
+    values(#{memberNo}, #{replyNo})
+   </insert>
+   
+   <delete id="unlike" parameterType="reply">
+    delete from aim_like_reply 
+    where member_no=#{memberNo} and reply_No=#{replyNo} 
+   </delete>
+  
+   <select id="checkLikeState" resultType="int" parameterType="reply">
+    select 
+     count(reply_no)
+    from 
+     aim_like_reply
+    where 
+     member_no=#{memberNo} and reply_no=#{replyNo}
+   </select>
   
   </mapper>

@@ -10,4 +10,7 @@ public interface ReplyDao {
   void insert(Reply reply);
   int countCommentLike(int no);
   void commentDelete(int no);
+  int checkLikeState(Reply reply);
+  void like(Reply reply);
+  void unlike(Reply reply);
 }

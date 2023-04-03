@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.ReplyService;
 import bitcamp.app.vo.Member;
 import bitcamp.app.vo.Reply;
+import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
@@ -48,18 +49,78 @@ public class ReplyController {
     Member loginUser = (Member) session.getAttribute("loginUser");
 
     list.add(replyService.countCommentLike(no));
-    list.add(loginUser.getNo());
-
+    if (loginUser == null) {
+      list.add(0);
+    } else {
+      list.add(loginUser.getNo());
+    }
     return list;
   }
 
   @DeleteMapping("/reply/delete/{no}")
   public Object commentDelete(@PathVariable int no) {
+
     replyService.commentDelete(no);
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
 
+  @GetMapping("/reply/islike/{no}")
+  public Object checkLikeState(@PathVariable int no, HttpSession session) {
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      System.out.println("로그인 요망");
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+
+    Reply reply = new Reply();
+    reply.setMemberNo(loginUser.getNo());
+    reply.setReplyNo(no);
+
+    if(!replyService.checkLikeState(reply)) {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setData("unlike");
+    }
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData("like");
+  }
+
+  @PostMapping("/reply/like")
+  public Object like(Reply reply, HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    reply.setMemberNo(loginUser.getNo());
+
+    replyService.like(reply);
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+  @DeleteMapping("/reply/like/{no}")
+  public Object unlike(@PathVariable int no, HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    Reply reply = new Reply();
+    reply.setMemberNo(loginUser.getNo());
+    reply.setReplyNo(no);
+
+    replyService.unlike(reply);
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+
 }
+
 

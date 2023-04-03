@@ -3,11 +3,13 @@ import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
 import FollowBtn from "../profile/FollowBtn";
+import CommentLike from "./CommentLike";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -151,12 +153,11 @@ function FeedModal(props) {
                     <CommentUtil
                       commentNo={item.replyNo}
                       writerNo={item.writerNo}
-                      isUpdated={setIsUpdated}
                       onUpdate={handleUpdate}
                     />
                   </div>
                 </div>
-                <div id="feed-modal-commentheart"></div>
+                <CommentLike replyNo={item.replyNo} />
               </div>
             </>
           ))}
