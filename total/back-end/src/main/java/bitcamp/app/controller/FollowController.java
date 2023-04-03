@@ -59,7 +59,7 @@ public class FollowController {
   public Object insert(@RequestBody Follow follow, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
 
-    if (loginUser == null || loginUser.getNo() != follow.getFollowingNo()) {
+    if (loginUser == null) {
       return new RestResult()
           .setStatus(RestStatus.FAILURE)
           .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
