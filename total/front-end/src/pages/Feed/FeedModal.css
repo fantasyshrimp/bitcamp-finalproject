@@ -216,13 +216,16 @@
   color: #e75656;
 }
 
+#feed-modal-commentdelete:hover {
+  cursor: pointer;
+}
+
 #feed-modal-commentreport {
   float: right;
 }
 
 #feed-modal-commentlike {
   float: left;
-  
 }
 
 #feed-modal-commentheart {

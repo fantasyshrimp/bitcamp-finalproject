@@ -8,4 +8,6 @@ import bitcamp.app.vo.Reply;
 public interface ReplyDao {
   List<Reply> findByNo(int no);
   void insert(Reply reply);
+  int countCommentLike(int no);
+  void commentDelete(int no);
 }

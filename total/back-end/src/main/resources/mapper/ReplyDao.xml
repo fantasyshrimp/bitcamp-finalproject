@@ -14,11 +14,11 @@
     <result column="filename" property="writerPic"/>
   </resultMap>
   
- <insert id="insert" parameterType="reply" 
+   <insert id="insert" parameterType="reply" 
           useGeneratedKeys="true" keyProperty="replyNo" keyColumn="reply_no">
     insert into aim_reply(board_no, member_no, content)
     values(#{boardNo}, #{writerNo}, #{content})
-  </insert>
+   </insert>
   
    <select id="findByNo" resultMap="replyMap" parameterType="int">
     select 
@@ -37,11 +37,16 @@
     ORDER BY r.reply_no desc
    </select>
   
-   <select id="CountCommentLike" resultType="int" parameterType="int">
-	SELECT COUNT(DISTINCT member_no) AS like_count
-	FROM aim_like_reply
-	WHERE reply_no = #{no};
+   <select id="countCommentLike" resultType="int" parameterType="int">
+	  SELECT COUNT(DISTINCT member_no) AS like_count
+	  FROM aim_like_reply
+	  WHERE reply_no = #{no};
    </select>
+   
+   <delete id="commentDelete" parameterType="int">
+    delete from aim_reply
+    where reply_no=#{no}
+   </delete>
   
   
   </mapper>

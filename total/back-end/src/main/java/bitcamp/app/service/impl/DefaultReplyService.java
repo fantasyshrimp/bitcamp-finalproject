@@ -21,4 +21,14 @@ public class DefaultReplyService implements ReplyService{
   public void insert(Reply reply) {
     replyDao.insert(reply);
   }
+
+  @Override
+  public int countCommentLike(int no) {
+    return replyDao.countCommentLike(no);
+  }
+
+  @Override
+  public void commentDelete(int no) {
+    replyDao.commentDelete(no);
+  }
 }
