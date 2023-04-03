@@ -10,9 +10,25 @@ function Login(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function handleClickLogin() {
+  const handleClickLogin = (e) => {
     const email = document.getElementsByName("email")[0].value;
+    if (!email.includes("@") || !email.includes(".")) {
+      document.querySelector("#emailHelpBlock").innerText =
+        "이메일 양식이 맞지 않습니다.";
+      return;
+    } else {
+      document.querySelector("#emailHelpBlock").innerText = "";
+    }
+
     const password = document.getElementsByName("password")[0].value;
+    if (password.length === 0) {
+      document.querySelector("#passwordHelpBlock").innerText =
+        "비밀번호를 입력하세요";
+      document.getElementsByName("password")[0].focus();
+      return;
+    } else {
+      document.querySelector("#passwordHelpBlock").innerText = "";
+    }
 
     axios
       .post(
@@ -37,7 +53,11 @@ function Login(props) {
       .catch((error) => {
         alert("로그인 중 오류 발생");
       });
-  }
+  };
+
+  const handleChangePassword = () => {
+    document.querySelector("#passwordHelpBlock").innerText = "";
+  };
 
   return (
     <>
@@ -53,8 +73,8 @@ function Login(props) {
           <Modal.Title className="text-dark">반갑습니다!</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-          <Form>
+        <Form>
+          <Modal.Body>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label className="text-dark">
                 사용자의 이메일 주소를 입력해주세요
@@ -63,24 +83,32 @@ function Login(props) {
                 type="email"
                 name="email"
                 placeholder="name@example.com"
+                autoFocus
               />
+              <Form.Text id="emailHelpBlock" muted></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-dark">
                 사용자의 비밀번호를 입력해주세요
               </Form.Label>
-              <Form.Control type="password" name="password" />
+              <Form.Control
+                type="password"
+                name="password"
+                onChange={handleChangePassword}
+              />
+              <Form.Text id="passwordHelpBlock" muted></Form.Text>
             </Form.Group>
-
+          </Modal.Body>
+          <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" type="button" onClick={handleClickLogin}>
+            <Button variant="primary" type="submit" onClick={handleClickLogin}>
               Log In
             </Button>
-          </Form>
-        </Modal.Body>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

@@ -32,8 +32,8 @@ function Navbars() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/Feed/">Feed</Nav.Link>
-            <Nav.Link href="/Profile/">pppp</Nav.Link>
+            <Nav.Link href="/feed/">Feed</Nav.Link>
+            <Nav.Link href="/faq/">FAQ</Nav.Link>
             <Searchs />
           </Nav>
 

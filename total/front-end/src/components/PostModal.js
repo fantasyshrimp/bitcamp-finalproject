@@ -67,6 +67,7 @@ function PostModal(props) {
       <Modal
         show={show}
         onHide={handleClose}
+        backdrop="static"
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
       >
@@ -86,16 +87,13 @@ function PostModal(props) {
                 style={{ resize: "none" }}
               />
             </Form.Group>
-
-            <Button
-              variant="primary"
-              type="button"
-              onClick={HandleClickGenerate}
-            >
-              Generate
-            </Button>
           </Form>
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" type="button" onClick={HandleClickGenerate}>
+            Generate
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
