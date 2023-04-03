@@ -41,8 +41,9 @@ public class MemberController {
     Map<String, Object> data = new HashMap<>();
     data.put("member", memberService.get(no));
     data.put("boards", boardService.getByMemberNo(no));
+    //Following List는 실시간 변경이 필요하니 followController로 이동
     data.put("followingList", memberService.getFollowings(no));
-    data.put("followerList", memberService.getFollowers(no));
+    data.put("followerList", memberService.getFollowers(no)); //얘는 실시간 변경이 필요없을까
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)

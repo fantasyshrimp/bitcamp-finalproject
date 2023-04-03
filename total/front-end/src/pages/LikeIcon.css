@@ -1,4 +1,4 @@
-input[type="checkbox"] {
+input.like-btn[type="checkbox"] {
   background-color: white;
   height: 50px;
   width: 50px;
@@ -8,7 +8,7 @@ input[type="checkbox"] {
   -webkit-appearance: none;
 }
 
-input[type="checkbox"]:before {
+input.like-btn[type="checkbox"]:before {
   position: absolute;
   content: "";
   background-color: white;
@@ -18,7 +18,7 @@ input[type="checkbox"]:before {
   border-radius: 75px 75px 0 0;
 }
 
-input[type="checkbox"]:after {
+input.like-btn[type="checkbox"]:after {
   position: absolute;
   content: "";
   background-color: white;
@@ -30,8 +30,8 @@ input[type="checkbox"]:after {
   right: 79%;
 }
 
-input[type="checkbox"]:checked,
-input:checked[type="checkbox"]:before,
-input:checked[type="checkbox"]:after {
+input.like-btn[type="checkbox"].like-btn:checked,
+input.like-btn:checked[type="checkbox"]:before,
+input.like-btn:checked[type="checkbox"]:after {
   background-color: red;
 }
