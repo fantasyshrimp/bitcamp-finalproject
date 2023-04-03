@@ -75,9 +75,8 @@
   width: 80px;
   height: 32px;
   float: left;
-  margin-top: -5px;
-  margin-left: 15px;
-  color: white;
+  margin-top: 9px;
+  margin-left: 30px;
 }
 
 #feed-modal-like {
@@ -216,13 +215,16 @@
   color: #e75656;
 }
 
+#feed-modal-commentdelete:hover {
+  cursor: pointer;
+}
+
 #feed-modal-commentreport {
   float: right;
 }
 
 #feed-modal-commentlike {
   float: left;
-  
 }
 
 #feed-modal-commentheart {

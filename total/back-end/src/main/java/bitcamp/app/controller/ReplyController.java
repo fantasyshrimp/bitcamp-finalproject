@@ -1,7 +1,9 @@
 package bitcamp.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,8 +39,26 @@ public class ReplyController {
   @GetMapping("/reply/{no}")
   public List<Reply> view(@PathVariable int no) {
 
-
     return replyService.get(no);
+  }
+
+  @GetMapping("/reply/like/{no}")
+  public List<Integer> countCommentLike(@PathVariable int no, HttpSession session) {
+    List<Integer> list = new ArrayList<>();
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    list.add(replyService.countCommentLike(no));
+    list.add(loginUser.getNo());
+
+    return list;
+  }
+
+  @DeleteMapping("/reply/delete/{no}")
+  public Object commentDelete(@PathVariable int no) {
+    replyService.commentDelete(no);
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
   }
 
 }
