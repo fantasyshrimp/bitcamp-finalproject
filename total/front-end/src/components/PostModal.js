@@ -70,27 +70,45 @@ function PostModal(props) {
         backdrop="static"
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
+        contentClassName="bg-dark"
       >
-        <Modal.Header closeButton>
-          <Modal.Title className="text-dark">Post</Modal.Title>
+        <Modal.Header
+          closeButton
+          closeVariant="white"
+          style={{ borderBottom: "none" }}
+        ></Modal.Header>
+        <Modal.Header
+          style={{ borderBottom: "none" }}
+          className="d-flex justify-content-center p-0"
+        >
+          <Modal.Title className="text-light">Post</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className="pt-0 pb-0">
           <Form>
-            <Form.Group className="mb-3">
+            <Form.Group>
               <Form.Label></Form.Label>
               <Form.Control
                 as="textarea"
                 id="post-text"
-                rows={10}
+                rows={12}
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!"
                 style={{ resize: "none" }}
+                className="bg-dark text-light"
               />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" type="button" onClick={HandleClickGenerate}>
+        <Modal.Footer
+          style={{ borderTop: "none" }}
+          className="d-flex justify-content-center"
+        >
+          <Button
+            variant="primary"
+            type="button"
+            onClick={HandleClickGenerate}
+            style={{ width: "160px" }}
+          >
             Generate
           </Button>
         </Modal.Footer>

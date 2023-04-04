@@ -67,44 +67,61 @@ function Login(props) {
         show={show}
         onHide={handleClose}
         centered
-        style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#00000000",
+          border: "none",
+        }}
+        contentClassName="bg-dark"
       >
-        <Modal.Header closeButton>
-          <Modal.Title className="text-dark">반갑습니다!</Modal.Title>
+        <Modal.Header
+          closeButton
+          closeVariant="white"
+          style={{ borderBottom: "none" }}
+        >
+          <Modal.Title className="text-light">반갑습니다!</Modal.Title>
         </Modal.Header>
 
         <Form>
           <Modal.Body>
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label className="text-dark">
+              <Form.Label className="text-light">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
               <Form.Control
                 type="email"
                 name="email"
                 placeholder="name@example.com"
+                className="bg-dark text-light"
                 autoFocus
               />
               <Form.Text id="emailHelpBlock" muted></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-dark">
+              <Form.Label className="text-light">
                 사용자의 비밀번호를 입력해주세요
               </Form.Label>
               <Form.Control
                 type="password"
                 name="password"
+                className="bg-dark text-light"
                 onChange={handleChangePassword}
               />
               <Form.Text id="passwordHelpBlock" muted></Form.Text>
             </Form.Group>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" type="submit" onClick={handleClickLogin}>
+          <Modal.Footer style={{ borderTop: "none" }}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleClickLogin}
+              style={{
+                backgroundColor: "var(--color2)",
+                borderColor: "var(--color2)",
+              }}
+            >
               Log In
             </Button>
           </Modal.Footer>

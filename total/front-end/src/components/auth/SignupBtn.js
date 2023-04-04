@@ -114,20 +114,26 @@ function SignupBtn(props) {
         onHide={handleClose}
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
+        contentClassName="bg-dark"
       >
-        <Modal.Header closeButton>
-          <Modal.Title className="text-dark">회원가입</Modal.Title>
+        <Modal.Header
+          closeButton
+          closeVariant="white"
+          style={{ borderBottom: "none" }}
+        >
+          <Modal.Title className="text-light">회원가입</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-          <Form>
+        <Form>
+          <Modal.Body>
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label className="text-dark">이메일</Form.Label>
+              <Form.Label className="text-light">이메일</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   type="email"
                   name="email"
                   placeholder="name@example.com"
+                  className="bg-dark text-light"
                 />
                 <Button
                   variant="outline-secondary"
@@ -140,12 +146,13 @@ function SignupBtn(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="nickname">
-              <Form.Label className="text-dark">닉네임</Form.Label>
+              <Form.Label className="text-light">닉네임</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text"
                   name="nickname"
                   placeholder="nickname"
+                  className="bg-dark text-light"
                 />
                 <Button
                   variant="outline-secondary"
@@ -158,37 +165,42 @@ function SignupBtn(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-dark">비밀번호</Form.Label>
+              <Form.Label className="text-light">비밀번호</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
                 onChange={checkPasswordChar}
+                className="bg-dark text-light"
               />
               <Form.Text id="passwordHelpBlock" muted></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password2">
-              <Form.Label className="text-dark">비밀번호 확인</Form.Label>
+              <Form.Label className="text-light">비밀번호 확인</Form.Label>
               <Form.Control
                 type="password"
                 name="passwordConfirm"
                 onChange={checkBothPasswordSame}
+                className="bg-dark text-light"
               />
               <Form.Text id="passwordConfirmHelpBlock" muted></Form.Text>
             </Form.Group>
+          </Modal.Body>
 
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
+          <Modal.Footer style={{ borderTop: "none" }} className="d-grid gap-1">
             <Button
               variant="primary"
               type="button"
               onClick={handleSignupSubmit}
+              style={{
+                backgroundColor: "var(--color2)",
+                borderColor: "var(--color2)",
+              }}
             >
               Sign Up
             </Button>
-          </Form>
-        </Modal.Body>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );
