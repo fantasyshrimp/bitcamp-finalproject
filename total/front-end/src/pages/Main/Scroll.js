@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Scroll.module.css";
+import List from "../Feed/List";
 
 function Scroll() {
   return (
@@ -7,6 +8,7 @@ function Scroll() {
       <section id={styles.s1}>
         <h1>Animal</h1>
         <a href={`#${styles.s2}`}>Anime로 이동</a>
+        <List />
       </section>
       <section id={styles.s2}>
         <h2>Anime</h2>
