@@ -800,3 +800,17 @@ ALTER TABLE aim_board ADD summary_content TEXT NULL AFTER origin_content COMMENT
 -- 게시판에 summary_content 넣은 후 NOT NULL 설정하기
 ALTER TABLE aim_board
   MODIFY COLUMN summary_content TEXT NOT NULL
+
+-- 알림로그에 상대회원번호 추가
+ALTER TABLE aim_alarm_log ADD other_no INTEGER NOT NULL AFTER member_no COMMENT '상대회원번호', -- 상대회원번호
+
+-- 알림로그의 상대회원번호에 외래키 추가
+ALTER TABLE aim_alarm_log
+  ADD CONSTRAINT FK_aim_member_TO_aim_alarm_log2 -- 회원 -> 알림로그2
+  FOREIGN KEY (
+  other_no  -- 상대회원번호
+  )
+  REFERENCES aim_member (  -- 회원
+  member_no  -- 회원번호
+  );
+  

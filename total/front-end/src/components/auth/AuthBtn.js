@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SignupBtn, Login, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
+import { BellFill } from "react-bootstrap-icons";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function AuthBtn(props) {
   const [show, setShow] = useState(false);
@@ -10,10 +13,38 @@ function AuthBtn(props) {
     setShow(true);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("http://localhost:8080/");
+        if (result.data.status == "success") {
+          // setCurrentUser(result.data.data);
+        } else {
+          // setCurrentUser(null);
+        }
+      } catch (error) {
+        alert("알림 현황 가져오는 중 오류 발생!");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleClickBell = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       {currentUser ? (
         <>
+          <a
+            href=""
+            className="d-flex align-items-center"
+            onClick={handleClickBell}
+          >
+            <BellFill size="1.4rem" className="me-2 text-light " />
+          </a>
           <Nav.Link
             onClick={handleClickUser}
             style={{ padding: "0" }}

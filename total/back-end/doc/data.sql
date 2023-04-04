@@ -112,3 +112,17 @@ VALUES
 
 -- aim_board 에 summary_content 추가 후 데이터 넣기
 UPDATE aim_board SET summary_content = '요약 내용입니다.';
+
+-- 알림 타입 추가
+INSERT INTO aim_alarm_type (alarm_type) VALUES('reply'),('like_board'),('like_reply'),('follower');
+
+-- 회원 알림 설정 추가
+INSERT INTO aim_alarm (member_no, type) VALUES(4, 1),(4, 2),(4, 3), (4, 4);
+
+-- 알림 로그 추가
+INSERT INTO aim_alarm_log (type_no, member_no, other_no, content) 
+VALUES
+(1, 4, 1, '내용1'),
+(2, 4, 3, '내용2'),
+(3, 4, 5, '내용3'),
+(4, 4, 2, '내용4');
