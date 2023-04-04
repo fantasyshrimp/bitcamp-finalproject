@@ -1,5 +1,4 @@
 import React from "react";
-import ContentBoard from "./ContentBoard";
 import FeedList from "../Feed/FeedList";
 
 function ProfileUnder(props) {

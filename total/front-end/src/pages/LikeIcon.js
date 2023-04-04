@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BalloonHeart, BalloonHeartFill } from 'react-bootstrap-icons';
+
 import "./LikeIcon.css";
 
 function LikeIcon(props) {
   const [likeState, setlikeState] = useState(false);
-
+  const size = props.size;
   useEffect(() => {
     axios.get("http://localhost:8080/like/" + props.contentNo, {
       params: {
@@ -61,8 +63,18 @@ function LikeIcon(props) {
 };
 
   return (
-    <div>
-      <input className="like-btn" type="checkbox" checked={likeState} onClick={handleLike}/>
+    <div onClick={handleLike} style={{ position: "relative" }}>
+      {likeState ? (
+        <BalloonHeartFill
+          style={{ color: "red", width: size, height: size,
+          opacity: 0,
+          animation: "fillHeart 1s forwards", }}
+        />
+      ) : (
+        <BalloonHeart
+          style={{ color: "white", width: size, height: size }}
+        />
+      )}
     </div>
   );
 }

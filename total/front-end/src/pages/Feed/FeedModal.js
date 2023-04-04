@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
+import LikeIcon from "../LikeIcon";
 import FollowBtn from "../profile/FollowBtn";
 
 function FeedModal(props) {
@@ -9,6 +10,7 @@ function FeedModal(props) {
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
 
+  const boardNo = props.data.boardNo;
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -18,7 +20,7 @@ function FeedModal(props) {
         {},
         {
           params: {
-            boardNo: props.data.boardNo,
+            boardNo: boardNo,
             content: value,
           },
         }
@@ -46,7 +48,7 @@ function FeedModal(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/reply/${props.data.boardNo}`)
+      .get(`http://localhost:8080/reply/${boardNo}`)
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, [isUpdated]);
@@ -69,11 +71,9 @@ function FeedModal(props) {
         >
           <div
             id="modal-like-icon"
-            style={{
-              backgroundImage: `url(/heart.png)`,
-              backgroundSize: "cover",
-            }}
-          ></div>
+          ><LikeIcon size={30}
+          contentType={"board"} contentNo={boardNo}
+          /></div>
         </div>
       </div>
       <div id="feed-modal-content">

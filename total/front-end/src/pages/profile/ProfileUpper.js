@@ -37,7 +37,8 @@ function ProfileUpper(props) {
               paddingTop: '35px'
             }}
           ><FollowBtn followerNo={props.member.no} /></div>
-          <LikeIcon contentType={"reply"} contentNo={5}/>
+          <LikeIcon size={30}
+          contentType={"reply"} contentNo={5}/>
         </div>        
         <FollowListModal isOpen={followingModalIsOpen} onRequestClose={closeFollowingModal} followings={props.followings}/>
         <FollowListModal isOpen={followerModalIsOpen} onRequestClose={closeFollowerModal} followings={props.followers}/>

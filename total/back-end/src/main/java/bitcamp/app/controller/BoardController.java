@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.BoardService;
+import bitcamp.app.service.LikeService;
 import bitcamp.app.vo.Board;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -26,6 +27,7 @@ public class BoardController {
   }
 
   @Autowired private BoardService boardService;
+  @Autowired private LikeService likeService;
 
   @PostMapping("boards")
   public Object insert(int writerNo, String originContent) {
@@ -36,8 +38,11 @@ public class BoardController {
 
   @GetMapping
   public List<Board> list(String keyword) {
-
-    return boardService.list(keyword);
+    List<Board> list = boardService.list(keyword);
+    for (Board b : list) {
+      b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
+    }
+    return list;
   }
 
   @GetMapping("{no}")
