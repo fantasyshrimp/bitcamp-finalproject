@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.app.dao.AlarmDao">
+
+  <resultMap type="alarmLog" id="alarmlogMap">
+    <id column="log_no" property="no"/>
+    <result column="type_no" property="typeNo"/>
+    <result column="member_no" property="userNo"/>
+        
+    <result column="content" property="content"/>
+    <result column="read_flag" property="readFlag"/>
+    <result column="alarm_dt" property="alarmDate"/>
+    
+    <association property="otherMember" javaType="member">
+	    <id column="other_no" property="no"/>
+	    <result column="name" property="nickname"/>
+	    <result column="email" property="email"/>
+	    <result column="pw" property="password"/>
+	    <result column="create_dt" property="createdDate"/>
+	    <result column="gender" property="gender"/>
+	    <result column="filename" property="profilePhoto"/>
+	    <result column="addr" property="basicAddress"/>
+	    <result column="pt" property="point"/>
+	    <result column="info" property="information"/>
+	    <result column="birth_dt" property="birthDate"/>
+	    <result column="tel" property="tel"/>
+	    <result column="pw_update_dt" property="passwordDate"/>
+	    <result column="state" property="accountState"/>
+	    <result column="auth" property="authLevel"/>
+    </association>
+    
+  </resultMap>
+  
+  <select id="findAll" resultMap="alarmlogMap" parameterType="int">
+		SELECT
+			al.log_no,
+			al.type_no,
+			al.member_no,
+			al.content,
+			al.read_flag,
+			al.alarm_dt,
+			at.alarm_type,
+			m.member_no as other_no,
+			m.name,
+			m.email,
+			m.created_dt,
+			m.gender,
+			m.filename,
+			m.addr,
+			m.pt,
+			m.info,
+			m.birth_dt,
+			m.tel,
+			m.pw_update_dt,
+			m.state,
+			m.auth
+		FROM 
+		  aim_alarm_log al
+	  JOIN
+	    aim_alarm_type at ON al.type_no = at.type_no
+		JOIN
+		  aim_member m ON al.other_no = m.member_no
+		WHERE 
+		  al.member_no = #{no}
+		  AND al.read_flag = 0
+		ORDER BY
+		  al.alarm_dt desc
+  </select>
+
+
+  </mapper>

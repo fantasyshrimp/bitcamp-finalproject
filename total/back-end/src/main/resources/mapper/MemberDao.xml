@@ -9,7 +9,7 @@
     <result column="name" property="nickname"/>
     <result column="email" property="email"/>
     <result column="pw" property="password"/>
-    <result column="create_dt" property="createdDate"/>
+    <result column="created_dt" property="createdDate"/>
     <result column="gender" property="gender"/>
     <result column="filename" property="profilePhoto"/>
     <result column="addr" property="basicAddress"/>

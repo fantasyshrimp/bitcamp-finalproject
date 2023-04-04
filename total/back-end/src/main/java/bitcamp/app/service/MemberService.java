@@ -9,9 +9,9 @@ public interface MemberService {
   Member get(String email, String password);
   Member getByEmail(String email);
   Member getByNickname(String nickname);
+  Member get(int no);
   void update(Member member);
   void delete(int no);
-  Member get(int no);
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);
 }
