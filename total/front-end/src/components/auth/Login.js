@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
+import authBtnStyle from "./ButtonStyle";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -10,22 +11,31 @@ function Login(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
+
   const handleClickLogin = (e) => {
     const email = document.getElementsByName("email")[0].value;
-    if (!email.includes("@") || !email.includes(".")) {
+    if (!email.includes("@")) {
       document.querySelector("#emailHelpBlock").innerText =
-        "이메일 양식이 맞지 않습니다.";
+        "이메일 형식이 올바르지 않습니다.";
+      setValidEmail(false);
       return;
     } else {
       document.querySelector("#emailHelpBlock").innerText = "";
+      setValidEmail(true);
     }
 
     const password = document.getElementsByName("password")[0].value;
     if (password.length === 0) {
       document.querySelector("#passwordHelpBlock").innerText =
         "비밀번호를 입력하세요";
+      setValidPassword(false);
       document.getElementsByName("password")[0].focus();
       return;
+    }
+    if (password.length === 10) {
+      setValidPassword(true);
     } else {
       document.querySelector("#passwordHelpBlock").innerText = "";
     }
@@ -47,7 +57,8 @@ function Login(props) {
           handleClose();
           window.location.reload();
         } else {
-          alert("이메일 또는 비밀번호가 틀렸습니다.");
+          document.querySelector("#passwordHelpBlock").innerText =
+            "이메일 또는 비밀번호가 틀렸습니다.";
         }
       })
       .catch((error) => {
@@ -55,8 +66,29 @@ function Login(props) {
       });
   };
 
+  const checkEmail = () => {
+    const email = document.getElementsByName("email")[0].value;
+    if (!email.includes("@")) {
+      setValidEmail(false);
+      return;
+    } else {
+      setValidEmail(true);
+    }
+  };
+
   const handleChangePassword = () => {
-    document.querySelector("#passwordHelpBlock").innerText = "";
+    if (document.getElementsByName("password")[0].value.length > 0) {
+      document.querySelector("#passwordHelpBlock").innerText = "";
+      setValidPassword(true);
+    } else {
+      document.querySelector("#passwordHelpBlock").innerText =
+        "비밀번호를 입력하세요";
+      setValidPassword(false);
+    }
+  };
+
+  const isDisabled = () => {
+    return !(validEmail && validPassword);
   };
 
   return (
@@ -79,13 +111,17 @@ function Login(props) {
           closeButton
           closeVariant="white"
           style={{ borderBottom: "none" }}
+        ></Modal.Header>
+        <Modal.Header
+          style={{ borderBottom: "none" }}
+          className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
           <Modal.Title className="text-light">반갑습니다!</Modal.Title>
         </Modal.Header>
 
         <Form>
-          <Modal.Body>
-            <Form.Group className="mb-3" controlId="email">
+          <Modal.Body className="p-5 pb-4 pt-4">
+            <Form.Group className="mb-4" controlId="email">
               <Form.Label className="text-light">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
@@ -95,8 +131,9 @@ function Login(props) {
                 placeholder="name@example.com"
                 className="bg-dark text-light"
                 autoFocus
+                onChange={checkEmail}
               />
-              <Form.Text id="emailHelpBlock" muted></Form.Text>
+              <Form.Text id="emailHelpBlock"></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
@@ -109,18 +146,19 @@ function Login(props) {
                 className="bg-dark text-light"
                 onChange={handleChangePassword}
               />
-              <Form.Text id="passwordHelpBlock" muted></Form.Text>
+              <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
           </Modal.Body>
-          <Modal.Footer style={{ borderTop: "none" }}>
+          <Modal.Footer
+            style={{ borderTop: "none" }}
+            className="d-flex justify-content-center pb-5 ps-5 pe-5"
+          >
             <Button
               variant="primary"
               type="submit"
               onClick={handleClickLogin}
-              style={{
-                backgroundColor: "var(--color2)",
-                borderColor: "var(--color2)",
-              }}
+              style={authBtnStyle}
+              disabled={isDisabled()}
             >
               Log In
             </Button>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, InputGroup } from "react-bootstrap";
+import authBtnStyle from "./ButtonStyle";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -10,8 +11,19 @@ function SignupBtn(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [validEmail, setValidEmail] = useState(false);
+  const [validNickname, setValidNickname] = useState(false);
+  const [validPassword, setValidPassword] = useState(false);
+  const [validConfirmPassword, setValidConfirmPassword] = useState(false);
+
   function checkEmail() {
     const email = document.getElementsByName("email")[0].value;
+    if (!email.includes("@")) {
+      document.querySelector("#emailHelpBlock").innerText =
+        "이메일 형식이 올바르지 않습니다.";
+      setValidEmail(false);
+      return;
+    }
 
     axios
       .get("http://localhost:8080/auth/checkemail", {
@@ -19,15 +31,24 @@ function SignupBtn(props) {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          alert("이미 가입된 이메일입니다.");
+          document.querySelector("#emailHelpBlock").innerText =
+            "이미 가입된 이메일입니다.";
+          setValidEmail(false);
         } else {
-          alert("사용가능한 이메일입니다.");
-          // emailChecked = true
+          document.querySelector("#emailHelpBlock").innerText = "";
+          //   "사용가능한 이메일입니다.";
+          setValidEmail(true);
         }
       })
       .catch((error) => {
         alert("이메일 중복확인 중 오류 발생");
       });
+  }
+
+  function blueEmail() {
+    if (validEmail) {
+      document.querySelector("#emailHelpBlock").innerText = "";
+    }
   }
 
   function checkNickname() {
@@ -39,15 +60,24 @@ function SignupBtn(props) {
       })
       .then((response) => {
         if (response.data.status === "success") {
-          alert("이미 사용중인 닉네임입니다.");
+          document.querySelector("#nicknameHelpBlock").innerText =
+            "이미 사용중인 닉네임입니다.";
+          setValidNickname(false);
         } else {
-          alert("사용가능한 닉네임입니다.");
-          // nicknameChecked = true
+          document.querySelector("#nicknameHelpBlock").innerText = "";
+          // "사용가능한 닉네임입니다.";
+          setValidNickname(true);
         }
       })
       .catch((error) => {
         alert("닉네임 중복확인 중 오류 발생");
       });
+  }
+
+  function blueNickname() {
+    if (validNickname) {
+      document.querySelector("#nicknameHelpBlock").innerText = "";
+    }
   }
 
   function checkPasswordChar(e) {
@@ -56,9 +86,11 @@ function SignupBtn(props) {
     const isValid = regex.test(e.target.value);
     if (isValid) {
       document.querySelector("#passwordHelpBlock").innerText = "";
+      setValidPassword(true);
     } else {
       document.querySelector("#passwordHelpBlock").innerText =
         "비밀번호는 영어, 숫자를 포함해 총 10글자 이상이어야 합니다.";
+      setValidPassword(false);
     }
   }
 
@@ -68,9 +100,11 @@ function SignupBtn(props) {
 
     if (password === passwordConfirm) {
       document.querySelector("#passwordConfirmHelpBlock").innerText = "";
+      setValidConfirmPassword(true);
     } else {
       document.querySelector("#passwordConfirmHelpBlock").innerText =
         "비밀번호가 일치하지 않습니다.";
+      setValidConfirmPassword(false);
     }
   }
 
@@ -105,6 +139,15 @@ function SignupBtn(props) {
       });
   }
 
+  const isDisabled = () => {
+    return !(
+      validEmail &&
+      validNickname &&
+      validPassword &&
+      validConfirmPassword
+    );
+  };
+
   return (
     <>
       <div onClick={handleShow}>Sign up</div>
@@ -120,48 +163,44 @@ function SignupBtn(props) {
           closeButton
           closeVariant="white"
           style={{ borderBottom: "none" }}
+        ></Modal.Header>
+        <Modal.Header
+          style={{ borderBottom: "none" }}
+          className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
           <Modal.Title className="text-light">회원가입</Modal.Title>
         </Modal.Header>
 
         <Form>
-          <Modal.Body>
+          <Modal.Body className="p-5 pb-4 pt-4">
             <Form.Group className="mb-3" controlId="email">
               <Form.Label className="text-light">이메일</Form.Label>
-              <InputGroup className="mb-3">
+              <InputGroup>
                 <Form.Control
                   type="email"
                   name="email"
                   placeholder="name@example.com"
                   className="bg-dark text-light"
+                  onChange={checkEmail}
+                  onBlur={blueEmail}
                 />
-                <Button
-                  variant="outline-secondary"
-                  id="checkEmailBtn"
-                  onClick={checkEmail}
-                >
-                  중복확인
-                </Button>
               </InputGroup>
+              <Form.Text id="emailHelpBlock"></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="nickname">
               <Form.Label className="text-light">닉네임</Form.Label>
-              <InputGroup className="mb-3">
+              <InputGroup>
                 <Form.Control
                   type="text"
                   name="nickname"
                   placeholder="nickname"
                   className="bg-dark text-light"
+                  onChange={checkNickname}
+                  onBlur={blueNickname}
                 />
-                <Button
-                  variant="outline-secondary"
-                  id="checkNicknameBtn"
-                  onClick={checkNickname}
-                >
-                  중복확인
-                </Button>
               </InputGroup>
+              <Form.Text id="nicknameHelpBlock"></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
@@ -172,7 +211,7 @@ function SignupBtn(props) {
                 onChange={checkPasswordChar}
                 className="bg-dark text-light"
               />
-              <Form.Text id="passwordHelpBlock" muted></Form.Text>
+              <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password2">
@@ -183,19 +222,20 @@ function SignupBtn(props) {
                 onChange={checkBothPasswordSame}
                 className="bg-dark text-light"
               />
-              <Form.Text id="passwordConfirmHelpBlock" muted></Form.Text>
+              <Form.Text id="passwordConfirmHelpBlock"></Form.Text>
             </Form.Group>
           </Modal.Body>
 
-          <Modal.Footer style={{ borderTop: "none" }} className="d-grid gap-1">
+          <Modal.Footer
+            style={{ borderTop: "none" }}
+            className="d-flex justify-content-center pb-5 ps-5 pe-5"
+          >
             <Button
               variant="primary"
               type="button"
               onClick={handleSignupSubmit}
-              style={{
-                backgroundColor: "var(--color2)",
-                borderColor: "var(--color2)",
-              }}
+              style={authBtnStyle}
+              disabled={isDisabled()}
             >
               Sign Up
             </Button>

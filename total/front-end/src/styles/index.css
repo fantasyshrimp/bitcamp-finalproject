@@ -20,3 +20,7 @@ code {
   --color4: #f2f2f2;
   --color5: #0d0d0d;
 }
+
+.form-text {
+  color: #ff3d3d;
+}
