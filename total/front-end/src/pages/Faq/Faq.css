@@ -1,0 +1,37 @@
+#faq-container {
+  height: 100vh;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 0;
+}
+
+#type {
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  min-width: 250px;
+  height: 100vh;
+  float: left;
+  margin: 0px 200px 0px 100px;
+  background-color: red;
+  /* border-right: 1px solid black; */
+  /* border: 1px solid black; */
+}
+
+#FaqType {
+  position: fixed;
+  top: 30%;
+}
+
+#titleContent {
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  width: 1100px;
+  height: 800px;
+  background-color: blue;
+  /* border: 1px solid blue; */
+}
