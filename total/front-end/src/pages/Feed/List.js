@@ -38,6 +38,7 @@ function List() {
     });
     setData((prevData) => [...prevData, ...response.data]);
   }
+  console.log(data);
 
   return (
     <div id="feed-main">

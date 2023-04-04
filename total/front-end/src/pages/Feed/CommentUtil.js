@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FeedModal.css";
+import Report from "./Report";
 
 function CommentUtil(props) {
   const [data, setData] = useState([]);
   const [isLike, setIsLike] = useState(false);
   const [likeUpdate, setLikeUpdate] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   function handleSubmit(event) {
     props.onUpdate();
@@ -86,23 +96,28 @@ function CommentUtil(props) {
   }
 
   return (
-    <div id="feed-modal-commentutil">
-      <div id="feed-modal-commentlike">좋아요 {data[0]}개</div>
-      <div
-        id="feed-modal-replylike"
-        style={{
-          backgroundImage: isLike ? `url(/heart.png)` : `url(/unheart.png)`,
-          backgroundSize: "cover",
-        }}
-        onClick={handleLike}
-      ></div>
-      <div id="feed-modal-commentreport">신고하기</div>
-      {data[1] == props.writerNo && (
-        <div id="feed-modal-commentdelete" onClick={CommentDel}>
-          삭제하기
+    <>
+      <div id="feed-modal-commentutil">
+        <div id="feed-modal-commentlike">좋아요 {data[0]}개</div>
+        <div
+          id="feed-modal-replylike"
+          style={{
+            backgroundImage: isLike ? `url(/heart.png)` : `url(/unheart.png)`,
+            backgroundSize: "cover",
+          }}
+          onClick={handleLike}
+        ></div>
+        <div id="feed-modal-commentreport" onClick={openModal}>
+          신고하기
         </div>
-      )}
-    </div>
+        {data[1] == props.writerNo && (
+          <div id="feed-modal-commentdelete" onClick={CommentDel}>
+            삭제하기
+          </div>
+        )}
+      </div>
+      {isModalOpen && <Report handleCloseModal={handleCloseModal} />}
+    </>
   );
 }
 

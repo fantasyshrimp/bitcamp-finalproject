@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.app.dao.ReportDao">
+
+  <resultMap type="report" id="reportMap">
+    <id column="reply_no" property="replyNo"/>
+    <id column="member_no" property="memberNo"/>
+    <result column="report_no" property="reportNo"/>
+    <result column="report_type" property="reportType"/>
+    <result column="content" property="content"/>
+    <result column="report_dt" property="reportDt"/>
+  </resultMap>
+  
+   <select id="findReportType" resultMap="reportMap">
+    select report_type from aim_report
+   </select>
+  
+  </mapper>
