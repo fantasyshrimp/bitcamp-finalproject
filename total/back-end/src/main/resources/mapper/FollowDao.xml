@@ -46,5 +46,23 @@
   where 
     following_no=#{followingNo} and follower_no=#{followerNo}    
 </select>
+
+  <select id="getFollowingCount" parameterType="int" resultType="int">
+  select 
+    count(follower_no)
+  from 
+    aim_follow
+  where 
+    following_no=#{followingNo}
+</select>
+
+  <select id="getFollowerCount" parameterType="int" resultType="int">
+  select 
+    count(follower_no)
+  from 
+    aim_follow
+  where 
+    follower_no=#{followerNo}    
+</select>
   
 </mapper>

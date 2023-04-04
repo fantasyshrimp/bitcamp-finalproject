@@ -11,4 +11,6 @@ public interface FollowDao {
   List<Integer> findAllFollowingNumbers(int no);
   List<Integer> findAllFollowerNumbers(int no);
   int checkState(Follow follow);
+  int getFollowingCount(int memberNo);
+  int getFollowerCount(int memberNo);
 }

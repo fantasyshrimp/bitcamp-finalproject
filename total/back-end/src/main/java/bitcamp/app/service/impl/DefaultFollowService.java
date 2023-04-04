@@ -29,4 +29,14 @@ public class DefaultFollowService implements FollowService{
     }
     return false;
   }
+
+  @Override
+  public int getFollowingCount(int memberNo) {
+    return followDao.getFollowingCount(memberNo);
+  }
+
+  @Override
+  public int getFollowerCount(int memberNo) {
+    return followDao.getFollowerCount(memberNo);
+  }
 }
