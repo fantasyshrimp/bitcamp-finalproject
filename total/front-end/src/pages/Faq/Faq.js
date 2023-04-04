@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FaqType from "./FaqType";
+import "./Faq.css";
 
 function Faq() {
   const [data, setData] = useState([]);
@@ -8,10 +9,11 @@ function Faq() {
   useEffect(() => {
     axios
       .get(`http://localhost:8080/faq`)
-      .then((response) => setData(response.data))
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      })
       .catch((error) => console.log(error));
-
-    console.log(data);
   }, []);
 
   return (
