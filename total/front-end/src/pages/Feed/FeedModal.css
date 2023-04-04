@@ -49,6 +49,7 @@
   width: 90%;
   height: 50px;
   position: relative;
+  display: flex;
 }
 
 #feed-modal-propic {

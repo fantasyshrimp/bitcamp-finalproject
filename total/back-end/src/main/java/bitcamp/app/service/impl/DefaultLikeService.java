@@ -53,4 +53,18 @@ public class DefaultLikeService implements LikeService{
     }
     return false;
   }
+
+  @Override
+  public int countLiker(int contentNo, String type) {
+    switch(type) {
+      case "reply":
+        return likeReplyDao.countLiker(contentNo);
+
+      case "board":
+        return likeBoardDao.countLiker(contentNo);
+
+      default:
+        return 0;
+    }
+  }
 }

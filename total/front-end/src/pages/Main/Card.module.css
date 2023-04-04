@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.total {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  display: flex;
+}
+
+.container {
+  display: flex;
+}
+
+.card {
+  height: 500px;
+  margin: 50px;
+  box-shadow: 5px 5px 20px white;
+  overflow: hidden;
+}
+
+img {
+  height: 500px;
+  width: 350px;
+  transition: 0.5s;
+}
+
+.intro {
+  height: 10px;
+  width: 350px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 240px;
+  background: rgb(27, 27, 27, 0.5);
+  color: white;
+  transition: 0.5s;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+  margin: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card:hover .intro {
+  height: 220px;
+  bottom: 150px;
+  background: black;
+}
+
+.card:hover p {
+  opacity: 1;
+  visibility: visible;
+}
+
+.card:hover img {
+  transform: scale(1.1) rotate(-3deg);
+}

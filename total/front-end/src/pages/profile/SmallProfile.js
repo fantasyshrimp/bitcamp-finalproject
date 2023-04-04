@@ -1,20 +1,12 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import SmallProfileName from "./SmallProfileName"
 
 function SmallProfile(props) {     
-  const {no, imgUrl, nickname, height} = props;
+  const {no, nickname, imgUrl, height, modalClose} = props;
   const imageSize = height * 0.8;
-  
-  const navigate = useNavigate();
-
-  const moveProfile = () => {
-    props.modalClose();
-    navigate('/Profile', { state: { no: no } });
-  };
-
 
   return (
-    <div id="small-profile" onClick={moveProfile}
+    <div id="small-profile"
       style={{
       display: 'flex', alignItems: 'center',
       width: height*3, height: height,
@@ -28,13 +20,8 @@ function SmallProfile(props) {
           height: imageSize,      
           borderRadius: '50%'
           }}></div>
-      <div className="small-profile-nickname" 
-        style={{ marginLeft: height/5,
-          fontSize: height/3, fontWeight: 'bold', color: 'white',
-          alignSelf: 'center', marginTop: height / 10
-          }}>
-        <span>{nickname}</span>
-      </div>
+      <SmallProfileName no={no} nickname={nickname} height={height} modalClose={modalClose}/>
+      
     </div>
   );
 }

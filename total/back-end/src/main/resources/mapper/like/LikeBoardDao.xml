@@ -26,6 +26,14 @@
     aim_like_board
   where 
     board_no=#{contentNo} and member_no=#{likerNo}    
-</select>
+  </select>
   
+  <select id="countLiker" parameterType="int" resultType="int">
+  select 
+    count(member_no)
+  from 
+    aim_like_board
+  where 
+    board_no=#{boardNo}    
+  </select>
 </mapper>

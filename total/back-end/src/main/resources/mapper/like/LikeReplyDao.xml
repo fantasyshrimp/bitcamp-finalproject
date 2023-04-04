@@ -26,6 +26,15 @@
     aim_like_reply
   where 
     reply_no=#{contentNo} and member_no=#{likerNo}    
-</select>
+  </select>  
+    
+  <select id="countLiker" parameterType="int" resultType="int">
+  select 
+    count(member_no)
+  from 
+    aim_like_reply
+  where 
+    reply_no=#{replyNo}    
+  </select>
   
 </mapper>

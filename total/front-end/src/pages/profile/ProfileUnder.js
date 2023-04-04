@@ -1,5 +1,4 @@
 import React from "react";
-import ContentBoard from "./ContentBoard";
 import FeedList from "../Feed/FeedList";
 
 function ProfileUnder(props) {
@@ -13,3 +12,4 @@ function ProfileUnder(props) {
 }
 
 export default ProfileUnder;
+ 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
+import LikeIcon from "../LikeIcon";
+import SmallProfile from "../profile/SmallProfile";
 import FollowBtn from "../profile/FollowBtn";
 
 function FeedModal(props) {
@@ -9,6 +11,7 @@ function FeedModal(props) {
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
 
+  const boardNo = props.data.boardNo;
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -18,7 +21,7 @@ function FeedModal(props) {
         {},
         {
           params: {
-            boardNo: props.data.boardNo,
+            boardNo: boardNo,
             content: value,
           },
         }
@@ -46,7 +49,7 @@ function FeedModal(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/reply/${props.data.boardNo}`)
+      .get(`http://localhost:8080/reply/${boardNo}`)
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, [isUpdated]);
@@ -69,25 +72,18 @@ function FeedModal(props) {
         >
           <div
             id="modal-like-icon"
-            style={{
-              backgroundImage: `url(/heart.png)`,
-              backgroundSize: "cover",
-            }}
-          ></div>
+          ><LikeIcon size={30}
+          contentType={"board"} contentNo={boardNo}
+          /></div>
         </div>
       </div>
       <div id="feed-modal-content">
         <div id="feed-modal-profile">
-          <div
-            id="feed-modal-propic"
-            style={{
-              backgroundImage: `url(${props.data.writer.profilePhoto})`,
-              backgroundSize: "cover",
-            }}
-          ></div>
-          <div id="feed-modal-writer" key={props.data.writer.nickname}>
-            {props.data.writer.nickname}
-          </div>
+            <SmallProfile modalClose={props.closeModal}
+              no={props.data.writer.no} 
+              imgUrl={props.data.writer.profilePhoto} 
+              nickname={props.data.writer.nickname} 
+              height='50' />
           <div id="feed-modal-follow">
             <FollowBtn followerNo={props.data.writer.no} />
           </div>
