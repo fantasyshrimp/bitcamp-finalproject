@@ -20,6 +20,7 @@ function Profile() {
       .then((response) => {
         setData(response["data"]["data"]);
         setIsLoading(false);
+        console.log(response);
       })
       .catch((error) => {
         setError(error);

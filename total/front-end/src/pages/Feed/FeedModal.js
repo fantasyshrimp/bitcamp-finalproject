@@ -3,6 +3,7 @@ import axios from "axios";
 import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
 import LikeIcon from "../LikeIcon";
+import SmallProfile from "../profile/SmallProfile";
 import FollowBtn from "../profile/FollowBtn";
 
 function FeedModal(props) {
@@ -78,16 +79,11 @@ function FeedModal(props) {
       </div>
       <div id="feed-modal-content">
         <div id="feed-modal-profile">
-          <div
-            id="feed-modal-propic"
-            style={{
-              backgroundImage: `url(${props.data.writer.profilePhoto})`,
-              backgroundSize: "cover",
-            }}
-          ></div>
-          <div id="feed-modal-writer" key={props.data.writer.nickname}>
-            {props.data.writer.nickname}
-          </div>
+            <SmallProfile modalClose={props.closeModal}
+              no={props.data.writer.no} 
+              imgUrl={props.data.writer.profilePhoto} 
+              nickname={props.data.writer.nickname} 
+              height='50' />
           <div id="feed-modal-follow">
             <FollowBtn followerNo={props.data.writer.no} />
           </div>

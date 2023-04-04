@@ -4,7 +4,6 @@ import FeedModal from "./FeedModal";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
-
   function handleCloseModal() {
     setModalOpen(false);
   }
@@ -57,7 +56,7 @@ function FeedList(props) {
               >
                 &times;
               </div>
-              <FeedModal data={props.item} />
+              <FeedModal data={props.item} closeModal={handleCloseModal} />
             </div>
           </>
         )}

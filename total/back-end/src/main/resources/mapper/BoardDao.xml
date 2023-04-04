@@ -79,6 +79,7 @@
   <select id="findByMemberNo" resultMap="boardMap" parameterType="int">
     select 
       b.board_no, 
+      b.member_no, 
       b.origin_content, 
       b.trans_content,
       b.tag, 
