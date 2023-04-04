@@ -29,10 +29,18 @@
 
 .profile-info > .profile-detail {
     display: flex;
-    margin-top: 20px;
+    margin-top: 15px;
     color: azure;
 }
 
 .profile-info > .profile-detail > div {
-    margin-left: 40px;
+    margin-right: 10px;
+}
+
+.profile-info > .profile-detail > div > span {
+    display: inline-block;
+    width: 50px;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: right;
 }

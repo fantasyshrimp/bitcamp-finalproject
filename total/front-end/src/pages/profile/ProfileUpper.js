@@ -1,20 +1,28 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import "./ProfileUpper.css";
-import LikeIcon from "../LikeIcon";
 import FollowBtn from "./FollowBtn";
 import FollowListModal from "./FollowListModal";
 
-//FollowListModal.setAppElement('#root');
-
 function ProfileUpper(props) {
+  const {followingCnt, followerCnt} = props;
+  const [followingList, setFollowingList] = useState([]);
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
-  const openFollowingModal = () => { setFollowingModalIsOpen(true); };
+  const openFollowingModal = () => { 
+    axios
+    .get("http://localhost:8080/follow")
+    .then((response) => {
+      setFollowingList(response.data.data);
+      setFollowingModalIsOpen(true); 
+    })
+  };
   const closeFollowingModal = () => { setFollowingModalIsOpen(false); };
 
   const [followerModalIsOpen, setFollowerModalIsOpen] = useState(false);
   const openFollowerModal = () => { setFollowerModalIsOpen(true); };
   const closeFollowerModal = () => { setFollowerModalIsOpen(false); };
-
+  const count = 100;
     return (
     <>
         <div id="profileUpper">
@@ -27,9 +35,9 @@ function ProfileUpper(props) {
           <div className="profile-info">
               <div className="profile-name">{props.member.nickname}</div>
               <div className="profile-detail">
-                <div onClick={openFollowingModal}> followings</div>
-                <div onClick={openFollowerModal}> followers</div>
-                <div> likes</div>                    
+                <div onClick={openFollowingModal}><span>{followingCnt}</span>  followings</div>
+                <div onClick={openFollowerModal}><span>{followerCnt}</span>  followers</div>
+                <div><span>{count}</span>  likes</div>                    
               </div>
           </div>
           <div
@@ -37,11 +45,9 @@ function ProfileUpper(props) {
               paddingTop: '35px'
             }}
           ><FollowBtn followerNo={props.member.no} /></div>
-          <LikeIcon size={30}
-          contentType={"reply"} contentNo={5}/>
-        </div>        
-        <FollowListModal isOpen={followingModalIsOpen} onRequestClose={closeFollowingModal} followings={props.followings}/>
-        <FollowListModal isOpen={followerModalIsOpen} onRequestClose={closeFollowerModal} followings={props.followers}/>
+        </div>
+        <FollowListModal isOpen={followingModalIsOpen} onRequestClose={closeFollowingModal} follows={followingList}/>
+        <FollowListModal isOpen={followerModalIsOpen} onRequestClose={closeFollowerModal} follows={props.followers}/>
     </>
   );
 }

@@ -13,12 +13,14 @@ function FollowListModal(props) {
         content: { width: '450px', height: '800px', margin: 'auto', backgroundColor: '#000000' }}}
         >
         <div>
-        {props.followings.map((following) => (
-          <div style={{ display: 'flex'}}>
-            <SmallProfile modalClose={props.onRequestClose}
-              no={following.no} imgUrl={following.profilePhoto} nickname={following.nickname} height='100' />
+        {props.follows !== undefined && props.follows.map((follow) => (
+          <div key={follow.no} style={{ display: 'flex'}}>
+            <SmallProfile key={follow.no + "SamllProfile"}
+              modalClose={props.onRequestClose}
+              no={follow.no} imgUrl={follow.profilePhoto} nickname={follow.nickname} height='100' />
             <div style={{ paddingTop: '35px'}}>
-            <FollowBtn followerNo={following.no} />
+            <FollowBtn key={follow.no + "FollowBtn"}
+              followerNo={follow.no} />
             </div>
           </div>
           ))} 

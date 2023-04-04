@@ -110,6 +110,7 @@ VALUES
 (6, '상품 후기 작성이 안돼요.', '상품 후기는 구매 후에만 작성 가능합니다.'),
 (6, '배송이 너무 늦어져서 불편합니다.', '배송이 지연될 경우, 배송업체와의 협의 후 안내해드리고 있습니다.');
 
+<<<<<<< HEAD
 INSERT INTO aim_report (report_type)
 VALUES
 ('음란물'),
@@ -120,3 +121,7 @@ VALUES
 ('지식 재산권 침해'),
 ('자살 또는 자해'),
 ('기타');
+=======
+-- aim_board 에 summary_content 추가 후 데이터 넣기
+UPDATE aim_board SET summary_content = '요약 내용입니다.';
+>>>>>>> f6592259a1a8e45755997ba2225a1045d8b2adae

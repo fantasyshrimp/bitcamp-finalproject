@@ -19,9 +19,6 @@ function FollowBtn(props) {
           setIsShow(true);
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
     }, [props.followerNo]);
 
     const handleFollow = () => {

@@ -794,3 +794,9 @@ ALTER TABLE aim_report_reply
   report_no -- 신고유형번호
   );
   
+-- 게시판에 요약내용 추가
+ALTER TABLE aim_board ADD summary_content TEXT NULL AFTER origin_content COMMENT '요약내용', -- 요약내용
+  
+-- 게시판에 summary_content 넣은 후 NOT NULL 설정하기
+ALTER TABLE aim_board
+  MODIFY COLUMN summary_content TEXT NOT NULL

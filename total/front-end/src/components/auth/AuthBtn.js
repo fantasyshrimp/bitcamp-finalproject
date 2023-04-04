@@ -14,8 +14,28 @@ function AuthBtn(props) {
     <>
       {currentUser ? (
         <>
-          <Nav.Link onClick={handleClickUser}>
-            반가워요! {currentUser.nickname}
+          <Nav.Link
+            onClick={handleClickUser}
+            style={{ padding: "0" }}
+            className="d-flex"
+          >
+            <div
+              className="me-2 d-flex align-items-center"
+              style={{ display: "inline-block" }}
+            >
+              {currentUser.nickname}
+            </div>
+            <div
+              key={currentUser.profilePhoto}
+              style={{
+                backgroundImage: `url(${currentUser.profilePhoto})`,
+                backgroundSize: "cover",
+                width: "40px",
+                height: "40px",
+                display: "inline-block",
+                borderRadius: "50%",
+              }}
+            />
           </Nav.Link>
         </>
       ) : (

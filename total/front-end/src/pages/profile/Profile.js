@@ -12,15 +12,13 @@ function Profile() {
   const location = useLocation();
   const { no } = location.state || {};
 
-  let memberNo = no ? no : 12;
-  console.log(no + "프로필 로드됨");
+  let memberNo = no ? no : 12; //이부분 에러확인 추가 필요
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/" + memberNo)
+      .get("http://localhost:8080/member/" + memberNo)
       .then((response) => {
         setData(response["data"]["data"]);
         setIsLoading(false);
-        console.log(response);
       })
       .catch((error) => {
         setError(error);
@@ -39,8 +37,10 @@ function Profile() {
     <>
       <ProfileUpper
         member={data["member"]}
-        followings={data["followingList"]}
+        // followings={data["followingList"]}
         followers={data["followerList"]}
+        followingCnt={data["followingCount"]}
+        followerCnt={data["followerCount"]}
       />
       <ProfileUnder boards={data["boards"]} />
     </>

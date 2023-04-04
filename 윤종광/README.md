@@ -422,3 +422,31 @@ const HandleClickGenerate = () => {
 
 const handleClovaSummary = () => {};
 ```
+
+# 4월3일 월
+
+## 작업내용
+
+### 1. 로그인, 회원가입 창 다크로 변경
+
+## 시행착오 또는 기억할 것
+
+### 1. useEffect(1st, [2nd, 3rd]) 배열의 의미
+
+useEffect 에서 배열안에 전달된 2nd, 3rd 값이 변경되면 해당 useEffect 가 실행된다.
+아래의 경우 props.contentNo 또는 props.contentType 이 변경되면 useEffect 가 실행된다.
+
+```javascript
+useEffect(() => {}, [props.contentNo, props.contentType]);
+```
+
+### 2. 리액트에서 key 의 역할
+
+key 는 컴포넌트 각 요소의 고유성 식별에 사용된다.
+아래 chatGPT 설명 참고
+
+```
+key는 리액트에서 컴포넌트를 렌더링할 때 각 요소의 고유성을 식별하는 데 사용됩니다. 컴포넌트가 렌더링될 때 리액트는 각 컴포넌트 요소에 대한 고유한 key 값을 필요로 합니다. 이 key 값은 해당 요소가 변경되었는지 여부를 식별하고 업데이트 된 데이터가 컴포넌트에 적용되는 방식을 제어하는 데 사용됩니다.
+
+key는 일반적으로 각 컴포넌트의 고유 식별자로 사용됩니다. 배열을 매핑하거나 동적으로 생성된 요소를 렌더링 할 때 사용할 수 있습니다. key는 컴포넌트의 속성으로 전달되며, 컴포넌트 내부에서는 props.key로 접근할 수 있습니다. key 값은 렌더링할 때 변경될 수 없으며, 컴포넌트가 생성될 때 할당되어야 합니다.
+```
