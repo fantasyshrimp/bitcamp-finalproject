@@ -16,6 +16,6 @@ public class AlarmLog {
 
   @JsonFormat(
       shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
+      pattern = "yyyy-MM-dd hh:mm:ss")
   private Date alarmDate;
 }
