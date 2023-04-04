@@ -9,7 +9,7 @@ import lombok.Data;
 public class AlarmLog {
   private int no;
   private int typeNo;
-  private Member member;
+  private int userNo;
   private Member otherMember;
   private String content;
   private boolean readFlag;

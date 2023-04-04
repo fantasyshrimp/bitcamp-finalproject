@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import bitcamp.app.service.MemberService;
+import bitcamp.app.service.AlarmService;
+import bitcamp.util.RestResult;
+import bitcamp.util.RestStatus;
 
 @RestController
 @RequestMapping("/alarm")
@@ -19,22 +21,15 @@ public class AlarmController {
     log.trace("AlarmController 생성됨!");
   }
 
-  @Autowired private MemberService memberService;
+  @Autowired private AlarmService alarmService;
 
   @GetMapping("{no}")
   public Object alarm(@PathVariable int no) {
-    //    Member member = memberService.getAlarm(no);
-    //
-    //    if (member != null) {
-    //      return new RestResult()
-    //          .setData(member)
-    //          .setStatus(RestStatus.SUCCESS);
-    //    } else {
-    //      return new RestResult()
-    //          .setData(ErrorCode.rest.NO_DATA)
-    //          .setStatus(RestStatus.FAILURE);
-    //    }
-    return null;
+    System.out.println(    alarmService.list(no));
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS)
+        .setData(alarmService.list(no));
   }
 
 }

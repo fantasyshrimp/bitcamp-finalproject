@@ -9,26 +9,37 @@ function AuthBtn(props) {
   const [show, setShow] = useState(false);
   const { currentUser, setCurrentUser } = props;
 
+  const [alarms, setAlarms] = useState(null);
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      const fetchData = async () => {
+        axios(`http://localhost:8080/alarm/${currentUser.no}`) //
+          .then((response) => {
+            if (response.data.status === "success") {
+              setAlarms(response.data.data);
+            } else {
+              console.log("failure 발생");
+            }
+          })
+          .catch((error) => {
+            alert("alarm 가져오는 중 오류 발생!");
+          });
+      };
+
+      fetchData();
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (alarms !== null && alarms.length > 0) {
+      document.querySelector("#auth-has-alarm").style.visibility = "visible";
+    }
+  }, [alarms]);
+
   const handleClickUser = () => {
     setShow(true);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios("http://localhost:8080/");
-        if (result.data.status == "success") {
-          // setCurrentUser(result.data.data);
-        } else {
-          // setCurrentUser(null);
-        }
-      } catch (error) {
-        alert("알림 현황 가져오는 중 오류 발생!");
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleClickBell = (e) => {
     e.preventDefault();
@@ -43,7 +54,20 @@ function AuthBtn(props) {
             className="d-flex align-items-center"
             onClick={handleClickBell}
           >
-            <BellFill size="1.4rem" className="me-2 text-light " />
+            <div
+              id="auth-has-alarm"
+              style={{
+                width: "10px",
+                height: "10px",
+                backgroundColor: "red",
+                borderRadius: "50%",
+                position: "relative",
+                left: "23px",
+                bottom: "8px",
+                visibility: "hidden",
+              }}
+            />
+            <BellFill size="1.4rem" className="text-light" />
           </a>
           <Nav.Link
             onClick={handleClickUser}
@@ -51,7 +75,7 @@ function AuthBtn(props) {
             className="d-flex"
           >
             <div
-              className="me-2 d-flex align-items-center"
+              className="ms-3 me-3 d-flex align-items-center"
               style={{ display: "inline-block" }}
             >
               {currentUser.nickname}

@@ -452,3 +452,59 @@ key는 리액트에서 컴포넌트를 렌더링할 때 각 요소의 고유성�
 
 key는 일반적으로 각 컴포넌트의 고유 식별자로 사용됩니다. 배열을 매핑하거나 동적으로 생성된 요소를 렌더링 할 때 사용할 수 있습니다. key는 컴포넌트의 속성으로 전달되며, 컴포넌트 내부에서는 props.key로 접근할 수 있습니다. key 값은 렌더링할 때 변경될 수 없으며, 컴포넌트가 생성될 때 할당되어야 합니다.
 ```
+
+### 3. Lombok 설치 후 미적용 문제
+
+Eclipse 에서 Lombok 설치 후에도 미설치 에러 발생할 경우
+참조 : https://velog.io/@yoontaeng/lombok-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95-%EB%B0%8F-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4
+
+### 4. SpringBoot App.java 실행시 '8080 포트 사용 중' 발생
+
+Console 메시지는 다음과 같다.
+
+```
+2023-04-04T16:17:28.781+09:00  INFO 4560 --- [  restartedMain] bitcamp.app.App                          : Starting App using Java 17.0.2 with PID 4560 (D:\git\bitcamp-finalproject\total\back-end\bin\main started by USER in D:\git\bitcamp-finalproject\total\back-end)
+2023-04-04T16:17:28.785+09:00  INFO 4560 --- [  restartedMain] bitcamp.app.App                          : No active profile set, falling back to 1 default profile: "default"
+2023-04-04T16:17:28.844+09:00  INFO 4560 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-04T16:17:28.844+09:00  INFO 4560 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-04T16:17:30.097+09:00  WARN 4560 --- [  restartedMain] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2023-04-04T16:17:30.117+09:00  INFO 4560 --- [  restartedMain] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2023-04-04T16:17:30.119+09:00  INFO 4560 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1273 ms
+2023-04-04T16:17:30.864+09:00  INFO 4560 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-04-04T16:17:30.895+09:00  INFO 4560 --- [  restartedMain] io.undertow                              : starting server: Undertow - 2.3.4.Final
+2023-04-04T16:17:30.904+09:00  INFO 4560 --- [  restartedMain] org.xnio                                 : XNIO version 3.8.8.Final
+2023-04-04T16:17:30.913+09:00  INFO 4560 --- [  restartedMain] org.xnio.nio                             : XNIO NIO Implementation Version 3.8.8.Final
+2023-04-04T16:17:31.017+09:00  INFO 4560 --- [  restartedMain] org.jboss.threads                        : JBoss Threads version 3.5.0.Final
+2023-04-04T16:17:31.085+09:00  INFO 4560 --- [  restartedMain] io.undertow                              : stopping server: Undertow - 2.3.4.Final
+2023-04-04T16:17:31.089+09:00  WARN 4560 --- [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2023-04-04T16:17:31.103+09:00  INFO 4560 --- [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger :
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2023-04-04T16:17:31.122+09:00 ERROR 4560 --- [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   :
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+```
+
+cmd 에 아래 명령 입력해서 8080 포트 사용중인 PID 를 확인한다.
+
+```bash
+netstat -ano | findstr :8080
+```
+
+명령 프롬프트 우클릭해서 관리자 권한으로 실행한 다음 아래 처럼 입력한다.
+
+```bash
+taskkill /f /pid {PID}
+```
+
+다시 App.java 실행하면 잘 실행된다.
