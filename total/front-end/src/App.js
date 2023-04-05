@@ -7,7 +7,7 @@ import Feed from "./pages/Feed/Feed";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
-import MM from "./pages/MM";
+import MemberList from "./pages/MemberManagement/MemberList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path="/Profile" element={<Profile />}></Route>
           <Route path="/PersonalSetting" element={<PersonalSetting />}></Route>
           <Route path="/Faq" element={<Faq />} />
-          <Route path="/MM" element={<MM />} />
+          <Route path="/MemberList" element={<MemberList />} />
         </Routes>
         <Footer />
       </BrowserRouter>
