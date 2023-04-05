@@ -11,14 +11,21 @@ import bitcamp.app.service.FaqService;
 import bitcamp.app.vo.Faq;
 
 @RestController
-@RequestMapping("/faq")
+@RequestMapping
 public class FaqController {
   @Autowired private FaqService faqService;
 
-  @GetMapping
+  @GetMapping("/faqType")
   public List<Faq> findFaqType() {
 
     return faqService.findFaqType();
+  }
+
+  @GetMapping("/faqTitleContent")
+  //  @GetMapping
+  public List<Faq> findFaq() {
+
+    return faqService.findFaq();
   }
 
 }

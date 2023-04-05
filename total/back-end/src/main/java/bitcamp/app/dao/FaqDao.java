@@ -7,4 +7,6 @@ import bitcamp.app.vo.Faq;
 @Mapper
 public interface FaqDao {
   List<Faq> findFaqType();
+
+  List<Faq> findFaq();
 }
