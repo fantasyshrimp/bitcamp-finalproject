@@ -3,6 +3,7 @@ import { SignupBtn, Login, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
 import { BellFill } from "react-bootstrap-icons";
 import axios from "axios";
+import AlarmModal from "../AlarmModal";
 axios.defaults.withCredentials = true;
 
 function AuthBtn(props) {
@@ -14,6 +15,8 @@ function AuthBtn(props) {
   const handleClose = () => setLoginShow(false);
 
   const [alarms, setAlarms] = useState(null);
+  const [alarmShow, setAlarmShow] = useState(false);
+  const [alarmClickEvent, setAlarmClickEvent] = useState(null);
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -47,6 +50,10 @@ function AuthBtn(props) {
 
   const handleClickBell = (e) => {
     e.preventDefault();
+    setAlarmShow(true);
+    setAlarmClickEvent(e);
+
+    return <></>;
   };
 
   return (
@@ -119,6 +126,15 @@ function AuthBtn(props) {
         setShow={setShow}
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
+      />
+
+      <AlarmModal
+        alarmShow={alarmShow}
+        setAlarmShow={setAlarmShow}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        alarmClickEvent={alarmClickEvent}
+        setAlarmClickEvent={setAlarmClickEvent}
       />
     </>
   );

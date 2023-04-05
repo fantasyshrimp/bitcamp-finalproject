@@ -5,4 +5,6 @@ import bitcamp.app.vo.Faq;
 
 public interface FaqService {
   List<Faq> findFaqType();
+
+  List<Faq> findFaq();
 }

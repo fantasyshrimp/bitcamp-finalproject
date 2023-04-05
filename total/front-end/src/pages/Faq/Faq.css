@@ -7,7 +7,7 @@
 }
 
 #type {
-  display: flex;
+  display: block;
   font-size: 1rem;
   justify-content: center;
   min-width: 250px;

@@ -2,7 +2,7 @@ import React from "react";
 
 function SetTemp(props) {
   return (
-    <div id="setting-feild" style={{ width: "100%", height: "100%",
+    <div id="setting-feild" style={{ width: "90%", height: "100%",
       color: "white"  
     }}>
 
@@ -10,7 +10,7 @@ function SetTemp(props) {
         boxSizing: "border-box", borderBottom: "1px solid rgba(255,255,255,0.5)"
       }}>{props.title}</div>
       
-      <div style={{width: "100%", height: "100%",
+      <div style={{width: "90%", height: "100%",
         display: "flex", justifyContent: "center"
       }}>
         <div style={{}}>

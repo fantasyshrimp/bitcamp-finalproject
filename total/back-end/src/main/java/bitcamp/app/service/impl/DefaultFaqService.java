@@ -17,4 +17,9 @@ public class DefaultFaqService implements FaqService{
     return faqDao.findFaqType();
   }
 
+  @Override
+  public List<Faq> findFaq() {
+    return faqDao.findFaq();
+  }
+
 }
