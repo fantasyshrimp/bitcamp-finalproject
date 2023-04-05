@@ -24,7 +24,7 @@ public class FollowController {
   @Autowired private FollowService followService;
   @Autowired private MemberService memberService;
 
-  @GetMapping("{no}")
+  @GetMapping("check/{no}")
   public Object checkState(@PathVariable int no, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
 
@@ -55,20 +55,12 @@ public class FollowController {
         .setData("follow");
   }
 
-  @GetMapping
-  public Object list(HttpSession session) {
-    Member loginUser = (Member) session.getAttribute("loginUser");
-
-    if (loginUser == null) {
-      return new RestResult()
-          .setStatus(RestStatus.FAILURE)
-          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
-          .setData("로그인 요망");
-    }
+  @GetMapping("{no}")
+  public Object list(@PathVariable int no,  HttpSession session) {
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
-        .setData(memberService.getFollowings(loginUser.getNo()));
+        .setData(memberService.getFollowings(no));
   }
 
 

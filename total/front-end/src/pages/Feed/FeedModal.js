@@ -4,6 +4,7 @@ import "./FeedModal.css";
 import CommentUtil from "./CommentUtil";
 import LikeIcon from "../LikeIcon";
 import SmallProfile from "../profile/SmallProfile";
+import SmallProfileName from "../profile/SmallProfileName";
 import FollowBtn from "../profile/FollowBtn";
 
 function FeedModal(props) {
@@ -135,7 +136,7 @@ function FeedModal(props) {
                 <div id="feed-modal-com">
                   <div id="feed-modal-commentwriter">
                     <div id="feed-modal-comwriter" key={item.writer.nickname}>
-                      {item.writer.nickname}
+                      <SmallProfileName no={item.writer.no} nickname={item.writer.nickname} modalClose={props.closeModal}/>
                     </div>
                     <div id="feed-modal-comdt" key={item.writeDt}>
                       {item.writeDt}

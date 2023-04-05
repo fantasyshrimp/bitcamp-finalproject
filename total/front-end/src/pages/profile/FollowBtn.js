@@ -3,10 +3,10 @@ import axios from "axios";
 
 function FollowBtn(props) {
     const [followState, setfollowState] = useState(false);
-    const [isShow, setIsShow] = useState(true);
+    const [isShow, setIsShow] = useState(false);
 
     useEffect(() => {
-      axios.get("http://localhost:8080/follow/" + props.followerNo)
+      axios.get("http://localhost:8080/follow/check/" + props.followerNo)
       .then((response) => {       
         if (response.data.data === "follow") {
           setfollowState(true);

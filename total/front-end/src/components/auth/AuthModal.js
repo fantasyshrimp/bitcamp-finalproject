@@ -80,7 +80,7 @@ function AuthModal(props) {
           </div>
           <div className="mb-2">
             <a
-              href="/settings"
+              href="/personalSetting"
               className="auth-modal-link"
               onClick={handleClose}
             >

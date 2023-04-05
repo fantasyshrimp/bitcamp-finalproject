@@ -20,7 +20,8 @@ function SmallProfile(props) {
           height: imageSize,      
           borderRadius: '50%'
           }}></div>
-      <SmallProfileName no={no} nickname={nickname} height={height} modalClose={modalClose}/>
+      <SmallProfileName defaultcss={""}
+        no={no} nickname={nickname} height={height} modalClose={modalClose}/>
       
     </div>
   );

@@ -11,10 +11,12 @@ function ProfileUpper(props) {
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
   const openFollowingModal = () => { 
     axios
-    .get("http://localhost:8080/follow")
+    .get("http://localhost:8080/follow/" + props.member.no)
     .then((response) => {
       setFollowingList(response.data.data);
-      setFollowingModalIsOpen(true); 
+      if (response.data.data.length > 0) {
+        setFollowingModalIsOpen(true); 
+      }
     })
   };
   const closeFollowingModal = () => { setFollowingModalIsOpen(false); };

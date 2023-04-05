@@ -34,7 +34,7 @@ function Profile() {
   }
   // 이 각 데이터를 던져주는 부분을 각각 요청해서 받아오게 해야할듯
   return (
-    <>
+    <div style={{height: "83vh"}}>
       <ProfileUpper
         member={data["member"]}
         // followings={data["followingList"]}
@@ -43,7 +43,7 @@ function Profile() {
         followerCnt={data["followerCount"]}
       />
       <ProfileUnder boards={data["boards"]} />
-    </>
+    </div>
   );
 }
 
