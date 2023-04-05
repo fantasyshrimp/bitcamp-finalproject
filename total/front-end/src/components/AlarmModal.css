@@ -1,0 +1,18 @@
+.alarm-modal-backdrop {
+  background-color: #00000000;
+}
+
+.alarm-modal-dialog {
+  width: 150px;
+}
+
+.alarm-modal-link {
+  text-decoration: none;
+  color: black;
+}
+
+.alarm-modal-content {
+  position: relative;
+  right: -370px;
+  top: 30px;
+}

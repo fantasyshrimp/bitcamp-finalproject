@@ -515,7 +515,9 @@ taskkill /f /pid {PID}
 
 ## 작업내용
 
-### 1.
+### 1. 입력 문장 요약 -> 번역 -> 그림 동기로 작업되게 수정
+
+### 2. 알림 종 클릭시 모달 나오게 함. 그러나 위치 고정
 
 ## 시행착오 또는 기억할 것
 
@@ -536,4 +538,79 @@ function AuthBtn(props) {
 }
 ```
 
-### 2.
+### 2. generage image 시 에러 발생
+
+아래 처럼 실행하면 그림이 나오지만 자바에서 실행하면 에러가 발생한다.
+
+```bash
+python c:\Users\bitcamp\git\stable-diffusion-keras\simple_cmd.py "Even if you look outside the window, there are thick clouds, and you can hear the sound of falling rain over and over again and again. You should be careful because the road can be slippery because of the rain." eff9c9c9-233d-40ab-b986-39aa7445296c.png
+```
+
+cmd로 해보기 - 성공
+java 에서 돌려보기 - 실패
+.png 빼고 cmd 로 해보기 - 성공
+
+### 3. 클릭한 객체의 위치 정보 가져오기
+
+event.target.getBoundingClientRect() 를 사용한다.
+
+```javascript
+event.target.getBoundingClientRect()
+
+콘솔 출력시 다음과 같다.
+bottom: 39.1875
+height: 22.3918514251709
+left: 880.0087890625
+right: 899.6005859375
+top: 16.7956485748291
+width: 19.591796875
+x: 880.0087890625
+y: 16.7956485748291
+```
+
+### 4. java 의 CompletableFuture 클래스
+
+비동기 작업의 결과값을 반환 받아 이어서 작업할 수 있다.
+
+- 비동기 작업 실행
+
+  - runAsync()
+    - 반환값이 없는 경우
+    - 비동기로 작업 실행 호출
+  - supplyAsync()
+    - 반환값이 있는 경우
+    - 비동기로 작업 실행 호출
+
+- 작업 콜백
+
+  - thenApply()
+    - 반환 값을 받아서 다른 값을 반환함
+    - 함수형 인터페이스 Function 을 파라미터로 받음
+  - thenAccept()
+    - 반환 값을 받아 처리하고 값을 반환하지 않음
+    - 함수형 인터페이스 Consumer 를 파라미터로 받음
+  - thenRun()
+
+    - 반환 값을 받지 않고 다른 작업을 실행함
+    - 함수형 인터페이스 Runnable 을 파라미터로 받음
+
+  - 작업 조합
+
+    - thenCompose
+      - 두 작업이 이어서 실행하도록 조합하며, 앞선 작업의 결과를 받아서 사용할 수 있음
+      - 함수형 인터페이스 Function 을 파라미티로 받음
+    - thenCombine
+      - 두 작업을 독립적으로 실행하고, 둘 다 완료되었을 때 콜백을 실행함
+      - 함수형 인터페이스 Function 을 파라미터로 받음
+    - allOf
+      - 여러 작업들을 동시에 실행하고, 모든 작업 결과에 콜백을 실행함
+    - anyOf
+      - 여러 작업들 중에서 가장 빨리 끝난 하나의 결과에 콜백을 실행함
+
+  - 예외 처리
+    - exceptionally
+      - 발생한 에러를 받아서 예외를 처리함
+      - 함수형 인터페이스 Function 을 파라미터로 받음
+    - handle, handleAsync
+      - (결과값, 에러)를 반환받아 에러가 발생한 경우와 아닌 경우 모두를 처리할 수 있음
+      - 함수형 인터페이스 BiFunction 을 파라미터로 받음

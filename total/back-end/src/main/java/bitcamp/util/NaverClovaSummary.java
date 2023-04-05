@@ -61,12 +61,12 @@ public class NaverClovaSummary {
 
       summaryContent = response.toString();
 
-      log.info("summary >>> "+summaryContent);
+      //      log.info("summaryContent >>> "+ summaryContent);
 
       return summaryContent;
 
     } catch (Exception e) {
-      //      log.info(e);
+      log.error(e);
 
       return null;
     }
