@@ -5,7 +5,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function Login(props) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   let { currentUser, setCurrentUser } = props;
 
   const handleClose = () => setShow(false);
@@ -93,8 +93,6 @@ function Login(props) {
 
   return (
     <>
-      <div onClick={handleShow}>Login</div>
-
       <Modal
         show={show}
         onHide={handleClose}

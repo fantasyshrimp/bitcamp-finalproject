@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.vo.Board;
+import bitcamp.app.vo.Member;
 import bitcamp.util.GsonFilter;
 import bitcamp.util.NaverClovaSummary;
 import bitcamp.util.NaverPapagoTranslation;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 // @RequestMapping("/member")
@@ -78,5 +80,15 @@ public class BoardController {
     return boardService.get(no);
   }
 
+  @GetMapping("auth")
+  public boolean authCheck(HttpSession session) {
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser != null) {
+      return true;
+    }
+    return false;
+  }
 }
 

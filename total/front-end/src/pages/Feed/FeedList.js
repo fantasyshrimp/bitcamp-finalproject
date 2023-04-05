@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Feed.css";
 import FeedModal from "./FeedModal";
+import Login from "../../components/auth/Login";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [loginShow, setLoginShow] = useState(false);
+
+  const handleShow = () => setLoginShow(!loginShow);
+
   function handleCloseModal() {
     setModalOpen(false);
   }
@@ -14,6 +19,7 @@ function FeedList(props) {
 
   return (
     <>
+      {loginShow && <Login />}
       <div
         id="feed-list"
         className="feed-list"
@@ -25,7 +31,12 @@ function FeedList(props) {
           backgroundSize: "cover",
         }}
         onClick={() => {
-          ShowModal();
+          {
+            props.auth && ShowModal();
+          }
+          {
+            !props.auth && handleShow();
+          }
         }}
       >
         {modalOpen && (

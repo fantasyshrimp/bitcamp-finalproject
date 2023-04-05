@@ -4,6 +4,7 @@ import FeedList from "./FeedList";
 
 function List() {
   const [data, setData] = useState([]);
+  const [auth, setAuth] = useState(false);
 
   function isScrolledToBottom() {
     return (
@@ -11,6 +12,13 @@ function List() {
       document.documentElement.scrollHeight
     );
   }
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/boards/auth`)
+      .then((response) => setAuth(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
     loadData();
@@ -43,7 +51,7 @@ function List() {
   return (
     <div id="feed-main">
       {data.map((item) => (
-        <FeedList item={item} />
+        <FeedList item={item} auth={auth} />
       ))}
     </div>
   );

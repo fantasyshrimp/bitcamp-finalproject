@@ -8,6 +8,10 @@ axios.defaults.withCredentials = true;
 function AuthBtn(props) {
   const [show, setShow] = useState(false);
   const { currentUser, setCurrentUser } = props;
+  const [loginShow, setLoginShow] = useState(false);
+
+  const handleShow = () => setLoginShow(true);
+  const handleClose = () => setLoginShow(false);
 
   const [alarms, setAlarms] = useState(null);
 
@@ -99,7 +103,13 @@ function AuthBtn(props) {
             <SignupBtn />
           </Nav.Link>
           <Nav.Link>
-            <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <div onClick={handleShow}>Login</div>
+            {loginShow && (
+              <Login
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            )}
           </Nav.Link>
         </>
       )}

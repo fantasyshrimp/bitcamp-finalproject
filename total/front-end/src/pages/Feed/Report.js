@@ -49,7 +49,7 @@ function Report(props) {
         }
       })
       .catch((error) => {
-        alert("로그인 후 입력가능합니다.");
+        alert("중복신고입니다");
       });
   };
 
