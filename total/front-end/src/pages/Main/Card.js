@@ -23,6 +23,9 @@ function Card() {
   }, []);
 
   const randomImage = image[Math.floor(Math.random() * image.length)];
+  // Math.random() 함수를 이용하여 0부터 배열의 길이 -1까지 랜덤한 정수를 구하고,
+  // 해당 인덱스의 이미지 선택
+  // 또한 이미지가 선택되었을 때만 해당 이미지를 렌더링하도록 함
 
   return (
     <div className={styles.total}>
