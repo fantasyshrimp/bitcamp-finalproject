@@ -31,9 +31,9 @@ public class MemberController {
     memberService.add(member);
   }
 
-  @GetMapping("/api/hello")
+  @GetMapping("/member")
   public String test() {
-    return "Artify";
+    return "management test";
   }
 
   @GetMapping("/member/{no}")
