@@ -28,6 +28,12 @@
     values(#{nickname}, #{email}, sha2(#{password},256), 0)
   </insert>
   
+  <select id="findAll" resultMap="memberMap">
+    select *
+    from
+     aim_member;
+  </select>
+  
   <select id="findByNo" parameterType="int" resultMap="memberMap">
     select
       member_no,

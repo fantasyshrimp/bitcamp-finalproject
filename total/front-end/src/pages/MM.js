@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "./MM.module.css";
 
 function MM() {
+  const [memberList, setMemberList] = useState([]);
+
+  // 최초의 컴포넌트 한번 렌더링할 때만 실행되게 하기 위해
+  // useEffect 사용하고, useEffect에 두 번째 인자로 dependancy에 아무것도 넣지 않으면
+  // 딱 한번만 실행
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios("http://localhost:8080/member");
+        if (result.data.status == "success") {
+          setCurrentUser(result.data.data);
+        } else {
+          setCurrentUser(null);
+        }
+      } catch (error) {
+        alert("로그인 유저 가져오는 중 오류 발생!");
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.MemberList}>
-      <h1>Member List</h1>
-      <table border="1">
+      <h1>회원 관리</h1>
+      <h3>회원 목록</h3>
+      <table>
         <th>회원번호</th>
         <th>닉네임</th>
         <th>이메일</th>
@@ -23,21 +48,21 @@ function MM() {
         <th>권한레벨</th>
 
         <tr>
-          <td>member_no</td>
-          <td>name</td>
-          <td>email</td>
-          <td>pw</td>
-          <td>created_dt</td>
-          <td>gender</td>
-          <td>filename</td>
-          <td>addr</td>
-          <td>pt</td>
-          <td>info</td>
-          <td>birth_dt</td>
-          <td>tel</td>
-          <td>pw_updated_dt</td>
-          <td>state</td>
-          <td>auth</td>
+          <td>{member.no}</td>
+          <td>{member.nickname}</td>
+          <td>{member.email}</td>
+          <td>{member.password}</td>
+          <td>{member.createdDate}</td>
+          <td>{member.gender}</td>
+          <td>{member.profilePhoto}</td>
+          <td>{member.basicAddress}</td>
+          <td>{member.point}</td>
+          <td>{member.information}</td>
+          <td>{member.birthDate}</td>
+          <td>{member.tel}</td>
+          <td>{member.passwordDate}</td>
+          <td>{member.accountState}</td>
+          <td>{member.authLevel}</td>
         </tr>
       </table>
     </div>
