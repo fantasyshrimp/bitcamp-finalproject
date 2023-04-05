@@ -18,6 +18,14 @@ function PostModal(props) {
   }, [currentUser]);
 
   const HandleClickGenerate = () => {
+    const postText = document.querySelector("#post-text").value;
+
+    if (postText.length === 0) {
+      document.querySelector("#postHelpBlock").innerText =
+        "내용을 작성해 주세요";
+      return;
+    }
+
     axios("http://localhost:8080/auth/user")
       .then((response) => {
         if (response.data.status == "success") {
@@ -35,13 +43,13 @@ function PostModal(props) {
   };
 
   const handleClovaSummary = () => {
-    console.log(currentUser);
+    // console.log(currentUser);
     const writerNo = currentUser.no;
     const originContent = document.querySelector("#post-text").value;
 
     axios
       .post(
-        "http://localhost:8080/api/boards",
+        "http://localhost:8080/boards",
         {},
         {
           params: {
@@ -52,7 +60,7 @@ function PostModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          console.log(response);
+          // console.log(response);
         } else {
           alert("이상 발생!");
         }
@@ -60,6 +68,10 @@ function PostModal(props) {
       .catch((error) => {
         alert("글쓰기 중 오류 발생");
       });
+  };
+
+  const handlePostChange = () => {
+    document.querySelector("#postHelpBlock").innerText = "";
   };
 
   return (
@@ -95,7 +107,9 @@ function PostModal(props) {
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!"
                 style={{ resize: "none" }}
                 className="bg-dark text-light"
+                onChange={handlePostChange}
               />
+              <Form.Text id="postHelpBlock" muted></Form.Text>
             </Form.Group>
           </Form>
         </Modal.Body>

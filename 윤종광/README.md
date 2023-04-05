@@ -423,13 +423,15 @@ const HandleClickGenerate = () => {
 const handleClovaSummary = () => {};
 ```
 
-# 4월3일 월
+# 4월4일 화
 
 ## 작업내용
 
 ### 1. 로그인, 회원가입, 글쓰기 창 다크로 변경 및 UI 수정
 
 ### 2. 알림로그에 상대회원(other_no) 외래키 컬럼 추가
+
+### 3. 알림 아이콘 UI 추가, 로그인시 알림 데이터 가져오는 것 구현 완료
 
 ## 시행착오 또는 기억할 것
 
@@ -508,3 +510,30 @@ taskkill /f /pid {PID}
 ```
 
 다시 App.java 실행하면 잘 실행된다.
+
+# 4월5일 수
+
+## 작업내용
+
+### 1.
+
+## 시행착오 또는 기억할 것
+
+### 1. props 로 받은 state 는 if 사용해서 state 변경시 업데이트 하기
+
+아래처럼 props 로 state 를 받았을 때,
+상위 컴포넌트에서 currentUser 의 변경이 있을때 하위 컴포넌트에서
+처음에 null 값이 오고 그 다음 변경된 값이 온다.
+이때 값 변경을 처리하려면 if 로 처리하면 된다.
+
+```javascript
+function AuthBtn(props) {
+  const { currentUser, setCurrentUser } = props;
+
+  if (currentUser !== null) {
+    // 변경 처리
+  }
+}
+```
+
+### 2.
