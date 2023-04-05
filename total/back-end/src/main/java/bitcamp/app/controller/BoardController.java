@@ -40,9 +40,18 @@ public class BoardController {
         .thenApply(NaverPapagoTranslation::translate)
         .thenApply(GsonFilter::translate)
         .thenAccept(transContent -> {
-          // 비동기 작업이 모두 완료된 후 실행될 코드
-          log.info("thenAccept >>> " + transContent);
-          return ;
+
+          log.info("transContent >>> " + transContent);
+          //          UUID fileName = UUID.randomUUID();
+          //          String command = "python C:\\Users\\bitcamp\\git\\stable-diffusion-keras\\simple_cmd.py "
+          //              + transContent + " " + fileName + ".png";
+          //          try {
+          //            Runtime.getRuntime().exec(command);
+          //            log.info("Command executed successfully");
+          //          } catch (IOException e) {
+          //            log.error("Error executing command: " + command, e);
+          //          }
+
         });
 
     return null;
