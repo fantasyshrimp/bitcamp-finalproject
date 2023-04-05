@@ -116,7 +116,12 @@ function CommentUtil(props) {
           </div>
         )}
       </div>
-      {isModalOpen && <Report handleCloseModal={handleCloseModal} />}
+      {isModalOpen && (
+        <Report
+          commentNo={props.commentNo}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </>
   );
 }

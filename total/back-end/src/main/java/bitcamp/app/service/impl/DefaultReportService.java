@@ -17,4 +17,14 @@ public class DefaultReportService implements ReportService{
     return reportDao.findReportType();
   }
 
+  @Override
+  public void replyReport(Report report) {
+    reportDao.replyReport(report);
+  }
+
+  @Override
+  public void boardReport(Report report) {
+    reportDao.boardReport(report);
+  }
+
 }
