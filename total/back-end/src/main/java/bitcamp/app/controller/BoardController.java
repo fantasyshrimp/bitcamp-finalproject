@@ -1,6 +1,8 @@
 package bitcamp.app.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,15 +44,15 @@ public class BoardController {
         .thenAccept(transContent -> {
 
           log.info("transContent >>> " + transContent);
-          //          UUID fileName = UUID.randomUUID();
-          //          String command = "python C:\\Users\\bitcamp\\git\\stable-diffusion-keras\\simple_cmd.py "
-          //              + transContent + " " + fileName + ".png";
-          //          try {
-          //            Runtime.getRuntime().exec(command);
-          //            log.info("Command executed successfully");
-          //          } catch (IOException e) {
-          //            log.error("Error executing command: " + command, e);
-          //          }
+          UUID fileName = UUID.randomUUID();
+          String command = "python C:\\Users\\bitcamp\\git\\stable-diffusion-keras\\simple_cmd.py "
+              + transContent + " " + fileName + ".png";
+          try {
+            Runtime.getRuntime().exec(command);
+            log.info("Command executed successfully");
+          } catch (IOException e) {
+            log.error("Error executing command: " + command, e);
+          }
 
         });
 
