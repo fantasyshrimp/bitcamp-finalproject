@@ -8,9 +8,8 @@ axios.defaults.withCredentials = true;
 
 function AuthModal(props) {
   const { show, setShow } = props;
-  const [postShow, setPostShow] = useState(false);
-
   let { currentUser, setCurrentUser } = props;
+  const [postShow, setPostShow] = useState(false);
 
   const handleClose = () => setShow(false);
 
@@ -41,7 +40,7 @@ function AuthModal(props) {
         show={show}
         onHide={handleClose}
         animation={false}
-        aria-labelledby="example-modal-sizes-title-sm"
+        aria-labelledby="auth-modal-sizes-title-sm"
         backdropClassName="auth-modal-backdrop"
         dialogClassName="auth-modal-dialog"
       >

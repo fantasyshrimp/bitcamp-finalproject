@@ -59,12 +59,12 @@ public class NaverPapagoTranslation {
 
       transContent = response.toString();
 
-      log.info("trans >>> " +transContent);
+      //      log.info("transContent >>> " +transContent);
 
       return transContent;
 
     } catch (Exception e) {
-      log.info(e);
+      log.error(e);
 
       return null;
     }
