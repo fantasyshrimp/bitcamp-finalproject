@@ -25,7 +25,6 @@ public class AlarmController {
 
   @GetMapping("{no}")
   public Object alarm(@PathVariable int no) {
-    System.out.println(    alarmService.list(no));
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)

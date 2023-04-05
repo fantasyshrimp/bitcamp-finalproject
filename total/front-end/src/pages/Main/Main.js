@@ -10,9 +10,10 @@ function Main() {
       <BackgroundSlider />
       <Tagbar />
       <Card />
-      <Scroll />
     </div>
   );
 }
 
 export default Main;
+
+//<Scroll />

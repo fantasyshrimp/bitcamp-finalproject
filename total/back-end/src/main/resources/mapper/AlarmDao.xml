@@ -18,7 +18,7 @@
 	    <result column="name" property="nickname"/>
 	    <result column="email" property="email"/>
 	    <result column="pw" property="password"/>
-	    <result column="create_dt" property="createdDate"/>
+	    <result column="created_dt" property="createdDate"/>
 	    <result column="gender" property="gender"/>
 	    <result column="filename" property="profilePhoto"/>
 	    <result column="addr" property="basicAddress"/>
@@ -64,7 +64,6 @@
 		  aim_member m ON al.other_no = m.member_no
 		WHERE 
 		  al.member_no = #{no}
-		  AND al.read_flag = 0
 		ORDER BY
 		  al.alarm_dt desc
   </select>

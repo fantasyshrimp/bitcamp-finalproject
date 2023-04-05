@@ -24,4 +24,5 @@ public class NaverConfig {
   private String regionName; // ncp.regionName 프로퍼티를 받는 필드
   private String accessKey; // ncp.accessKey 프로퍼티를 받는 필드
   private String secretKey; // ncp.secretKey 프로퍼티를 받는 필드
+
 }

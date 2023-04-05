@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+// useState : 요청 상태 관리 (1. 요청의 결과, 2. 로딩 상태, 3. 에러)
+// useEffect : 컴포넌트가 렌더링되는 시점에 요청을 시작하는 작업
 import styles from "./Scroll.module.css";
 import List from "../Feed/List";
+//import axios from "axios";
 
 function Scroll() {
+  /*
+  const [img, setImg] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
+
+
+  axios.get("/boards/main/scroll");
+
+  useEffect(() => {
+    const fetcherImgs= async() => {
+      // 요청이 시작할 때는 error와 img 초기화
+      setError(null);
+      setImg(null);
+      // loading 상태를 true로 변경
+      setLoading(true);
+      const response = await axios.get()
+
+    }
+  })
+  */
   return (
     <div>
       <section id={styles.s1}>

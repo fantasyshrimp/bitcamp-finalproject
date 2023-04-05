@@ -1,6 +1,6 @@
 package bitcamp.app.vo;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Data;
@@ -16,6 +16,6 @@ public class AlarmLog {
 
   @JsonFormat(
       shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
-  private Date alarmDate;
+      pattern = "yyyy-MM-dd HH:mm:ss")
+  private LocalDateTime alarmDate;
 }
