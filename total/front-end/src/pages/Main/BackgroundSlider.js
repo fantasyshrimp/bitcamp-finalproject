@@ -18,7 +18,8 @@ const BackgroundSlider = () => {
     backgroundImage: `url(${imageSlide[currentStage].url})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    height: "100%",
+    height: "80%",
+    width: "95%",
   };
 
   const goToNext = (currentStage) => {
