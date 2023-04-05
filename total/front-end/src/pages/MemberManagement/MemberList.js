@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
 import data from "./data";
 
-function MM() {
+function MemberList() {
   const [myData, setMyData] = useState([]);
 
   useEffect(() => {
@@ -59,4 +59,4 @@ function MM() {
   );
 }
 
-export default MM;
+export default MemberList;
