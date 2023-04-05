@@ -1,0 +1,37 @@
+
+#setting-type-btn {
+    display: flex;
+    position: relative;
+}
+
+#setting-type-btn > div {
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid white;
+    box-sizing: border-box;
+}
+
+#setting-type-btn > .selected-setting {
+    position: absolute;
+    background-color: gray;
+}
+
+:root {
+    --slide-side-distance: 0px;
+  }
+
+
+.slide-side {
+    animation-duration: 0.3s;
+    animation-name: slideSide;
+}
+
+@keyframes slideSide {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(var(--slide-side-distance));
+    }
+}

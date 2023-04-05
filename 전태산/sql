@@ -17,3 +17,14 @@ insert into aim_follow(following_no, follower_no) value
 (6,5);
 
 insert into aim_follow(following_no,follower_no) values(12, 5);
+
+
+
+
+
+insert into aim_info_list(name, description) values
+("성별","성별 공개 여부를 설정합니다."),
+("주소","주소 공개 여부를 설정합니다."),
+("게시물","나의 게시물을 볼 수 있는 대상을 설정합니다."),
+("좋아요 및 조회수","게시물의 좋아요 및 조회수의 공개 여부를 설정합니다."),
+("댓글","나의 게시물에 대한 댓글 작성의 허용 범위를 설정합니다.");

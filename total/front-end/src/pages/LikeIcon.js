@@ -14,12 +14,9 @@ function LikeIcon(props) {
       }   
     })
     .then((response) => {       
-      console.log("like상태 체크") ;
       if (response.data.data === "like") {
-        console.log("좋아하는상태");
         setlikeState(true);
       } else {
-        console.log("좋아하지않는상태");
         setlikeState(false);
       }
     })
@@ -37,12 +34,6 @@ function LikeIcon(props) {
             type: props.contentType
           }   
         })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
     } else {
         axios.post("http://localhost:8080/like", {
           likerNo: 0,
@@ -51,14 +42,7 @@ function LikeIcon(props) {
           params: {
             type: props.contentType
           }
-        }
-        )
-        .then((response) => {
-          console.log(response);
         })
-        .catch((error) => {
-          console.error(error);
-        });
     }
 };
 

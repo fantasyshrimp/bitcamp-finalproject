@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.app.dao.PublicSettingDao">
+
+  <resultMap type="publicSetting" id="publicSettingMap">  
+    <id column="member_no" property="memberNo"/>
+    <id column="no" property="typeNo"/>
+    <result column="name" property="title"/>
+    <result column="description" property="description"/>
+    <result column="range_no" property="rangeNo"/>
+    <result column="state" property="rangeState"/>
+  </resultMap>
+  
+  <insert id="insert" parameterType="publicSetting">
+
+  </insert>
+  
+  <delete id="delete" parameterType="publicSetting">
+
+  </delete>
+  
+
+  <select id="getAll" parameterType="int" resultMap="publicSettingMap">
+    select *
+    from aim_info_list il
+    left join (
+      select hs.member_no, hs.no, hs.range_no
+      from aim_hide_setting hs
+      left join aim_public_range pr on hs.range_no = pr.range_no 
+    ) s on il.no = s.no
+    where hs.member_no=#{memberNo}
+  </select>
+  
+</mapper>
