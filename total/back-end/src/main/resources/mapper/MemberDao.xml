@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.app.dao.MemberDao">
+
+  <resultMap type="member" id="memberMap">
+    <id column="member_no" property="no"/>
+    <result column="name" property="nickname"/>
+    <result column="email" property="email"/>
+    <result column="pw" property="password"/>
+    <result column="created_dt" property="createdDate"/>
+    <result column="gender" property="gender"/>
+    <result column="filename" property="profilePhoto"/>
+    <result column="addr" property="basicAddress"/>
+    <result column="pt" property="point"/>
+    <result column="info" property="information"/>
+    <result column="birth_dt" property="birthDate"/>
+    <result column="tel" property="tel"/>
+    <result column="pw_update_dt" property="passwordDate"/>
+    <result column="state" property="accountState"/>
+    <result column="auth" property="authLevel"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="member" 
+          useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
+    insert into aim_member(name, email, pw, pt)
+    values(#{nickname}, #{email}, sha2(#{password},256), 0)
+  </insert>
+  
+  <select id="findByNo" parameterType="int" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      gender,
+      filename,
+      addr,
+      pt,
+      info
+    from
+      aim_member 
+    where
+      member_no=#{no}
+  </select>
+
+  <select id="findByEmailAndPassword" parameterType="map" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      email=#{email}
+      and pw=sha2(#{password},256)
+  </select>
+  
+  <select id="findByEmail" parameterType="String" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      email=#{email}
+  </select>
+
+  <select id="findByNickname" parameterType="string" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      name=#{nickname}
+  </select>
+
+  </mapper>

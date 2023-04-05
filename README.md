@@ -1,5 +1,5 @@
 UI 프로토타입:
-피그잼 정의: https://www.figma.com/file/OqWG6u7P5kjgVNeTgq2srb/Untitled?node-id=0%3A1&t=hjTiM5AJYNiQOjdK-0
+피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
 
 # bitcamp-finalproject
 
@@ -100,3 +100,42 @@ UI 프로토타입:
 1. 피드 피그마 디자인 확정 필요
 2. 신규 추가 페이지 피그마 디자인 확정 필요(고객센터, 관리자 및 통계 페이지)
 3. 일정 관리 시트 작성
+
+## 2023-03-31 금
+
+### 1차 리뷰(3/31(금)) 이후 회의
+
+- 회의 주제: 리뷰 결과 및 타 팀 참고하여 소스 수정사항 선정
+
+- 역할 분담
+
+1. 신지윤 : 인덱스 페이지 구성
+2. 윤종광 : 로그인 정보 요청 함수 작성, 로그인시 사용자 정보 클릭 모달창 구현
+3. 전태산 : 팔로워, 팔로잉 UI 구체화
+4. 오병현 : 게시글 상세보기 구체화
+5. 한대호 : FAQ 페이지 구성, DB에 FAQ 데이터 넣기
+
+## 2023-04-03 월
+
+### 2차 리뷰(4/7(금)) 대비 회의 1
+
+- 회의 주제: 2차 리뷰 전 구현 필요사항 분담 및 코드 정리 논의
+- 논의 내용: 주 3회 월수금 점검 하기로 함.
+
+- 역할 분담
+
+1. 신지윤 : 인덱스 페이지 세부 수정 및 추가
+2. 오병현 : 좋아요 처리 다듬기, 불합리한 코드 정리
+3. 윤종광 : 알림 아이콘 및 창 구현, AI 이미지 생성 구현
+4. 전태산 : 팔로워 및 팔로잉 UI 구체화, 설정 페이지 UI 구상
+5. 한대호 : FAQ 데이터 DB에 입력, 관리자 페이지(회원, 게시글, 댓글)
+
+- 수정 필요 사항
+
+1. api/boards 주소 boards 로 수정
+2. Board.java 에 Member 객체 넣는 것으로 변경
+3. aim_board 에 summary-content 컬럼 및 Board.java 에 summaryContent 필요
+4. aim_faq_type PK AutoIncrement 적용 필요
+5. 색깔 변수 사용 필요
+6. 프로필 사진 default 지정 필요
+7. 404 Not Found 페이지 구상 필요

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.app.dao.FaqDao">
+
+  <resultMap type="faq" id="faqMap">
+    <id column="faq_type_no" property="faqTypeNo"/>
+    <result column="faq_type_no" property="faqTypeNo"/>
+    <result column="faq_type" property="faqType"/>
+  </resultMap>
+  
+   <select id="findFaqType" resultMap="faqMap">
+    select faq_type from aim_faq_type
+   </select>
+  
+  </mapper>
