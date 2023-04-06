@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SetTemp from "./SetTemp";
+import PublicSetting from "./PublicSetting";
 
 function PersonalSetting() {
   const [temp, setTemp] = useState(1);
@@ -18,8 +18,7 @@ function PersonalSetting() {
         <div style={{height: "10%"}}></div>
         <div style={{marginLeft: "10%", marginRight: "5%"}}>
           <h5 style={{boxSizing: "border-box", borderBottom: "solid 1px white"}}>설정</h5>
-          <div onClick={testtest}>메뉴1</div>
-
+          <div onClick={testtest}>공개 설정</div>
 
 
         </div>
@@ -27,7 +26,7 @@ function PersonalSetting() {
       </div>
         
       <div style={{width: "90%", height: "100%"}}>
-        {temp === -1 && <SetTemp title={"제목위치"}/>}
+        {temp === -1 && <PublicSetting title={"공개 설정"}/>}
 
       </div>
     </div>

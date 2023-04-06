@@ -12,7 +12,7 @@
     box-sizing: border-box;
 }
 
-#setting-type-btn > .selected-setting {
+#setting-type-btn > [class^="selected-setting"] {
     position: absolute;
     background-color: gray;
 }
