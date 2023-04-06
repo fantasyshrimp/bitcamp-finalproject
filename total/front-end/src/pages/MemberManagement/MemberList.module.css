@@ -9,7 +9,7 @@
 .MemberList {
   xfont-family: "PuradakGentleGothicR";
   color: white;
-  xfont-size: x-large;
+  margin: 1% 13% 1% 13%;
 }
 
 .MemberList thead th {
