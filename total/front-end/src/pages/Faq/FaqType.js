@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import axios from "axios";
 
-function FaqType() {
+function FaqType(props) {
   const [dbData, setDbData] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,11 @@ function FaqType() {
     return (
       <Accordion defaultActiveKey="0" flush>
         {dbData.map((data, index) => (
-          <Accordion.Item key={index} eventKey={index.toString()}>
+          <Accordion.Item
+            style={{ backgroundColor: "transparent" }}
+            key={index}
+            eventKey={index.toString()}
+          >
             <Accordion.Header>{data.faqType}</Accordion.Header>
             {/* <Accordion.Body>{data.body}</Accordion.Body> */}
           </Accordion.Item>

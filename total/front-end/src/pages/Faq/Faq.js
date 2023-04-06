@@ -5,7 +5,7 @@ import "./Faq.css";
 
 function Faq() {
   const [type, setType] = useState(true);
-
+  const [state, setTst] = useState(1);
   function temp() {
     setType(!type);
   }
@@ -21,8 +21,9 @@ function Faq() {
         >
           고객센터
         </h2>
+        <br />
 
-        <FaqType />
+        <FaqType chagemenu={(e) => setTst(e)} />
       </div>
       <div id="titleContent">
         <FaqTitleContent />

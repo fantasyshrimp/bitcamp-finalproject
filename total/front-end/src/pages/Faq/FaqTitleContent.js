@@ -22,12 +22,21 @@ function FaqTitleContent(props) {
         <Accordion
           style={{
             width: "100%",
+            color: "white",
+            backgroundColor: "transparent",
           }}
           defaultActiveKey="0"
           flush
         >
           {dbData.map((data, index) => (
-            <Accordion.Item key={index} eventKey={index.toString()}>
+            <Accordion.Item
+              style={{
+                color: "white",
+                backgroundColor: "transparent",
+              }}
+              key={index}
+              eventKey={index.toString()}
+            >
               <Accordion.Header>{data.title}</Accordion.Header>
               <Accordion.Body
                 dangerouslySetInnerHTML={{ __html: data.content }}
