@@ -48,6 +48,11 @@
       aim_board b
       inner join aim_member m on b.member_no = m.member_no 
       inner join aim_generated_img i on b.board_no = i.board_no   
+    <if test="keyword != '' and keyword != null">
+    where 
+      b.tag like(concat('%',#{keyword},'%'))
+      or b.origin_content like(concat('%',#{keyword},'%'))
+    </if> 
     Order by 
     RAND();
   </select>

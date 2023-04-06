@@ -21,9 +21,9 @@ import bitcamp.app.vo.Member;
 import bitcamp.util.GsonFilter;
 import bitcamp.util.NaverClovaSummary;
 import bitcamp.util.NaverPapagoTranslation;
-import jakarta.servlet.http.HttpSession;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 // @RequestMapping("/member")
@@ -78,8 +78,14 @@ public class BoardController {
   }
 
   @GetMapping
-  public List<Board> list(String keyword) {
-    List<Board> list = boardService.list(keyword);
+  public List<Board> list(String keyword, HttpSession session) {
+
+    String key = (String) session.getAttribute("keyword");
+
+    List<Board> list = boardService.list(key);
+
+    session.removeAttribute("keyword");
+
     for (Board b : list) {
       b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
     }
@@ -102,5 +108,15 @@ public class BoardController {
     }
     return false;
   }
-}
 
+  @PostMapping("keyword")
+  public Object keyword(String keyword, HttpSession session) {
+    if (keyword != null) {
+      session.setAttribute("keyword", keyword);
+
+    }
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+}
