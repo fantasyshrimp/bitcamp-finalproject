@@ -71,20 +71,20 @@ function FeedModal(props) {
             backgroundSize: "cover",
           }}
         >
-          <div
-            id="modal-like-icon"
-          ><LikeIcon size={30}
-          contentType={"board"} contentNo={boardNo}
-          /></div>
+          <div id="modal-like-icon">
+            <LikeIcon size={30} contentType={"board"} contentNo={boardNo} />
+          </div>
         </div>
       </div>
       <div id="feed-modal-content">
         <div id="feed-modal-profile">
-            <SmallProfile modalClose={props.closeModal}
-              no={props.data.writer.no} 
-              imgUrl={props.data.writer.profilePhoto} 
-              nickname={props.data.writer.nickname} 
-              height='50' />
+          <SmallProfile
+            modalClose={props.closeModal}
+            no={props.data.writer.no}
+            imgUrl={props.data.writer.profilePhoto}
+            nickname={props.data.writer.nickname}
+            height="50"
+          />
           <div id="feed-modal-follow">
             <FollowBtn followerNo={props.data.writer.no} />
           </div>
@@ -136,7 +136,11 @@ function FeedModal(props) {
                 <div id="feed-modal-com">
                   <div id="feed-modal-commentwriter">
                     <div id="feed-modal-comwriter" key={item.writer.nickname}>
-                      <SmallProfileName no={item.writer.no} nickname={item.writer.nickname} modalClose={props.closeModal}/>
+                      <SmallProfileName
+                        no={item.writer.no}
+                        nickname={item.writer.nickname}
+                        modalClose={props.closeModal}
+                      />
                     </div>
                     <div id="feed-modal-comdt" key={item.writeDt}>
                       {item.writeDt}

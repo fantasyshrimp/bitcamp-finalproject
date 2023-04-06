@@ -8,7 +8,6 @@
     <id column="log_no" property="no"/>
     <result column="type_no" property="typeNo"/>
     <result column="member_no" property="userNo"/>
-        
     <result column="content" property="content"/>
     <result column="read_flag" property="readFlag"/>
     <result column="alarm_dt" property="alarmDate"/>
@@ -31,7 +30,6 @@
 	    <result column="auth" property="authLevel"/>
     </association>
     
-    <!--
     <association property="board" javaType="board">
 	    <id column="board_no" property="boardNo"/>
 	    <result column="origin_content" property="originContent"/>
@@ -48,14 +46,14 @@
 	    <result column="img_filename" property="fileName"/>
 	    
 	    <association property="writer" javaType="member">
-	      <id column="member_no" property="no"/>
-	      <result column="name" property="nickname"/>
-	      <result column="filename" property="profilePhoto"/>
+	      <id column="w_member_no" property="no"/>
+	      <result column="w_name" property="nickname"/>
+	      <result column="w_filename" property="profilePhoto"/>
 	    </association>
     </association>
-     -->
-      
+          
   </resultMap>
+  
   
   <select id="findAll" resultMap="alarmlogMap" parameterType="int">
 		SELECT
@@ -66,6 +64,20 @@
 			al.read_flag,
 			al.alarm_dt,
 			at.alarm_type,
+			b.board_no, 
+            b.member_no, 
+	        b.origin_content, 
+	        b.trans_content,
+	        b.tag, 
+	        b.like_cnt, 
+	        b.view_cnt, 
+	        b.board_public, 
+	        b.reply_public, 
+	        b.report_cnt, 
+	        b.write_dt, 
+	        b.update_dt, 
+			gi.img_no,
+			gi.img_filename,
 			m.member_no as other_no,
 			m.name,
 			m.email,
@@ -79,13 +91,21 @@
 			m.tel,
 			m.pw_update_dt,
 			m.state,
-			m.auth
+			m.auth,
+	        wm.name as w_name, 
+      		wm.filename as w_filename
 		FROM 
 		  aim_alarm_log al
-	  JOIN
-	    aim_alarm_type at ON al.type_no = at.type_no
+		JOIN
+	      aim_alarm_type at ON al.type_no = at.type_no
 		JOIN
 		  aim_member m ON al.other_no = m.member_no
+		JOIN
+		  aim_board b ON al.board_no = b.board_no
+		JOIN
+		  aim_generated_img gi ON b.board_no = gi.board_no
+		JOIN
+	      aim_member wm ON b.member_no = wm.member_no 
 		WHERE 
 		  al.member_no = #{no}
 		ORDER BY
