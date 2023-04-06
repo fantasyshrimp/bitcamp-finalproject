@@ -34,6 +34,7 @@ function Navbars() {
           <Nav className="me-auto">
             <Nav.Link href="/feed/">Feed</Nav.Link>
             <Nav.Link href="/faq/">FAQ</Nav.Link>
+            <Nav.Link href="/MemberList">MemberList</Nav.Link>
             <Searchs />
           </Nav>
 
