@@ -13,7 +13,7 @@ function AlarmModal(props) {
   useEffect(() => {
     if (props.alarms !== null) {
       setAlarms(props.alarms);
-      console.log(props.alarms);
+      // console.log(props.alarms);
     }
   }, [props.alarms]);
 
@@ -54,7 +54,7 @@ function AlarmModal(props) {
         //   right: modalPosition.x + "px",
         // }}
       >
-        <Modal.Header>
+        <Modal.Header className="pt-2 pb-2">
           <div className="d-flex justify-content-between w-100">
             <div className="" style={{ fontWeight: "bold" }}>
               알림
@@ -62,7 +62,7 @@ function AlarmModal(props) {
             <div className="">
               <a
                 href=""
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "inherit" }}
                 onClick={handleClickReadAll}
               >
                 모두 읽음 표시
@@ -72,7 +72,7 @@ function AlarmModal(props) {
         </Modal.Header>
         <Modal.Body
           className="p-0"
-          style={{ maxHeight: "calc(56px * 3)", overflowY: "auto" }}
+          style={{ maxHeight: "calc(56px * 5)", overflowY: "auto" }}
         >
           <Container className="">
             {alarms && alarms.length > 0 ? (
@@ -92,8 +92,12 @@ function AlarmModal(props) {
                     onClick={() => moveProfile(element.otherMember.no)}
                   ></div>
 
-                  <Col className="pe-0">
+                  <Col
+                    className="pe-0"
+                    style={{ color: element.readFlag ? "#aaa" : "#000" }}
+                  >
                     <b
+                      className="alarm-modal-nickname"
                       onClick={() => moveProfile(element.otherMember.no)}
                       style={{ cursor: "pointer" }}
                     >
@@ -103,6 +107,7 @@ function AlarmModal(props) {
                       {" "}
                       {element.content}
                     </span>
+                    <br />
                   </Col>
                 </Row>
               ))

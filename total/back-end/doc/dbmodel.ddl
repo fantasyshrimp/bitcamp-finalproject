@@ -795,9 +795,9 @@ ALTER TABLE aim_report_reply
   );
   
 -- 게시판에 요약내용 추가
-ALTER TABLE aim_board ADD summary_content TEXT NULL AFTER origin_content COMMENT '요약내용', -- 요약내용
-  
 -- 게시판에 summary_content 넣은 후 NOT NULL 설정하기
+ALTER TABLE aim_board 
+  ADD summary_content TEXT NULL AFTER origin_content COMMENT '요약내용', -- 요약내용
 ALTER TABLE aim_board
   MODIFY COLUMN summary_content TEXT NOT NULL
 
@@ -813,4 +813,17 @@ ALTER TABLE aim_alarm_log
   REFERENCES aim_member (  -- 회원
   member_no  -- 회원번호
   );
+  
+-- 알림 로그에 게시글 번호 추가
+-- 알림 로그에 board_no 에 외래키 추가
+ALTER TABLE aim_alarm_log
+  ADD board_no INTEGER NULL AFTER member_no COMMENT '게시글번호', -- 게시글번호
+ALTER TABLE aim_alarm_log
+  MODIFY CONSTRAINT FK_aim_board_TO_aim_alarm_log -- 게시글 -> 알림로그
+  FOREIGN KEY (
+  board_no -- 게시글번호
+  ) 
+  REFERENCES aim_board (
+  board_no -- 게시글번호
+  )
   

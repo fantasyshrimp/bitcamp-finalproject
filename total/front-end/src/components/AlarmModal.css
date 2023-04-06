@@ -23,3 +23,7 @@
 .alarm-modal-row:hover {
   background-color: #eee3e3;
 }
+
+.alarm-modal-nickname:hover {
+  color: #4328b9;
+}
