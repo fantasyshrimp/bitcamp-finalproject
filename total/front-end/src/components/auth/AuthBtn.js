@@ -115,7 +115,7 @@ function AuthBtn(props) {
               <Login
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
-                handleClose={handleClose}
+                handleShow={handleShow}
                 loginShow={loginShow}
               />
             )}

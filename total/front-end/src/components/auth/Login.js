@@ -8,8 +8,11 @@ function Login(props) {
   const [show, setShow] = useState(true);
   let { currentUser, setCurrentUser } = props;
 
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    props.handleShow();
+  };
 
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
@@ -94,7 +97,7 @@ function Login(props) {
   return (
     <>
       <Modal
-        show={show}
+        show={props.loginShow}
         onHide={handleClose}
         centered
         style={{

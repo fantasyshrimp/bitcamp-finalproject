@@ -19,7 +19,7 @@ function FeedList(props) {
 
   return (
     <>
-      {loginShow && <Login />}
+      {loginShow && <Login handleShow={handleShow} loginShow={loginShow} />}
       <div
         id="feed-list"
         className="feed-list"
