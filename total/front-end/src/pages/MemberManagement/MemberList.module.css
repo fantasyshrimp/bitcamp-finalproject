@@ -9,5 +9,9 @@
 .MemberList {
   xfont-family: "PuradakGentleGothicR";
   color: white;
-  font-size: x-large;
+  xfont-size: x-large;
+}
+
+.MemberList thead th {
+  text-align: center;
 }
