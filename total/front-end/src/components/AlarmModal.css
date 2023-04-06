@@ -3,7 +3,10 @@
 }
 
 .alarm-modal-dialog {
-  width: 150px;
+  margin-right: 160px;
+  margin-top: 55px;
+  width: 300px;
+  font-size: 0.8rem;
 }
 
 .alarm-modal-link {
@@ -11,8 +14,16 @@
   color: black;
 }
 
-.alarm-modal-content {
+/* .alarm-modal-content {
   position: relative;
-  right: -370px;
+  right: 0px;
   top: 30px;
+} */
+
+.alarm-modal-row:hover {
+  background-color: #eee3e3;
+}
+
+.alarm-modal-nickname:hover {
+  color: #4328b9;
 }

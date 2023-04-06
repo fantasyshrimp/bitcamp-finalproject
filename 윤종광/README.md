@@ -614,3 +614,21 @@ y: 16.7956485748291
     - handle, handleAsync
       - (결과값, 에러)를 반환받아 에러가 발생한 경우와 아닌 경우 모두를 처리할 수 있음
       - 함수형 인터페이스 BiFunction 을 파라미터로 받음
+
+# 4월6일 목
+
+## 작업내용
+
+### 1.
+
+### 2. DB 정의 알림 로그(aim_alarm_log)에 게시글 번호(board_no) 추가 및 FK 지정 완료
+
+## 시행착오 또는 기억할 것
+
+### 1. 좌우로 div 박스 정렬시키기
+
+부모 요소를 다음과 같이 지정한다.
+
+```HTML
+<div className="d-flex justify-content-between w-100">
+```

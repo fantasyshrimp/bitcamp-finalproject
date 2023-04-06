@@ -31,6 +31,30 @@
 	    <result column="auth" property="authLevel"/>
     </association>
     
+    <!--
+    <association property="board" javaType="board">
+	    <id column="board_no" property="boardNo"/>
+	    <result column="origin_content" property="originContent"/>
+	    <result column="trans_content" property="transContent"/>
+	    <result column="tag" property="tag"/>
+	    <result column="like_cnt" property="likeCnt"/>
+	    <result column="view_cnt" property="viewCnt"/>
+	    <result column="board_public" property="boardPublic"/>
+	    <result column="reply_public" property="replyPublic"/>
+	    <result column="report_cnt" property="reportCnt"/>
+	    <result column="write_dt" property="writeDt"/>
+	    <result column="update_dt" property="updateDt"/>
+	    <result column="img_no" property="photoNo"/>
+	    <result column="img_filename" property="fileName"/>
+	    
+	    <association property="writer" javaType="member">
+	      <id column="member_no" property="no"/>
+	      <result column="name" property="nickname"/>
+	      <result column="filename" property="profilePhoto"/>
+	    </association>
+    </association>
+     -->
+      
   </resultMap>
   
   <select id="findAll" resultMap="alarmlogMap" parameterType="int">

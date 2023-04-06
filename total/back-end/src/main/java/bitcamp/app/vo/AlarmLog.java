@@ -13,7 +13,8 @@ public class AlarmLog {
   private Member otherMember;
   private String content;
   private boolean readFlag;
-
+//  private Board board;
+  
   @JsonFormat(
       shape = Shape.STRING,
       pattern = "yyyy-MM-dd HH:mm:ss")

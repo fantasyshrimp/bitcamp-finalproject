@@ -16,7 +16,7 @@ function Card() {
         const response = await axios.get("http://localhost:8080/boards");
         setImage(response.data);
         setContent(response.data.contents);
-        console.log(image);
+        // console.log(image);
       } catch (error) {
         console.error(error);
       }

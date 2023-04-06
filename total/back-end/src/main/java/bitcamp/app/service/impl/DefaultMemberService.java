@@ -39,7 +39,7 @@ public class DefaultMemberService implements MemberService {
     paramMap.put("email", email);
     paramMap.put("password", password);
 
-    log.info(paramMap.toString());
+    log.debug(paramMap.toString());
 
     return memberDao.findByEmailAndPassword(paramMap);
   }
