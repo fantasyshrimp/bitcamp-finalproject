@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
-import data from "./data";
+//import data from "./data";
 
 function MemberList() {
-  const [myData, setMyData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    setMyData(data);
+    fetch("http://localhost:8080/member")
+      .then((response) => response.text())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   }, []);
 
   return (
@@ -34,7 +37,7 @@ function MemberList() {
           </tr>
         </thead>
         <tbody>
-          {myData.map((member, index) => (
+          {data.map((member, index) => (
             <tr key={index}>
               <td>{member.no}</td>
               <td>{member.nickname}</td>
@@ -60,3 +63,10 @@ function MemberList() {
 }
 
 export default MemberList;
+
+/*
+fetch("http://localhost:8080/member")
+      .then((response) => response.json())
+      .then((data) => setData(data));
+    setData(data);
+*/
