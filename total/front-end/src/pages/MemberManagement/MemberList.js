@@ -7,8 +7,8 @@ function MemberList() {
 
   useEffect(() => {
     fetch("http://localhost:8080/member")
-      .then((response) => response.text())
-      .then((data) => console.log(data))
+      .then((response) => response.json())
+      .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -37,8 +37,8 @@ function MemberList() {
           </tr>
         </thead>
         <tbody>
-          {data.map((member, index) => (
-            <tr key={index}>
+          {data.map((member) => (
+            <tr key={member.no}>
               <td>{member.no}</td>
               <td>{member.nickname}</td>
               <td>{member.email}</td>

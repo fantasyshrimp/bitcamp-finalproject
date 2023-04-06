@@ -31,7 +31,7 @@
   <select id="findAll" resultMap="memberMap">
     select *
     from
-     aim_member;
+     aim_member
   </select>
   
   <select id="findByNo" parameterType="int" resultMap="memberMap">

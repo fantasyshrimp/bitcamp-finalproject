@@ -19,7 +19,7 @@ import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
 
 @RestController
-// @RequestMapping("/member")
+//@RequestMapping("/member")
 public class MemberController {
   @Autowired private MemberService memberService;
   @Autowired private FollowService followService;
@@ -32,8 +32,8 @@ public class MemberController {
   }
 
   @GetMapping("/member")
-  public String test() {
-    return "management test";
+  public Object test() {
+    return memberService.list(null);
   }
 
   @GetMapping("/member/{no}")
