@@ -11,7 +11,7 @@ function AuthBtn(props) {
   const { currentUser, setCurrentUser } = props;
   const [loginShow, setLoginShow] = useState(false);
 
-  const handleShow = () => setLoginShow(true);
+  const handleShow = () => setLoginShow(!loginShow);
   const handleClose = () => setLoginShow(false);
 
   const [alarms, setAlarms] = useState(null);
@@ -115,6 +115,8 @@ function AuthBtn(props) {
               <Login
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                handleClose={handleClose}
+                loginShow={loginShow}
               />
             )}
           </Nav.Link>
