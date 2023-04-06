@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
-//import data from "./data";
+import { Modal, Button } from "react-bootstrap";
+import MemberView from "./MemberView";
 
 function MemberList() {
   const [data, setData] = useState([]);
@@ -12,9 +13,14 @@ function MemberList() {
       .catch((error) => console.error(error));
   }, []);
 
+  function handleColumnSelect(selectedColumn) {
+    console.log(`Selected column: ${selectedColumn}`);
+  }
+
   return (
     <div className={styles.MemberList}>
       <h1>회원 관리</h1>
+      <MemberView />
       <h3>회원 목록</h3>
       <table border="1">
         <thead>
@@ -33,29 +39,37 @@ function MemberList() {
         <tbody>
           {data.map((member) => (
             <tr key={member.no}>
-              <td>{member.no}</td>
-              <td>{member.nickname}</td>
-              <td>{member.email}</td>
-              <td>{member.password}</td>
-              <td>{member.createdDate}</td>
-              <td>{member.point}</td>
-              <td>{member.passwordDate}</td>
-              <td>{member.accountState}</td>
-              <td>{member.authLevel}</td>
+              <td onClick={() => handleColumnSelect(member.no)}>{member.no}</td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.nickname}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.email}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.password}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.createdDate}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.point}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.passwordDate}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.accountState}
+              </td>
+              <td onClick={() => handleColumnSelect(member.no)}>
+                {member.authLevel}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <br />
     </div>
   );
 }
 
 export default MemberList;
-
-/*
-fetch("http://localhost:8080/member")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-    setData(data);
-*/
