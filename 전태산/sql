@@ -28,3 +28,11 @@ insert into aim_info_list(name, description) values
 ("게시물","나의 게시물을 볼 수 있는 대상을 설정합니다."),
 ("좋아요 및 조회수","게시물의 좋아요 및 조회수의 공개 여부를 설정합니다."),
 ("댓글","나의 게시물에 대한 댓글 작성의 허용 범위를 설정합니다.");
+
+select * from aim_info_list il
+left join aim_hide_setting hs on il.no=hs.no and hs.member_no = #{memberNo}
+left join aim_public_range pr on hs.range_no=pr.range_no;
+
+    update aim_hide_setting
+    set range_no=1
+    where member_no=12 and no=1;

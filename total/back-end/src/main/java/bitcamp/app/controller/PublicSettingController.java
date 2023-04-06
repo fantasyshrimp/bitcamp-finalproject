@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import bitcamp.app.service.LikeService;
-import bitcamp.app.vo.Like;
+import bitcamp.app.service.PublicSettingService;
 import bitcamp.app.vo.Member;
+import bitcamp.app.vo.PublicSetting;
 import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/publicSetting")
 public class PublicSettingController {
 
-  @Autowired private LikeService likeService;
+  @Autowired private PublicSettingService publicSettingService;
 
   @GetMapping
   public Object view(HttpSession session) {
@@ -34,12 +35,12 @@ public class PublicSettingController {
           .setData("로그인 요망");
     }
 
-    return "hhh";
+    return publicSettingService.view(loginUser.getNo());
   }
 
 
   @PostMapping
-  public Object insert(@RequestBody Like like, @RequestParam String type, HttpSession session) {
+  public Object insert(@RequestBody PublicSetting ps, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
 
     if (loginUser == null) {
@@ -48,17 +49,18 @@ public class PublicSettingController {
           .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
           .setData("로그인 요망");
     }
+    ps.setMemberNo(loginUser.getNo());
+    System.out.println(ps);
 
-    like.setLikerNo(loginUser.getNo());
-    likeService.like(like, type);
-
+    publicSettingService.add(ps);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
 
-  @DeleteMapping("{no}")
-  public Object delete(@PathVariable int no, @RequestParam String type, HttpSession session) {
+  @PutMapping
+  public Object update(@RequestBody PublicSetting ps, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
+
     if (loginUser == null) {
       return new RestResult()
           .setStatus(RestStatus.FAILURE)
@@ -66,10 +68,16 @@ public class PublicSettingController {
           .setData("로그인 요망");
     }
 
-    Like like = new Like();
-    like.setLikerNo(loginUser.getNo());
-    like.setContentNo(no);
-    likeService.disLike(like, type);
+    ps.setMemberNo(loginUser.getNo());
+    publicSettingService.update(ps);
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+
+  @DeleteMapping("{no}")
+  public Object delete(@PathVariable int no, @RequestParam String type, HttpSession session) {
+
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);

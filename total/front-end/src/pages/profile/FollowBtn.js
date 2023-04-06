@@ -25,12 +25,12 @@ function FollowBtn(props) {
         setfollowState(!followState);
 
         if (followState) {
-            axios.delete("http://localhost:8080/follow/" + props.followerNo)
+            axios.delete("http://localhost:8080/follow/" + props.followerNo);
         } else {
             axios.post("http://localhost:8080/follow", {
               followingNo: props.followingNo,
               followerNo: props.followerNo
-            })
+            });
         }
     };
 

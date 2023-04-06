@@ -5,32 +5,44 @@
 <mapper namespace="bitcamp.app.dao.PublicSettingDao">
 
   <resultMap type="publicSetting" id="publicSettingMap">  
-    <id column="member_no" property="memberNo"/>
     <id column="no" property="typeNo"/>
     <result column="name" property="title"/>
     <result column="description" property="description"/>
+    <result column="member_no" property="memberNo"/>
     <result column="range_no" property="rangeNo"/>
     <result column="state" property="rangeState"/>
   </resultMap>
   
   <insert id="insert" parameterType="publicSetting">
-
+    insert into aim_hide_setting(member_no, no, range_no)
+    values (#{memberNo}, #{typeNo}, #{rangeNo})
   </insert>
   
+  <update id="update" parameterType="publicSetting">
+    update aim_hide_setting
+    set range_no=#{rangeNo}
+    where member_no=#{memberNo} and no=#{typeNo}
+  </update>
+
   <delete id="delete" parameterType="publicSetting">
 
   </delete>
   
 
   <select id="getAll" parameterType="int" resultMap="publicSettingMap">
-    select *
+    select
+      il.no,
+      il.name,
+      il.description,
+      hs.member_no,
+      hs.range_no,
+      pr.state       
     from aim_info_list il
-    left join (
-      select hs.member_no, hs.no, hs.range_no
-      from aim_hide_setting hs
-      left join aim_public_range pr on hs.range_no = pr.range_no 
-    ) s on il.no = s.no
-    where hs.member_no=#{memberNo}
+    left join aim_hide_setting hs 
+      on il.no=hs.no and hs.member_no = #{memberNo}
+    left join aim_public_range pr 
+      on hs.range_no=pr.range_no
+    order by il.no
   </select>
   
 </mapper>
