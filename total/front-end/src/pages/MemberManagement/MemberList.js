@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
-import { Modal, Button } from "react-bootstrap";
 import MemberView from "./MemberView";
 
 function MemberList() {

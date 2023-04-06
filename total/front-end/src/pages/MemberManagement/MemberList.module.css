@@ -15,3 +15,7 @@
 .MemberList thead th {
   text-align: center;
 }
+
+.MemberList tbody td {
+  text-align: center;
+}
