@@ -5,7 +5,7 @@
 .alarm-modal-dialog {
   margin-right: 160px;
   margin-top: 55px;
-  width: 250px;
+  width: 300px;
   font-size: 0.8rem;
 }
 
@@ -19,3 +19,7 @@
   right: 0px;
   top: 30px;
 } */
+
+.alarm-modal-row:hover {
+  background-color: #eee3e3;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./AlarmModal.css";
 
 function AlarmModal(props) {
@@ -7,6 +8,7 @@ function AlarmModal(props) {
   const { alarmShow, setAlarmShow } = props;
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const { alarmClickEvent, setAlarmClickEvent } = props;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (props.alarms !== null) {
@@ -29,6 +31,11 @@ function AlarmModal(props) {
 
   const handleClickReadAll = (e) => {
     e.preventDefault();
+  };
+
+  const moveProfile = (no) => {
+    handleClose();
+    navigate("/Profile", { state: { no: no } });
   };
 
   return (
@@ -63,11 +70,14 @@ function AlarmModal(props) {
             </div>
           </div>
         </Modal.Header>
-        <Modal.Body className="p-0">
-          <Container className="pt-2">
+        <Modal.Body
+          className="p-0"
+          style={{ maxHeight: "calc(56px * 3)", overflowY: "auto" }}
+        >
+          <Container className="">
             {alarms && alarms.length > 0 ? (
               alarms.map((element) => (
-                <Row className="p-2 pt-0" key={element.no}>
+                <Row className="p-2 alarm-modal-row" key={element.no}>
                   <div
                     style={{
                       width: "40px",
@@ -77,12 +87,22 @@ function AlarmModal(props) {
                       backgroundPosition: "center center",
                       backgroundSize: "cover",
                       backgroundImage: `url(${element.otherMember.profilePhoto})`,
+                      cursor: "pointer",
                     }}
+                    onClick={() => moveProfile(element.otherMember.no)}
                   ></div>
-                  <Col>
-                    <b>{element.otherMember.nickname}</b>
-                    <span> 님이 </span>
-                    {element.content}
+
+                  <Col className="pe-0">
+                    <b
+                      onClick={() => moveProfile(element.otherMember.no)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {element.otherMember.nickname}
+                    </b>
+                    <span style={{ overflow: "hidden" }}>
+                      {" "}
+                      {element.content}
+                    </span>
                   </Col>
                 </Row>
               ))
@@ -91,6 +111,7 @@ function AlarmModal(props) {
             )}
           </Container>
         </Modal.Body>
+        <Modal.Footer className="p-2"></Modal.Footer>
       </Modal>
     </>
   );

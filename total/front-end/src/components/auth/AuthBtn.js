@@ -66,18 +66,21 @@ function AuthBtn(props) {
             onClick={handleClickBell}
           >
             <div
+              className="d-flex justify-content-center align-items-center"
               id="auth-has-alarm"
               style={{
-                width: "10px",
-                height: "10px",
+                width: "11px",
+                height: "11px",
                 backgroundColor: "red",
                 borderRadius: "50%",
                 position: "relative",
                 left: "23px",
                 bottom: "8px",
                 visibility: "hidden",
+                color: "#FFFFFF",
+                fontSize: "9px",
               }}
-            />
+            ></div>
             <BellFill size="1.4rem" className="text-light" />
           </a>
           <Nav.Link
