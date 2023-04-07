@@ -17,7 +17,7 @@ function AlarmModal(props) {
   useEffect(() => {
     if (props.alarms !== null) {
       setAlarms(props.alarms);
-      // console.log(props.alarms);
+      console.log(props.alarms);
     }
   }, [props.alarms]);
 
@@ -109,20 +109,29 @@ function AlarmModal(props) {
                       {element.otherMember.nickname}
                     </b>
                     <span> {element.content}</span>
+                    <br />
+                    {element.typeNo === 1 ? (
+                      <span> "{element.reply.content}"`</span>
+                    ) : (
+                      <span></span>
+                    )}
                   </Col>
-
-                  <div
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center center",
-                      backgroundSize: "cover",
-                      backgroundImage: `url(${element.board.fileName})`,
-                      cursor: "pointer",
-                    }}
-                    onClick={() => openFeedModal(element.board)}
-                  ></div>
+                  {element.board === null || element.board.fileName === null ? (
+                    <div />
+                  ) : (
+                    <div
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundImage: `url(${element.board.fileName})`,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => openFeedModal(element.board)}
+                    />
+                  )}
                 </Row>
               ))
             ) : (

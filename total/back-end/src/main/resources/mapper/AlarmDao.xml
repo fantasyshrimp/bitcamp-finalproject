@@ -51,10 +51,17 @@
 	      <result column="w_filename" property="profilePhoto"/>
 	    </association>
     </association>
+    
+    <association property="reply" javaType="reply">
+	    <id column="reply_no" property="replyNo"/>
+	    <result column="r_board_no" property="boardNo"/>
+	    <result column="r_content" property="content"/>
+    </association>
+  
           
   </resultMap>
   
-  
+  <!-- 
   <select id="findAll" resultMap="alarmlogMap" parameterType="int">
 		SELECT
 			al.log_no,
@@ -65,17 +72,17 @@
 			al.alarm_dt,
 			at.alarm_type,
 			b.board_no, 
-            b.member_no, 
-	        b.origin_content, 
-	        b.trans_content,
-	        b.tag, 
-	        b.like_cnt, 
-	        b.view_cnt, 
-	        b.board_public, 
-	        b.reply_public, 
-	        b.report_cnt, 
-	        b.write_dt, 
-	        b.update_dt, 
+      b.member_no, 
+      b.origin_content, 
+      b.trans_content,
+      b.tag, 
+      b.like_cnt, 
+      b.view_cnt, 
+      b.board_public, 
+      b.reply_public, 
+      b.report_cnt, 
+      b.write_dt, 
+      b.update_dt, 
 			gi.img_no,
 			gi.img_filename,
 			m.member_no as other_no,
@@ -92,8 +99,11 @@
 			m.pw_update_dt,
 			m.state,
 			m.auth,
-	        wm.name as w_name, 
-      		wm.filename as w_filename
+      w_name, 
+   		w_filename,
+   		r.reply_no,
+   		r.board_no as r_board_no,
+   		r.content as r_content
 		FROM 
 		  aim_alarm_log al
 		JOIN
@@ -105,12 +115,299 @@
 		JOIN
 		  aim_generated_img gi ON b.board_no = gi.board_no
 		JOIN
-	      aim_member wm ON b.member_no = wm.member_no 
+	      aim_member w ON b.member_no = w.member_no 
+		JOIN
+	      aim_reply r ON b.board_no = r.board_no 
 		WHERE 
 		  al.member_no = #{no}
 		ORDER BY
 		  al.alarm_dt desc
   </select>
+  --><!-- AND al.other_no = r.member_no -->
 
+<!-- 
+  <select id="findAll" resultMap="alarmlogMap" parameterType="int">
+		SELECT
+		    al.log_no,
+		    al.type_no,
+		    al.member_no,
+		    al.content,
+		    al.read_flag,
+		    al.alarm_dt,
+		    at.alarm_type,
+		    b.board_no,
+		    b.member_no,
+		    b.origin_content,
+		    b.trans_content,
+		    b.tag,
+		    b.like_cnt,
+		    b.view_cnt,
+		    b.board_public,
+		    b.reply_public,
+		    b.report_cnt,
+		    b.write_dt,
+		    b.update_dt,
+		    gi.img_no,
+		    gi.img_filename,
+		    m.member_no as other_no,
+		    m.name,
+		    m.email,
+		    m.created_dt,
+		    m.gender,
+		    m.filename,
+		    m.addr,
+		    m.pt,
+		    m.info,
+		    m.birth_dt,
+		    m.tel,
+		    m.pw_update_dt,
+		    m.state,
+		    m.auth,
+		    w.name AS w_name,
+		    w.filename AS w_filename,
+		    r.reply_no,
+		    r.board_no AS r_board_no,
+		    r.content AS r_content
+		FROM
+		    aim_alarm_log al
+	  JOIN
+		    aim_alarm_type at ON al.type_no = at.type_no
+		JOIN
+		    aim_member m ON al.other_no = m.member_no
+		LEFT JOIN
+		    aim_board b ON al.board_no = b.board_no
+		JOIN
+		    aim_generated_img gi ON b.board_no = gi.board_no
+		JOIN
+		    aim_member w ON b.member_no = w.member_no
+		LEFT JOIN
+		    aim_reply r ON b.board_no = r.board_no
+		    AND al.other_no = r.member_no
+		WHERE
+		    al.member_no = #{no}
+		UNION
+		SELECT
+		    al.log_no,
+		    al.type_no,
+		    al.member_no,
+		    al.content,
+		    al.read_flag,
+		    al.alarm_dt,
+		    at.alarm_type,
+		    NULL AS board_no,
+		    NULL AS member_no,
+		    NULL AS origin_content,
+		    NULL AS trans_content,
+		    NULL AS tag,
+		    NULL AS like_cnt,
+		    NULL AS view_cnt,
+		    NULL AS board_public,
+		    NULL AS reply_public,
+		    NULL AS report_cnt,
+		    NULL AS write_dt,
+		    NULL AS update_dt,
+		    NULL AS img_no,
+		    NULL AS img_filename,
+		    m.member_no as other_no,
+		    m.name,
+		    m.email,
+		    m.created_dt,
+		    m.gender,
+		    m.filename,
+		    m.addr,
+		    m.pt,
+		    m.info,
+		    m.birth_dt,
+		    m.tel,
+		    m.pw_update_dt,
+		    m.state,
+		    m.auth,
+		    NULL AS w_name,
+		    NULL AS w_filename,
+		    NULL AS reply_no,
+		    NULL AS r_board_no,
+		    NULL AS r_content
+		FROM
+		    aim_alarm_log al
+		JOIN
+		    aim_alarm_type at ON al.type_no = at.type_no
+		JOIN
+		    aim_member m ON al.other_no = m.member_no
+		WHERE
+		    al.member_no = #{no}
+		    AND al.board_no IS NULL
+  </select>
+-->
+
+  <select id="findAll" resultMap="alarmlogMap" parameterType="int">
+  SELECT
+    al.log_no,
+    al.type_no,
+    al.member_no,
+    al.content,
+    al.read_flag,
+    al.alarm_dt,
+    at.alarm_type,
+    b.board_no,
+    b.member_no,
+    b.origin_content,
+    b.trans_content,
+    b.tag,
+    b.like_cnt,
+    b.view_cnt,
+    b.board_public,
+    b.reply_public,
+    b.report_cnt,
+    b.write_dt,
+    b.update_dt,
+    gi.img_no,
+    gi.img_filename,
+    m.member_no as other_no,
+    m.name,
+    m.email,
+    m.created_dt,
+    m.gender,
+    m.filename,
+    m.addr,
+    m.pt,
+    m.info,
+    m.birth_dt,
+    m.tel,
+    m.pw_update_dt,
+    m.state,
+    m.auth,
+    w.name AS w_name,
+    w.filename AS w_filename,
+    r.reply_no,
+    r.board_no AS r_board_no,
+    r.content AS r_content
+FROM
+    aim_alarm_log al
+        JOIN
+    aim_alarm_type at ON al.type_no = at.type_no
+        JOIN
+    aim_member m ON al.other_no = m.member_no
+        LEFT JOIN
+    aim_board b ON al.board_no = b.board_no
+        JOIN
+    aim_generated_img gi ON b.board_no = gi.board_no
+        JOIN
+    aim_member w ON b.member_no = w.member_no
+        LEFT JOIN
+    aim_reply r ON b.board_no = r.board_no
+        AND al.other_no = r.member_no
+WHERE
+    al.member_no = #{no}
+    AND at.alarm_type = 'reply'
+UNION
+SELECT
+    al.log_no,
+    al.type_no,
+    al.member_no,
+    al.content,
+    al.read_flag,
+    al.alarm_dt,
+    at.alarm_type,
+    b.board_no,
+    b.member_no,
+    b.origin_content,
+    b.trans_content,
+    b.tag,
+    b.like_cnt,
+    b.view_cnt,
+    b.board_public,
+    b.reply_public,
+    b.report_cnt,
+    b.write_dt,
+    b.update_dt,
+    gi.img_no,
+    gi.img_filename,
+    m.member_no as other_no,
+    m.name,
+    m.email,
+    m.created_dt,
+    m.gender,
+    m.filename,
+    m.addr,
+    m.pt,
+    m.info,
+    m.birth_dt,
+    m.tel,
+    m.pw_update_dt,
+    m.state,
+    m.auth,
+    w.name AS w_name,
+    w.filename AS w_filename,
+    NULL AS reply_no,
+    NULL AS r_board_no,
+    NULL AS r_content
+FROM
+    aim_alarm_log al
+        JOIN
+    aim_alarm_type at ON al.type_no = at.type_no
+        JOIN
+    aim_member m ON al.other_no = m.member_no
+        LEFT JOIN
+    aim_board b ON al.board_no = b.board_no
+        JOIN
+    aim_generated_img gi ON b.board_no = gi.board_no
+        JOIN
+    aim_member w ON b.member_no = w.member_no
+WHERE
+    al.member_no = #{no}
+    AND at.alarm_type != 'reply'
+    UNION
+    SELECT
+        al.log_no,
+        al.type_no,
+        al.member_no,
+        al.content,
+        al.read_flag,
+        al.alarm_dt,
+        at.alarm_type,
+        NULL AS board_no,
+        NULL AS member_no,
+        NULL AS origin_content,
+        NULL AS trans_content,
+        NULL AS tag,
+        NULL AS like_cnt,
+        NULL AS view_cnt,
+        NULL AS board_public,
+        NULL AS reply_public,
+        NULL AS report_cnt,
+        NULL AS write_dt,
+        NULL AS update_dt,
+        NULL AS img_no,
+        NULL AS img_filename,
+        m.member_no as other_no,
+        m.name,
+        m.email,
+        m.created_dt,
+        m.gender,
+        m.filename,
+        m.addr,
+        m.pt,
+        m.info,
+        m.birth_dt,
+        m.tel,
+        m.pw_update_dt,
+        m.state,
+        m.auth,
+        NULL AS w_name,
+        NULL AS w_filename,
+        NULL AS reply_no,
+        NULL AS r_board_no,
+        NULL AS r_content
+    FROM
+        aim_alarm_log al
+    JOIN
+        aim_alarm_type at ON al.type_no = at.type_no
+    JOIN
+        aim_member m ON al.other_no = m.member_no
+    WHERE
+        al.member_no = #{no}
+        AND al.board_no IS NULL
+  </select>
+ 
 
   </mapper>

@@ -5,7 +5,8 @@
 .alarm-modal-dialog {
   margin-right: 160px;
   margin-top: 55px;
-  width: 320px;
+  width: 350px;
+  max-width: 350px;
   font-size: 0.8rem;
 }
 
