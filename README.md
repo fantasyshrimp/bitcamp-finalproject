@@ -2,7 +2,7 @@
 
 # Artify
 
-> **네이버 클라우드 캠프 1기** <br/> <span style="black">개발 기간 : 2023-04-01 ~ 2023-05-04</span>
+> **네이버 클라우드 캠프 1기** <br/> 개발 기간 : 2023-04-01 ~ 2023-05-04
 
 ## 멤버 구성
 
@@ -35,11 +35,13 @@
 <a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/mariaDB-003545?style=flat-square&logo=mariaDB&logoColor=white"></a>
 
-## Cloud using Naver Cloud ☁️
+## Naver Cloud ☁️
 
 - VPC
 - Server
 - Cloud DB for MySQL
+- CLOVA Summary
+- Papago Translation
 
 ## AI Service 💻
 
