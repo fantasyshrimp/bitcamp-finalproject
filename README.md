@@ -1,4 +1,4 @@
-<p align="center"><img src="title.png"></p>
+<img src="title.png" align="center">
 # Artify
 
 > 네이버 클라우드 캠프 1기 <br/> 개발 기간 : 2023-04-01 ~ 2023-05-04
