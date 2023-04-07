@@ -178,21 +178,3 @@ function MemberView() {
 }
 
 export default MemberView;
-<<<<<<< HEAD
-
-/*
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <div className="d-flex align-items-center">
-                <Form.Label className={styles.label}>이메일</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="name@example.com"
-                  autoFocus
-                />
-              </div>
-            </Form.Group>
-
-*/
-=======
->>>>>>> jiyoon
