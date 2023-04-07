@@ -1,6 +1,6 @@
 package bitcamp.app.vo;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Data;
@@ -24,16 +24,16 @@ public class Board {
 
   @JsonFormat(
       shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
-  private Date writeDt;
+      pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
+  private LocalDateTime writeDt;
 
   @JsonFormat(
       shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
-  private Date updateDt;
+      pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
+  private LocalDateTime updateDt;
 
   @JsonFormat(
       shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
-  private Date replyWriteDt;
+      pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
+  private LocalDateTime replyWriteDt;
 }
