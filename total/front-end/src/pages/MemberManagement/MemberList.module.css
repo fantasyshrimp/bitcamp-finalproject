@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "PuradakGentleGothicR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.1/PuradakGentleGothicR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.MemberList {
+  xfont-family: "PuradakGentleGothicR";
+  color: white;
+  margin: 1% 11% 2% 11%;
+}
+
+.MemberList thead th {
+  text-align: center;
+}
+
+.MemberList tbody td {
+  text-align: center;
+}
+
+.table {
+}
