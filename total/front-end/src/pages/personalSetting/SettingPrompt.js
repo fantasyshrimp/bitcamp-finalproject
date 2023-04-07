@@ -9,7 +9,7 @@ function SettingPrompt(props) {
 
   const controlClass = "selected-setting" + classKey
   useEffect(() => {
-    document.querySelector(`.${controlClass}`).style.left = `${((data.rangeState === 0 ? 1:data.rangeState ) - 1) * 30}px`;
+    document.querySelector(`.${controlClass}`).style.left = `${((data.rangeState === 0 ? 1 : data.rangeState ) - 1) * 30}px`;
   }, []);
 
   const handleButtonClick = (target) => {
@@ -35,13 +35,11 @@ function SettingPrompt(props) {
     axios.post(`http://localhost:8080/${settingType}`, {
       typeNo: data.typeNo,
       rangeNo: selectedNo
-    }).then(()=>{console.log(selectedNo);
-      console.log(selectedNo);}) :
+    }) :
     axios.put(`http://localhost:8080/${settingType}`, {
       typeNo: data.typeNo,
       rangeNo: selectedNo
-    }).then(()=>{console.log(selectedNo);
-      console.log(selectedNo);});
+    });
   };
 
 

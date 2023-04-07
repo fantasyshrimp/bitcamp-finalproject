@@ -4,6 +4,7 @@ import "./AuthModal.css";
 import { Pencil, Person, Gear, BoxArrowRight } from "react-bootstrap-icons";
 import PostModal from "../PostModal";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 axios.defaults.withCredentials = true;
 
 function AuthModal(props) {
@@ -11,6 +12,8 @@ function AuthModal(props) {
   let { currentUser, setCurrentUser } = props;
   const [postShow, setPostShow] = useState(false);
 
+  const navigate = useNavigate();
+  
   const handleClose = () => setShow(false);
 
   const handleClickPostModal = (e) => {
@@ -63,9 +66,16 @@ function AuthModal(props) {
           </div>
           <div className="mb-2">
             <a
-              href="/profile"
+              // href="/Profile"
               className="auth-modal-link"
-              onClick={handleClose}
+              onClick={() => {                
+
+                axios.get("http://localhost:8080/auth/user")
+                .then((response) => {
+                  navigate('/Profile', { state: { no: response.data.data.no } });
+                  handleClose();
+                });               
+              }}
             >
               <Person
                 style={{

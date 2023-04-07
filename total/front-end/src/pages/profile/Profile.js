@@ -10,21 +10,20 @@ function Profile() {
   const [error, setError] = useState(null);
 
   const location = useLocation();
-  const { no } = location.state || {};
+  let no = location.state ? location.state.no : -1;
 
-  let memberNo = no ? no : 12; //이부분 에러확인 추가 필요
-  useEffect(() => {
+  useEffect(() => {  
     axios
-      .get("http://localhost:8080/member/" + memberNo)
-      .then((response) => {
-        setData(response["data"]["data"]);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setIsLoading(false);
-      });
-  }, [memberNo]);
+    .get("http://localhost:8080/member/" + no)
+    .then((response) => {
+      setData(response.data.data);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      setError(error);
+      setIsLoading(false);
+    });
+  }, [no]);
 
   if (isLoading) {
     return <div>Loading...</div>;
