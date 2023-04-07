@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, Form, InputGroup } from "react-bootstrap";
-import authBtnStyle from "./ButtonStyle";
+import authBtnStyle from "./style";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function SignupBtn(props) {
+function SignupModal(props) {
   const [show, setShow] = useState(false);
   let { currentUser, setCurrentUser } = props;
 
@@ -45,7 +45,7 @@ function SignupBtn(props) {
       });
   }
 
-  function blueEmail() {
+  function blurEmail() {
     if (validEmail) {
       document.querySelector("#emailHelpBlock").innerText = "";
     }
@@ -74,7 +74,7 @@ function SignupBtn(props) {
       });
   }
 
-  function blueNickname() {
+  function blurNickname() {
     if (validNickname) {
       document.querySelector("#nicknameHelpBlock").innerText = "";
     }
@@ -148,6 +148,13 @@ function SignupBtn(props) {
     );
   };
 
+  const focusEmailInput = () => {
+    const emailInput = document.getElementsByName("email")[0];
+    if (emailInput) {
+      emailInput.focus();
+    }
+  };
+
   return (
     <>
       <div onClick={handleShow}>Sign up</div>
@@ -158,6 +165,7 @@ function SignupBtn(props) {
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
         contentClassName="bg-dark"
+        onEntered={focusEmailInput}
       >
         <Modal.Header
           closeButton
@@ -182,7 +190,7 @@ function SignupBtn(props) {
                   placeholder="name@example.com"
                   className="bg-dark text-light"
                   onChange={checkEmail}
-                  onBlur={blueEmail}
+                  onBlur={blurEmail}
                 />
               </InputGroup>
               <Form.Text id="emailHelpBlock"></Form.Text>
@@ -197,7 +205,7 @@ function SignupBtn(props) {
                   placeholder="nickname"
                   className="bg-dark text-light"
                   onChange={checkNickname}
-                  onBlur={blueNickname}
+                  onBlur={blurNickname}
                 />
               </InputGroup>
               <Form.Text id="nicknameHelpBlock"></Form.Text>
@@ -246,4 +254,4 @@ function SignupBtn(props) {
   );
 }
 
-export default SignupBtn;
+export default SignupModal;

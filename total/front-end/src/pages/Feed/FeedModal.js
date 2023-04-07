@@ -6,6 +6,7 @@ import LikeIcon from "../LikeIcon";
 import SmallProfile from "../profile/SmallProfile";
 import SmallProfileName from "../profile/SmallProfileName";
 import FollowBtn from "../profile/FollowBtn";
+import { Modal } from "react-bootstrap";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);

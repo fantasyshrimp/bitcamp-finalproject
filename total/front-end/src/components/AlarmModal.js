@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Container, Row, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./AlarmModal.css";
+import FeedModal from "../pages/Feed/FeedModal";
+import FeedList from "../pages/Feed/FeedList";
 
 function AlarmModal(props) {
   const [alarms, setAlarms] = useState(null);
   const { alarmShow, setAlarmShow } = props;
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-  const { alarmClickEvent, setAlarmClickEvent } = props;
+  // const { alarmClickEvent, setAlarmClickEvent } = props;
   const navigate = useNavigate();
+  const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+  const feedModalData = useRef(null);
 
   useEffect(() => {
     if (props.alarms !== null) {
@@ -17,25 +21,27 @@ function AlarmModal(props) {
     }
   }, [props.alarms]);
 
-  // useEffect(() => {
-  //   if (alarmClickEvent !== null) {
-  //     const rect = alarmClickEvent.target.getBoundingClientRect();
-  //     console.log(rect.bottom + " | " + rect.right);
-  //     setModalPosition({ x: rect.right, y: rect.bottom });
-  //   }
-  // }, [alarmClickEvent]);
-
   const handleClose = () => setAlarmShow(false);
-
-  // const alarmModalContentStyle = {};
 
   const handleClickReadAll = (e) => {
     e.preventDefault();
+    // ReadAll 처리하기
   };
 
   const moveProfile = (no) => {
     handleClose();
     navigate("/Profile", { state: { no: no } });
+  };
+
+  const openFeedModal = (data) => {
+    setAlarmShow(false);
+    navigate("/feed");
+    feedModalData.current = data;
+    setIsFeedModalOpen(true);
+  };
+
+  const closeFeedModal = () => {
+    setIsFeedModalOpen(false);
   };
 
   return (
@@ -49,10 +55,6 @@ function AlarmModal(props) {
         backdropClassName="alarm-modal-backdrop"
         dialogClassName="alarm-modal-dialog"
         contentClassName="alarm-modal-content"
-        // style={{
-        //   top: modalPosition.y + "px",
-        //   right: modalPosition.x + "px",
-        // }}
       >
         <Modal.Header className="pt-2 pb-2">
           <div className="d-flex justify-content-between w-100">
@@ -93,8 +95,11 @@ function AlarmModal(props) {
                   ></div>
 
                   <Col
-                    className="pe-0"
-                    style={{ color: element.readFlag ? "#aaa" : "#000" }}
+                    style={{
+                      color: element.readFlag ? "#aaa" : "#000",
+                      maxHeight: "40px",
+                      overflow: "hidden",
+                    }}
                   >
                     <b
                       className="alarm-modal-nickname"
@@ -103,12 +108,21 @@ function AlarmModal(props) {
                     >
                       {element.otherMember.nickname}
                     </b>
-                    <span style={{ overflow: "hidden" }}>
-                      {" "}
-                      {element.content}
-                    </span>
-                    <br />
+                    <span> {element.content}</span>
                   </Col>
+
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                      backgroundImage: `url(${element.board.fileName})`,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => openFeedModal(element.board)}
+                  ></div>
                 </Row>
               ))
             ) : (
@@ -118,6 +132,42 @@ function AlarmModal(props) {
         </Modal.Body>
         <Modal.Footer className="p-2"></Modal.Footer>
       </Modal>
+
+      {isFeedModalOpen && (
+        <div>
+          <div
+            id="modal-background"
+            style={{
+              opacity: 0.3,
+              backgroundColor: "black",
+              pointerEvents: "all",
+              cursor: "Default",
+            }}
+            onClick={() => {
+              closeFeedModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                closeFeedModal();
+              }}
+            >
+              &times;
+            </div>
+            <FeedModal
+              closeModal={closeFeedModal}
+              data={feedModalData.current}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
