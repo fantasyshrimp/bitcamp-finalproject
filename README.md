@@ -44,8 +44,8 @@
 ## AI Service 💻
 
 - Stable Diffusion API
-- CLOVA Summary (Naver Cloud Service)
-- Papago Translation (Naver Cloud Service)
+- CLOVA Summary (Naver Cloud AI Service)
+- Papago Translation (Naver Cloud AI Service)
 
 ## Prototype
 
