@@ -1,4 +1,4 @@
-<img src="title.PNG">
+<img src="title.PNG" height="80%" align="center">
 
 # Artify
 
