@@ -39,4 +39,8 @@ out/
 ### node_modules ###
 node_modules/
 
+### naver property ###
 naver.properties
+
+### generated image folder ###
+src/main/pythonapp/results/

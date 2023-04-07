@@ -51,3 +51,15 @@
 html {
   --bs-accordion-active-color: white;
 }
+
+.accordion {
+  --bs-accordion-btn-icon: none;
+  --bs-accordion-btn-active-icon: none;
+}
+
+.accordion-button:focus {
+  z-index: 3;
+  border-color: var(--bs-accordion-btn-focus-border-color);
+  outline: 0;
+  box-shadow: none;
+}

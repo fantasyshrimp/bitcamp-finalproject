@@ -7,4 +7,6 @@ public interface FaqService {
   List<Faq> findFaqType();
 
   List<Faq> findFaq();
+
+  List<Faq> findFaqByType(String faqTypeNo);
 }
