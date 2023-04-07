@@ -86,7 +86,9 @@ public class DefaultMemberService implements MemberService {
     return memberList;
   }
 
-
-
+  @Override
+  public void updateProfilePhoto(Member member) {
+    memberDao.updateProfile(member);
+  }
 
 }

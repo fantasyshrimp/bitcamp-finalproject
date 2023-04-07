@@ -10,7 +10,7 @@ function SettingPrompt(props) {
   const controlClass = "selected-setting" + classKey
   useEffect(() => {
     document.querySelector(`.${controlClass}`).style.left = `${((data.rangeState === 0 ? 1 : data.rangeState ) - 1) * 30}px`;
-  }, []);
+  }, [controlClass, data.rangeState]);
 
   const handleButtonClick = (target) => {
     const selectedNo = target.getAttribute("data-value");
