@@ -167,6 +167,7 @@
   cursor: default;
   animation: modal-show 0.2s ease-in-out;
   border-radius: 10px;
+  min-height: 630px;
 }
 
 #feed-close {
