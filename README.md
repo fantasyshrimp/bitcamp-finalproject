@@ -35,9 +35,21 @@
 <a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/mariaDB-003545?style=flat-square&logo=mariaDB&logoColor=white"></a>
 
-### 프로토타입
+## Cloud using Naver Cloud ☁️
 
-> 피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
+- VPC
+- Server
+- Cloud DB for MySQL
+
+## AI Service 💻
+
+- Stable Diffusion API
+- CLOVA Summary (Naver Cloud Service)
+- Papago Translation (Naver Cloud Service)
+
+### Prototype
+
+> Figma : https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
 
 ### ERD
 
