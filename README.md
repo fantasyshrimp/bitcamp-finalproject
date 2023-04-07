@@ -1,4 +1,4 @@
-<p align="center"><img src="title.PNG" height="180px" width="240px"></p>
+<p align="center"><img src="title.PNG" height="180px" width="250px"></p>
 
 # Artify
 
