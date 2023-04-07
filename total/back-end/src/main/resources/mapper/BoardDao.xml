@@ -27,34 +27,34 @@
   </resultMap>
 
   <select id="findAll" resultMap="boardMap" parameterType="string">
-    select 
-      b.board_no, 
-      b.member_no, 
-      b.origin_content, 
-      b.trans_content,
-      b.tag, 
-      b.like_cnt, 
-      b.view_cnt, 
-      b.board_public, 
-      b.reply_public, 
-      b.report_cnt, 
-      b.write_dt, 
-      b.update_dt, 
-      m.name, 
-      m.filename, 
-      i.img_no, 
-      i.img_filename 
-    from 
-      aim_board b
-      inner join aim_member m on b.member_no = m.member_no 
-      inner join aim_generated_img i on b.board_no = i.board_no   
-    <if test="keyword != '' and keyword != null">
-    where 
-      b.tag like(concat('%',#{keyword},'%'))
-      or b.origin_content like(concat('%',#{keyword},'%'))
-    </if> 
-    Order by 
-    RAND();
+   SELECT 
+    b.board_no, 
+    b.member_no, 
+    b.origin_content, 
+    b.trans_content,
+    b.tag, 
+    b.like_cnt, 
+    b.view_cnt, 
+    b.board_public, 
+    b.reply_public, 
+    b.report_cnt, 
+    b.write_dt, 
+    b.update_dt, 
+    m.name, 
+    m.  filename, 
+    i.img_no, 
+    i.img_filename 
+  FROM 
+    aim_board b
+  INNER JOIN aim_member m ON b.member_no = m.member_no 
+  INNER JOIN aim_generated_img i ON b.board_no = i.board_no   
+  <if test="keyword != '' and keyword != null">
+  WHERE 
+    (b.tag LIKE CONCAT('%', #{keyword}, '%')
+    OR b.origin_content LIKE CONCAT('%', #{keyword}, '%'))
+    AND b.board_public = 1
+  </if> 
+    ORDER BY RAND();
   </select>
   
     <select id="findByNo" resultMap="boardMap" parameterType="int">

@@ -1,24 +1,22 @@
 import React, { useState } from "react";
+import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 
 function PersonalSetting() {
   const [temp, setTemp] = useState(1);
 
-  function testtest() {
-    setTemp(temp * -1)
-  }
-
   return (
     <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "800px"}}>
         
-      <div style={{width: "10%", height: "100%", 
+      <div style={{height: "100%", marginLeft: "5%",
         boxSizing: "border-box", borderRight: "solid 1px white",
         color: "white"
       }}>
-        <div style={{height: "10%"}}></div>
-        <div style={{marginLeft: "10%", marginRight: "5%"}}>
-          <h5 style={{boxSizing: "border-box", borderBottom: "solid 1px white"}}>설정</h5>
-          <div onClick={testtest}>공개 설정</div>
+        <div style={{height: "20%"}}></div>
+        <div style={{width: "250px", marginRight: "5%"}}>
+          <h2 style={{boxSizing: "border-box"}}>설정</h2>
+          <div onClick={() => {setTemp(1);}}>프로필 수정</div>
+          <div onClick={() => {setTemp(2);}}>공개 설정</div>
 
 
         </div>
@@ -26,8 +24,8 @@ function PersonalSetting() {
       </div>
         
       <div style={{width: "90%", height: "100%"}}>
-        {temp === -1 && <PublicSetting title={"공개 설정"}/>}
-
+        {temp === 1 && <ModifyProfile title={"프로필 수정"}/>}
+        {temp === 2 && <PublicSetting title={"공개 설정"}/>}
       </div>
     </div>
   );

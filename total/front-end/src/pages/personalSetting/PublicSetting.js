@@ -17,7 +17,7 @@ function SetTemp(props) {
       color: "white"  
     }}>
 
-      <div style={{ width:"200px", marginLeft: "5%", marginTop: "5%",
+      <div style={{ width:"250px", marginLeft: "5%", marginTop: "5%",
         boxSizing: "border-box", borderBottom: "1px solid rgba(255,255,255,0.5)"
       }}>{props.title}</div>
       

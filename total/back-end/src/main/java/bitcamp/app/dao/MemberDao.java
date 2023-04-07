@@ -15,4 +15,5 @@ public interface MemberDao {
   Member findByNickname(String nickname);
   int update(Member m);
   int delete(int no);
+  void updateProfile(Member m);
 }

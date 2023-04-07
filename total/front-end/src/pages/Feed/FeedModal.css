@@ -354,3 +354,18 @@
   background-color: black;
   cursor: pointer;
 }
+
+#feed-modal-boardreport {
+  height: 15px;
+  width: 15%;
+  float: right;
+  color: #717171;
+  font-size: 7px;
+  text-align: right;
+  margin-top: 8px;
+  margin-right: 20px;
+}
+
+#feed-modal-boardreport:hover {
+  cursor: pointer;
+}

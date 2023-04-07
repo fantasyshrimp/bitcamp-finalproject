@@ -24,20 +24,33 @@
    </insert>
   
    <select id="findByNo" resultMap="replyMap" parameterType="int">
-    select 
-      r.reply_no, 
-      r.board_no, 
-      r.member_no, 
-      r.content, 
-      r.write_dt, 
-      m.name, 
-      m.filename 
-    from 
-      aim_reply r
-      inner join aim_member m on m.member_no = r.member_no  
-    where 
-      r.board_no=#{no}
-    ORDER BY r.reply_no desc
+			SELECT 
+			    r.reply_no, 
+			    r.board_no, 
+			    r.member_no, 
+			    r.content, 
+			    r.write_dt, 
+			    m.name, 
+			    m.filename 
+			FROM 
+			    aim_reply r
+			    INNER JOIN aim_member m ON m.member_no = r.member_no  
+			    LEFT JOIN (
+			        SELECT 
+			            reply_no, 
+			            COUNT(*) as report_cnt
+			        FROM 
+			            aim_report_reply 
+			        GROUP BY 
+			            reply_no 
+			        HAVING 
+			            COUNT(*) &lt;= 5
+			    ) rr ON r.reply_no = rr.reply_no 
+			WHERE 
+			    r.board_no=#{no} 
+			    AND (rr.report_cnt IS NULL OR rr.report_cnt &lt;= 5)
+			ORDER BY 
+			    r.reply_no DESC;
    </select>
   
    <select id="countCommentLike" resultType="int" parameterType="int">
@@ -74,5 +87,7 @@
     where 
      member_no=#{memberNo} and reply_no=#{replyNo}
    </select>
+   
   
   </mapper>
+  

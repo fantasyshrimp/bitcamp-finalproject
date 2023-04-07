@@ -9,4 +9,6 @@ public interface FaqDao {
   List<Faq> findFaqType();
 
   List<Faq> findFaq();
+
+  List<Faq> findFaqByType(String faqTypeNo);
 }
