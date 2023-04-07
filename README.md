@@ -40,8 +40,6 @@
 - VPC
 - Server
 - Cloud DB for MySQL
-- CLOVA Summary
-- Papago Translation
 
 ## AI Service 💻
 
@@ -49,11 +47,11 @@
 - CLOVA Summary (Naver Cloud Service)
 - Papago Translation (Naver Cloud Service)
 
-### Prototype
+## Prototype
 
 > Figma : https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
 
-### ERD
+## ERD
 
 <img src="dbImage.png">
 
