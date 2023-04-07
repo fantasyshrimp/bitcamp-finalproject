@@ -5,8 +5,8 @@
 .alarm-modal-dialog {
   margin-right: 160px;
   margin-top: 55px;
-  width: 350px;
-  max-width: 350px;
+  width: 320px;
+  max-width: 320px;
   font-size: 0.8rem;
 }
 
@@ -21,4 +21,12 @@
 
 .alarm-modal-nickname:hover {
   color: #4328b9;
+}
+
+.alarm-read-all {
+  cursor: pointer;
+}
+
+.alarm-read-all:hover {
+  text-decoration: underline;
 }

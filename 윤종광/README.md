@@ -633,11 +633,19 @@ y: 16.7956485748291
 <div className="d-flex justify-content-between w-100">
 ```
 
+### 2. 본인 div 수직 가운데 정렬시키기
+
+```HTML
+<div className="align-self-center">
+```
+
 # 4월7일 금
 
 ## 작업내용
 
-### 1.
+### 1. 알림 창에서 그림 클릭시 피드로 이동 및 해당 모달 창 발생 구현
+
+### 2. 알림 창 댓글 표시 구현
 
 ## 시행착오 또는 기억할 것
 

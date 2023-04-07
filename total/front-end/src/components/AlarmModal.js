@@ -3,7 +3,6 @@ import { Container, Row, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./AlarmModal.css";
 import FeedModal from "../pages/Feed/FeedModal";
-import FeedList from "../pages/Feed/FeedList";
 
 function AlarmModal(props) {
   const [alarms, setAlarms] = useState(null);
@@ -58,17 +57,11 @@ function AlarmModal(props) {
       >
         <Modal.Header className="pt-2 pb-2">
           <div className="d-flex justify-content-between w-100">
-            <div className="" style={{ fontWeight: "bold" }}>
+            <div className="align-self-center" style={{ fontWeight: "bold" }}>
               알림
             </div>
-            <div className="">
-              <a
-                href=""
-                style={{ textDecoration: "none", color: "inherit" }}
-                onClick={handleClickReadAll}
-              >
-                모두 읽음 표시
-              </a>
+            <div className="alarm-read-all" onClick={handleClickReadAll}>
+              모두 읽음 표시
             </div>
           </div>
         </Modal.Header>
@@ -135,7 +128,9 @@ function AlarmModal(props) {
                 </Row>
               ))
             ) : (
-              <div className="pb-2">알림이 없습니다.</div>
+              <div className="pb-2 pt-2 d-flex align-items-center">
+                알림이 없습니다.
+              </div>
             )}
           </Container>
         </Modal.Body>
