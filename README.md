@@ -1,18 +1,28 @@
 UI 프로토타입:
 피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
 
-# bitcamp-finalproject
+# Artify
 
-## 팀 소개
+> 네이버 클라우드 캠프 1기 <br/> 개발 기간 : 2023-04-01 ~ 2023-05-04
+
+## 멤버 구성
 
 > 신지윤 [@zyoonshin](https://github.com/zyoonshin), 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun), 윤종광 [@jongkwangyun](https://github.com/jongkwangyun), 전태산 [@fshrimp](https://github.com/fantasyshrimp), 한대호 [@das7945](https://github.com/das7945)
+
+## 소개
+
+> Artify는 AI그림 생성 서비스 입니다.
+
+## 주제 선정 이유
+
+> 인스타, 페이스북 같은 sns는 있지만, 이는 작성자가 본인이 표현하고 싶은 내용을 글로 표현하는 플랫폼 입니다. 그러나 Artify는 본인이 표현하고 싶은 내용을 입력창에 입력하면, AI가 이를 그림으로 표현해줍니다. <br /> Artify는 그림으로 사용자 간의 자유로운 의사 소통과 정보공유 등을 통해 사회적 관계를 생성하고 소통을 강화시켜주는 온라인 플랫폼 입니다.
 
 ## Stacks 📚
 
 ### Tools 🛠️
 
 <a href="#"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
-<a href="#"><img src="https://img.shields.io/badge/EclipseIDE-#2C2255?style=flat-square&logo=EclipseIDE&logoColor=white"/></a>
+<a href="#"><img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/></a>
 
@@ -23,6 +33,18 @@ UI 프로토타입:
 <a href="#"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"></a>
 <a href="#"><img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
+
+## 기능
+
+### Home
+
+### Feed
+
+### F&Q
+
+### Alarm
+
+### Profile
 
 ## 2023-03-02 목
 
