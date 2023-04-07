@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, InputGroup } from "react-bootstrap";
+import { Button, Modal, Form, Spinner } from "react-bootstrap";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -10,6 +10,8 @@ function PostModal(props) {
   const handleShow = () => setShow(true);
 
   let [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -29,6 +31,20 @@ function PostModal(props) {
         "두 문장 이상, 20자 이상 작성해 주세요";
       return;
     }
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsCompleted(true);
+    }, 2000);
+
+    setTimeout(() => {
+      setIsCompleted(false);
+      setIsLoading(false);
+      handleClose();
+    }, 3000);
+    return; //spinner 테스트시 사용
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
@@ -127,8 +143,15 @@ function PostModal(props) {
             type="button"
             onClick={HandleClickGenerate}
             style={{ width: "160px" }}
+            disabled={isLoading || isCompleted}
           >
-            Generate
+            {isLoading ? (
+              <Spinner animation="border" size="sm" />
+            ) : isCompleted ? (
+              "✓"
+            ) : (
+              "Generate"
+            )}
           </Button>
         </Modal.Footer>
       </Modal>
