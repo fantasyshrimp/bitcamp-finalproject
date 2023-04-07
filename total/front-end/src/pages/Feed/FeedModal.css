@@ -24,7 +24,7 @@
   height: 100%;
   float: right;
   padding: 1.5% 1.5% 1.5% 0;
-
+  min-height: 50%;
   /* border: 1px solid white; */
 }
 
@@ -144,8 +144,8 @@
 }
 
 #feed-modal-comscroll {
-  height: 35%;
-  overflow-y: scroll;
+  height: 38%;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

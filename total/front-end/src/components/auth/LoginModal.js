@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import authBtnStyle from "./ButtonStyle";
+import authBtnStyle from "./style";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function Login(props) {
+function LoginModal(props) {
   const [show, setShow] = useState(true);
   let { currentUser, setCurrentUser } = props;
 
@@ -94,6 +94,16 @@ function Login(props) {
     return !(validEmail && validPassword);
   };
 
+  useEffect(() => {
+    // 모달 열렸을 때 오토포커스 주기
+    if (props.loginShow) {
+      const emailInput = document.getElementsByName("email")[0];
+      if (emailInput) {
+        emailInput.focus();
+      }
+    }
+  }, [props.loginShow]);
+
   return (
     <>
       <Modal
@@ -131,7 +141,6 @@ function Login(props) {
                 name="email"
                 placeholder="name@example.com"
                 className="bg-dark text-light"
-                autoFocus
                 onChange={checkEmail}
               />
               <Form.Text id="emailHelpBlock"></Form.Text>
@@ -170,4 +179,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default LoginModal;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./Feed.css";
+// import "./Feed.css";
 import FeedModal from "./FeedModal";
-import Login from "../../components/auth/Login";
+import LoginModal from "../../components/auth/LoginModal";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,7 +19,9 @@ function FeedList(props) {
 
   return (
     <>
-      {loginShow && <Login handleShow={handleShow} loginShow={loginShow} />}
+      {loginShow && (
+        <LoginModal handleShow={handleShow} loginShow={loginShow} />
+      )}
       <div
         id="feed-list"
         className="feed-list"

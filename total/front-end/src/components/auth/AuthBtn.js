@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SignupBtn, Login, Logout, AuthModal } from "../auth";
+import { SignupModal, LoginModal, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
 import { BellFill } from "react-bootstrap-icons";
 import axios from "axios";
@@ -110,12 +110,12 @@ function AuthBtn(props) {
       ) : (
         <>
           <Nav.Link>
-            <SignupBtn />
+            <SignupModal />
           </Nav.Link>
           <Nav.Link>
             <div onClick={handleShow}>Login</div>
             {loginShow && (
-              <Login
+              <LoginModal
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 handleShow={handleShow}

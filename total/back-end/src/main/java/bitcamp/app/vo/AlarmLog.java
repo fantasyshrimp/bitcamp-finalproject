@@ -13,7 +13,7 @@ public class AlarmLog {
   private Member otherMember;
   private String content;
   private boolean readFlag;
-//  private Board board;
+  private Board board;
   
   @JsonFormat(
       shape = Shape.STRING,
