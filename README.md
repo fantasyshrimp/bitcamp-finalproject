@@ -1,7 +1,5 @@
-UI 프로토타입:
-피그잼 정의: https://www.figma.com/file/OqWG6u7P5kjgVNeTgq2srb/Untitled?node-id=0%3A1&t=hjTiM5AJYNiQOjdK-0
-
-# bitcamp-finalproject
+<p align="center"><img src="title.png"></p>
+# Artify
 
 ## 팀 소개
 
@@ -15,6 +13,7 @@ UI 프로토타입:
 <a href="#"><img src="https://img.shields.io/badge/EclipseIDE-#2C2255?style=flat-square&logo=EclipseIDE&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/></a>
+<a href="#"><img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"></a>
 
 ### Language 💌
 
@@ -23,6 +22,15 @@ UI 프로토타입:
 <a href="#"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"></a>
 <a href="#"><img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
+<a href="#"><img src="https://img.shields.io/badge/mariaDB-003545?style=flat-square&logo=mariaDB&logoColor=white"></a>
+
+### 프로토타입
+
+> 피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
+
+### ERD
+
+<img src="dbImage.png">
 
 ## 2023-03-02 목
 
