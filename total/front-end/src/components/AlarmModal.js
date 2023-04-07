@@ -3,6 +3,7 @@ import { Container, Row, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./AlarmModal.css";
 import FeedModal from "../pages/Feed/FeedModal";
+import FeedList from "../pages/Feed/FeedList";
 
 function AlarmModal(props) {
   const [alarms, setAlarms] = useState(null);
@@ -16,7 +17,7 @@ function AlarmModal(props) {
   useEffect(() => {
     if (props.alarms !== null) {
       setAlarms(props.alarms);
-      console.log(props.alarms);
+      // console.log(props.alarms);
     }
   }, [props.alarms]);
 
@@ -24,6 +25,7 @@ function AlarmModal(props) {
 
   const handleClickReadAll = (e) => {
     e.preventDefault();
+    // ReadAll 처리하기
   };
 
   const moveProfile = (no) => {
@@ -130,15 +132,41 @@ function AlarmModal(props) {
         </Modal.Body>
         <Modal.Footer className="p-2"></Modal.Footer>
       </Modal>
+
       {isFeedModalOpen && (
-        <Modal
-          show={isFeedModalOpen}
-          onHide={closeFeedModal}
-          animation={false}
-          centered
-        >
-          <FeedModal closeModal={closeFeedModal} data={feedModalData.current} />
-        </Modal>
+        <div>
+          <div
+            id="modal-background"
+            style={{
+              opacity: 0.3,
+              backgroundColor: "black",
+              pointerEvents: "all",
+              cursor: "Default",
+            }}
+            onClick={() => {
+              closeFeedModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                closeFeedModal();
+              }}
+            >
+              &times;
+            </div>
+            <FeedModal
+              closeModal={closeFeedModal}
+              data={feedModalData.current}
+            />
+          </div>
+        </div>
       )}
     </>
   );
