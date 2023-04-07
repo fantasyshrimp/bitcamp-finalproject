@@ -1,20 +1,30 @@
-UI 프로토타입:
-피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
+<p align="center"><img src="title.PNG" height="180px" width="250px"></p>
 
-# bitcamp-finalproject
+# Artify
 
-## 팀 소개
+> **네이버 클라우드 캠프 1기** <br/> 개발 기간 : 2023-04-01 ~ 2023-05-04
+
+## 멤버 구성
 
 > 신지윤 [@zyoonshin](https://github.com/zyoonshin), 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun), 윤종광 [@jongkwangyun](https://github.com/jongkwangyun), 전태산 [@fshrimp](https://github.com/fantasyshrimp), 한대호 [@das7945](https://github.com/das7945)
+
+## 소개
+
+> **Artify**는 **AI그림 생성 서비스** 입니다.
+
+## 주제 선정 이유
+
+> 인스타, 페이스북 같은 sns는 있지만, 이는 작성자가 본인이 표현하고 싶은 내용을 **글로 표현**하는 플랫폼 입니다. 그러나 Artify는 본인이 표현하고 싶은 내용을 입력창에 입력하면, AI가 이를 **그림으로 표현**해줍니다. <br /><br /> Artify는 그림으로 사용자 간의 자유로운 의사 소통과 정보공유 등을 통해 사회적 관계를 생성하고 소통을 강화시켜주는 온라인 플랫폼 입니다.
 
 ## Stacks 📚
 
 ### Tools 🛠️
 
 <a href="#"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
-<a href="#"><img src="https://img.shields.io/badge/EclipseIDE-#2C2255?style=flat-square&logo=EclipseIDE&logoColor=white"/></a>
+<a href="#"><img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=flat-square&logo=Eclipse IDE&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 <a href="#"><img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/></a>
+<a href="#"><img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"></a>
 
 ### Language 💌
 
@@ -23,6 +33,27 @@ UI 프로토타입:
 <a href="#"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"></a>
 <a href="#"><img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"></a>
 <a href="#"><img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white"></a>
+<a href="#"><img src="https://img.shields.io/badge/mariaDB-003545?style=flat-square&logo=mariaDB&logoColor=white"></a>
+
+### 프로토타입
+
+> 피그마 링크: https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
+
+### ERD
+
+<img src="dbImage.png">
+
+## 기능
+
+### Home
+
+### Feed
+
+### F&Q
+
+### Alarm
+
+### Profile
 
 ## 2023-03-02 목
 
@@ -158,3 +189,26 @@ UI 프로토타입:
 
 1. build.gradle 에 Gson 라이브러리 추가로 gradle eclipse 입력 필요
 2. 관리 모드 추가 필요
+
+## 2023-04-07 금
+
+### 2차 리뷰(4/7(금)) 이후 회의
+
+- 회의 주제: 현재까지 진행사항 공유 및 해야할 일 분담
+
+- 역할 분담
+
+1. 신지윤 : 인덱스 페이지 세부 수정, 관리자 페이지(회원, 게시글, 댓글) 구현, 아이디/비번 찾기, README 개요 추가
+2. 오병현 : 피드 세부 수정, 게시글, 댓글 신고 숨김 처리 알고리즘 적용, 게시글 공개 설정, 게시글 및 댓글 작성 시간 몇 시간 전으로 변경
+3. 윤종광 : AI 이미지 생성시 Object Storage 업로드 가능 여부 확인, 회원가입시 이메일 인증 및 네이버, 구글 계정으로 가입 기능 구현, 관리자 모드 기능 구상
+4. 전태산 : 내 프로필 사진 변경 기능 구현 및 세부사항 수정, 정보 공개 세팅 및 개별 알림 설정 구현
+5. 한대호 : FAQ 세부 수정, 관리자 FAQ 추가 기능 구상, 통계 페이지 구상
+
+- 수정 필요 사항
+
+1. 공개 범위 3단계에서 2단계(비공개 또는 전체 공개)로 변경
+2. 로그인 모달에서 회원가입 링크 및 반대도 추가 필요
+3. 아이디 찾기는 회원 정보 입력해서 "a**@**" 이런식으로 나오도록 수정 필요
+4. 회원 가입시 정보 공개 세팅 값
+   현재: 세팅에 들어가서 DB 에 없을 경우 값 넣도록 되어 있음.
+   다른 안: 회원 가입시 기본으로 테이블에 값 넣기.
