@@ -24,6 +24,10 @@ function PostModal(props) {
       document.querySelector("#postHelpBlock").innerText =
         "내용을 작성해 주세요";
       return;
+    } else if (postText.length < 20) {
+      document.querySelector("#postHelpBlock").innerText =
+        "두 문장 이상, 20자 이상 작성해 주세요";
+      return;
     }
 
     axios("http://localhost:8080/auth/user")
@@ -60,7 +64,7 @@ function PostModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          // console.log(response);
+          console.log("응답 옴!");
         } else {
           alert("이상 발생!");
         }
@@ -104,7 +108,8 @@ function PostModal(props) {
                 as="textarea"
                 id="post-text"
                 rows={12}
-                placeholder="당신의 이야기를 그림으로 만들어 드려요!"
+                placeholder="당신의 이야기를 그림으로 만들어 드려요!
+                - 두 문장 이상, 20자 이상 작성해야 그림 생성이 원활합니다."
                 style={{ resize: "none" }}
                 className="bg-dark text-light"
                 onChange={handlePostChange}

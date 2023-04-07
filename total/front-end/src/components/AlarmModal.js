@@ -16,7 +16,7 @@ function AlarmModal(props) {
   useEffect(() => {
     if (props.alarms !== null) {
       setAlarms(props.alarms);
-      console.log(props.alarms);
+      // console.log(props.alarms);
     }
   }, [props.alarms]);
 
