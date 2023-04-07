@@ -178,6 +178,7 @@ function MemberView() {
 }
 
 export default MemberView;
+<<<<<<< HEAD
 
 /*
 
@@ -193,3 +194,5 @@ export default MemberView;
             </Form.Group>
 
 */
+=======
+>>>>>>> jiyoon

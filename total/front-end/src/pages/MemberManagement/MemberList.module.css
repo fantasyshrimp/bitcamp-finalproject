@@ -12,13 +12,23 @@
   margin: 1% 13% 2% 13%;
 }
 
-.MemberList thead th {
+x.MemberList thead th {
   text-align: center;
 }
 
-.MemberList tbody td {
+x.MemberList tbody td {
   text-align: center;
 }
 
 .table {
+  width: 1600px;
+}
+
+th {
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+td {
+  border: 1px solid lightgray;
 }

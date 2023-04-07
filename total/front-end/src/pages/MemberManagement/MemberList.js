@@ -24,7 +24,7 @@ function MemberList() {
       <table border="1" className={styles.table}>
         <thead>
           <tr>
-            <th>회원번호</th>
+            <th className={styles.th}>회원번호</th>
             <th>닉네임</th>
             <th>이메일</th>
             <th>가입일</th>
@@ -44,47 +44,49 @@ function MemberList() {
         <tbody>
           {data.map((member) => (
             <tr key={member.no}>
-              <td onClick={() => handleColumnSelect(member.no)}>{member.no}</td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
+                {member.no}
+              </td>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.nickname}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.email}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.createdDate}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.point}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.createdDate}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.gender}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.basicAddress}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.point}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.information}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.birthDate}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.tel}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.passwordDate}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.accountState}
               </td>
-              <td onClick={() => handleColumnSelect(member.no)}>
+              <td className="td" onClick={() => handleColumnSelect(member.no)}>
                 {member.authLevel}
               </td>
             </tr>
