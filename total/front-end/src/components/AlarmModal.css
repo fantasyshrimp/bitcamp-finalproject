@@ -27,6 +27,7 @@
   cursor: pointer;
 }
 
-.alarm-read-all:hover {
+.alarm-read-all:hover,
+.alarm-read-more:hover {
   text-decoration: underline;
 }

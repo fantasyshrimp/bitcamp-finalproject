@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Form, InputGroup } from "react-bootstrap";
 import authBtnStyle from "./style";
+import "./style.css";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function SignupModal(props) {
-  const [show, setShow] = useState(false);
-  let { currentUser, setCurrentUser } = props;
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [validEmail, setValidEmail] = useState(false);
   const [validNickname, setValidNickname] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
+
+  const handleClose = () => {
+    props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
+  };
 
   function checkEmail() {
     const email = document.getElementsByName("email")[0].value;
@@ -108,7 +107,13 @@ function SignupModal(props) {
     }
   }
 
-  function handleSignupSubmit(e) {
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleSubmitSignup();
+    }
+  };
+
+  function handleSubmitSignup() {
     const email = document.getElementsByName("email")[0].value;
     const nickname = document.getElementsByName("nickname")[0].value;
     const password = document.getElementsByName("password")[0].value;
@@ -155,12 +160,15 @@ function SignupModal(props) {
     }
   };
 
+  const handleClickLogin = () => {
+    handleClose();
+    props.setLoginShow(true); // AuthBtn.js 에서 상태 관리
+  };
+
   return (
     <>
-      <div onClick={handleShow}>Sign up</div>
-
       <Modal
-        show={show}
+        show={props.signupShow}
         onHide={handleClose}
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
@@ -187,7 +195,7 @@ function SignupModal(props) {
                 <Form.Control
                   type="email"
                   name="email"
-                  placeholder="name@example.com"
+                  placeholder="name@naver.com"
                   className="bg-dark text-light"
                   onChange={checkEmail}
                   onBlur={blurEmail}
@@ -225,10 +233,11 @@ function SignupModal(props) {
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label className="text-light">비밀번호 확인</Form.Label>
               <Form.Control
+                className="bg-dark text-light"
                 type="password"
                 name="passwordConfirm"
                 onChange={checkBothPasswordSame}
-                className="bg-dark text-light"
+                onKeyDown={handleEnter}
               />
               <Form.Text id="passwordConfirmHelpBlock"></Form.Text>
             </Form.Group>
@@ -241,12 +250,19 @@ function SignupModal(props) {
             <Button
               variant="primary"
               type="button"
-              onClick={handleSignupSubmit}
+              onClick={handleSubmitSignup}
               style={authBtnStyle}
               disabled={isDisabled()}
+              className="mb-2"
             >
               Sign Up
             </Button>
+            <div className="text-light">
+              <span>이미 계정이 있으신가요? </span>
+              <span className="signup-modal-login" onClick={handleClickLogin}>
+                로그인
+              </span>
+            </div>
           </Modal.Footer>
         </Form>
       </Modal>

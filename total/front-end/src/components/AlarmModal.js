@@ -12,6 +12,7 @@ function AlarmModal(props) {
   const navigate = useNavigate();
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
   const feedModalData = useRef(null);
+  const [displayedAlarmsCount, setDisplayedAlarmsCount] = useState(5);
 
   useEffect(() => {
     if (props.alarms !== null) {
@@ -43,6 +44,10 @@ function AlarmModal(props) {
     setIsFeedModalOpen(false);
   };
 
+  const handleLoadMore = () => {
+    setDisplayedAlarmsCount(displayedAlarmsCount + 5);
+  };
+
   return (
     <>
       <Modal
@@ -71,7 +76,7 @@ function AlarmModal(props) {
         >
           <Container className="">
             {alarms && alarms.length > 0 ? (
-              alarms.map((element) => (
+              alarms.slice(0, displayedAlarmsCount).map((element) => (
                 <Row className="p-2 alarm-modal-row" key={element.no}>
                   <div
                     style={{
@@ -130,6 +135,23 @@ function AlarmModal(props) {
             ) : (
               <div className="pb-2 pt-2 d-flex align-items-center">
                 알림이 없습니다.
+              </div>
+            )}
+
+            {alarms && alarms.length > displayedAlarmsCount && (
+              <div className="p-1 d-flex justify-content-center">
+                <div
+                  className="alarm-read-more"
+                  onClick={handleLoadMore}
+                  style={{
+                    display: "inline-block",
+                    padding: "1px",
+                    color: "gray",
+                    cursor: "pointer",
+                  }}
+                >
+                  더 보기
+                </div>
               </div>
             )}
           </Container>

@@ -5,17 +5,18 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function LoginModal(props) {
-  const [show, setShow] = useState(true);
-  let { currentUser, setCurrentUser } = props;
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => {
-    setShow(false);
-    props.handleShow();
-  };
-
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
+
+  const handleClose = () => {
+    props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
+  };
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleClickLogin();
+    }
+  };
 
   const handleClickLogin = (e) => {
     const email = document.getElementsByName("email")[0].value;
@@ -55,7 +56,7 @@ function LoginModal(props) {
         }
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.data.status === "success") {
           handleClose();
           window.location.reload();
@@ -71,6 +72,8 @@ function LoginModal(props) {
 
   const checkEmail = () => {
     const email = document.getElementsByName("email")[0].value;
+    document.querySelector("#passwordHelpBlock").innerText = "";
+
     if (!email.includes("@")) {
       setValidEmail(false);
       return;
@@ -103,6 +106,11 @@ function LoginModal(props) {
       }
     }
   }, [props.loginShow]);
+
+  const handleClickSignup = () => {
+    handleClose();
+    props.setSignupShow(true); // AuthBtn.js 에서 상태 관리
+  };
 
   return (
     <>
@@ -139,7 +147,7 @@ function LoginModal(props) {
               <Form.Control
                 type="email"
                 name="email"
-                placeholder="name@example.com"
+                placeholder="name@naver.com"
                 className="bg-dark text-light"
                 onChange={checkEmail}
               />
@@ -155,6 +163,7 @@ function LoginModal(props) {
                 name="password"
                 className="bg-dark text-light"
                 onChange={handleChangePassword}
+                onKeyDown={handleEnter}
               />
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
@@ -165,13 +174,20 @@ function LoginModal(props) {
           >
             <Button
               variant="primary"
-              type="submit"
+              type="button"
               onClick={handleClickLogin}
               style={authBtnStyle}
               disabled={isDisabled()}
+              className="mb-2"
             >
               Log In
             </Button>
+            <div className="text-light">
+              <span>아직 계정이 없으신가요? </span>
+              <span className="login-modal-signup" onClick={handleClickSignup}>
+                회원가입
+              </span>
+            </div>
           </Modal.Footer>
         </Form>
       </Modal>

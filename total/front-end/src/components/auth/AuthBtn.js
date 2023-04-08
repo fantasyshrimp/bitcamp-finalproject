@@ -10,13 +10,25 @@ function AuthBtn(props) {
   const [show, setShow] = useState(false);
   const { currentUser, setCurrentUser } = props;
   const [loginShow, setLoginShow] = useState(false);
-
-  const handleShow = () => setLoginShow(!loginShow);
-  const handleClose = () => setLoginShow(false);
-
+  const [signupShow, setSignupShow] = useState(false);
   const [alarms, setAlarms] = useState(null);
   const [alarmShow, setAlarmShow] = useState(false);
   const [alarmClickEvent, setAlarmClickEvent] = useState(null);
+
+  const handleLoginShow = () => setLoginShow(true);
+
+  const handleSignupShow = () => setSignupShow(true);
+
+  const handleClickUser = () => {
+    setShow(true);
+  };
+
+  const handleClickBell = (e) => {
+    e.preventDefault();
+    setAlarmShow(true);
+    setAlarmClickEvent(e);
+    return <></>;
+  };
 
   useEffect(() => {
     if (currentUser !== null) {
@@ -43,18 +55,6 @@ function AuthBtn(props) {
       document.querySelector("#auth-has-alarm").style.visibility = "visible";
     }
   }, [alarms]);
-
-  const handleClickUser = () => {
-    setShow(true);
-  };
-
-  const handleClickBell = (e) => {
-    e.preventDefault();
-    setAlarmShow(true);
-    setAlarmClickEvent(e);
-
-    return <></>;
-  };
 
   return (
     <>
@@ -110,21 +110,28 @@ function AuthBtn(props) {
       ) : (
         <>
           <Nav.Link>
-            <SignupModal />
+            <div onClick={handleSignupShow}>Sign up</div>
           </Nav.Link>
           <Nav.Link>
-            <div onClick={handleShow}>Login</div>
-            {loginShow && (
-              <LoginModal
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-                handleShow={handleShow}
-                loginShow={loginShow}
-              />
-            )}
+            <div onClick={handleLoginShow}>Login</div>
           </Nav.Link>
         </>
       )}
+
+      <SignupModal
+        signupShow={signupShow}
+        setSignupShow={setSignupShow}
+        setLoginShow={setLoginShow}
+      />
+
+      <LoginModal
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        handleShow={handleLoginShow}
+        loginShow={loginShow}
+        setLoginShow={setLoginShow}
+        setSignupShow={setSignupShow}
+      />
 
       <AuthModal
         show={show}
@@ -142,6 +149,7 @@ function AuthBtn(props) {
         setCurrentUser={setCurrentUser}
         alarmClickEvent={alarmClickEvent}
         setAlarmClickEvent={setAlarmClickEvent}
+        setSignupShow={setSignupShow}
       />
     </>
   );
