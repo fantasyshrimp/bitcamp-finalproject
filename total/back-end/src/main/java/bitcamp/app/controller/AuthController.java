@@ -1,11 +1,13 @@
 package bitcamp.app.controller;
 
+import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
@@ -62,21 +64,22 @@ public class AuthController {
       String nickname,
       String email,
       String password,
-      HttpSession session) {
+      HttpSession session) throws Exception {
 
     if(nickname.length() <= 50 ||
         email.contains("@") ||
         PasswordChecker.isValidPassword(password)) {
 
+      String token = UUID.randomUUID().toString();
+      
       Member member = new Member();
       member.setNickname(nickname);
       member.setEmail(email);
       member.setPassword(password);
+      member.setToken(token);
 
       memberService.add(member);
-
-      session.setAttribute("loginUser", member);
-
+      
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
     }
@@ -98,6 +101,7 @@ public class AuthController {
       session.setAttribute("loginUser", member);
 
       return new RestResult()
+          .setData(member)
           .setStatus(RestStatus.SUCCESS);
     } else {
       return new RestResult()
@@ -116,6 +120,7 @@ public class AuthController {
 
   @GetMapping("user")
   public Object user(HttpSession session) {
+    
     Member loginUser = (Member) session.getAttribute("loginUser");
 
     if (loginUser != null) {
@@ -124,6 +129,23 @@ public class AuthController {
           .setData(loginUser);
     } else {
       return new RestResult()
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+  
+  @GetMapping("verify")
+  public Object verifyEmail(HttpSession session, @RequestParam String token) {
+//    log.info("verify!!");
+    Member member = memberService.updateByVerifyToken(token);
+    
+    if (member != null) {
+      session.setAttribute("loginUser", member);
+      
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS);
+    } else {
+      return new RestResult()
+          .setErrorCode(ErrorCode.rest.NO_DATA)
           .setStatus(RestStatus.FAILURE);
     }
   }

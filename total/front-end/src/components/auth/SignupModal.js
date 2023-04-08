@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, InputGroup } from "react-bootstrap";
+import { Button, Modal, Form, InputGroup, Spinner } from "react-bootstrap";
 import authBtnStyle from "./style";
 import "./style.css";
 import axios from "axios";
@@ -10,6 +10,8 @@ function SignupModal(props) {
   const [validNickname, setValidNickname] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleClose = () => {
     props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
@@ -118,6 +120,8 @@ function SignupModal(props) {
     const nickname = document.getElementsByName("nickname")[0].value;
     const password = document.getElementsByName("password")[0].value;
 
+    setIsLoading(true);
+
     axios
       .post(
         "http://localhost:8080/auth/signup",
@@ -132,24 +136,28 @@ function SignupModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          alert("가입이 완료 되었습니다");
-          handleClose();
-          window.location.reload();
+          setMessage("인증 메일이 발송 되었습니다");
         } else {
-          alert("가입 양식이 맞지 않습니다");
+          setMessage("가입 양식이 맞지 않습니다");
         }
       })
       .catch((error) => {
-        alert("회원가입 중 오류 발생");
+        setMessage("회원가입 중 오류 발생");
       });
   }
 
+  useEffect(() => {
+    if (message) {
+      handleClose();
+      alert(message);
+      window.location.reload();
+    }
+  }, [message]);
+
   const isDisabled = () => {
-    return !(
-      validEmail &&
-      validNickname &&
-      validPassword &&
-      validConfirmPassword
+    return (
+      !(validEmail && validNickname && validPassword && validConfirmPassword) ||
+      isLoading
     );
   };
 
@@ -255,8 +263,13 @@ function SignupModal(props) {
               disabled={isDisabled()}
               className="mb-2"
             >
-              Sign Up
+              {isLoading ? (
+                <Spinner animation="border" size="sm" />
+              ) : (
+                "회원가입"
+              )}
             </Button>
+
             <div className="text-light">
               <span>이미 계정이 있으신가요? </span>
               <span className="signup-modal-login" onClick={handleClickLogin}>

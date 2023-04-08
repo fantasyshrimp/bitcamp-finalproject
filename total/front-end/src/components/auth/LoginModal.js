@@ -56,8 +56,11 @@ function LoginModal(props) {
         }
       )
       .then((response) => {
-        // console.log(response);
         if (response.data.status === "success") {
+          if (response.data.data.accountState === 1) {
+            alert("메일 인증 후 로그인 하세요.");
+            return;
+          }
           handleClose();
           window.location.reload();
         } else {

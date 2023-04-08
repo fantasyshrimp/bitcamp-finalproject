@@ -49,8 +49,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.code.gson:gson:2.10.1'
-    
     implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.0.5'
+    implementation 'org.springframework:spring-context:6.0.7'
+    implementation 'org.springframework:spring-context-support:6.0.7'
+    
+    //implementation 'javax.mail:javax.mail-api:1.6.2'
+    //implementation 'com.sun.mail:javax.mail:1.6.2'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
 }
 
 //tasks.named('test') {
