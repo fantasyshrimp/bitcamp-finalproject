@@ -8,27 +8,28 @@
 
 .MemberList {
   xfont-family: "PuradakGentleGothicR";
+  xfont-weight: lighter;
   color: white;
-  margin: 1% 13% 2% 13%;
-}
-
-x.MemberList thead th {
-  text-align: center;
-}
-
-x.MemberList tbody td {
-  text-align: center;
+  margin: 1% 10% 2% 10%;
 }
 
 .table {
-  width: 1600px;
+  width: 100%;
 }
 
 th {
-  border: 1px solid lightgray;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
   text-align: center;
+  padding: 5px;
 }
 
 td {
-  border: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+  padding: 3px;
+}
+
+td:empty::before {
+  content: "-";
 }

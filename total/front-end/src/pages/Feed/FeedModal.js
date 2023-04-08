@@ -6,12 +6,23 @@ import LikeIcon from "../LikeIcon";
 import SmallProfile from "../profile/SmallProfile";
 import SmallProfileName from "../profile/SmallProfileName";
 import FollowBtn from "../profile/FollowBtn";
-import { Modal } from "react-bootstrap";
+import Report from "./Report";
+import getTimeReply from "../../utils/DateReply";
+import getTimeBoard from "../../utils/DateBoard";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const boardNo = props.data.boardNo;
   const handleSubmit = (event) => {
@@ -101,11 +112,17 @@ function FeedModal(props) {
         <div id="feed-modal-originalcontent" key={props.data.originContent}>
           <p>{props.data.originContent}</p>
           <div id="feed-modal-day" key={props.data.writeDt}>
-            {props.data.writeDt}
+            {getTimeBoard(props.data.writeDt)}
           </div>
           <div id="feed-modal-tag" key={props.data.tag}>
             {props.data.tag}
+            <div id="feed-modal-boardreport" onClick={openModal}>
+              신고하기
+            </div>
           </div>
+          {isModalOpen && (
+            <Report boardNo={boardNo} handleCloseModal={handleCloseModal} />
+          )}
         </div>
         <div id="feed-modal-commentinput">
           <form onSubmit={handleSubmit}>
@@ -144,7 +161,7 @@ function FeedModal(props) {
                       />
                     </div>
                     <div id="feed-modal-comdt" key={item.writeDt}>
-                      {item.writeDt}
+                      {getTimeReply(item.writeDt)}
                     </div>
                   </div>
                   <div id="feed-modal-commentcontent" key={item.content}>

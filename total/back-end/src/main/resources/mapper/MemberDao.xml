@@ -72,7 +72,7 @@
       and pw=sha2(#{password},256)
   </select>
   
-  <select id="findByEmail" parameterType="String" resultMap="memberMap">
+  <select id="findByEmail" parameterType="string" resultMap="memberMap">
     select
       member_no,
       name,
@@ -115,5 +115,11 @@
     where
       name=#{nickname}
   </select>
+  
+  <update id="updateProfile" parameterType="member">
+    update aim_member
+    set filename=#{profilePhoto}
+    where member_no=#{no}
+  </update>
 
   </mapper>

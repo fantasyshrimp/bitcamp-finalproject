@@ -1,8 +1,7 @@
 package bitcamp.app.vo;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Data;
 
 @Data
@@ -13,8 +12,6 @@ public class Reply {
   private int memberNo;
   private Member writer;
 
-  @JsonFormat(
-      shape = Shape.STRING,
-      pattern = "yyyy-MM-dd")
-  private Date writeDt;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
+  private LocalDateTime writeDt;
 }
