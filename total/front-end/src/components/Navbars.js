@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from "axios";
-import { Post, Searchs } from "./";
+import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
@@ -39,6 +39,7 @@ function Navbars() {
           </Nav>
 
           <Nav>
+            <DarkModeSwitch />
             <AuthBtn
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
