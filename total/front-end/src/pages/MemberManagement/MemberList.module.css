@@ -13,18 +13,18 @@
   margin: 1% 10% 2% 10%;
 }
 
-.table {
+x.table {
   width: 100%;
 }
 
-th {
+xth {
   border-bottom: 1px solid white;
   border-top: 1px solid white;
   text-align: center;
   padding: 5px;
 }
 
-td {
+xtd {
   border-bottom: 1px solid lightgray;
   text-align: center;
   padding: 3px;
