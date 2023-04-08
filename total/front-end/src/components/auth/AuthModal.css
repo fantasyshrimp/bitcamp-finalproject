@@ -8,6 +8,10 @@
   width: 150px;
 }
 
+.auth-modal-dialog-wide {
+  width: 170px;
+}
+
 .auth-modal-link {
   text-decoration: none;
   color: black;

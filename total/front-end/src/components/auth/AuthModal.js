@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "./AuthModal.css";
-import { Pencil, Person, Gear, BoxArrowRight } from "react-bootstrap-icons";
+import {
+  Pencil,
+  Person,
+  Gear,
+  BoxArrowRight,
+  ShieldLock,
+  GraphUp,
+} from "react-bootstrap-icons";
 import PostModal from "../PostModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +43,16 @@ function AuthModal(props) {
       });
   };
 
+  const handleClickAdminPage = () => {
+    handleClose();
+    console.log("관리자 페이지 클릭!");
+  };
+
+  const handleClickStats = () => {
+    handleClose();
+    console.log("통계 페이지 클릭!");
+  };
+
   return (
     <>
       <Modal
@@ -45,10 +62,50 @@ function AuthModal(props) {
         animation={false}
         aria-labelledby="auth-modal-sizes-title-sm"
         backdropClassName="auth-modal-backdrop"
-        dialogClassName="auth-modal-dialog"
+        dialogClassName={
+          currentUser && currentUser.authLevel === 9
+            ? "auth-modal-dialog auth-modal-dialog-wide"
+            : "auth-modal-dialog"
+        }
       >
         <Modal.Body>
-          <div className="mb-2">
+          {currentUser && currentUser.authLevel === 9 && (
+            <div>
+              <div className="mb-3">
+                <a
+                  href="/admin"
+                  className="auth-modal-link"
+                  onClick={handleClickAdminPage}
+                >
+                  <ShieldLock
+                    style={{
+                      fontSize: "1.4rem",
+                      position: "relative",
+                      bottom: "2px",
+                    }}
+                  />
+                  <span className="ms-3">관리 페이지</span>
+                </a>
+              </div>
+              <div className="mb-3">
+                <a
+                  href="/stats"
+                  className="auth-modal-link"
+                  onClick={handleClickStats}
+                >
+                  <GraphUp
+                    style={{
+                      fontSize: "1.4rem",
+                      position: "relative",
+                      bottom: "2px",
+                    }}
+                  />
+                  <span className="ms-3">통계 페이지</span>
+                </a>
+              </div>
+            </div>
+          )}
+          <div className="mb-3">
             <a
               href=""
               className="auth-modal-link"
@@ -64,7 +121,7 @@ function AuthModal(props) {
               <span className="ms-3">글쓰기</span>
             </a>
           </div>
-          <div className="mb-2">
+          <div className="mb-3">
             <a
               href="/"
               className="auth-modal-link"
@@ -90,7 +147,7 @@ function AuthModal(props) {
               <span className="ms-3">내 프로필</span>
             </a>
           </div>
-          <div className="mb-2">
+          <div className="mb-3">
             <a
               href="/personalSetting"
               className="auth-modal-link"
