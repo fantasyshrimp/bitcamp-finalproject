@@ -1,26 +1,34 @@
 package bitcamp.app;
 import java.util.Properties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Configuration
+@PropertySource("classpath:mailAuth.properties")
+@ConfigurationProperties(prefix = "mail")
+@Getter
+@Setter
+@ToString
 public class MailConfig {
-//
-////  @Value("${mail.username}")
-////  private String username;
-////
-////  @Value("${mail.password}")
-////  private String password;
-//  
+
+  private String username;
+  private String password;
+  
+  
   @Bean
   public JavaMailSender javaMailService() {
       JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
+      
       javaMailSender.setHost("smtp.naver.com"); // 메인 도메인 서버 주소 => 정확히는 smtp 서버 주소
-      javaMailSender.setUsername("bitcamp1"); // 네이버 아이디
-      javaMailSender.setPassword("ncloud!#%135"); // 네이버 비밀번호
+      javaMailSender.setUsername(username); // 네이버 아이디
+      javaMailSender.setPassword(password); // 네이버 비밀번호
       javaMailSender.setPort(465); // 메일 인증서버 포트
       javaMailSender.setJavaMailProperties(getMailProperties()); // 메일 인증서버 정보 가져오기
 

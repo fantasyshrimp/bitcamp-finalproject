@@ -674,4 +674,4 @@ const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get("token");
 ```
 
-### 3.
+### 3. 메일 인증 방법 내 블로그에 남김

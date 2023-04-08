@@ -49,7 +49,7 @@ public class DefaultMemberService implements MemberService {
     message.setText(body, "utf-8", "html");// 내용, charset 타입, subtype
     // 보내는 사람의 이메일 주소, 보내는 사람 이름
     message.setFrom(new InternetAddress("bitcamp1@naver.com", "Artify_Admin"));// 보내는 사람
-    mailSender.send(message);
+    mailSender.send(message);  // 메일 전송
   }
 
   @Override

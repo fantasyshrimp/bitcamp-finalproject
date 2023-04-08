@@ -135,7 +135,6 @@ public class AuthController {
   
   @GetMapping("verify")
   public Object verifyEmail(HttpSession session, @RequestParam String token) {
-//    log.info("verify!!");
     Member member = memberService.updateByVerifyToken(token);
     
     if (member != null) {
