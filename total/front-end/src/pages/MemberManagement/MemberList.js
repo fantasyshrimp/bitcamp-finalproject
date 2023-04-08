@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
+import Table from "react-bootstrap/Table";
 import MemberView from "./MemberView";
 
 function MemberList() {
@@ -21,21 +22,21 @@ function MemberList() {
       <h1>회원 관리</h1>
       <MemberView />
       <h3>회원 목록</h3>
-      <table className={styles.table}>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th className={styles.th}>회원번호</th>
-            <th className={styles.th}>닉네임</th>
-            <th className={styles.th}>이메일</th>
-            <th className={styles.th}>가입일</th>
-            <th className={styles.th}>포인트</th>
-            <th className={styles.th}>성별</th>
-            <th className={styles.th}>기본주소</th>
-            <th className={styles.th}>포인트</th>
-            <th className={styles.th}>전화번호</th>
-            <th className={styles.th}>비밀번호 변경일시</th>
-            <th className={styles.th}>계정상태</th>
-            <th className={styles.th}>권한레벨</th>
+            <th>회원번호</th>
+            <th>닉네임</th>
+            <th>이메일</th>
+            <th>가입일</th>
+            <th>포인트</th>
+            <th>성별</th>
+            <th>기본주소</th>
+            <th>포인트</th>
+            <th>전화번호</th>
+            <th>비밀번호 변경일시</th>
+            <th>계정상태</th>
+            <th>권한레벨</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +81,7 @@ function MemberList() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
