@@ -15,4 +15,5 @@ public interface MemberService {
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);
   void updateProfilePhoto(Member member);
+
 }

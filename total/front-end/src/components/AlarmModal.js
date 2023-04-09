@@ -108,11 +108,11 @@ function AlarmModal(props) {
                     </b>
                     <span> {element.content}</span>
                     <br />
-                    {element.typeNo === 1 ? (
+                    {/* {element.typeNo === 1 ? (
                       <span> "{element.reply.content}"`</span>
                     ) : (
                       <span></span>
-                    )}
+                    )} */}
                   </Col>
                   {element.board === null || element.board.fileName === null ? (
                     <div />

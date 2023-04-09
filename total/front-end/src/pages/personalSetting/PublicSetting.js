@@ -28,7 +28,7 @@ function SetTemp(props) {
         {data.length > 0 && data.map((settingList) => (
           <SettingPrompt key={settingList.typeNo} 
           classKey={settingList.typeNo} data={settingList}
-          settingType={"publicSetting"} stateArray={[1,2,3]} />
+          settingType={"publicSetting"} stateArray={[1,2]} />
         ))}
         </div>
       </div>

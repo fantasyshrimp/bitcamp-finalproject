@@ -61,4 +61,16 @@ public class NcpObjectStorageService implements ObjectStorageService {
     }
   }
 
+  @Override
+  public String deleteFile(String storageUrl) {
+    String bucketName = "bitcamp-bucket04-member-photo";
+    String fileName = storageUrl.split(bucketName + "/")[1];
+    try {
+      s3.deleteObject(bucketName, fileName);
+    } catch (Exception e) {
+      throw new RuntimeException("파일 삭제 오류", e);
+    }
+    return fileName;
+  }
+
 }

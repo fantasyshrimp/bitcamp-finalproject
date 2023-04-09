@@ -86,8 +86,11 @@ public class MemberController {
       System.out.println("파일명 null");
     }
 
+    objectStorageService.deleteFile(loginUser.getProfilePhoto());
+
     //"https://kr.object.ncloudstorage.com/bitcamp-bucket04-member-photo/"
     loginUser.setProfilePhoto("https://kr.object.ncloudstorage.com/bitcamp-bucket04-member-photo/" + filename);
+
 
     memberService.updateProfilePhoto(loginUser);
     return new RestResult()

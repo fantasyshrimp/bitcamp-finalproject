@@ -22,12 +22,14 @@ insert into aim_follow(following_no,follower_no) values(12, 5);
 
 
 
-insert into aim_info_list(name, description) values
-("성별","성별 공개 여부를 설정합니다."),
-("주소","주소 공개 여부를 설정합니다."),
-("게시물","나의 게시물을 볼 수 있는 대상을 설정합니다."),
-("좋아요 및 조회수","게시물의 좋아요 및 조회수의 공개 여부를 설정합니다."),
-("댓글","나의 게시물에 대한 댓글 작성의 허용 범위를 설정합니다.");
+insert into aim_info_list(no, name, description) values
+(1, "성별","성별의 공개 여부를 설정합니다."),
+(2, "생일","생일의 공개 여부를 설정합니다."),
+(3, "전화번호","전화번호의 공개 여부를 설정합니다."),
+(4, "주소","주소의 공개 여부를 설정합니다."),
+(5, "게시물","게시물의 공개 여부를 설정합니다."),
+(6, "좋아요 및 조회수","게시물의 좋아요 및 조회수의 공개 여부를 설정합니다."),
+(7, "댓글","나의 게시물에 대한 댓글 공개 범위를 설정합니다.");
 
 select * from aim_info_list il
 left join aim_hide_setting hs on il.no=hs.no and hs.member_no = #{memberNo}
