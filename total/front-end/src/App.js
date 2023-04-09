@@ -8,6 +8,7 @@ import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/MemberManagement/MemberList";
+import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/PersonalSetting" element={<PersonalSetting />}></Route>
           <Route path="/Faq" element={<Faq />} />
           <Route path="/MemberList" element={<MemberList />} />
+          <Route path="/auth/naverLogin" element={<NaverLoginHandler />} />
         </Routes>
         <Footer />
       </BrowserRouter>
