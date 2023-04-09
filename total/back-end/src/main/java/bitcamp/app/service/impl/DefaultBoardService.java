@@ -44,5 +44,20 @@ public class DefaultBoardService implements BoardService{
 
   }
 
+  @Override
+  public List<Board> listHot() {
+    return boardDao.findAllHot();
+  }
+
+  @Override
+  public List<Board> listRecent() {
+    return boardDao.findAllRecent();
+  }
+
+  @Override
+  public List<Board> listFollow(int no) {
+    return boardDao.findFollow(no);
+  }
+
 
 }

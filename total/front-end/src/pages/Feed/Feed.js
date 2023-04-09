@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Feed.css";
-import Tagbar from "../../components/Tagbar";
+import Sortbar from "../../components/Sortbar";
 import List from "./List";
 
 function Feed() {
   return (
     <div id="feed-body">
-      <Tagbar />
+      <Sortbar />
       <div id="feed-body-sub">
         <List />
       </div>
