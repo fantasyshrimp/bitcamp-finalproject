@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import org.apache.logging.log4j.LogManager;
@@ -84,8 +85,28 @@ public class BoardController {
   @GetMapping
   public List<Board> list(String keyword, HttpSession session) {
 
-    String key = (String) session.getAttribute("keyword");
+    String sort = (String) session.getAttribute("sort");
 
+    if (Objects.equals(sort, "hot")) {
+      List<Board> list = boardService.listHot();
+      session.removeAttribute("sort");
+      return list;
+
+    } else if (Objects.equals(sort, "recent")) {
+      List<Board> list = boardService.listRecent();
+      session.removeAttribute("sort");
+
+      return list;
+    } else if (Objects.equals(sort, "follow")) {
+      Member loginUser = (Member) session.getAttribute("loginUser");
+
+      List<Board> list = boardService.listFollow(loginUser.getNo());
+      session.removeAttribute("sort");
+
+      return list;
+    }
+
+    String key = (String) session.getAttribute("keyword");
     List<Board> list = boardService.list(key);
 
     session.removeAttribute("keyword");
@@ -119,6 +140,17 @@ public class BoardController {
       session.setAttribute("keyword", keyword);
 
     }
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+  @PostMapping("sort")
+  public Object sort(String sort, HttpSession session) {
+
+    if (sort != null) {
+      session.setAttribute("sort", sort);
+    }
+
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }

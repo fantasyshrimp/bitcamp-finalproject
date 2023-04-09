@@ -107,10 +107,12 @@ function CommentUtil(props) {
           }}
           onClick={handleLike}
         ></div>
+        {data[1] !== props.writerNo && (
         <div id="feed-modal-commentreport" onClick={openModal}>
           신고하기
         </div>
-        {data[1] == props.writerNo && (
+          )}
+        {data[1] === props.writerNo && (
           <div id="feed-modal-commentdelete" onClick={CommentDel}>
             삭제하기
           </div>

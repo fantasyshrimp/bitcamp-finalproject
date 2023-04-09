@@ -8,6 +8,9 @@ import bitcamp.app.vo.Board;
 public interface BoardDao {
   void insert(Board m);
   List<Board> findAll(String keyword);
+  List<Board> findAllHot();
+  List<Board> findAllRecent();
+  List<Board> findFollow(int no);
   Board findByNo(int no);
   List<Board> findByMemberNo(int no);
   int update(Board m);
