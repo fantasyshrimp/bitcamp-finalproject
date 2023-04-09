@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import authBtnStyle from "./style";
 import axios from "axios";
+import NaverLogin from "./NaverLogin";
+import ExternalLogin from "./ExternalLogin";
 axios.defaults.withCredentials = true;
 
 function LoginModal(props) {
@@ -10,6 +12,7 @@ function LoginModal(props) {
 
   const handleClose = () => {
     props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin(true);
   };
 
   const handleEnter = (e) => {
@@ -110,6 +113,7 @@ function LoginModal(props) {
   const handleClickSignup = () => {
     handleClose();
     props.setSignupShow(true); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin(false);
   };
 
   return (
@@ -170,7 +174,7 @@ function LoginModal(props) {
           </Modal.Body>
           <Modal.Footer
             style={{ borderTop: "none" }}
-            className="d-flex justify-content-center pb-5 ps-5 pe-5"
+            className="d-flex flex-column justify-content-center pb-5 ps-5 pe-5"
           >
             <Button
               variant="primary"
@@ -182,12 +186,13 @@ function LoginModal(props) {
             >
               Log In
             </Button>
-            <div className="text-light">
+            <div className="text-light mb-4">
               <span>아직 계정이 없으신가요? </span>
               <span className="login-modal-signup" onClick={handleClickSignup}>
                 회원가입
               </span>
             </div>
+            <div>{props.showExternalLogin && <ExternalLogin />}</div>
           </Modal.Footer>
         </Form>
       </Modal>

@@ -3,6 +3,7 @@ import { Button, Modal, Form, InputGroup } from "react-bootstrap";
 import authBtnStyle from "./style";
 import "./style.css";
 import axios from "axios";
+import ExternalLogin from "./ExternalLogin";
 axios.defaults.withCredentials = true;
 
 function SignupModal(props) {
@@ -13,6 +14,7 @@ function SignupModal(props) {
 
   const handleClose = () => {
     props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin(false);
   };
 
   function checkEmail() {
@@ -245,7 +247,7 @@ function SignupModal(props) {
 
           <Modal.Footer
             style={{ borderTop: "none" }}
-            className="d-flex justify-content-center pb-5 ps-5 pe-5"
+            className="d-flex flex-column justify-content-center pb-5 ps-5 pe-5"
           >
             <Button
               variant="primary"
@@ -257,12 +259,13 @@ function SignupModal(props) {
             >
               Sign Up
             </Button>
-            <div className="text-light">
+            <div className="text-light mb-4">
               <span>이미 계정이 있으신가요? </span>
               <span className="signup-modal-login" onClick={handleClickLogin}>
                 로그인
               </span>
             </div>
+            <div>{props.showExternalLogin && <ExternalLogin />}</div>
           </Modal.Footer>
         </Form>
       </Modal>
