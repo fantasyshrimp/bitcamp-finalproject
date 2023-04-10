@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.MemberService;
+import bitcamp.app.service.PointService;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
@@ -35,6 +37,7 @@ public class AuthController {
   }
 
   @Autowired private MemberService memberService;
+  @Autowired private PointService pointService;
 
   @GetMapping("checkemail")
   public Object checkemail(String email) {
@@ -89,6 +92,13 @@ public class AuthController {
 
       memberService.add(member);
 
+
+      session.setAttribute("loginUser", member);
+
+      Member m = (Member) session.getAttribute("loginUser");
+
+      pointService.signupInsert(m.getNo());
+
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
     }
@@ -108,6 +118,15 @@ public class AuthController {
 
     if (member != null) {
       session.setAttribute("loginUser", member);
+      Member m = (Member) session.getAttribute("loginUser");
+
+      LocalDateTime now = LocalDateTime.now(); // 현재 시간
+      LocalDateTime resetTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0, 0);  // 매일 00시에 리셋되는 기준 시간
+
+      if (m.getLastLoginDt() == null || member.getLastLoginDt().isBefore(resetTime)) {  // 기준 시간 이후에 로그인한 경우
+        pointService.loginInsert(m.getNo());
+      }
+      memberService.lastLoginUpdate(m.getNo());
 
       return new RestResult()
           .setData(member)

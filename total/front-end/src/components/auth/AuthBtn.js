@@ -16,7 +16,7 @@ function AuthBtn(props) {
   const [alarmClickEvent, setAlarmClickEvent] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(true);
 
-  const handleLoginShow = () => setLoginShow(true);
+  const handleLoginShow = () => setLoginShow(!loginShow);
 
   const handleSignupShow = () => setSignupShow(true);
 

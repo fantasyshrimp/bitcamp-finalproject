@@ -15,8 +15,8 @@ function SignupModal(props) {
   const [message, setMessage] = useState("");
 
   const handleClose = () => {
-    props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
-    props.setShowExternalLogin(false);
+    props.setSignupShow && props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin && props.setShowExternalLogin(false);
   };
 
   function checkEmail() {

@@ -11,6 +11,7 @@ public interface MemberDao {
   List<Member> findAll();
   Member findByNo(int no);
   Member findByEmailAndPassword(Map<String,Object> map);
+  void lastLoginUpdate(int no);
   Member findByEmail(String email);
   Member findByNickname(String nickname);
   Member findByToken(String token);

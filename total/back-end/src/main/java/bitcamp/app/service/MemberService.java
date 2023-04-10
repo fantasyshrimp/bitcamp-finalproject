@@ -8,6 +8,7 @@ public interface MemberService {
   void addOfExternal(Member member);
   List<Member> list(String keyword);
   Member get(String email, String password);
+  void lastLoginUpdate(int no);
   Member getByEmail(String email);
   Member getByNickname(String nickname);
   Member get(int no);
@@ -17,5 +18,4 @@ public interface MemberService {
   List<Member> getFollowers(int no);
   void updateProfilePhoto(Member member);
   Member updateByVerifyToken(String token);
-
 }

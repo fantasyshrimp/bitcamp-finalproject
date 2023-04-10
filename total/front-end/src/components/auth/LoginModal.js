@@ -11,8 +11,9 @@ function LoginModal(props) {
   const [validPassword, setValidPassword] = useState(false);
 
   const handleClose = () => {
-    props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
-    props.setShowExternalLogin(true);
+    props.setLoginShow && props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin && props.setShowExternalLogin(true);
+    props.handleShow(); // AuthBtn.js 에서 상태 관리
   };
 
   const handleEnter = (e) => {

@@ -21,6 +21,7 @@
     <result column="state" property="accountState"/>
     <result column="auth" property="authLevel"/>
     <result column="link" property="link"/>
+    <result column="last_login_dt" property="lastLoginDt"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
@@ -37,14 +38,7 @@
   
   <select id="findByNo" parameterType="int" resultMap="memberMap">
     select
-      member_no,
-      name,
-      gender,
-      filename,
-      addr,
-      pt,
-      info,
-      link
+      *
     from
       aim_member 
     where
@@ -68,12 +62,19 @@
       state,
       auth,
       link
+      last_login_dt
     from
       aim_member
     where
       email=#{email}
       and pw=sha2(#{password},256)
   </select>
+  
+  <update id="lastLoginUpdate" parameterType="int">
+    UPDATE aim_member
+    SET last_login_dt = NOW()
+    WHERE member_no = #{no}
+  </update>
   
   <select id="findByEmail" parameterType="string" resultMap="memberMap">
     select
@@ -142,7 +143,18 @@
     where
       token=#{token}
   </select>
-    
+  
+  <update id="update" parameterType="member">
+    update aim_member
+    set 
+      pw=sha2(#{password},256),
+      gender=#{gender},
+      birth_dt=#{birthDate},
+      tel=#{tel},
+      addr=#{basicAddress}      
+    where member_no=#{no}
+  </update>
+  
   <update id="updateProfile" parameterType="member">
     update aim_member
     set filename=#{profilePhoto}

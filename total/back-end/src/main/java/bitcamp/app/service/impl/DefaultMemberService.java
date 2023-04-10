@@ -63,6 +63,8 @@ public class DefaultMemberService implements MemberService {
         member.setNickname(signUpMemberNickname + "+");
       }
     }
+
+    memberDao.insert(member);
   }
 
   @Override
@@ -93,7 +95,7 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public void update(Member member) {
-
+    memberDao.update(member);
   }
 
   @Override
@@ -140,4 +142,8 @@ public class DefaultMemberService implements MemberService {
     }
   }
 
+  @Override
+  public void lastLoginUpdate(int no) {
+    memberDao.lastLoginUpdate(no);
+  }
 }

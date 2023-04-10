@@ -46,7 +46,7 @@
 }
 
 #feed-modal-profile {
-  width: 90%;
+  width: 93%;
   height: 50px;
   position: relative;
   display: flex;
@@ -93,12 +93,18 @@
 }
 
 #feed-modal-setting {
-  float: right;
-  height: 100%;
+  height: 65%;
+  width: 50px;
+  margin-left: 100px;
+  margin-top: 7gpx;
+}
+
+#feed-modal-setting:hover {
+  cursor: pointer;
 }
 
 #feed-modal-originalcontent {
-  width: 100%;
+  width: 95%;
   height: 44%;
   position: relative;
   color: white;
@@ -367,4 +373,67 @@
 
 #feed-modal-boardreport:hover {
   cursor: pointer;
+}
+
+#menu-textarea {
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d;
+  color: #818181;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  resize: none;
+}
+
+#menu-textarea:focus {
+  outline: none;
+  border: none;
+}
+
+#menu-box {
+  height: 80px;
+}
+
+#menu-btn {
+  width: 30%;
+  text-align: center;
+  margin-left: 14%;
+  background-color: #1d1d1d;
+  border-radius: 10px;
+  color: #e75656;
+  font-weight: bold;
+  float: left;
+  margin-bottom: 10px;
+}
+
+#menu-btn:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+#btn-div {
+}
+
+#menu-btn2 {
+  width: 30%;
+  text-align: center;
+  margin-left: 14%;
+  background-color: #1d1d1d;
+  border-radius: 10px;
+  color: white;
+  float: left;
+  margin-bottom: 30px;
+}
+
+#menu-btn2:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+#menu-text {
+  width: 90%;
+  height: 85%;
+  margin-left: 5%;
+  margin-top: 15%;
 }
