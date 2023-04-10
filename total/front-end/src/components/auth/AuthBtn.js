@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { SignupModal, LoginModal, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
 import { Bell, BellFill } from "react-bootstrap-icons";
-import axios from "axios";
 import AlarmModal from "../AlarmModal";
+import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function AuthBtn(props) {
@@ -14,6 +14,7 @@ function AuthBtn(props) {
   const [alarms, setAlarms] = useState(null);
   const [alarmShow, setAlarmShow] = useState(false);
   const [alarmClickEvent, setAlarmClickEvent] = useState(null);
+  const [showExternalLogin, setShowExternalLogin] = useState(true);
 
   const handleLoginShow = () => setLoginShow(true);
 
@@ -122,6 +123,8 @@ function AuthBtn(props) {
         signupShow={signupShow}
         setSignupShow={setSignupShow}
         setLoginShow={setLoginShow}
+        showExternalLogin={signupShow}
+        setShowExternalLogin={setShowExternalLogin}
       />
 
       <LoginModal
@@ -131,6 +134,8 @@ function AuthBtn(props) {
         loginShow={loginShow}
         setLoginShow={setLoginShow}
         setSignupShow={setSignupShow}
+        showExternalLogin={loginShow}
+        setShowExternalLogin={setShowExternalLogin}
       />
 
       <AuthModal

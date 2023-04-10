@@ -9,6 +9,7 @@ import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/MemberManagement/MemberList";
 import { Verify } from "./components/auth";
+import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Faq" element={<Faq />} />
           <Route path="/MemberList" element={<MemberList />} />
           <Route path="/auth/verify" element={<Verify />} />
+          <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -833,3 +833,18 @@ ALTER TABLE aim_member
   ADD token VARCHAR(255) NULL COMMENT '인증토큰' -- 인증토큰
 ALTER TABLE aim_member
   MODIFY COLUMN state INTEGER NOT NULL DEFAULT 1
+
+-- 회원 정보(aim_member) 테이블의 name, email 컬럼 묶어서 유니크 설정에서 각각 유니크 설정으로 변경
+ALTER TABLE aim_member
+DROP INDEX UIX_aim_member;
+
+ALTER TABLE aim_member
+ADD UNIQUE INDEX UIX_aim_member_name (name ASC);
+
+ALTER TABLE aim_member
+ADD UNIQUE INDEX UIX_aim_member_email (email ASC);
+
+-- 회원 정보(aim_member)에 외부 계정 정보 추가
+ALTER TABLE aim_member
+  ADD link VARCHAR(255) NOT NULL DEFAULT 'artify' COMMENT '외부계정연동정보', -- 외부계정연동정보
+

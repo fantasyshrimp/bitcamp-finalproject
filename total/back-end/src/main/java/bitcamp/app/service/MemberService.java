@@ -5,6 +5,7 @@ import bitcamp.app.vo.Member;
 
 public interface MemberService {
   void add(Member member) throws Exception;
+  void addOfExternal(Member member);
   List<Member> list(String keyword);
   Member get(String email, String password);
   Member getByEmail(String email);
