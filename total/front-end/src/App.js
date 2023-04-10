@@ -7,7 +7,7 @@ import Feed from "./pages/Feed/Feed";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
-import MemberList from "./pages/MemberManagement/MemberList";
+import MemberList from "./pages/Admin/MemberList";
 import { Verify } from "./components/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
