@@ -37,7 +37,7 @@ public class MemberController {
 
   @PostMapping
   public void insert(@RequestBody Member member) {
-  
+
   }
 
   @GetMapping("{no}")
@@ -73,6 +73,9 @@ public class MemberController {
           .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
           .setData("로그인 요망");
     }
+
+    memberService.get(0);
+
     System.out.println(loginUser);
     loginUser.setPassword(member.getPassword() != null && member.getPassword() != ""
         ?  member.getPassword() : loginUser.getPassword());
