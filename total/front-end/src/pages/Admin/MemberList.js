@@ -14,6 +14,7 @@ function MemberList() {
 
   function handleColumnSelect(selectedColumn) {
     console.log(`Selected column: ${selectedColumn}`);
+    window.location.href = `/member/${selectedColumn}`;
   }
 
   return (
