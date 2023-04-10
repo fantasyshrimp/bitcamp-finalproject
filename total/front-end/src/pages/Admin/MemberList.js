@@ -13,8 +13,7 @@ function MemberList() {
   }, []);
 
   function handleColumnSelect(selectedColumn) {
-    console.log(`Selected column: ${selectedColumn}`);
-    window.location.href = `/member/${selectedColumn}`;
+    window.location.href = `/admin/${selectedColumn}`;
   }
 
   return (
