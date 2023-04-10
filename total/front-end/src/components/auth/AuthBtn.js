@@ -110,10 +110,10 @@ function AuthBtn(props) {
       ) : (
         <>
           <Nav.Link>
-            <div onClick={handleSignupShow}>Sign up</div>
+            <div onClick={handleSignupShow}>회원가입</div>
           </Nav.Link>
           <Nav.Link>
-            <div onClick={handleLoginShow}>Login</div>
+            <div onClick={handleLoginShow}>로그인</div>
           </Nav.Link>
         </>
       )}

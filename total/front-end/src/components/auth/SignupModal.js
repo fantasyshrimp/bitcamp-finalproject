@@ -120,7 +120,8 @@ function SignupModal(props) {
     const nickname = document.getElementsByName("nickname")[0].value;
     const password = document.getElementsByName("password")[0].value;
 
-    setIsLoading(true);
+    setMessage("인증 메일이 발송 되었습니다");
+    handleClose();
 
     axios
       .post(
@@ -136,9 +137,8 @@ function SignupModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          setMessage("인증 메일이 발송 되었습니다");
         } else {
-          setMessage("가입 양식이 맞지 않습니다");
+          console.log("가입 양식이 맞지 않음!");
         }
       })
       .catch((error) => {
@@ -155,9 +155,11 @@ function SignupModal(props) {
   }, [message]);
 
   const isDisabled = () => {
-    return (
-      !(validEmail && validNickname && validPassword && validConfirmPassword) ||
-      isLoading
+    return !(
+      validEmail &&
+      validNickname &&
+      validPassword &&
+      validConfirmPassword
     );
   };
 
@@ -263,11 +265,7 @@ function SignupModal(props) {
               disabled={isDisabled()}
               className="mb-2"
             >
-              {isLoading ? (
-                <Spinner animation="border" size="sm" />
-              ) : (
-                "회원가입"
-              )}
+              회원가입
             </Button>
 
             <div className="text-light">

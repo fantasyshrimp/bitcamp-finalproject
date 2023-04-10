@@ -183,7 +183,7 @@ function LoginModal(props) {
               disabled={isDisabled()}
               className="mb-2"
             >
-              Log In
+              로그인
             </Button>
             <div className="text-light">
               <span>아직 계정이 없으신가요? </span>
