@@ -14,6 +14,17 @@
     <result column="get_dt" property="getDt"/>
   </resultMap>
   
+  <insert id="userInsert" parameterType="point">
+    INSERT INTO aim_pt_get_log (get_type, get_member_no, send_member_no, board_no, get_pt)
+    VALUES (6, #{getMemberNo}, #{sendmemberNo}, #{boardNo}, #{point});
+  </insert>
+  
+  <select id="findPointByBoard" parameterType="int" resultType="int">
+    SELECT COALESCE(SUM(get_pt), 0) AS total_received_points
+    FROM aim_pt_get_log
+    WHERE board_no = #{no};
+  </select>
+  
   <select id="findPoint" parameterType="int" resultType="int">
     SELECT 
       (SELECT IFNULL(SUM(get_pt), 0) FROM aim_pt_get_log WHERE get_member_no = #{no}) -

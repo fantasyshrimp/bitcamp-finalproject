@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.app.dao.PointDao;
 import bitcamp.app.service.PointService;
+import bitcamp.app.vo.Point;
 
 @Service
 public class DefaultPointService implements PointService {
@@ -47,6 +48,16 @@ public class DefaultPointService implements PointService {
   @Override
   public int findPoint(int no) {
     return pointDao.findPoint(no);
+  }
+
+  @Override
+  public int findPointByBoard(int no) {
+    return pointDao.findPointByBoard(no);
+  }
+
+  @Override
+  public void userInsert(Point point) {
+    pointDao.userInsert(point);
   }
 
 }

@@ -34,10 +34,17 @@ function ProfileUpper(props) {
   const count = 100;
 
   axios
-    .get("http://localhost:8080/point/" + props.member.no)
+    .get("http://localhost:8080/point/member/" + props.member.no)
     .then((response) => {
       setPoint(response.data);
     });
+
+  const numberWithCommas = (number) => {
+    // 천의 자리마다 , 찍기
+    return number
+      ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      : "0";
+  };
 
   return (
     <>
@@ -64,7 +71,7 @@ function ProfileUpper(props) {
               <span>{count}</span> likes
             </div>
             <div>
-              <span>{point}</span>
+              <span>{numberWithCommas(point)}</span>
               <span></span> point
             </div>
           </div>
