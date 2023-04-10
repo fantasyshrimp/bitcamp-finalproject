@@ -41,6 +41,7 @@
 
 - VPC
 - Server
+- Object Storage
 - Cloud DB for MySQL
 
 ## AI Service 💻
