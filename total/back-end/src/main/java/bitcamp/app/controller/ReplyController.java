@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.app.service.PointService;
 import bitcamp.app.service.ReplyService;
 import bitcamp.app.vo.Member;
 import bitcamp.app.vo.Reply;
@@ -21,6 +22,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/reply")
 public class ReplyController {
   @Autowired private ReplyService replyService;
+  @Autowired private PointService pointService;
 
   @PostMapping
   public Object insert(
@@ -32,6 +34,7 @@ public class ReplyController {
 
     System.out.println(reply);
     replyService.insert(reply);
+    pointService.commentInsert(loginUser.getNo());
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
@@ -101,6 +104,7 @@ public class ReplyController {
     reply.setMemberNo(loginUser.getNo());
 
     replyService.like(reply);
+    pointService.likeInsert(loginUser.getNo());
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
@@ -115,6 +119,7 @@ public class ReplyController {
     reply.setReplyNo(no);
 
     replyService.unlike(reply);
+    pointService.unlikeInsert(loginUser.getNo());
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);

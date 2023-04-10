@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
+import bitcamp.app.service.PointService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
 import bitcamp.util.GsonFilter;
@@ -40,6 +41,7 @@ public class BoardController {
 
   @Autowired private BoardService boardService;
   @Autowired private LikeService likeService;
+  @Autowired private PointService pointService;
 
   @PostMapping
   public Object insert(int writerNo, String originContent) {

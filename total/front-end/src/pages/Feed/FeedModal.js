@@ -9,12 +9,14 @@ import FollowBtn from "../profile/FollowBtn";
 import Report from "./Report";
 import getTimeReply from "../../utils/DateReply";
 import getTimeBoard from "../../utils/DateBoard";
+import BoardMenu from "./BoardMenu";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -22,6 +24,10 @@ function FeedModal(props) {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const MenuModalHandler = () => {
+    setIsMenuModalOpen(!isMenuModalOpen);
   };
 
   const boardNo = props.data.boardNo;
@@ -100,7 +106,22 @@ function FeedModal(props) {
           <div id="feed-modal-follow">
             <FollowBtn followerNo={props.data.writer.no} />
           </div>
-          {/* <div id="feed-modal-setting">설정</div> */}
+          <div
+            id="feed-modal-setting"
+            style={{
+              backgroundImage: `url(/menu.png)`,
+              backgroundSize: "cover",
+            }}
+            onClick={MenuModalHandler}
+          ></div>
+          {isMenuModalOpen && (
+            <BoardMenu
+              boardNo={boardNo}
+              MenuModalHandler={MenuModalHandler}
+              originContent={props.data.originContent}
+              closeModal={props.closeModal}
+            />
+          )}
           {/* <div
             id="feed-modal-like"
             style={{

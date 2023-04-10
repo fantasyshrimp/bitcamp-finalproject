@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.LikeService;
+import bitcamp.app.service.PointService;
 import bitcamp.app.vo.Like;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
@@ -22,6 +23,7 @@ import jakarta.servlet.http.HttpSession;
 public class LikeController {
 
   @Autowired private LikeService likeService;
+  @Autowired private PointService pointService;
 
   @GetMapping("{no}")
   public Object checkState(@PathVariable int no, @RequestParam String type, HttpSession session) {
@@ -83,6 +85,7 @@ public class LikeController {
 
     like.setLikerNo(loginUser.getNo());
     likeService.like(like, type);
+    pointService.likeInsert(loginUser.getNo());
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
@@ -102,6 +105,7 @@ public class LikeController {
     like.setLikerNo(loginUser.getNo());
     like.setContentNo(no);
     likeService.disLike(like, type);
+    pointService.unlikeInsert(loginUser.getNo());
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
