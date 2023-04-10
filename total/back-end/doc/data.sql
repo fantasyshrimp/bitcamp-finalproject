@@ -16,9 +16,9 @@ VALUES
 
 
 -- 게시글 insert
-INSERT INTO aim_board (member_no, origin_content, trans_content, tag, like_cnt, view_cnt, board_public, reply_public)
+INSERT INTO aim_board (member_no, origin_content, summary_content, trans_content, tag, like_cnt, view_cnt, board_public, reply_public)
 VALUES
-(1, '안녕하세요. 이번주는 일주일 동안 너무 바빠서 정말 힘들었습니다. 그래도 지금은 조금 놀 수 있어서 기분이 좋네요!', 'Hello. I was so busy this week for a week and it was really tough. But now Im feeling good that I can take a little break!', '#일상 #힘들다 #쉬다', 8, 0, 1, 1),
+(32, 'System', 'system', 'system', '#system', 0, 0, 0, 0),
 (2, '요즘 일이 너무 많아서 정신없네요. 이번 주말엔 조금 쉬면서 책 좀 읽을 거 같아요.', 'Im so busy these days that I feel like Im losing my mind. I think Ill take a break and read a book this weekend.', '#일상 #쉬다 #독서', 124, 0, 1, 1),
 (3, '나는 오늘 하루 일과를 마치고 노래를 들으며 휴식을 취했다. 그리고 내일도 이런 일정을 가지면 좋겠다.', 'I finished my work today and took a break listening to music. I hope I have this kind of schedule tomorrow too.', '#휴식 #음악 #일과', 77, 0, 1, 1),
 (4, '나는 내일 가족들과 함께 여행을 갈 예정이다. 그래서 오늘은 짐을 챙기는 등 여행 준비를 하느라 바빴다. 하지만 내일이 기대된다!', 'Im planning to go on a trip with my family tomorrow. So today, I was busy preparing for the trip, such as packing. But Im looking forward to tomorrow!', '#여행 #가족 #준비', 521, 0, 1, 1),

@@ -9,7 +9,7 @@ function LoginModal(props) {
   const [validPassword, setValidPassword] = useState(false);
 
   const handleClose = () => {
-    props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
+    props.handleShow(); // AuthBtn.js 에서 상태 관리
   };
 
   const handleEnter = (e) => {

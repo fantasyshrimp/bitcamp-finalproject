@@ -91,4 +91,8 @@ public class DefaultMemberService implements MemberService {
     memberDao.updateProfile(member);
   }
 
+  @Override
+  public void lastLoginUpdate(int no) {
+    memberDao.lastLoginUpdate(no);
+  }
 }

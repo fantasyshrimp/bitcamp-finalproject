@@ -20,6 +20,7 @@
     <result column="pw_update_dt" property="passwordDate"/>
     <result column="state" property="accountState"/>
     <result column="auth" property="authLevel"/>
+    <result column="last_login_dt" property="lastLoginDt"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
@@ -64,13 +65,20 @@
       tel,
       pw_update_dt,
       state,
-      auth
+      auth, 
+      last_login_dt
     from
       aim_member
     where
       email=#{email}
       and pw=sha2(#{password},256)
   </select>
+  
+  <update id="lastLoginUpdate" parameterType="int">
+    UPDATE aim_member
+    SET last_login_dt = NOW()
+    WHERE member_no = #{no}
+  </update>
   
   <select id="findByEmail" parameterType="string" resultMap="memberMap">
     select
