@@ -12,15 +12,14 @@ const NaverLoginHandler = () => {
       // URL의 해시 부분에서 query parameter들을 추출합니다. 이 값들은 access_token, state, token_type, expires_in과 같은 인증 관련 정보를 포함합니다.
       const queryParams = window.location.hash.substring(1).split("&");
       const params = {};
-      // console.log(window.location);  //Location {ancestorOrigins: DOMStringList, href: 'http://localhost:3000/auth/naverLogin#access_token…57-eb93287b5f70&token_type=bearer&expires_in=3600', origin: 'http://localhost:3000', protocol: 'http:', host: 'localhost:3000', …}
-      // console.log(window.location.hash);  //#access_token=AAAAOJ2B7qXNzafF-7pieNOtmrsMu_Slw5BtRDI4azL1-h0Wfbm_eOIeP3Llz89lpvg8WJYHajKwmnyvJhALXGo90R4&state=4b53e1ff-4b37-44f4-b857-eb93287b5f70&token_type=bearer&expires_in=3600
+      // console.log(window.location); //Location {ancestorOrigins: DOMStringList, href: 'http://localhost:3000/auth/naverLogin#access_token…57-eb93287b5f70&token_type=bearer&expires_in=3600', origin: 'http://localhost:3000', protocol: 'http:', host: 'localhost:3000', …}
+      // console.log(window.location.hash); //#access_token=AAAAOJ2B7qXNzafF-7pieNOtmrsMu_Slw5BtRDI4azL1-h0Wfbm_eOIeP3Llz89lpvg8WJYHajKwmnyvJhALXGo90R4&state=4b53e1ff-4b37-44f4-b857-eb93287b5f70&token_type=bearer&expires_in=3600
       // console.log(queryParams); //['access_token=AAAAOJ2B7qXNzafF-7pieNOtmrsMu_Slw5BtR…L1-h0Wfbm_eOIeP3Llz89lpvg8WJYHajKwmnyvJhALXGo90R4', 'state=4b53e1ff-4b37-44f4-b857-eb93287b5f70', 'token_type=bearer', 'expires_in=3600']
 
       queryParams.forEach((param) => {
         const [key, value] = param.split("=");
         params[key] = value;
       });
-      console.log(params);
 
       try {
         const response = await axios.post(
@@ -28,10 +27,10 @@ const NaverLoginHandler = () => {
           params
         );
         // 성공적으로 응답을 받았다면, 필요한 작업을 수행합니다. 예를 들어, 인증 성공에 따른 리다이렉션 등
-        console.log("naverLogin 응답 옴! : " + response);
+        console.log("백엔드에서 naverLogin 응답 옴! : " + response);
         // navigate("/"); // 예시: 메인 페이지로 이동
       } catch (error) {
-        console.error("Error sending Naver login request:", error);
+        console.error("백엔드에서 naverLogin 에러 옴! : ", error);
       }
     };
 

@@ -129,14 +129,18 @@ public class AuthController {
           .setStatus(RestStatus.FAILURE);
     }
   }
-  
+
   @PostMapping("naverLogin")
   public Object naverLogin(@RequestBody Map<String, String> params) {
-    
-//    log.info("params ===>>> " + params.toString()); {access_token=AAAAOK3YZUQo0huTlz-hhCJuoC8c2oqBXuNgug8SJ9b9hKMAVsrDbQFrZ1ZEsW2pGT6hw3ouHoNIF2x1BYfjUcqtDWQ, state=4b53e1ff-4b37-44f4-b857-eb93287b5f70, token_type=bearer, expires_in=3600}
-    
-    // 요청 샘플 https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=jyvqXeaVOVmV&client_secret=527300A0_COq1_XV33cf&code=EIc5bFrl4RibFls1&state=9kgsGTfH4j7IyAkg 
-    
+
+    log.info("params >>> " + params.toString());  //{access_token=AAAAOK3YZUQo0huTlz-hhCJuoC8c2oqBXuNgug8SJ9b9hKMAVsrDbQFrZ1ZEsW2pGT6hw3ouHoNIF2x1BYfjUcqtDWQ, state=4b53e1ff-4b37-44f4-b857-eb93287b5f70, token_type=bearer, expires_in=3600}
+
+    String grant_type = "authorization_code";
+    String cliend_id = "2BhRFFWkWve7muRmTFd8";  // 추후 properties 로 뺄 것
+    String client_secret = "HVGLZ5Z3hf";  // 추후 properties 로 뺄 것
+    String state = params.get("state");
+    // 요청 샘플 https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=jyvqXeaVOVmV&client_secret=527300A0_COq1_XV33cf&code=EIc5bFrl4RibFls1&state=9kgsGTfH4j7IyAkg
+
     return null;
   }
 
