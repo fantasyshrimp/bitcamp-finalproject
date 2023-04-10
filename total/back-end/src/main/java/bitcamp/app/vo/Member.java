@@ -22,6 +22,7 @@ public class Member implements Serializable {
   private String tel;
   private int accountState;
   private int authLevel;
+  private String token;
   private String birthDate;
 
   @JsonFormat(

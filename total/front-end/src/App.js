@@ -7,7 +7,8 @@ import Feed from "./pages/Feed/Feed";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
-import MemberList from "./pages/MemberManagement/MemberList";
+import MemberList from "./pages/Admin/MemberList";
+import { Verify } from "./components/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
           <Route path="/Profile" element={<Profile />}></Route>
           <Route path="/PersonalSetting" element={<PersonalSetting />}></Route>
           <Route path="/Faq" element={<Faq />} />
+          <Route path="/admin" element={<MemberList />} />
           <Route path="/MemberList" element={<MemberList />} />
+          <Route path="/auth/verify" element={<Verify />} />
         </Routes>
         <Footer />
       </BrowserRouter>

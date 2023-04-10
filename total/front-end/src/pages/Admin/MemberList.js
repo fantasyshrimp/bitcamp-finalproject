@@ -5,16 +5,15 @@ import MemberView from "./MemberView";
 
 function MemberList() {
   const [data, setData] = useState([]);
-
   useEffect(() => {
-    fetch("http://localhost:8080/member")
+    fetch("http://localhost:8080/admin")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
 
   function handleColumnSelect(selectedColumn) {
-    console.log(`Selected column: ${selectedColumn}`);
+    window.location.href = `/admin/${selectedColumn}`;
   }
 
   return (

@@ -24,8 +24,8 @@
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
-    insert into aim_member(name, email, pw, pt)
-    values(#{nickname}, #{email}, sha2(#{password},256), 0)
+    insert into aim_member(name, email, pw, pt, token)
+    values(#{nickname}, #{email}, sha2(#{password},256), 0, token)
   </insert>
   
   <select id="findAll" resultMap="memberMap">
@@ -36,13 +36,7 @@
   
   <select id="findByNo" parameterType="int" resultMap="memberMap">
     select
-      member_no,
-      name,
-      gender,
-      filename,
-      addr,
-      pt,
-      info
+      *
     from
       aim_member 
     where
@@ -115,7 +109,7 @@
     where
       name=#{nickname}
   </select>
-  
+
   <update id="update" parameterType="member">
     update aim_member
     set 
@@ -126,11 +120,49 @@
       addr=#{basicAddress}      
     where member_no=#{no}
   </update>
-  
+    
+  <select id="findByToken" parameterType="string" resultMap="memberMap">
+    select
+      member_no,
+      name,
+      email,
+      created_dt,
+      gender,
+      filename,
+      addr,
+      pt,
+      info,
+      birth_dt,
+      tel,
+      pw_update_dt,
+      state,
+      auth
+    from
+      aim_member
+    where
+      token=#{token}
+  </select>
+    
   <update id="updateProfile" parameterType="member">
     update aim_member
     set filename=#{profilePhoto}
     where member_no=#{no}
   </update>
 
+  <update id="updateToken" parameterType="member">
+    update aim_member
+    set
+      token=#{token}
+    where
+      email=#{email}
+  </update>
+  
+  <update id="updateStateByToken" parameterType="string">
+    update aim_member
+    set
+      state=0
+    where
+      token=#{token}
+  </update>
+  
   </mapper>

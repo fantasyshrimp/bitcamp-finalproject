@@ -37,12 +37,7 @@ public class MemberController {
 
   @PostMapping
   public void insert(@RequestBody Member member) {
-    memberService.add(member);
-  }
-
-  @GetMapping
-  public Object test() {
-    return memberService.list(null);
+  
   }
 
   @GetMapping("{no}")
