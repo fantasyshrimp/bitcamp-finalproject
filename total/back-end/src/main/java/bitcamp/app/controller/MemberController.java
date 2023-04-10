@@ -40,11 +40,6 @@ public class MemberController {
     memberService.add(member);
   }
 
-  @GetMapping
-  public Object test() {
-    return memberService.list(null);
-  }
-
   @GetMapping("{no}")
   public Object view(@PathVariable int no) {
     Map<String, Object> data = new HashMap<>();

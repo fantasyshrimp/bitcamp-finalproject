@@ -5,11 +5,10 @@ import MemberView from "./MemberView";
 
 function MemberList() {
   const [data, setData] = useState([]);
-
   useEffect(() => {
-    fetch("http://localhost:8080/member")
+    fetch("http://localhost:8080/admin")
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => console.log(data))
       .catch((error) => console.error(error));
   }, []);
 
