@@ -6,8 +6,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
-function MemberView() {
-  const [show, setShow] = useState(false);
+function MemberView(props) {
+  const { show, setShow } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,11 +30,7 @@ function MemberView() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        MemberView Button
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={props.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>MemberView Modal Test</Modal.Title>
         </Modal.Header>
