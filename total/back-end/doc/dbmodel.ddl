@@ -836,3 +836,7 @@ ADD UNIQUE INDEX UIX_aim_member_name (name ASC);
 
 ALTER TABLE aim_member
 ADD UNIQUE INDEX UIX_aim_member_email (email ASC);
+
+-- 회원 정보(aim_member)에 외부 계정 정보 추가
+ALTER TABLE aim_member
+  ADD link VARCHAR(255) NOT NULL DEFAULT 'artify' COMMENT '외부계정연동정보', -- 외부계정연동정보

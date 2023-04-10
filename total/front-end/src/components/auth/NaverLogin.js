@@ -12,8 +12,8 @@ const NaverLogin = () => {
     isPopup: false,
     loginButton: {
       color: "green",
-      type: 1,
-      height: 60,
+      type: 3,
+      height: 50,
     },
   });
 

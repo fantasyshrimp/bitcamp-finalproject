@@ -10,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
-import bitcamp.util.PasswordChecker;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import bitcamp.util.StringChecker;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -75,12 +74,14 @@ public class AuthController {
 
     if(nickname.length() <= 50 ||
         email.contains("@") ||
-        PasswordChecker.isValidPassword(password)) {
+        StringChecker.isValidPassword(password) ||
+        StringChecker.isValidNickname(nickname)) {
 
       Member member = new Member();
       member.setNickname(nickname);
       member.setEmail(email);
       member.setPassword(password);
+      member.setLink("artify");
 
       memberService.add(member);
 
@@ -179,25 +180,35 @@ public class AuthController {
       String nickname = responseJson.getString("nickname");
       String email = responseJson.getString("email");
       String password = UUID.randomUUID().toString();
+      String link = email.contains("@naver.com") ? "naver" : "other";
 
-      Member member = new Member();
-      member.setNickname(nickname);
-      member.setEmail(email);
-      member.setPassword(password);
+      Member oldMember = memberService.getByEmail(email);
+      log.info("oldMember >>> " + oldMember);
+      if (oldMember == null) {
+        Member member = new Member();
+        member.setNickname(nickname);
+        member.setEmail(email);
+        member.setPassword(password);
+        member.setLink(link);
 
-      memberService.add(member);
+        memberService.add(member);
+      }
 
-      session.setAttribute("loginUser", member);
+      Member user = memberService.getByEmail(email);
+
+      if (user != null && !user.getLink().equals("naver")) {
+        log.info("artify 회원이 네이버 계정으로 접속 시도함!");
+
+        return new RestResult()
+            .setErrorCode(ErrorCode.rest.DUPLICATE_DATA)
+            .setStatus(RestStatus.FAILURE);
+      }
+
+      session.setAttribute("loginUser", user);
+      log.info("세선에 user 정보 입력 >>> " + user);
 
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
-
-    } catch (DuplicateKeyException e) {
-      log.error("이메일 중복 에러 발생! : " + e);
-
-      return new RestResult()
-          .setErrorCode(ErrorCode.rest.DUPLICATE_DATA)
-          .setStatus(RestStatus.FAILURE);
 
     } catch (Exception e) {
       log.error("네이버 로그인 중 에러 발생! : " + e);

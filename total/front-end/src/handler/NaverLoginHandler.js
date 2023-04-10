@@ -27,12 +27,18 @@ const NaverLoginHandler = () => {
           params
         );
 
-        // console.log("백엔드에서 naverLogin 응답 옴!");
+        // console.log("서버에서 naverLogin 응답 옴!");
         // console.log(response);
-        // window.location.href = "/"; // 인덱스 페이지로 이동
+
+        if (response.data.status === "failure") {
+          if (response.data.errorCode == "502") {
+            alert("Artify 계정으로 로그인 하세요");
+          }
+        }
+        window.location.href = "/"; // 인덱스 페이지로 이동
       } catch (error) {
-        console.error("백엔드에서 naverLogin 에러 옴! : ");
-        console.error(error);
+        // console.error("서버에서 naverlogin 에러 옴!");
+        // console.error(error);
       }
     };
 

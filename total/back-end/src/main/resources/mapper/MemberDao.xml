@@ -20,12 +20,13 @@
     <result column="pw_update_dt" property="passwordDate"/>
     <result column="state" property="accountState"/>
     <result column="auth" property="authLevel"/>
+    <result column="link" property="link"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
-    insert into aim_member(name, email, pw, pt)
-    values(#{nickname}, #{email}, sha2(#{password},256), 0)
+    insert into aim_member(name, email, pw, pt, link)
+    values(#{nickname}, #{email}, sha2(#{password},256), 0, #{link})
   </insert>
   
   <select id="findAll" resultMap="memberMap">
@@ -42,7 +43,8 @@
       filename,
       addr,
       pt,
-      info
+      info,
+      link
     from
       aim_member 
     where
@@ -64,7 +66,8 @@
       tel,
       pw_update_dt,
       state,
-      auth
+      auth,
+      link
     from
       aim_member
     where
@@ -87,7 +90,8 @@
       tel,
       pw_update_dt,
       state,
-      auth
+      auth,
+      link
     from
       aim_member
     where
@@ -109,7 +113,8 @@
       tel,
       pw_update_dt,
       state,
-      auth
+      auth,
+      link
     from
       aim_member
     where

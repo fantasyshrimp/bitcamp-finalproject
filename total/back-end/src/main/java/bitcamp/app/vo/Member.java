@@ -23,6 +23,7 @@ public class Member implements Serializable {
   private int accountState;
   private int authLevel;
   private String birthDate;
+  private String link;
 
   @JsonFormat(
       shape = Shape.STRING,
