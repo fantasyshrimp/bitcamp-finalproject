@@ -79,7 +79,7 @@ CREATE TABLE aim_member (
   birth_dt     CHAR(6)      NULL     COMMENT '생년월일', -- 생년월일
   tel          VARCHAR(30)  NULL     COMMENT '전화번호', -- 전화번호
   pw_update_dt DATETIME     NOT NULL DEFAULT now() COMMENT '비밀번호 변경일시', -- 비밀번호 변경일시
-  state        INTEGER      NOT NULL DEFAULT 0 COMMENT '0: 정상, 1: 휴면, 2: 탈퇴, 3: 추방', -- 계정상태
+  state        INTEGER      NOT NULL DEFAULT 0 COMMENT '0: 정상, 1: 미인증, 2: 휴면, 3: 탈퇴, 4: 추방', -- 계정상태
   auth         INTEGER      NOT NULL DEFAULT 0 COMMENT '0: 일반, 9: 관리자' -- 권한레벨
 )
 COMMENT '회원';
@@ -797,12 +797,12 @@ ALTER TABLE aim_report_reply
 -- 게시판에 요약내용 추가
 -- 게시판에 summary_content 넣은 후 NOT NULL 설정하기
 ALTER TABLE aim_board 
-  ADD summary_content TEXT NULL AFTER origin_content COMMENT '요약내용', -- 요약내용
+  ADD summary_content TEXT NULL AFTER origin_content COMMENT '요약내용' -- 요약내용
 ALTER TABLE aim_board
   MODIFY COLUMN summary_content TEXT NOT NULL
 
 -- 알림로그에 상대회원번호 추가
-ALTER TABLE aim_alarm_log ADD other_no INTEGER NOT NULL AFTER member_no COMMENT '상대회원번호', -- 상대회원번호
+ALTER TABLE aim_alarm_log ADD other_no INTEGER NOT NULL AFTER member_no COMMENT '상대회원번호' -- 상대회원번호
 
 -- 알림로그의 상대회원번호에 외래키 추가
 ALTER TABLE aim_alarm_log
@@ -817,7 +817,7 @@ ALTER TABLE aim_alarm_log
 -- 알림 로그에 게시글 번호 추가
 -- 알림 로그에 board_no 에 외래키 추가
 ALTER TABLE aim_alarm_log
-  ADD board_no INTEGER NULL AFTER member_no COMMENT '게시글번호', -- 게시글번호
+  ADD board_no INTEGER NULL AFTER member_no COMMENT '게시글번호' -- 게시글번호
 ALTER TABLE aim_alarm_log
   MODIFY CONSTRAINT FK_aim_board_TO_aim_alarm_log -- 게시글 -> 알림로그
   FOREIGN KEY (
@@ -827,3 +827,9 @@ ALTER TABLE aim_alarm_log
   board_no -- 게시글번호
   )
   
+-- 회원 정보에 메일 인증 토큰 추가
+-- 회원 정보의 state 컬럼 NOT NULL DEFAULT 1로 변경
+ALTER TABLE aim_member
+  ADD token VARCHAR(255) NULL COMMENT '인증토큰' -- 인증토큰
+ALTER TABLE aim_member
+  MODIFY COLUMN state INTEGER NOT NULL DEFAULT 1

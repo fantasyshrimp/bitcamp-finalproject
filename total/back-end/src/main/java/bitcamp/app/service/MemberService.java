@@ -4,7 +4,7 @@ import java.util.List;
 import bitcamp.app.vo.Member;
 
 public interface MemberService {
-  void add(Member member);
+  void add(Member member) throws Exception;
   List<Member> list(String keyword);
   Member get(String email, String password);
   Member getByEmail(String email);
@@ -15,5 +15,6 @@ public interface MemberService {
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);
   void updateProfilePhoto(Member member);
+  Member updateByVerifyToken(String token);
 
 }
