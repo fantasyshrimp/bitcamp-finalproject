@@ -10,6 +10,7 @@ import Report from "./Report";
 import getTimeReply from "../../utils/DateReply";
 import getTimeBoard from "../../utils/DateBoard";
 import BoardMenu from "./BoardMenu";
+import Money from "./Money";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
@@ -17,6 +18,8 @@ function FeedModal(props) {
   const [isUpdated, setIsUpdated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [isMoneyModalOpen, setIsMoneyModalOpen] = useState(false);
+  const [point, setPoint] = useState();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -30,7 +33,13 @@ function FeedModal(props) {
     setIsMenuModalOpen(!isMenuModalOpen);
   };
 
+  const MoneyModalHandler = () => {
+    setIsMoneyModalOpen(!isMoneyModalOpen);
+  };
+
   const boardNo = props.data.boardNo;
+  const writerNo = props.data.writer.no;
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -73,6 +82,17 @@ function FeedModal(props) {
       .catch((error) => console.log(error));
   }, [isUpdated]);
 
+  axios.get("http://localhost:8080/point/board/" + boardNo).then((response) => {
+    setPoint(response.data);
+  });
+
+  const numberWithCommas = (number) => {
+    // 천의 자리마다 , 찍기
+    return number
+      ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      : "0";
+  };
+
   if (!Array.isArray(data)) {
     return <div>Loading...</div>;
   }
@@ -92,6 +112,24 @@ function FeedModal(props) {
           <div id="modal-like-icon">
             <LikeIcon size={30} contentType={"board"} contentNo={boardNo} />
           </div>
+          <div
+            id="modal-money-icon"
+            style={{
+              backgroundImage: `url(/money.png)`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+            }}
+            onClick={MoneyModalHandler}
+          ></div>
+          <div id="modal-money">{numberWithCommas(point)}</div>
+          {isMoneyModalOpen && (
+            <Money
+              boardNo={boardNo}
+              writerNo={writerNo}
+              MoneyModalHandler={MoneyModalHandler}
+            />
+          )}
         </div>
       </div>
       <div id="feed-modal-content">

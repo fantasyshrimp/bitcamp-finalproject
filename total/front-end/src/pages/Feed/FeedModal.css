@@ -437,3 +437,95 @@
   margin-left: 5%;
   margin-top: 15%;
 }
+
+#modal-money-icon {
+  height: 20px;
+  width: 20px;
+  float: left;
+  position: absolute;
+  bottom: 25px;
+  margin-left: 50px;
+}
+
+#modal-money {
+  height: 20px;
+  width: auto;
+  float: left;
+  position: absolute;
+  bottom: 28px;
+  margin-left: 75px;
+  color: white;
+}
+
+#modal-money-icon:hover {
+  cursor: pointer;
+}
+
+#modal-like-icon:hover {
+  cursor: pointer;
+}
+
+#feed-modal-moneyinput {
+  background-color: rgba(17, 15, 26, 1);
+  border-radius: 30px;
+  width: 70%;
+  height: 30px;
+  color: white;
+  border: 0.1px black solid;
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#feed-money-credit {
+  margin-bottom: 30px;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+
+#money-btn {
+  width: 30%;
+  text-align: center;
+  margin-left: 14%;
+  background-color: #1d1d1d;
+  border-radius: 10px;
+  color: #888fff;
+  font-weight: bold;
+  float: left;
+  margin-bottom: 10px;
+}
+
+#money-btn:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+#money-btn2 {
+  width: 30%;
+  text-align: center;
+  margin-left: 14%;
+  background-color: #1d1d1d;
+  border-radius: 10px;
+  color: white;
+  float: left;
+  margin-bottom: 30px;
+}
+
+#money-btn2:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+#money-main {
+  position: fixed;
+  top: 31%;
+  left: 38%;
+  width: 300px;
+  height: auto;
+  background-color: #141414;
+  border: 1px #333333 solid;
+  border-radius: 10px;
+  color: white;
+  z-index: 200;
+  animation: modal-show 0.1s ease-in-out;
+}
