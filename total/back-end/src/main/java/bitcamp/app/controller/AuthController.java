@@ -183,7 +183,7 @@ public class AuthController {
       String link = email.contains("@naver.com") ? "naver" : "other";
 
       Member oldMember = memberService.getByEmail(email);
-      log.info("oldMember >>> " + oldMember);
+      //      log.info("oldMember >>> " + oldMember);
       if (oldMember == null) {
         Member member = new Member();
         member.setNickname(nickname);
@@ -197,7 +197,7 @@ public class AuthController {
       Member user = memberService.getByEmail(email);
 
       if (user != null && !user.getLink().equals("naver")) {
-        log.info("artify 회원이 네이버 계정으로 접속 시도함!");
+        //        log.info("artify 회원이 네이버 계정으로 접속 시도함!");
 
         return new RestResult()
             .setErrorCode(ErrorCode.rest.DUPLICATE_DATA)
@@ -205,7 +205,7 @@ public class AuthController {
       }
 
       session.setAttribute("loginUser", user);
-      log.info("세선에 user 정보 입력 >>> " + user);
+      //      log.info("세선에 user 정보 입력 >>> " + user);
 
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);
@@ -216,7 +216,6 @@ public class AuthController {
       return new RestResult()
           .setStatus(RestStatus.FAILURE);
     }
-
   }
 
 }

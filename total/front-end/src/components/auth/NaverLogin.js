@@ -7,13 +7,13 @@ const NaverLogin = () => {
 
   // 네이버 로그인 기능 및 버튼 구현
   const naverLogin = new naver.LoginWithNaverId({
-    clientId: NAVER_CLIENT_ID,
-    callbackUrl: NAVER_CALLBACK_URL,
-    isPopup: false,
+    clientId: NAVER_CLIENT_ID, // Naver Developer 에 있는 Client ID
+    callbackUrl: NAVER_CALLBACK_URL, // 요청 보냈을때 네이버에서 응답해 줄 주소
+    isPopup: false, // 네이버 로그인 확인 창을 팝업으로 띄울지 여부
     loginButton: {
-      color: "green",
-      type: 3,
-      height: 50,
+      color: "green", // green, white
+      type: 3, // 1: 작은버튼, 2: 중간버튼, 3: 큰 버튼
+      height: 50, // 크기는 높이로 결정한다.
     },
   });
 
