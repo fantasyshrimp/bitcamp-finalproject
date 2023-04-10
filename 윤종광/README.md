@@ -661,6 +661,17 @@ y: 16.7956485748291
 
 ### 2. 알림 창에서 5개씩 로그인 및 더보기 버튼 클릭시 5개씩 로딩되도록 구현
 
+### 3. 회원가입시 이메일 인증 및 메일 발송, 링크 클릭해야 로그인 되도록 구현
+
 ## 시행착오 또는 기억할 것
 
 ### 1. state 를 설정할때 그 state 를 사용하는게 다른 쪽에도 있으면 공통 부모쪽에서 업데이트 하도록 하라
+
+### 2. URL 의 쿼리 파라미터를 자바스크립트에서 추출하는 방법
+
+```javascript
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get("token");
+```
+
+### 3. 메일 인증 방법 내 블로그에 남김

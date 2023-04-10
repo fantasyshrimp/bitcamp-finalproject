@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SignupModal, LoginModal, Logout, AuthModal } from "../auth";
 import { Nav } from "react-bootstrap";
-import { BellFill } from "react-bootstrap-icons";
+import { Bell, BellFill } from "react-bootstrap-icons";
 import axios from "axios";
 import AlarmModal from "../AlarmModal";
 axios.defaults.withCredentials = true;
@@ -69,19 +69,19 @@ function AuthBtn(props) {
               className="d-flex justify-content-center align-items-center"
               id="auth-has-alarm"
               style={{
-                width: "11px",
-                height: "11px",
+                width: "9px",
+                height: "9px",
                 backgroundColor: "red",
                 borderRadius: "50%",
                 position: "relative",
-                left: "23px",
+                left: "21px",
                 bottom: "8px",
                 visibility: "hidden",
                 color: "#FFFFFF",
                 fontSize: "9px",
               }}
             ></div>
-            <BellFill size="1.4rem" className="text-light" />
+            <Bell size="1.4rem" className="text-light" />
           </a>
           <Nav.Link
             onClick={handleClickUser}
@@ -110,10 +110,10 @@ function AuthBtn(props) {
       ) : (
         <>
           <Nav.Link>
-            <div onClick={handleSignupShow}>Sign up</div>
+            <div onClick={handleSignupShow}>회원가입</div>
           </Nav.Link>
           <Nav.Link>
-            <div onClick={handleLoginShow}>Login</div>
+            <div onClick={handleLoginShow}>로그인</div>
           </Nav.Link>
         </>
       )}

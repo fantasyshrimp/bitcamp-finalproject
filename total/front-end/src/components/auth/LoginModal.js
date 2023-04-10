@@ -56,8 +56,11 @@ function LoginModal(props) {
         }
       )
       .then((response) => {
-        // console.log(response);
         if (response.data.status === "success") {
+          if (response.data.data.accountState === 1) {
+            alert("메일 인증 후 로그인 하세요.");
+            return;
+          }
           handleClose();
           window.location.reload();
         } else {
@@ -180,7 +183,7 @@ function LoginModal(props) {
               disabled={isDisabled()}
               className="mb-2"
             >
-              Log In
+              로그인
             </Button>
             <div className="text-light">
               <span>아직 계정이 없으신가요? </span>
