@@ -23,7 +23,7 @@ function App() {
           <Route path="/PersonalSetting" element={<PersonalSetting />}></Route>
           <Route path="/Faq" element={<Faq />} />
           <Route path="/MemberList" element={<MemberList />} />
-          <Route path="/auth/naverLogin" element={<NaverLoginHandler />} />
+          <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
         </Routes>
         <Footer />
       </BrowserRouter>

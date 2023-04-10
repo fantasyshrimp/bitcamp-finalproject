@@ -3,14 +3,12 @@ import { useEffect } from "react";
 const NaverLogin = () => {
   const { naver } = window;
   const NAVER_CLIENT_ID = "2BhRFFWkWve7muRmTFd8"; // 발급 받은 Client ID 입력
-  const NAVER_CALLBACK_URL = "http://localhost:3000/auth/naverLogin"; // 작성했던 Callback URL 입력
-  const STATE = "test";
+  const NAVER_CALLBACK_URL = "http://localhost:3000/auth/naverlogin"; // 작성했던 Callback URL 입력
 
   // 네이버 로그인 기능 및 버튼 구현
   const naverLogin = new naver.LoginWithNaverId({
     clientId: NAVER_CLIENT_ID,
     callbackUrl: NAVER_CALLBACK_URL,
-    state: STATE, // state 적용 안됨?
     isPopup: false,
     loginButton: {
       color: "green",

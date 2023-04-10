@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import bitcamp.app.dao.FollowDao;
 import bitcamp.app.dao.MemberDao;
 import bitcamp.app.service.MemberService;
@@ -22,9 +21,19 @@ public class DefaultMemberService implements MemberService {
   @Autowired private MemberDao memberDao;
   @Autowired private FollowDao followDao;
 
-  @Transactional
+
   @Override
   public void add(Member member) {
+    Member OldMember = memberDao.findByNickname(member.getNickname());
+
+    if (OldMember != null) {
+      String signUpMemberNickname = member.getNickname();
+
+      if (signUpMemberNickname.equals(OldMember.getNickname())) {
+        member.setNickname(signUpMemberNickname + "+");
+      }
+    }
+
     memberDao.insert(member);
   }
 

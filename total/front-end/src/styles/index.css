@@ -29,6 +29,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
-  -webkit-text-fill-color: #121212 !important;
+  -webkit-box-shadow: 0 0 0 30px var(--bs-dark) inset !important;
+  -webkit-text-fill-color: var(--bs-gray-100) !important;
 }

@@ -23,14 +23,16 @@ const NaverLoginHandler = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:8080/auth/naverLogin",
+          "http://localhost:8080/auth/naverlogin",
           params
         );
-        // 성공적으로 응답을 받았다면, 필요한 작업을 수행합니다. 예를 들어, 인증 성공에 따른 리다이렉션 등
-        console.log("백엔드에서 naverLogin 응답 옴! : " + response);
-        // navigate("/"); // 예시: 메인 페이지로 이동
+
+        // console.log("백엔드에서 naverLogin 응답 옴!");
+        // console.log(response);
+        // window.location.href = "/"; // 인덱스 페이지로 이동
       } catch (error) {
-        console.error("백엔드에서 naverLogin 에러 옴! : ", error);
+        console.error("백엔드에서 naverLogin 에러 옴! : ");
+        console.error(error);
       }
     };
 
