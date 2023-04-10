@@ -56,7 +56,7 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public void update(Member member) {
-
+    memberDao.update(member);
   }
 
   @Override

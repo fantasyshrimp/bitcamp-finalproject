@@ -3,7 +3,8 @@ import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 
 function PersonalSetting() {
-  const [temp, setTemp] = useState(1);
+  const [temp, setTemp] = useState(0);
+  const menu = ["프로필 수정", "공개 설정", "알람 설정"];
 
   return (
     <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "800px"}}>
@@ -15,17 +16,17 @@ function PersonalSetting() {
         <div style={{height: "20%"}}></div>
         <div style={{width: "250px", marginRight: "5%"}}>
           <h2 style={{boxSizing: "border-box"}}>설정</h2>
-          <div onClick={() => {setTemp(1);}}>프로필 수정</div>
-          <div onClick={() => {setTemp(2);}}>공개 설정</div>
-
-
+          
+          {menu.map((title, index) => {
+            return (<div key={title + index} onClick={() => {setTemp(index)}}>{title}</div>);
+          })}  
         </div>
 
       </div>
         
       <div style={{width: "90%", height: "100%"}}>
-        {temp === 1 && <ModifyProfile title={"프로필 수정"}/>}
-        {temp === 2 && <PublicSetting title={"공개 설정"}/>}
+        {temp === 0 && <ModifyProfile title={"프로필 수정"}/>}
+        {temp === 1 && <PublicSetting title={"공개 설정"}/>}
       </div>
     </div>
   );

@@ -21,7 +21,13 @@
     margin-top: 20px;
 }
 
-.profile-info > .profile-name {
+.profile-info > div {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info .profile-name {
+    margin-right: 25px;
     font-size: xx-large;
     font-weight: bold;
     color: azure;
@@ -39,7 +45,6 @@
 
 .profile-info > .profile-detail > div > span {
     display: inline-block;
-    width: 50px;
     font-size: x-large;
     font-weight: bold;
     text-align: right;

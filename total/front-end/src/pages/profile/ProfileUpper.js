@@ -35,10 +35,13 @@ function ProfileUpper(props) {
               backgroundImage: `url(${props.member.profilePhoto})`,
               backgroundSize: 'cover' }}></div>
           <div className="profile-info">
-              <div className="profile-name">{props.member.nickname}</div>
+              <div >
+                <div className="profile-name">{props.member.nickname}</div>
+                <FollowBtn followerNo={props.member.no} />
+              </div>
               <div className="profile-detail">
-                <div onClick={openFollowingModal}><span>{followingCnt}</span>  followings</div>
-                <div onClick={openFollowerModal}><span>{followerCnt}</span>  followers</div>
+                <div style={{cursor:"pointer"}} onClick={openFollowingModal}><span>{followingCnt}</span>  followings</div>
+                <div style={{cursor:"pointer"}} onClick={openFollowerModal}><span>{followerCnt}</span>  followers</div>
                 <div><span>{count}</span>  likes</div>                    
               </div>
           </div>
@@ -46,7 +49,7 @@ function ProfileUpper(props) {
             style={{
               paddingTop: '35px'
             }}
-          ><FollowBtn followerNo={props.member.no} /></div>
+          ></div>
         </div>
         <FollowListModal isOpen={followingModalIsOpen} onRequestClose={closeFollowingModal} follows={followingList}/>
         <FollowListModal isOpen={followerModalIsOpen} onRequestClose={closeFollowerModal} follows={props.followers}/>

@@ -1,0 +1,7 @@
+.ReactModal__Content {
+  scrollbar-width: none;
+}
+
+.ReactModal__Content::-webkit-scrollbar {
+  display: none;
+}

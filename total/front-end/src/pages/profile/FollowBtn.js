@@ -41,7 +41,7 @@ function FollowBtn(props) {
           flexShrink: "0",
           width: "100px",
           height: "30px",
-          backgroundColor: followState ? "cadetblue" : "white",
+          backgroundColor: followState ? "#6d3fcf" : "white",
           Color: followState ? "white" : "black",
           fontSize: "16px",
           fontWeight: "bold",

@@ -116,6 +116,17 @@
       name=#{nickname}
   </select>
   
+  <update id="update" parameterType="member">
+    update aim_member
+    set 
+      pw=sha2(#{password},256),
+      gender=#{gender},
+      birth_dt=#{birthDate},
+      tel=#{tel},
+      addr=#{basicAddress}      
+    where member_no=#{no}
+  </update>
+  
   <update id="updateProfile" parameterType="member">
     update aim_member
     set filename=#{profilePhoto}
