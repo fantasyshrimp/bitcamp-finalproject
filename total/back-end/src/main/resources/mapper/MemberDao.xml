@@ -36,13 +36,7 @@
   
   <select id="findByNo" parameterType="int" resultMap="memberMap">
     select
-      member_no,
-      name,
-      gender,
-      filename,
-      addr,
-      pt,
-      info
+      *
     from
       aim_member 
     where
