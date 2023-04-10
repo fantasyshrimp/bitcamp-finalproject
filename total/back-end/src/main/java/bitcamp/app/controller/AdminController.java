@@ -36,6 +36,20 @@ public class AdminController {
   public Object test() {
     return memberService.list(null);
   }
+  
+  @GetMapping("{no}")
+  public Object view(@PathVariable int no) {
+    Member member = memberService.get(no);
+    if (member != null) {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setData(member);
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.NO_DATA);
+    }
+  }
 
 }
 

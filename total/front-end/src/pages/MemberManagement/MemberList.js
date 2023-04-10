@@ -8,7 +8,7 @@ function MemberList() {
   useEffect(() => {
     fetch("http://localhost:8080/admin")
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
 
