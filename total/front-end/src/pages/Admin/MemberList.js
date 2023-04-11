@@ -15,11 +15,8 @@ function MemberList() {
   }, []);
 
   function handleColumnSelect(selectedColumn) {
-    console.log(`Selected column: ${selectedColumn}`);
     const selectedData = data.filter((d) => d.no === selectedColumn)[0];
-    const { no, nickname } = selectedData;
-
-    console.log(`no: ${no}, nickname: ${nickname}`);
+    console.log("Selected member:", selectedData);
     setModalShow(true);
   }
 
@@ -125,7 +122,7 @@ function MemberList() {
           </tbody>
         </Table>
       </div>
-      <MemberView show={modalShow} setShow={setModalShow} members={data} />
+      <MemberView show={modalShow} setShow={setModalShow} selectedData={data} />
     </>
   );
 }

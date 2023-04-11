@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
+import bitcamp.app.service.ObjectStorageService;
 import bitcamp.app.service.PointService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
@@ -42,6 +45,8 @@ public class BoardController {
   @Autowired private BoardService boardService;
   @Autowired private LikeService likeService;
   @Autowired private PointService pointService;
+  @Autowired private ObjectStorageService objectStorageService;
+  private String bucketName = "artify-bucket";
 
   @PostMapping
   public Object insert(int writerNo, String originContent) {

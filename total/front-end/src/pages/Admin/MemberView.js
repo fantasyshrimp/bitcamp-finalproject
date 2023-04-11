@@ -7,12 +7,12 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
 function MemberView(props) {
-  //console.log(props);
+  console.log(props);
   //const { show, setShow, members } = props;
   const { show, setShow } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  //const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
 
@@ -37,7 +37,7 @@ function MemberView(props) {
 
   return (
     <>
-      <Modal show={props.show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>MemberView Modal Test</Modal.Title>
         </Modal.Header>
@@ -46,7 +46,12 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>회원번호</Form.Label>
-                <Form.Control type="text" placeholder="no" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="no"
+                  autoFocus
+                  value={data.no}
+                />
               </div>
             </Form.Group>
 
