@@ -3,7 +3,7 @@ import styles from "./Video.module.css";
 
 function Video() {
   return (
-    <div id="home" className={styles.home}>
+    <div className={styles.frame}>
       <video className={styles.video} autoPlay muted loop>
         <source src="video.mp4" type="video/mp4" />
       </video>
@@ -21,7 +21,7 @@ function Video() {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <a href="https://www.naver.com/" className={`${styles.button} button`}>
-          Explore Now
+          ?클릭 시 로그인 모달 띄우기?
         </a>
       </div>
     </div>

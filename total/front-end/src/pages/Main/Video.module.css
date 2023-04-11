@@ -1,13 +1,4 @@
-/* styles.module.css */
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-#home {
+.frame {
   display: block;
   width: 100vw;
   height: 100vh;
@@ -16,6 +7,7 @@
 }
 
 .video {
+  width: 100%;
   position: absolute;
   z-index: -2;
   top: 0;
@@ -23,7 +15,7 @@
   transform: translate(-50%, 0);
 }
 
-#home::after {
+.frame::after {
   content: "";
   position: absolute;
   background-color: rgba(0, 0, 0, 0.567);
@@ -56,9 +48,30 @@
 .container p {
   font-size: 1.3rem;
   width: 52%;
+
+  color: white;
+  border-right: 3px solid white;
+  animation: blink 0.5s infinite, typing 2s steps(50);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.container .button {
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 980px;
+  }
+}
+
+.button {
   width: fit-content;
   font-size: 1rem;
   padding: 0.9rem 1.8rem;
@@ -70,17 +83,17 @@
 }
 
 @media (max-width: 1006px) {
-  .container p {
+  .contain p {
     width: 100%;
   }
 }
 
 @media (max-width: 688px) {
-  :global(html) {
+  html {
     font-size: 80%;
   }
 
-  .container {
+  .contain {
     text-align: center;
     align-items: center;
   }
