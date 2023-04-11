@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
+import AlamSetting from "./AlamSetting";
 
 function PersonalSetting() {
   const [temp, setTemp] = useState(0);
@@ -25,8 +26,9 @@ function PersonalSetting() {
       </div>
         
       <div style={{width: "90%", height: "100%"}}>
-        {temp === 0 && <ModifyProfile title={"프로필 수정"}/>}
-        {temp === 1 && <PublicSetting title={"공개 설정"}/>}
+        {temp === 0 && <ModifyProfile title={menu[0]}/>}
+        {temp === 1 && <PublicSetting title={menu[1]}/>}
+        {temp === 2 && <AlamSetting title={menu[2]}/>}
       </div>
     </div>
   );

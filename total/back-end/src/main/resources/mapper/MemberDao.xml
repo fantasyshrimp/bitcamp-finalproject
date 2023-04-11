@@ -147,11 +147,11 @@
   <update id="update" parameterType="member">
     update aim_member
     set 
-      pw=sha2(#{password},256),
       gender=#{gender},
       birth_dt=#{birthDate},
       tel=#{tel},
-      addr=#{basicAddress}      
+      addr=#{basicAddress},      
+      pw=CASE WHEN #{password} IS NOT NULL THEN sha2(#{password}, 256) ELSE pw END
     where member_no=#{no}
   </update>
   
