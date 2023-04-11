@@ -12,15 +12,16 @@ function MemberView(props) {
 
   const handleClose = () => setShow(false);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:8080/admin/" + no)
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        setData(data.data);
+      })
       .catch((error) => console.error(error));
-  }, [no]);
-  console.log(data);
+  }, []);
 
   return (
     <>
@@ -36,8 +37,8 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="no"
+                  value={no}
                   autoFocus
-                  value={data.no}
                 />
               </div>
             </Form.Group>
