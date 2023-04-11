@@ -12,6 +12,7 @@ import { LoginModal, SignupModal, Verify } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 
 function App() {
   const [loginShow, setLoginShow] = useState(false);
@@ -72,7 +73,7 @@ function App() {
             <Route path="/Faq" element={<Faq />} />
             <Route path="/admin" element={<MemberList />} />
             <Route path="/MemberList" element={<MemberList />} />
-            <Route path="/auth/verify" element={<Verify />} />
+            <Route path="/auth/verify" element={<EmailVerifyHandler />} />
             <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
           </Routes>
           <Footer />
