@@ -1,12 +1,18 @@
 import React from "react";
-import BackgroundSlider from "./Main/BackgroundSlider";
-import Card from "./Main/Card";
+import ReactDOM from "react-dom";
+import Video from "./Main/Video";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Video />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
 function Home() {
   return (
     <div>
-      <BackgroundSlider />
-      <Card />
+      <Video />
     </div>
   );
 }
