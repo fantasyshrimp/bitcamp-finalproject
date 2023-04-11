@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import authBtnStyle from "./style";
 import axios from "axios";
@@ -8,6 +8,7 @@ axios.defaults.withCredentials = true;
 function LoginModal(props) {
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
+  const emailRef = useRef(null);
 
   const handleClose = () => {
     props.setShowExternalLogin(true);
@@ -107,7 +108,7 @@ function LoginModal(props) {
     if (props.loginShow) {
       const emailInput = document.getElementsByName("email")[0];
       if (emailInput) {
-        emailInput.focus();
+        emailRef.current.focus();
       }
     }
   }, [props.loginShow]);
@@ -157,6 +158,9 @@ function LoginModal(props) {
                 placeholder="name@naver.com"
                 className="bg-dark text-light"
                 onChange={checkEmail}
+                onKeyDown={handleEnter}
+                ref={emailRef}
+                autoComplete="username"
               />
               <Form.Text id="emailHelpBlock"></Form.Text>
             </Form.Group>
@@ -171,6 +175,7 @@ function LoginModal(props) {
                 className="bg-dark text-light"
                 onChange={handleChangePassword}
                 onKeyDown={handleEnter}
+                autoComplete="current-password"
               />
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>

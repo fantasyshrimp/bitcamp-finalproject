@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import "./Feed.css";
 import FeedModal from "./FeedModal";
-import LoginModal from "../../components/auth/LoginModal";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);

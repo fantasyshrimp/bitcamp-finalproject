@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Modal, Form, InputGroup, Spinner } from "react-bootstrap";
 import authBtnStyle from "./style";
 import "./style.css";
@@ -11,8 +11,8 @@ function SignupModal(props) {
   const [validNickname, setValidNickname] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const emailRef = useRef(null);
 
   const handleClose = () => {
     props.setSignupShow && props.setSignupShow(false); // AuthBtn.js 에서 상태 관리
@@ -165,12 +165,15 @@ function SignupModal(props) {
     );
   };
 
-  const focusEmailInput = () => {
-    const emailInput = document.getElementsByName("email")[0];
-    if (emailInput) {
-      emailInput.focus();
+  useEffect(() => {
+    // 모달 열렸을 때 오토포커스 주기
+    if (props.signupShow) {
+      const emailInput = document.getElementsByName("email")[0];
+      if (emailInput) {
+        emailRef.current.focus();
+      }
     }
-  };
+  }, [props.signupShow]);
 
   const handleClickLogin = () => {
     handleClose();
@@ -186,7 +189,6 @@ function SignupModal(props) {
         centered
         style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
         contentClassName="bg-dark"
-        onEntered={focusEmailInput}
       >
         <Modal.Header
           closeButton
@@ -212,6 +214,8 @@ function SignupModal(props) {
                   className="bg-dark text-light"
                   onChange={checkEmail}
                   onBlur={blurEmail}
+                  ref={emailRef}
+                  autoComplete="username"
                 />
               </InputGroup>
               <Form.Text id="emailHelpBlock"></Form.Text>
@@ -227,6 +231,7 @@ function SignupModal(props) {
                   className="bg-dark text-light"
                   onChange={checkNickname}
                   onBlur={blurNickname}
+                  autoComplete="username"
                 />
               </InputGroup>
               <Form.Text id="nicknameHelpBlock"></Form.Text>
@@ -239,6 +244,7 @@ function SignupModal(props) {
                 name="password"
                 onChange={checkPasswordChar}
                 className="bg-dark text-light"
+                autoComplete="current-password"
               />
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
@@ -251,6 +257,7 @@ function SignupModal(props) {
                 name="passwordConfirm"
                 onChange={checkBothPasswordSame}
                 onKeyDown={handleEnter}
+                autoComplete="current-password"
               />
               <Form.Text id="passwordConfirmHelpBlock"></Form.Text>
             </Form.Group>
