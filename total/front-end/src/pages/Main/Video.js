@@ -14,7 +14,9 @@ function Video(props) {
       </video>
       <div className={`${styles.container} ${styles.contain}`}>
         <h1>
-          Artify<span>AI</span>가 그려주는 그림
+          <span>Artify</span>
+          <br />
+          AI가 그려주는 그림
         </h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -30,7 +32,7 @@ function Video(props) {
           className={`${styles.button} button`}
           onClick={handleShowLogin}
         >
-          ?클릭 시 로그인 모달 띄우기?
+          Try Artify
         </a>
       </div>
     </div>

@@ -8,16 +8,11 @@ import styles from "./MemberView.module.css";
 
 function MemberView(props) {
   console.log(props);
-  //const { show, setShow, members } = props;
-  const { show, setShow } = props; //{show: true, setShow: setModalShow}
+  const { show, setShow, no } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
-  //const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
-
-  const location = useLocation();
-  let no = location.state ? location.state.no : -1;
 
   useEffect(() => {
     fetch("http://localhost:8080/admin/" + no)
@@ -25,15 +20,7 @@ function MemberView(props) {
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, [no]);
-
-  function handleColumnSelect(selectedColumn) {
-    console.log(`Selected column: ${selectedColumn}`);
-
-    const selectedData = data.filter((d) => d.no === selectedColumn)[0];
-    const { no, nickname } = selectedData;
-
-    console.log(`no: ${no}, nickname: ${nickname}`);
-  }
+  console.log(data);
 
   return (
     <>
