@@ -57,7 +57,7 @@ public class NcpObjectStorageService implements ObjectStorageService {
       // log.info("filename >>> " + filename);  ////filename >>> 8acfad7b-0ff4-46ca-b921-322133575836
       // return filename;
 
-      log.info("s3.getUrl >>> " + s3.getUrl(bucketName, directoryPath + filename).toString());  //s3.getUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
+      // log.info("s3.getUrl >>> " + s3.getUrl(bucketName, directoryPath + filename).toString());  //s3.getUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
       return s3.getUrl(bucketName, directoryPath + filename).toString();
 
     } catch (Exception e) {

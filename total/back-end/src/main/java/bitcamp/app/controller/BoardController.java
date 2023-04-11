@@ -71,8 +71,8 @@ public class BoardController {
         .thenApply(NaverPapagoTranslation::translate)
         .thenApply(GsonFilter::translate)
         .thenAccept(transContent -> {
-          //log.info("transContent >>> " + transContent);
-          //오늘은 몰디브에서의 휴양 일정이었습니다. 아침 일찍 일어나 해변을 걸으며 몰디브의 아름다운 풍경을 감상했습니다. 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 투명한 바다속에서는 다양한 물고기들이 떠다니며 내게 귀엽게 다가와 함께 수영했습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
+          // log.info("transContent >>> " + transContent);
+          // 오늘은 몰디브에서의 휴양 일정이었습니다. 아침 일찍 일어나 해변을 걸으며 몰디브의 아름다운 풍경을 감상했습니다. 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 투명한 바다속에서는 다양한 물고기들이 떠다니며 내게 귀엽게 다가와 함께 수영했습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
 
           String fileName = UUID.randomUUID().toString() + ".png";
           String baseDir = System.getProperty("user.dir");
@@ -117,25 +117,26 @@ public class BoardController {
             // log.info("fileUrl >>> " + fileUrl);  //fileUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
 
             String summaryContent = summaryContentAtomicRef.get();
-            log.info("summaryContent >>> " + summaryContent);  // 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
+            // log.info("summaryContent >>> " + summaryContent);  // 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
 
             Member member = memberService.get(writerNo);
 
             Board board = new Board();
             board.setWriter(member);
             board.setOriginContent(originContent);
-            board.setSummaryContent("summaryContent123"); //board.setSummaryContent(summaryContent);
-            board.setTransContent("transContent123"); //board.setTransContent(transContent);
+            board.setSummaryContent(summaryContent);
+            board.setTransContent(transContent);
 
             GeneratedImg generatedImg = new GeneratedImg();
-            generatedImg.setFilename("https://artify-bucket.kr.object.ncloudstorage.com/board/6d98751a-6441-4587-9ec0-32746f604326"); //generatedImg.setFilename(fileUrl);
+            generatedImg.setFilename(fileUrl);
             board.setGeneratedImg(generatedImg);
 
             // 게시글 DB 에 업로드
             boardService.add(board);
-            log.info("DB에 게시글 및 파일 업로드 완료함");
 
             /* 사용자에게 완료 표시 및 알람 */
+            log.info("DB에 게시글 및 파일 업로드 완료함");
+
 
           } catch (IOException e) {
             log.error("명령 프롬프트 에러 발생!: " + command, e);
