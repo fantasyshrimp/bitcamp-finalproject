@@ -1,12 +1,16 @@
 import React from "react";
-import { createRoot } from "react-dom";
+//import { createRoot } from "react-dom/client";
 import Video from "./Main/Video";
 
-createRoot(document.getElementById("root")).render(
+/*
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
     <Video />
   </React.StrictMode>
 );
+*/
 
 function Home() {
   return (

@@ -7,13 +7,14 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
 function MemberView(props) {
+  //console.log(props);
+  //const { show, setShow, members } = props;
   const { show, setShow } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
-  console.log(props);
 
   const location = useLocation();
   let no = location.state ? location.state.no : -1;
@@ -27,6 +28,11 @@ function MemberView(props) {
 
   function handleColumnSelect(selectedColumn) {
     console.log(`Selected column: ${selectedColumn}`);
+
+    const selectedData = data.filter((d) => d.no === selectedColumn)[0];
+    const { no, nickname } = selectedData;
+
+    console.log(`no: ${no}, nickname: ${nickname}`);
   }
 
   return (
