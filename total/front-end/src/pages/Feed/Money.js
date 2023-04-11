@@ -10,7 +10,11 @@ function Money(props) {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
       // 입력 값이 숫자인 경우
-      setTextValue(value);
+      if(parseInt(value) > parseInt(mypoint)) {
+        setTextValue(mypoint.toString());
+      } else {
+        setTextValue(value);
+      }
     } else {
       // 입력 값이 숫자가 아닌 경우
       setTextValue("");

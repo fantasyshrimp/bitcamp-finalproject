@@ -466,21 +466,22 @@
 }
 
 #feed-modal-moneyinput {
-  background-color: rgba(17, 15, 26, 1);
+  background-color: #1d1d1d;
   border-radius: 30px;
   width: 70%;
   height: 30px;
   color: white;
-  border: 0.1px black solid;
   outline: none;
   margin-top: 10px;
   margin-bottom: 5px;
+  border: 0.1px solid #5b5b5b;
 }
 
 #feed-money-credit {
   margin-bottom: 30px;
   margin-right: 70px;
   margin-top: 5px;
+  color: #818181;
 }
 
 #money-btn {
