@@ -9,16 +9,21 @@ axios.defaults.withCredentials = true;
 function AuthBtn(props) {
   const [show, setShow] = useState(false);
   const { currentUser, setCurrentUser } = props;
-  const [loginShow, setLoginShow] = useState(false);
-  const [signupShow, setSignupShow] = useState(false);
+  const { loginShow, setLoginShow } = props;
+  const { signupShow, setSignupShow } = props;
   const [alarms, setAlarms] = useState(null);
   const [alarmShow, setAlarmShow] = useState(false);
   const [alarmClickEvent, setAlarmClickEvent] = useState(null);
-  const [showExternalLogin, setShowExternalLogin] = useState(true);
 
-  const handleLoginShow = () => setLoginShow(!loginShow);
+  const handleLoginShow = () => {
+    setLoginShow(!loginShow);
+    props.setIsLoginModal(true);
+  };
 
-  const handleSignupShow = () => setSignupShow(true);
+  const handleSignupShow = () => {
+    setSignupShow(true);
+    props.setIsLoginModal(false);
+  };
 
   const handleClickUser = () => {
     setShow(true);
@@ -124,7 +129,9 @@ function AuthBtn(props) {
         setSignupShow={setSignupShow}
         setLoginShow={setLoginShow}
         showExternalLogin={signupShow}
-        setShowExternalLogin={setShowExternalLogin}
+        setShowExternalLogin={props.setShowExternalLogin}
+        isLoginModal={props.isLoginModal}
+        setIsLoginModal={props.setIsLoginModal}
       />
 
       <LoginModal
@@ -135,7 +142,9 @@ function AuthBtn(props) {
         setLoginShow={setLoginShow}
         setSignupShow={setSignupShow}
         showExternalLogin={loginShow}
-        setShowExternalLogin={setShowExternalLogin}
+        setShowExternalLogin={props.setShowExternalLogin}
+        isLoginModal={props.isLoginModal}
+        setIsLoginModal={props.setIsLoginModal}
       />
 
       <AuthModal

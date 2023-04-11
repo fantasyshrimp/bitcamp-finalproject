@@ -11,15 +11,44 @@ import MemberList from "./pages/Admin/MemberList";
 import { Verify } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
+  const [loginShow, setLoginShow] = useState(false);
+  const [signupShow, setSignupShow] = useState(false);
+  const [isLoginModal, setIsLoginModal] = useState(null);
+  const [showExternalLogin, setShowExternalLogin] = useState(null);
+
   return (
     <div>
       <BrowserRouter>
-        <Navbars />
+        <Navbars
+          isLoginModal={isLoginModal}
+          setIsLoginModal={setIsLoginModal}
+          showExternalLogin={showExternalLogin}
+          setShowExternalLogin={setShowExternalLogin}
+          loginShow={loginShow}
+          setLoginShow={setLoginShow}
+          signupShow={signupShow}
+          setSignupShow={setSignupShow}
+        />
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/Feed" element={<Feed />}></Route>
+          <Route
+            path="/Feed"
+            element={
+              <Feed
+                isLoginModal={isLoginModal}
+                setIsLoginModal={setIsLoginModal}
+                showExternalLogin={showExternalLogin}
+                setShowExternalLogin={setShowExternalLogin}
+                loginShow={loginShow}
+                setLoginShow={setLoginShow}
+                signupShow={signupShow}
+                setSignupShow={setSignupShow}
+              />
+            }
+          ></Route>
           <Route path="/Profile" element={<Profile />}></Route>
           <Route path="/PersonalSetting" element={<PersonalSetting />}></Route>
           <Route path="/Faq" element={<Faq />} />

@@ -5,7 +5,7 @@ import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
-function Navbars() {
+function Navbars(props) {
   let [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ function Navbars() {
           setCurrentUser(null);
         }
       } catch (error) {
-        alert("로그인 유저 가져오는 중 오류 발생!");
+        alert("현재 서버가 꺼져 있어 로그인 유저 정보를 가져올 수 없습니다.");
+        console.log(error);
       }
     };
 
@@ -42,6 +43,14 @@ function Navbars() {
             <AuthBtn
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              loginShow={props.loginShow}
+              setLoginShow={props.setLoginShow}
+              signupShow={props.signupShow}
+              setSignupShow={props.setSignupShow}
+              isLoginModal={props.isLoginModal}
+              setIsLoginModal={props.setIsLoginModal}
+              showExternalLogin={props.showExternalLogin}
+              setShowExternalLogin={props.setShowExternalLogin}
             />
           </Nav>
         </Navbar.Collapse>
