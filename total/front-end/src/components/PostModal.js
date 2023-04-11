@@ -44,7 +44,7 @@ function PostModal(props) {
       setIsLoading(false);
       handleClose();
     }, 3000);
-    return; //spinner 테스트시 사용
+    // return; //spinner 테스트시 사용
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
@@ -80,7 +80,8 @@ function PostModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          console.log("응답 옴!");
+          console.log("Generated 응답 옴!");
+          console.log(response);
         } else {
           alert("이상 발생!");
         }

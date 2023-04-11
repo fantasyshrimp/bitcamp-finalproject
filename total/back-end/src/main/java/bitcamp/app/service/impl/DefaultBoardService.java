@@ -3,18 +3,28 @@ package bitcamp.app.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import bitcamp.app.dao.BoardDao;
+import bitcamp.app.dao.GeneratedImgDao;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.vo.Board;
+import bitcamp.app.vo.GeneratedImg;
 
 @Service
 public class DefaultBoardService implements BoardService{
 
   @Autowired private BoardDao boardDao;
+  @Autowired private GeneratedImgDao generatedImgDao;
 
+  @Transactional
   @Override
   public void add(Board board) {
     boardDao.insert(board);
+
+    GeneratedImg generatedImg = new GeneratedImg();
+    generatedImg.setFilename(board.getGeneratedImg().getFilename());
+    generatedImg.setBoardNo(board.getBoardNo());
+    generatedImgDao.insert(generatedImg);
   }
 
   @Override

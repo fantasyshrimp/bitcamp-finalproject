@@ -44,6 +44,7 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
       ObjectMetadata objectMetadata = new ObjectMetadata();
       objectMetadata.setContentType(file.getContentType());
+      objectMetadata.setContentLength(file.getSize());
 
       PutObjectRequest objectRequest = new PutObjectRequest(
           bucketName,
@@ -53,8 +54,11 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
       s3.putObject(objectRequest);
 
-      //return s3.getUrl(bucketName, directoryPath + filename).toString();
-      return filename;
+      // log.info("filename >>> " + filename);  ////filename >>> 8acfad7b-0ff4-46ca-b921-322133575836
+      // return filename;
+
+      log.info("s3.getUrl >>> " + s3.getUrl(bucketName, directoryPath + filename).toString());  //s3.getUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
+      return s3.getUrl(bucketName, directoryPath + filename).toString();
 
     } catch (Exception e) {
       throw new RuntimeException("파일 업로드 오류", e);

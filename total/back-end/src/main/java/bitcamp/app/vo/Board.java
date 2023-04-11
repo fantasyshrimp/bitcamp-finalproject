@@ -20,7 +20,7 @@ public class Board {
   private int photoNo;
   private String fileName;
   private Member writer;
-
+  private GeneratedImg generatedImg;
 
   @JsonFormat(
       shape = Shape.STRING,

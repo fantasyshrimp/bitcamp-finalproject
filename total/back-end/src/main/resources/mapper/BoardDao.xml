@@ -7,6 +7,7 @@
   <resultMap type="board" id="boardMap">
     <id column="board_no" property="boardNo"/>
     <result column="origin_content" property="originContent"/>
+    <result column="summary_content" property="summaryContent"/>
     <result column="trans_content" property="transContent"/>
     <result column="tag" property="tag"/>
     <result column="like_cnt" property="likeCnt"/>
@@ -25,6 +26,12 @@
       <result column="filename" property="profilePhoto"/>
     </association>
   </resultMap>
+  
+  <insert id="insert" parameterType="board" 
+          useGeneratedKeys="true" keyProperty="boardNo" keyColumn="board_no">
+    insert into aim_board(member_no, origin_content, summary_content, trans_content)
+      values(#{writer.no}, #{originContent}, #{summaryContent}, #{transContent})
+  </insert>
 
   <select id="findAll" resultMap="boardMap" parameterType="string">
    SELECT 

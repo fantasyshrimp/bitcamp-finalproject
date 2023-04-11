@@ -36,7 +36,7 @@ repositories {
 }
 
 dependencies {
-	    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	  implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation ('org.springframework.boot:spring-boot-starter-web') {
       exclude group: 'org.springframework.boot', module:'spring-boot-starter-tomcat'
     }
@@ -54,6 +54,8 @@ dependencies {
     implementation 'org.springframework:spring-context:6.0.7'
     implementation 'org.springframework:spring-context-support:6.0.7'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+
 }
 
 //tasks.named('test') {

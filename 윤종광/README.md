@@ -700,4 +700,8 @@ Cross-Site Request Forgery
 
 ## 시행착오 또는 기억할 것
 
-### 1.
+### 1. DAO 는 owner 권한을 하나의 Table 씩 갖는다.
+
+Controller 가 여러 Service 를 사용해도 된다.
+Service 가 다른 Service 를 사용하면 안된다. Service 가 여러 DAO 를 사용해도 된다.
+DAO 는 하나의 Table 에 owner 권한을 갖는다. 다른 Table 은 viewer 권한을 갖는다.
