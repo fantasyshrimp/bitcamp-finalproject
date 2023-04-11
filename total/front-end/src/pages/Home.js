@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom";
 import Video from "./Main/Video";
 
-ReactDOM.render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Video />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 function Home() {

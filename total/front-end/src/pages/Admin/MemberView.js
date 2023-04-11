@@ -13,6 +13,7 @@ function MemberView(props) {
   const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
+  console.log(props);
 
   const location = useLocation();
   let no = location.state ? location.state.no : -1;
