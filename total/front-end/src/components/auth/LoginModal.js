@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import authBtnStyle from "./style";
 import axios from "axios";
-import NaverLogin from "./NaverLogin";
 import ExternalLogin from "./ExternalLogin";
 axios.defaults.withCredentials = true;
 
@@ -11,9 +10,8 @@ function LoginModal(props) {
   const [validPassword, setValidPassword] = useState(false);
 
   const handleClose = () => {
-    props.setLoginShow && props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
-    props.setShowExternalLogin && props.setShowExternalLogin(true);
-    props.setLoginShow(false); // AuthBtn.js 에서 상태 관리
+    props.setShowExternalLogin(true);
+    props.setLoginShow(false);
   };
 
   const handleEnter = (e) => {

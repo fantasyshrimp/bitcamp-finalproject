@@ -124,29 +124,6 @@ function AuthBtn(props) {
         </>
       )}
 
-      <SignupModal
-        signupShow={signupShow}
-        setSignupShow={setSignupShow}
-        setLoginShow={setLoginShow}
-        showExternalLogin={signupShow}
-        setShowExternalLogin={props.setShowExternalLogin}
-        isLoginModal={props.isLoginModal}
-        setIsLoginModal={props.setIsLoginModal}
-      />
-
-      <LoginModal
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-        handleShow={handleLoginShow}
-        loginShow={loginShow}
-        setLoginShow={setLoginShow}
-        setSignupShow={setSignupShow}
-        showExternalLogin={loginShow}
-        setShowExternalLogin={props.setShowExternalLogin}
-        isLoginModal={props.isLoginModal}
-        setIsLoginModal={props.setIsLoginModal}
-      />
-
       <AuthModal
         show={show}
         setShow={setShow}

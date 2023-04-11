@@ -5,6 +5,7 @@ import LoginModal from "../../components/auth/LoginModal";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [loginShow, setLoginShow] = useState(null);
 
   function handleCloseModal() {
     setModalOpen(false);
@@ -14,18 +15,13 @@ function FeedList(props) {
     setModalOpen(true);
   }
 
+  const handleLoginShow = () => {
+    props.setIsLoginModal(true);
+    props.setLoginShow(true);
+  };
+
   return (
     <>
-      <LoginModal
-        loginShow={props.loginShow}
-        setLoginShow={props.setLoginShow}
-        signupShow={props.signupShow}
-        setSignupShow={props.setSignupShow}
-        isLoginModal={props.isLoginModal}
-        setIsLoginModal={props.setIsLoginModal}
-        showExternalLogin={props.loginShow}
-        setShowExternalLogin={props.setShowExternalLogin}
-      />
       <div
         id="feed-list"
         className="feed-list"
@@ -41,7 +37,7 @@ function FeedList(props) {
             props.auth && ShowModal();
           }
           {
-            !props.auth && props.setLoginShow(true);
+            !props.auth && handleLoginShow();
           }
         }}
       >

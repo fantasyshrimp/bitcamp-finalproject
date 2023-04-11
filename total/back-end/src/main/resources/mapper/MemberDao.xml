@@ -61,7 +61,7 @@
       pw_update_dt,
       state,
       auth,
-      link
+      link,
       last_login_dt
     from
       aim_member

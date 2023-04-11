@@ -40,7 +40,7 @@ const NaverLogin = (props) => {
       >
         <div className="naver-login-logo" />
         <div className="text-light align-self-center">
-          {console.log("isLoginModal : ", props.isLoginModal)}
+          {/* {console.log("isLoginModal : ", props.isLoginModal)} */}
           네이버
           {props.isLoginModal ? " 로그인" : "로 시작하기"}
         </div>
