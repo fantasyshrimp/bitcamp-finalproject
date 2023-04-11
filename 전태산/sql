@@ -38,3 +38,31 @@ left join aim_public_range pr on hs.range_no=pr.range_no;
     update aim_hide_setting
     set range_no=1
     where member_no=12 and no=1;
+
+
+
+
+    select
+      at.type_no,
+      at.alarm_type,
+      a.member_no
+    from aim_alarm_type at
+    left join aim_alarm a
+      on a.type=at.type_no and a.member_no = 12
+    order by at.type_no;
+
+
+
+select count(range_no) from aim_hide_setting where no=5 and member_no=12 and range_no=2;
+select hs.range_no from aim_hide_setting hs inner join aim_public_range pr on hs.range_no=pr.range_no where no=5 and member_no=12
+
+
+   SELECT 
+    count(b.board_no)
+  FROM 
+    aim_board b
+  INNER JOIN aim_member m ON b.member_no = m.member_no 
+  INNER JOIN aim_generated_img i ON b.board_no = i.board_no
+  WHERE (select count(range_no) from aim_hide_setting hs where hs.no='5' and hs.member_no=m.member_no and range_no=2) != 1;
+
+  select count(board_no) from aim_board where member_no=5;

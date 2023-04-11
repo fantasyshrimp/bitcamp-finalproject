@@ -3,10 +3,9 @@ import axios from "axios";
 import "./SettingPrompt.css"
 
 function SettingPrompt(props) {
-  const {classKey, data, stateArray, settingType} = props;
+  const {classKey, data, stateArray, settingType, requestBody} = props;
   const [selectedValue, setSelectedValue] = useState(data.rangeState === 0 ? 1 : data.rangeState);
   const root = document.querySelector(':root');
-
   const controlClass = "selected-setting" + classKey
   useEffect(() => {
     document.querySelector(`.${controlClass}`).style.left = `${((data.rangeState === 0 ? 1 : data.rangeState ) - 1) * 30}px`;
@@ -30,16 +29,13 @@ function SettingPrompt(props) {
     //console.log(selectedValue + "에서" +selectedNo+ "으로이동");
     setSelectedValue(selectedNo);  //이거 왜이렇게 늦게들어감?
     //console.log(selectedValue);
+    requestBody[Object.keys(requestBody)[0]] = data.typeNo;
+    requestBody[Object.keys(requestBody)[1]] = selectedNo;
     //요기서 패치
     data.memberNo === 0 ?
-    axios.post(`http://localhost:8080/${settingType}`, {
-      typeNo: data.typeNo,
-      rangeNo: selectedNo
-    }) :
-    axios.put(`http://localhost:8080/${settingType}`, {
-      typeNo: data.typeNo,
-      rangeNo: selectedNo
-    });
+    axios.post(`http://localhost:8080/${settingType}`, requestBody) :
+    (props.isFlag ? axios.delete(`http://localhost:8080/${settingType}/${requestBody[Object.keys(requestBody)[0]]}`) 
+    : axios.put(`http://localhost:8080/${settingType}`, requestBody));
   };
 
 

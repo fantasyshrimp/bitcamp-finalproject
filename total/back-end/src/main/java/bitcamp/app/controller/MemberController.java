@@ -1,5 +1,6 @@
 package bitcamp.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,10 @@ import bitcamp.app.service.FollowService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.service.ObjectStorageService;
+import bitcamp.app.service.PublicSettingService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
+import bitcamp.app.vo.PublicSetting;
 import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
@@ -31,6 +34,7 @@ public class MemberController {
   @Autowired private FollowService followService;
   @Autowired private LikeService likeService;
   @Autowired private BoardService boardService;
+  @Autowired private PublicSettingService publicSettingService;
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -41,15 +45,29 @@ public class MemberController {
   }
 
   @GetMapping("{no}")
-  public Object view(@PathVariable int no) {
+  public Object view(@PathVariable int no, HttpSession session) {
+
+    boolean boardHideSetting = false;
+    for (PublicSetting ps : publicSettingService.view(no)) {
+      if (ps.getTypeNo() == 5 && ps.getRangeState() == 2) {
+        boardHideSetting = true;
+      }
+    }
     Map<String, Object> data = new HashMap<>();
     data.put("member", memberService.get(no));
 
-    List<Board> list = boardService.getByMemberNo(no);
-    for (Board b : list) {
-      b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
+
+    if (!boardHideSetting ||
+        (session.getAttribute("loginUser") != null &&
+        ((Member)session.getAttribute("loginUser")).getNo() == no)) {
+      List<Board> list = boardService.getByMemberNo(no);
+      for (Board b : list) {
+        b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
+      }
+      data.put("boards", list);
+    } else {
+      data.put("boards", new ArrayList<Board>());
     }
-    data.put("boards", list);
     //Following List는 실시간 변경이 필요하니 followController로 이동
     //data.put("followingList", memberService.getFollowings(no));
     data.put("followerList", memberService.getFollowers(no)); //얘는 실시간 변경이 필요없을까
@@ -76,14 +94,12 @@ public class MemberController {
 
     memberService.get(0);
 
-    System.out.println(loginUser);
     loginUser.setPassword(member.getPassword() != null && member.getPassword() != ""
         ?  member.getPassword() : loginUser.getPassword());
     loginUser.setGender(member.getGender() != loginUser.getGender() ?  member.getGender() : loginUser.getGender());
     loginUser.setBirthDate(member.getBirthDate() != null ?  member.getBirthDate() : loginUser.getBirthDate());
     loginUser.setTel(member.getTel() != null ?  member.getTel() : loginUser.getTel());
     loginUser.setBasicAddress(member.getBasicAddress() != null ?  member.getBasicAddress() : loginUser.getBasicAddress());
-    System.out.println(loginUser);
 
     memberService.update(loginUser);
     return new RestResult()

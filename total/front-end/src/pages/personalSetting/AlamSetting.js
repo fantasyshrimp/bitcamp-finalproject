@@ -2,12 +2,13 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import SettingPrompt from "./SettingPrompt"
 
-function PublicSetting(props) {
+function AlamSetting(props) {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/publicSetting")
+      .get("http://localhost:8080/alarmSetting")
       .then((response) => {
+        console.log(response);
         setData(response.data);
       });
   }, []);
@@ -28,12 +29,12 @@ function PublicSetting(props) {
         {data.length > 0 && data.map((settingList) => (
           <SettingPrompt key={settingList.typeNo} 
           classKey={settingList.typeNo} 
-          data={{typeNo: settingList.typeNo,
-            title: settingList.title, 
-            description: settingList.description, 
-            rangeState: settingList.rangeState,
+          data={{typeNo: settingList.typeNo, 
+            title: settingList.typeName,
+            description: settingList.description,
+            rangeState: settingList.memberNo === 0 ? 1 : 2,
             memberNo: settingList.memberNo}}
-          settingType={"publicSetting"} requestBody={{ typeNo: "", rangeNo: ""}} stateArray={[1,2]} />
+          settingType={"alarmSetting"} isFlag={true} requestBody={{ typeNo: "", memberNo: ""}} stateArray={[1,2]} />
         ))}
         </div>
       </div>
@@ -41,4 +42,4 @@ function PublicSetting(props) {
   );
 }
 
-export default PublicSetting;
+export default AlamSetting;
