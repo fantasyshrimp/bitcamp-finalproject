@@ -26,7 +26,7 @@
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
-    insert into aim_member(name, email, pw, pt, token)
+    insert into aim_member(name, email, pw, pt, token, link)
     values(#{nickname}, #{email}, sha2(#{password},256), 0, token, #{link})
   </insert>
   
@@ -61,7 +61,7 @@
       pw_update_dt,
       state,
       auth,
-      link
+      link,
       last_login_dt
     from
       aim_member

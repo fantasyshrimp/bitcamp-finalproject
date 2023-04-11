@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import FeedList from "./FeedList";
 
-function List() {
+function List(props) {
   const [data, setData] = useState([]);
   const [auth, setAuth] = useState(false);
 
@@ -50,7 +50,18 @@ function List() {
   return (
     <div id="feed-main">
       {data.map((item) => (
-        <FeedList item={item} auth={auth} />
+        <FeedList
+          item={item}
+          auth={auth}
+          loginShow={props.loginShow}
+          setLoginShow={props.setLoginShow}
+          signupShow={props.signupShow}
+          setSignupShow={props.setSignupShow}
+          isLoginModal={props.isLoginModal}
+          setIsLoginModal={props.setIsLoginModal}
+          showExternalLogin={props.showExternalLogin}
+          setShowExternalLogin={props.setShowExternalLogin}
+        />
       ))}
     </div>
   );
