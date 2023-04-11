@@ -3,7 +3,7 @@ import NaverLogin from "./NaverLogin";
 function ExternalLogin(props) {
   return (
     <>
-      <NaverLogin />
+      <NaverLogin isLoginModal={props.isLoginModal} />
     </>
   );
 }

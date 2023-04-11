@@ -6,7 +6,7 @@ function DarkModeSwitch() {
 
   const setMode = () => {
     const newMode = !isDarkMode;
-    localStorage.setItem("mode", newMode ? "light" : "dark");
+    localStorage.setItem("dark-light-mode", newMode ? "light" : "dark");
     setIsDarkMode(newMode);
   };
 
@@ -15,7 +15,7 @@ function DarkModeSwitch() {
   };
 
   useEffect(() => {
-    const savedMode = localStorage.getItem("mode");
+    const savedMode = localStorage.getItem("dark-light-mode");
     setIsDarkMode(savedMode === "light");
   }, []);
 

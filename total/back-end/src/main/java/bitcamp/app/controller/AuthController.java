@@ -91,13 +91,7 @@ public class AuthController {
       member.setLink("artify");
 
       memberService.add(member);
-
-
-      session.setAttribute("loginUser", member);
-
-      Member m = (Member) session.getAttribute("loginUser");
-
-      pointService.signupInsert(m.getNo());
+      pointService.signupInsert(member.getNo());
 
       return new RestResult()
           .setStatus(RestStatus.SUCCESS);

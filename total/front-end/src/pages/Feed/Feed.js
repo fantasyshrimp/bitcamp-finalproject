@@ -3,12 +3,21 @@ import "./Feed.css";
 import Sortbar from "../../components/Sortbar";
 import List from "./List";
 
-function Feed() {
+function Feed(props) {
   return (
     <div id="feed-body">
       <Sortbar />
       <div id="feed-body-sub">
-        <List />
+        <List
+          loginShow={props.loginShow}
+          setLoginShow={props.setLoginShow}
+          signupShow={props.signupShow}
+          setSignupShow={props.setSignupShow}
+          isLoginModal={props.isLoginModal}
+          setIsLoginModal={props.setIsLoginModal}
+          showExternalLogin={props.showExternalLogin}
+          setShowExternalLogin={props.setShowExternalLogin}
+        />
       </div>
     </div>
   );

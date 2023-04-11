@@ -1,12 +1,30 @@
 import React from "react";
-import BackgroundSlider from "./Main/BackgroundSlider";
-import Card from "./Main/Card";
+//import { createRoot } from "react-dom/client";
+import Video from "./Main/Video";
 
-function Home() {
+/*
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <Video />
+  </React.StrictMode>
+);
+*/
+
+function Home(props) {
   return (
     <div>
-      <BackgroundSlider />
-      <Card />
+      <Video
+        loginShow={props.loginShow}
+        setLoginShow={props.setLoginShow}
+        signupShow={props.signupShow}
+        setSignupShow={props.setSignupShow}
+        isLoginModal={props.isLoginModal}
+        setIsLoginModal={props.setIsLoginModal}
+        showExternalLogin={props.showExternalLogin}
+        setShowExternalLogin={props.setShowExternalLogin}
+      />
     </div>
   );
 }

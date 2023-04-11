@@ -7,15 +7,12 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
 function MemberView(props) {
-  const { show, setShow } = props; //{show: true, setShow: setModalShow}
+  console.log(props);
+  const { show, setShow, no } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [data, setData] = useState([]);
-
-  const location = useLocation();
-  let no = location.state ? location.state.no : -1;
 
   useEffect(() => {
     fetch("http://localhost:8080/admin/" + no)
@@ -23,14 +20,11 @@ function MemberView(props) {
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, [no]);
-
-  function handleColumnSelect(selectedColumn) {
-    console.log(`Selected column: ${selectedColumn}`);
-  }
+  console.log(data);
 
   return (
     <>
-      <Modal show={props.show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>MemberView Modal Test</Modal.Title>
         </Modal.Header>
@@ -39,7 +33,12 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>회원번호</Form.Label>
-                <Form.Control type="text" placeholder="no" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="no"
+                  autoFocus
+                  value={data.no}
+                />
               </div>
             </Form.Group>
 
