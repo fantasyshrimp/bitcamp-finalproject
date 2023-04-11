@@ -34,7 +34,21 @@ function App() {
             setSignupShow={setSignupShow}
           />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/"
+              element={
+                <Home
+                  isLoginModal={isLoginModal}
+                  setIsLoginModal={setIsLoginModal}
+                  showExternalLogin={showExternalLogin}
+                  setShowExternalLogin={setShowExternalLogin}
+                  loginShow={loginShow}
+                  setLoginShow={setLoginShow}
+                  signupShow={signupShow}
+                  setSignupShow={setSignupShow}
+                />
+              }
+            ></Route>
             <Route
               path="/Feed"
               element={

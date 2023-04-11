@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./Video.module.css";
 
-function Video() {
+function Video(props) {
+  const handleShowLogin = (e) => {
+    e.preventDefault();
+    props.setLoginShow(true);
+  };
+
   return (
     <div className={styles.frame}>
       <video className={styles.video} autoPlay muted loop>
@@ -20,7 +25,11 @@ function Video() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <a href="https://www.naver.com/" className={`${styles.button} button`}>
+        <a
+          href="/"
+          className={`${styles.button} button`}
+          onClick={handleShowLogin}
+        >
           ?클릭 시 로그인 모달 띄우기?
         </a>
       </div>

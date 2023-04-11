@@ -12,10 +12,19 @@ root.render(
 );
 */
 
-function Home() {
+function Home(props) {
   return (
     <div>
-      <Video />
+      <Video
+        loginShow={props.loginShow}
+        setLoginShow={props.setLoginShow}
+        signupShow={props.signupShow}
+        setSignupShow={props.setSignupShow}
+        isLoginModal={props.isLoginModal}
+        setIsLoginModal={props.setIsLoginModal}
+        showExternalLogin={props.showExternalLogin}
+        setShowExternalLogin={props.setShowExternalLogin}
+      />
     </div>
   );
 }
