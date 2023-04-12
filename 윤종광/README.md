@@ -712,7 +712,7 @@ DAO 는 하나의 Table 에 owner 권한을 갖는다. 다른 Table 은 viewer �
 
 ## 작업내용
 
-### 1. Clova Summary, Papago Translation property 에 중요정보 보관
+### 1. Clova Summary, Papago Translation property 에 중요정보 보관함
 
 ## 시행착오 또는 기억할 것
 
@@ -731,3 +731,34 @@ AtomicReference는 또한 null 값도 참조할 수 있습니다.
 
 주로 자바의 Concurrent 패키지에서 제공하는 ConcurrentHashMap, ConcurrentLinkedQueue 등에서 사용되어 안전하게 데이터를 처리합니다.
 ```
+
+### 2. 리눅스(macOS) 환경에서 그림 생성
+
+simple_cmd.py 실행 요구사항
+
+1. Python 3.8 설치
+
+2. 깃 클론
+   git clone https://github.com/AssemblyAI-Examples/stable-diffusion-keras.git
+   cd stable-diffusion-keras
+
+3. 가상 환경 설정
+   python -m venv venv
+
+# Activate (MacOS/Linux)
+
+source venv/bin/activate
+
+# Activate (Windows)
+
+.\venv\Scripts\activate.bat
+
+pip install -r requirements.txt
+
+4. python3 PATH 설정
+
+5. PYTHONPATH 설정
+
+~/.zshrc 에 아래 추가한다.
+
+export PYTHONPATH="/Users/bitcamp/git/stable-diffusion-keras/venv/Lib/site-packages:$PYTHONPATH"

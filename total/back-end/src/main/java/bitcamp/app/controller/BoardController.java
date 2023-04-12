@@ -77,13 +77,23 @@ public class BoardController {
       log.info("transContent >>> " + transContent);
 
       String fileName = UUID.randomUUID().toString() + ".png";
-      String baseDir = System.getProperty("user.dir");
-      // log.info(baseDir); // C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end
+      String baseDir = System.getProperty("user.dir");  // C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end
+      String scriptPath = "";
+      String command = "";
+      String osName = System.getProperty("os.name").toLowerCase();
 
-      String scriptPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
+      if (osName.contains("win")) {
+        scriptPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
+        command = "python \"" + scriptPath + "\" \"" + transContent + "\" " + fileName;
 
-      // String command = "python C:\\Users\\bitcamp\\git\\stable-diffusion-keras\\simple_cmd.py \"" + transContent + "\" " + fileName;
-      String command = "python \"" + scriptPath + "\" \"" + transContent + "\" " + fileName;
+      } else {
+        scriptPath = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
+        command = "python " + scriptPath + " \"" + transContent + "\" " + fileName;
+
+      }
+
+      log.info("osName >>> " + osName);
+      log.info("command >>> " + command);
 
       try {
         Process process = Runtime.getRuntime().exec(command);
@@ -99,7 +109,7 @@ public class BoardController {
         while ((s = stdError.readLine()) != null) {
           log.info("stdError >>> " + s);
         }
-        // log.info("명령 프롬프트 이미지 생성 완료!");
+        log.info("명령 프롬프트 이미지 생성 완료!");
 
         // 상대 경로를 사용하여 이미지 파일 디렉토리 경로를 설정합니다.
         String imageDir = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "results" + File.separator;
