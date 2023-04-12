@@ -8,20 +8,21 @@ import styles from "./MemberView.module.css";
 
 function MemberView(props) {
   console.log(props);
-  const { show, setShow, no } = props; //{show: true, setShow: setModalShow}
+  const { show, setShow, no, member } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
-
   const [data, setData] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:8080/admin/" + no)
       .then((response) => response.json())
       .then((data) => {
-        setData(data.data);
+        setData(data);
       })
       .catch((error) => console.error(error));
   }, []);
+
+  console.log(data);
 
   return (
     <>
@@ -37,7 +38,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="no"
-                  value={no}
+                  defaultValue={data && data.length > 0 ? data[0].no : "-"}
                   autoFocus
                 />
               </div>

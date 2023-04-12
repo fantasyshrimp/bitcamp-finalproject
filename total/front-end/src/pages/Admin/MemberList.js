@@ -6,7 +6,7 @@ import MemberView from "./MemberView";
 function MemberList() {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [selectedNo, setSelectedNo] = useState(null);
+  const [selectedNo, setSelectedNo] = useState();
 
   useEffect(() => {
     fetch("http://localhost:8080/admin")
@@ -14,9 +14,10 @@ function MemberList() {
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
+  console.log(data);
 
   function handleColumnSelect(selectedNo) {
-    const selectedColumn = data.filter((d) => d.no === selectedNo)[0];
+    //const selectedColumn = data.filter((d) => d.no === selectedNo)[0];
     console.log("Selected number:", selectedNo);
     setSelectedNo(selectedNo);
     setModalShow(true);
@@ -124,7 +125,12 @@ function MemberList() {
           </tbody>
         </Table>
       </div>
-      <MemberView show={modalShow} setShow={setModalShow} no={selectedNo} />
+      <MemberView
+        show={modalShow}
+        setShow={setModalShow}
+        no={selectedNo}
+        member={data}
+      />
     </>
   );
 }
