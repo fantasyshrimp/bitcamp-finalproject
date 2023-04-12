@@ -7,32 +7,35 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import bitcamp.app.NaverAiConfig;
 
-//@SpringBootApplication
+@Component
 public class NaverClovaSummary {
 
   static Logger log = LogManager.getLogger(NaverClovaSummary.class);
 
-  //  @Autowired private NaverAiConfig naverAiConfig;
+  @Autowired private NaverAiConfig naverAiConfig;
 
-  public static String summarize(String originContent) {
+  public String summarize(String originContent) {
 
-    String clientID = "jwr193c3gy";
-    String clientSecret = "GByFPLxpEZowCFWz0e9JLQYN4vqbbAEoKLarfe4F";
+    String clientId = naverAiConfig.getClientIdSummary();
+    String clientSecret = naverAiConfig.getClientSecretSummary();
+    String apiUrl = naverAiConfig.getUrlSummary();
     String language = "ko";
     String model = "general";
     String tone = "0";
     String summaryCount = "2";
-    String url = "https://naveropenapi.apigw.ntruss.com/text-summary/v1/summarize";
     String content = originContent;
     String summaryContent;
 
     try {
-      URL apiURL = new URL(url);
-      HttpURLConnection con = (HttpURLConnection) apiURL.openConnection();
+      URL url = new URL(apiUrl);
+      HttpURLConnection con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("POST");
 
-      con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientID);
+      con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
       con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
       con.setRequestProperty("Content-Type", "application/json");
 
@@ -61,7 +64,8 @@ public class NaverClovaSummary {
 
       summaryContent = response.toString();
 
-      //      log.info("summaryContent >>> "+ summaryContent);
+      log.info("summaryContent >>> "+ summaryContent);
+      //{"status":400,"error":{"errorCode":"E100","message":"Insufficient valid sentence"}}
 
       return summaryContent;
 

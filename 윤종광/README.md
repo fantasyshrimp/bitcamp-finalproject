@@ -712,8 +712,22 @@ DAO 는 하나의 Table 에 owner 권한을 갖는다. 다른 Table 은 viewer �
 
 ## 작업내용
 
-### 1.
+### 1. Clova Summary, Papago Translation property 에 중요정보 보관
 
 ## 시행착오 또는 기억할 것
 
-### 1.
+### 1. Java의 AtomicReference 클래스
+
+```
+Java의 AtomicReference는 멀티스레드 환경에서 안전하게 객체를 참조하고 수정할 수 있도록 도와주는 클래스입니다.
+
+일반적으로 객체를 참조하고 수정할 때는 여러 스레드에서 동시에 접근할 수 있기 때문에, 스레드 간의 경쟁 상태로 인해 예기치 않은 결과가 발생할 수 있습니다.
+
+하지만 AtomicReference는 내부적으로 CAS(Compare and Swap) 연산을 사용하여 스레드 간의 경쟁 상태를 해결합니다.
+
+이를 통해 멀티스레드 환경에서 안전하게 객체를 참조하고 수정할 수 있으며, synchronized나 Lock과 같은 동기화 방법을 사용하지 않고도 안전성을 보장할 수 있습니다.
+
+AtomicReference는 또한 null 값도 참조할 수 있습니다.
+
+주로 자바의 Concurrent 패키지에서 제공하는 ConcurrentHashMap, ConcurrentLinkedQueue 등에서 사용되어 안전하게 데이터를 처리합니다.
+```
