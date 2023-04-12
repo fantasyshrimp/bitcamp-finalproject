@@ -26,7 +26,6 @@ public class NaverPapagoTranslation {
     String apiURL = naverAiConfig.getUrlTrans();
     String source = "ko";
     String target = "en";
-    String transContent;
 
     try {
       String text = URLEncoder.encode(summaryContent, "UTF-8");
@@ -63,8 +62,9 @@ public class NaverPapagoTranslation {
       }
       br.close();
 
-      transContent = response.toString();
-
+      String transContent0 = response.toString();
+      log.info("transContent0 >>> " + transContent0);
+      String transContent = transContent0.replaceAll("[가-힣]", "");
       log.info("transContent >>> " + transContent);
 
       return transContent;

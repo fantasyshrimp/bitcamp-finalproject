@@ -787,3 +787,37 @@ export PYTHONPATH="/Users/bitcamp/git/stable-diffusion-keras/venv/Lib/site-packa
 3. 변수 값에 C:\Users\bitcamp\git\stable-diffusion-keras\venv\Lib\site-packages를 추가하고, 다른 경로와 구분하기 위해 세미콜론(;)을 사용합니다.
 4. 확인을 클릭하여 변경 사항을 저장하고 창을 닫습니다.
 ```
+
+### 3. 그림 생성 후 발생하는 에러
+
+그림 생성 후 아래 에러 발생한다.
+
+```
+2023-04-12T22:52:41.693+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:27.577017: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:27.577061: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.001240: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.005585: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cublas64_11.dll'; dlerror: cublas64_11.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.009817: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cublasLt64_11.dll'; dlerror: cublasLt64_11.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.014023: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cufft64_10.dll'; dlerror: cufft64_10.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.018360: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'curand64_10.dll'; dlerror: curand64_10.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.022578: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cusolver64_11.dll'; dlerror: cusolver64_11.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.026776: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cusparse64_11.dll'; dlerror: cusparse64_11.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.030964: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudnn64_8.dll'; dlerror: cudnn64_8.dll not found
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> 2023-04-12 22:46:34.030982: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1934] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+2023-04-12T22:52:41.694+09:00  INFO 2948 --- [nPool-worker-25] bitcamp.app.controller.BoardController   : stdError >>> Skipping registering GPU devices...
+```
+
+chatGPT 문의하니 아래 답변 왔다.
+
+```
+NVIDIA CUDA Toolkit 설치: https://developer.nvidia.com/cuda-downloads
+버전 11.0 이상이 필요합니다. 설치 후, 시스템 환경 변수 PATH에 CUDA 설치 경로를 추가하세요.
+cuDNN 라이브러리 설치: https://developer.nvidia.com/cudnn
+cuDNN v8 이상이 필요하며, 알맞은 CUDA 버전과 호환되는 것을 선택해야 합니다.
+cuDNN 라이브러리를 다운로드 받아 알맞은 CUDA 설치 폴더에 복사합니다.
+TensorFlow GPU 버전 설치: TensorFlow GPU 버전을 설치하려면, 아래 명령어를 사용하세요.
+Copy code
+pip install tensorflow-gpu
+설치 후, 프로그램을 다시 실행해 GPU 관련 에러가 해결되는지 확인하세요.
+자세한 내용은 TensorFlow GPU 지원 가이드를 참고하세요: https://www.tensorflow.org/install/gpu
+```
