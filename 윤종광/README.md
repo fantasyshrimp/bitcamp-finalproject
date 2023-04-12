@@ -732,33 +732,58 @@ AtomicReference는 또한 null 값도 참조할 수 있습니다.
 주로 자바의 Concurrent 패키지에서 제공하는 ConcurrentHashMap, ConcurrentLinkedQueue 등에서 사용되어 안전하게 데이터를 처리합니다.
 ```
 
-### 2. 리눅스(macOS) 환경에서 그림 생성
+### 2. Linux 환경에서 그림 생성
 
 simple_cmd.py 실행 요구사항
 
 1. Python 3.8 설치
 
 2. 깃 클론
-   git clone https://github.com/AssemblyAI-Examples/stable-diffusion-keras.git
-   cd stable-diffusion-keras
+
+```bash
+git clone https://github.com/AssemblyAI-Examples/stable-diffusion-keras.git
+cd stable-diffusion-keras
+```
 
 3. 가상 환경 설정
+
+```bash
    python -m venv venv
+```
 
-# Activate (MacOS/Linux)
+- Activate (MacOS/Linux)
 
+```bash
 source venv/bin/activate
+```
 
-# Activate (Windows)
+- Activate (Windows)
 
+```bash
 .\venv\Scripts\activate.bat
+```
 
+4. 라이브러리 설치
+
+```bash
 pip install -r requirements.txt
-
-4. python3 PATH 설정
+```
 
 5. PYTHONPATH 설정
 
+- Activate (MacOS/Linux)
+
 ~/.zshrc 에 아래 추가한다.
 
+```
 export PYTHONPATH="/Users/bitcamp/git/stable-diffusion-keras/venv/Lib/site-packages:$PYTHONPATH"
+```
+
+- Activate (Windows)
+
+```
+1. 제어판 > 시스템 > 고급 시스템 설정 > 환경 변수를 엽니다.
+2. "시스템 변수" 영역에서 "새로 만들기"를 클릭하거나 "PYTHONPATH" 변수가 이미 있는 경우 "편집"을 클릭합니다.
+3. 변수 값에 C:\Users\bitcamp\git\stable-diffusion-keras\venv\Lib\site-packages를 추가하고, 다른 경로와 구분하기 위해 세미콜론(;)을 사용합니다.
+4. 확인을 클릭하여 변경 사항을 저장하고 창을 닫습니다.
+```
