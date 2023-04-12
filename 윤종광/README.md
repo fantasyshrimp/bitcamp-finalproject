@@ -698,6 +698,8 @@ Cross-Site Request Forgery
 
 ### 1. 로그인, 회원가입 모달 어디서나 쓸수 있게 App.js 로 이동
 
+### 2. Generate 클릭시 그림 생성해서 ObjectStorage 에 저장 및 DB 에 주소 저장 완료
+
 ## 시행착오 또는 기억할 것
 
 ### 1. DAO 는 owner 권한을 하나의 Table 씩 갖는다.
@@ -705,3 +707,13 @@ Cross-Site Request Forgery
 Controller 가 여러 Service 를 사용해도 된다.
 Service 가 다른 Service 를 사용하면 안된다. Service 가 여러 DAO 를 사용해도 된다.
 DAO 는 하나의 Table 에 owner 권한을 갖는다. 다른 Table 은 viewer 권한을 갖는다.
+
+# 4월12일 수
+
+## 작업내용
+
+### 1.
+
+## 시행착오 또는 기억할 것
+
+### 1.

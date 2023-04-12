@@ -56,6 +56,17 @@ function SignupModal(props) {
 
   function checkNickname() {
     const nickname = document.getElementsByName("nickname")[0].value;
+    const regex = new RegExp(/^[a-zA-z0-9가-힣-_.]+$/);
+
+    if (regex.test(nickname) || nickname.length === 0) {
+      nickname.length === 0 ? setValidNickname(false) : setValidNickname(true);
+      document.querySelector("#nicknameHelpBlock").innerText = "";
+    } else {
+      document.querySelector("#nicknameHelpBlock").innerText =
+        "특수문자는 - _ . 만 사용 가능합니다.";
+      setValidNickname(false);
+      return;
+    }
 
     axios
       .get("http://localhost:8080/auth/checknickname", {
