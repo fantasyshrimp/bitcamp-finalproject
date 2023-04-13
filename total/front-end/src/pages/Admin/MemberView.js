@@ -7,22 +7,20 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
 function MemberView(props) {
-  console.log(props);
-  const { show, setShow, no, member } = props; //{show: true, setShow: setModalShow}
+  //console.log(props);
+  const { show, setShow, no, viewData } = props; //{show: true, setShow: setModalShow}
 
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
+  const [nickname, setNickname] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:8080/admin/" + no)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
 
-  console.log(data);
+  console.log(no);
+  console.log(viewData);
+  //console.log(viewdata.nickname);
 
   return (
     <>
@@ -38,8 +36,9 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="no"
-                  defaultValue={data && data.length > 0 ? data[0].no : "-"}
+                  defaultValue={no}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -47,7 +46,13 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>닉네임</Form.Label>
-                <Form.Control type="text" placeholder="nickname" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="nickname"
+                  autoFocus
+                  value={nickname}
+                  onChange={handleNicknameChange}
+                />
               </div>
             </Form.Group>
 
