@@ -123,6 +123,7 @@ function ProfileUpper(props) {
         isOpen={pointModal}
         onRequestClose={pointModalHandler}
         memberNo={props.member.no}
+        totalpoint={point}
       />
     </>
   );
