@@ -15,7 +15,6 @@ function MemberList() {
       .then((data) => setData(data))
       .catch((error) => console.error(error));
   }, []);
-  console.log(data);
 
   function handleColumnSelect(selectedNo) {
     console.log("Selected number:", selectedNo);
@@ -132,12 +131,7 @@ function MemberList() {
           </tbody>
         </Table>
       </div>
-      <MemberView
-        show={modalShow}
-        setShow={setModalShow}
-        no={selectedNo}
-        data={viewData}
-      />
+      <MemberView show={modalShow} setShow={setModalShow} no={selectedNo} />
     </>
   );
 }
