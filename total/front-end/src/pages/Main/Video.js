@@ -12,13 +12,13 @@ function Video(props) {
       <video className={styles.video} autoPlay muted loop>
         <source src="video.mp4" type="video/mp4" />
       </video>
-      <div className={`${styles.container} ${styles.contain}`}>
-        <h1>
-          <span>Artify</span>
+      <div className={styles.container}>
+        <h1 className={styles.h1}>
+          <span className={styles.span}>Artify</span>
           <br />
           AI가 그려주는 그림
         </h1>
-        <p>
+        <p className={styles.p}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
