@@ -54,15 +54,16 @@ public class AlarmController {
           .setData("로그인 요망");
     }
 
-
-    List<Object> data = new ArrayList<>();
-    for (Log l : alarmService.getLogs(12)) {
+    Map<String, Object> data = new HashMap<>();
+    List<Object> logData = new ArrayList<>();
+    data.put("receiver", loginUser);
+    for (Log l : alarmService.getLogs(loginUser.getNo())) {
       Map<String, Object> part = new HashMap<>();
-      part.put("receiver", loginUser);
       part.put("giver", memberService.get(l.getMemberNo()));
       part.put("log", l);
-      data.add(part);
+      logData.add(part);
     }
+    data.put("logData", logData);
 
     return data;
   }

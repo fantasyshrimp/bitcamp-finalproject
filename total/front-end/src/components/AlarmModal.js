@@ -50,6 +50,12 @@ function AlarmModal(props) {
   const navigateAllAlam = () => {
     setAlarmShow(false);
     navigate("/personalSetting", { state: { menuNo: 3 } });
+    const currentUrl = window.location.href;
+    const rootUrl = window.location.origin;
+    const path = currentUrl.replace(rootUrl, "");
+    if (path === "/personalSetting") {
+      window.location.reload();
+    }
   }
 
   return (
@@ -79,8 +85,8 @@ function AlarmModal(props) {
           style={{ maxHeight: "calc(56px * 5)", overflowY: "auto" }}
         >
           <Container className="">
-            {alarms && alarms.length > 0 ? (
-              alarms.slice(0, displayedAlarmsCount).map((element) => (
+            {alarms && alarms.logData.length > 0 ? (
+              alarms.logData.slice(0, displayedAlarmsCount).map((element) => (
                 <Row className="p-2 alarm-modal-row" key={element.log.logNo}>
                   <div
                     style={{
@@ -142,7 +148,7 @@ function AlarmModal(props) {
               </div>
             )}
 
-            {alarms && alarms.length > displayedAlarmsCount && (
+            {alarms && alarms.logData.length > displayedAlarmsCount && (
               <div className="p-1 d-flex justify-content-center">
                 <div
                   className="alarm-read-more"

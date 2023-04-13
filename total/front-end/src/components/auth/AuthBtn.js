@@ -59,7 +59,7 @@ function AuthBtn(props) {
   }, [currentUser]);
 
   useEffect(() => {
-    if (alarms !== null && alarms.length > 0) {
+    if (alarms !== null && alarms.logData.length > 0) {
       document.querySelector("#auth-has-alarm").style.visibility = "visible";
     }
   }, [alarms]);

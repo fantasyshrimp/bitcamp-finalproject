@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 
-function TempAlarmData({data}) {
-    const {log, giver, receiver} = data;
+function TempAlarmData(props) {
+    const {log, giver} = props.data;
+    const receiver = props.receiver;
     const [isMouseOver, setIsMouseOver] = useState(false);
     const navigate = useNavigate();
     //navigate('/Profile', { state: { no: no } });
@@ -24,10 +25,10 @@ function TempAlarmData({data}) {
           }});
           break;
         case 21:
-          // navigate('/Profile', { state: { 
-          //   no: receiver.no,
-          //   directModal: { type: "reply", no: log.contentNo }
-          // }}); 내 게시글에 댓글이 달림
+          navigate('/Profile', { state: { 
+            no: receiver.no,
+            directModal: { type: "reply", no: log.contentNo }
+          }}); //내 게시글에 댓글이 달림
           break;
         case 24:          
           console.log("내댓글에 좋아요 로그");
@@ -54,14 +55,24 @@ function TempAlarmData({data}) {
     <div onClick={moveDirect}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
-      style={{width: "80%", height: "60px", minWidth: "600px",
-      padding: "5px 0px", marginLeft: "50px",
-      backgroundColor: isMouseOver ? "#007bff" : "#343a40",
+      style={{width: "100%", height: "60px", minWidth: "600px",
+      padding: "5px 0px", marginLeft: "50px", 
+      display: "flex",
+      backgroundColor: isMouseOver ? "#007bff" : "#00000000",
+      boxSizing: "border-box", borderBottom: "1px solid white",
       color: "white"
       }} >
-      <img src={giver.profilePhoto} style={{width: "50px", height: "50px", borderRadius: "50%"}}/>
-      {giver.nickname}님이 {log.contentNo}번  {log.content} {log.recordDate}
-    </div>);
+      <div style={{width: "80%"}}>
+        <img src={giver.profilePhoto} 
+          style={{width: "50px", height: "50px", marginRight: "10px",
+          borderRadius: "50%", backgroundColor: "white"}}/>
+        <span> {giver.nickname}님이 {log.content}</span>
+      </div>
+      <div style={{paddingLeft: "5px", borderLeft: "1px solid gray"}}>
+        {log.recordDate}
+      </div>      
+    </div>
+    );
 }
 
 export default TempAlarmData;

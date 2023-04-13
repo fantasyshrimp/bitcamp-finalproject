@@ -6,15 +6,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.app.dao.BoardDao;
 import bitcamp.app.dao.GeneratedImgDao;
+import bitcamp.app.dao.LogDao;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.GeneratedImg;
+import bitcamp.app.vo.Log;
 
 @Service
 public class DefaultBoardService implements BoardService{
 
   @Autowired private BoardDao boardDao;
   @Autowired private GeneratedImgDao generatedImgDao;
+  @Autowired private LogDao logDao;
 
   @Transactional
   @Override
@@ -25,6 +28,12 @@ public class DefaultBoardService implements BoardService{
     generatedImg.setFilename(board.getGeneratedImg().getFilename());
     generatedImg.setBoardNo(board.getBoardNo());
     generatedImgDao.insert(generatedImg);
+
+    Log log = new Log();
+    log.setMemberNo(board.getWriter().getNo());
+    log.setContentNo(board.getBoardNo());
+    log.setTypeNo(11);
+    logDao.insert(log);
   }
 
   @Override
