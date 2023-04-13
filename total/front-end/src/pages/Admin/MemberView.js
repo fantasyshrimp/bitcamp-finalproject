@@ -5,22 +5,29 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
+import axios from "axios";
 
 function MemberView(props) {
-  //console.log(props);
-  const { show, setShow, no, viewData } = props; //{show: true, setShow: setModalShow}
-
+  const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
   const [nickname, setNickname] = useState("");
-
-  const handleNicknameChange = (event) => {
-    setNickname(event.target.value);
-  };
-
   console.log(no);
-  console.log(viewData);
-  //console.log(viewdata.nickname);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/admin/` + no);
+        const data = await response.json();
+        setData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no, setData]);
+
+  console.log("data", data);
 
   return (
     <>
@@ -36,7 +43,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="no"
-                  defaultValue={no}
+                  value={data.no}
                   autoFocus
                   readOnly
                 />
@@ -49,9 +56,8 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="nickname"
+                  value={data.nickname}
                   autoFocus
-                  value={nickname}
-                  onChange={handleNicknameChange}
                 />
               </div>
             </Form.Group>
@@ -59,28 +65,48 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>이메일</Form.Label>
-                <Form.Control type="email" placeholder="email" autoFocus />
+                <Form.Control
+                  type="email"
+                  placeholder="email"
+                  value={data.email}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>비밀번호</Form.Label>
-                <Form.Control type="text" placeholder="password" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="password"
+                  value={data.password}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>가입일</Form.Label>
-                <Form.Control type="text" placeholder="createdDate" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="createdDate"
+                  value={data.createdDate}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>성별</Form.Label>
-                <Form.Control type="text" placeholder="gender" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="gender"
+                  value={data.gender}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
@@ -90,6 +116,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="profilePhoto"
+                  value={data.profilePhoto}
                   autoFocus
                 />
               </div>
@@ -101,6 +128,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="basicAddress"
+                  value={data.basicAddress}
                   autoFocus
                 />
               </div>
@@ -109,7 +137,12 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>포인트</Form.Label>
-                <Form.Control type="text" placeholder="point" autoFocus />
+                <Form.Control
+                  type="text"
+                  placeholder="point"
+                  value={data.point}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
@@ -119,6 +152,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="information"
+                  value={data.information}
                   autoFocus
                 />
               </div>
@@ -127,14 +161,24 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>생년월일</Form.Label>
-                <Form.Control type="email" placeholder="birthDate" autoFocus />
+                <Form.Control
+                  type="email"
+                  placeholder="birthDate"
+                  value={data.birthDate}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>전화번호</Form.Label>
-                <Form.Control type="email" placeholder="tel" autoFocus />
+                <Form.Control
+                  type="email"
+                  placeholder="tel"
+                  value={data.tel}
+                  autoFocus
+                />
               </div>
             </Form.Group>
 
@@ -146,6 +190,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="passwordDate"
+                  value={data.passwordDate}
                   autoFocus
                 />
               </div>
@@ -157,6 +202,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="accountState"
+                  value={data.accountState}
                   autoFocus
                 />
               </div>
@@ -165,7 +211,12 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>권한레벨</Form.Label>
-                <Form.Control type="email" placeholder="authLevel" autoFocus />
+                <Form.Control
+                  type="email"
+                  placeholder="authLevel"
+                  value={data.authLevel}
+                  autoFocus
+                />
               </div>
             </Form.Group>
           </Form>
