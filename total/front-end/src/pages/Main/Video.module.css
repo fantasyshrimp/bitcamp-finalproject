@@ -35,17 +35,17 @@
   padding: 0 3rem;
 }
 
-.container h1 {
+.h1 {
   font-size: 4rem;
   letter-spacing: 4px;
   line-height: 1;
 }
 
-.container h1 span {
+.span {
   font-size: 2em;
 }
 
-.container p {
+.p {
   font-size: 1.3rem;
   width: 52%;
 
