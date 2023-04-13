@@ -7,6 +7,7 @@ Modal.setAppElement("#root");
 
 function PointModal(props) {
   const [pointLog, setPointLog] = useState([]);
+  let toPoint = props.totalpoint;
 
   useEffect(() => {
     axios.get("http://localhost:8080/point/log").then((response) => {
@@ -34,6 +35,13 @@ function PointModal(props) {
     }
   }
 
+  const numberWithCommas = (number) => {
+    // 천의 자리마다 , 찍기
+    return number
+      ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      : "0";
+  };
+
   return (
     <Modal
       isOpen={props.isOpen}
@@ -54,21 +62,31 @@ function PointModal(props) {
       }}
     >
       <div id="point">
-        {pointLog.map((item) => (
-          <div id="point-log">
-            <div id="point-log-content">
-              <div id="point-log-title">{getTypeName(item.type)}</div>
-              {props.memberNo === item.getMemberNo && (
-                <div id="point-log-getpoint">+ {item.point}</div>
-              )}
-              {props.memberNo !== item.getMemberNo && (
-                <div id="point-log-sendpoint">- {item.point}</div>
-              )}
+        {pointLog.map((item) => {
+          if (props.memberNo === item.getMemberNo) {
+            toPoint -= item.point;
+          } else if (props.memberNo !== item.getMemberNo) {
+            toPoint += item.point;
+          }
+
+          return (
+            <div id="point-log">
+              <div id="point-log-content">
+                <div id="point-log-title">{getTypeName(item.type)}</div>
+                {props.memberNo === item.getMemberNo && (
+                  <div id="point-log-getpoint">+ {item.point}</div>
+                )}
+                {props.memberNo !== item.getMemberNo && (
+                  <div id="point-log-sendpoint">- {item.point}</div>
+                )}
+              </div>
+              <div id="point-log-time">{item.getDt}</div>
+              <div id="point-log-total">
+                이전 포인트 : {numberWithCommas(toPoint)}
+              </div>
             </div>
-            <div id="point-log-time">{item.getDt}</div>
-            {/* <div id="point-log-total">누적포인트: 13,200</div> */}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Modal>
   );
