@@ -5,6 +5,7 @@ import MemberView from "./MemberView";
 
 function MemberList() {
   const [data, setData] = useState([]);
+  const [viewData, setViewData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
 
@@ -17,10 +18,16 @@ function MemberList() {
   console.log(data);
 
   function handleColumnSelect(selectedNo) {
-    //const selectedColumn = data.filter((d) => d.no === selectedNo)[0];
     console.log("Selected number:", selectedNo);
     setSelectedNo(selectedNo);
     setModalShow(true);
+
+    fetch("http://localhost:8080/admin/" + selectedNo)
+      .then((response) => response.json())
+      .then((viewData) => {
+        setViewData(viewData);
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
@@ -129,7 +136,7 @@ function MemberList() {
         show={modalShow}
         setShow={setModalShow}
         no={selectedNo}
-        member={data}
+        data={viewData}
       />
     </>
   );
