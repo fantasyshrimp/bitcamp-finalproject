@@ -5,6 +5,7 @@ import { PencilSquare } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
 import ImageResizer from "react-image-file-resizer";
 import SettingInput from "./SettingInput"
+import SettingRadio from "./SettingRadio"
 
 function ModifyProfile(props) {
   const navigate = useNavigate();
@@ -150,7 +151,7 @@ function ModifyProfile(props) {
                 setCondition(false);
                 return false;
               }} comment={"비밀번호가 다릅니다."}/>
-          <SettingInput title={"성별"} placeholder={"radio로?"} value={gender} setValue={setGender}
+          <SettingRadio title={"성별"} options={["미정","남","여"]} value={gender} setValue={setGender}
             check={()=>{return true}} comment={""}/>
           <SettingInput title={"생년월일"} placeholder={"ex) 990101"} value={birthdate} setValue={setBirthdate}
             check={(value)=>{
