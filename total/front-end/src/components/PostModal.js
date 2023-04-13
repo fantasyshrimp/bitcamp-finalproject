@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Modal, Form, Spinner } from "react-bootstrap";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 function PostModal(props) {
   const { show, setShow } = props;
+  const navigate = useNavigate(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,7 +22,7 @@ function PostModal(props) {
   }, [currentUser]);
 
   const HandleClickGenerate = () => {
-    const postText = document.querySelector("#post-text").value;
+    let postText = document.querySelector("#post-text").value;
 
     if (postText.length === 0) {
       document.querySelector("#postHelpBlock").innerText =
@@ -53,7 +55,7 @@ function PostModal(props) {
         } else {
           setCurrentUser(null);
           alert("로그인 후 이용하세요");
-          window.location.reload();
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -93,6 +95,8 @@ function PostModal(props) {
 
   const handlePostChange = () => {
     document.querySelector("#postHelpBlock").innerText = "";
+    document.querySelector("#countChar").innerText =
+      document.querySelector("#post-text").value.length;
   };
 
   return (
@@ -131,7 +135,10 @@ function PostModal(props) {
                 className="bg-dark text-light"
                 onChange={handlePostChange}
               />
-              <Form.Text id="postHelpBlock" muted></Form.Text>
+              <div className="d-flex justify-content-between">
+                <Form.Text id="postHelpBlock" muted></Form.Text>
+                <Form.Text id="countChar" muted></Form.Text>
+              </div>
             </Form.Group>
           </Form>
         </Modal.Body>

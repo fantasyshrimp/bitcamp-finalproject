@@ -6,8 +6,7 @@ import com.google.gson.JsonParser;
 public class GsonFilter {
 
   public static String summary(String summaryContentObj) {
-    String summaryContentRaw = summaryContentObj;
-    JsonObject jsonObj = JsonParser.parseString(summaryContentRaw).getAsJsonObject();
+    JsonObject jsonObj = JsonParser.parseString(summaryContentObj).getAsJsonObject();
     String summaryContent = jsonObj.get("summary").getAsString().replace("\n", " ");
 
     return summaryContent;

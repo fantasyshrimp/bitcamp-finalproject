@@ -39,11 +39,8 @@ out/
 ### node_modules ###
 node_modules/
 
-### naver property ###
-naver.properties
-
-### mail auth property ###
-mailAuth.properties
+### properties ###
+*.properties
 
 ### generated image folder ###
-src/main/pythonapp/results/
+pythonapp/results/*
