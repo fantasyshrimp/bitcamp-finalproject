@@ -1,5 +1,6 @@
 package bitcamp.app.service.impl;
 
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,11 @@ public class DefaultPointService implements PointService {
   @Override
   public void userInsert(Point point) {
     pointDao.userInsert(point);
+  }
+
+  @Override
+  public List<Point> findPointLog(int no) {
+    return pointDao.findPointLog(no);
   }
 
 }

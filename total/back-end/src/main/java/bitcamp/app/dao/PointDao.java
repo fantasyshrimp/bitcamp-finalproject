@@ -1,11 +1,13 @@
 package bitcamp.app.dao;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import bitcamp.app.vo.Point;
 
 @Mapper
 public interface PointDao {
 
+  List<Point> findPointLog(int no);
   void userInsert(Point point);
   int findPointByBoard(int no);
   int findPoint(int no);

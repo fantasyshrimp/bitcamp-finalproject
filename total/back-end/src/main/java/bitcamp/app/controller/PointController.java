@@ -1,5 +1,6 @@
 package bitcamp.app.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,13 @@ public class PointController {
   public int findPoint(@PathVariable int no) {
 
     return pointService.findPoint(no);
+  }
+
+  @GetMapping("log")
+  public List<Point> findPointLog(HttpSession session) {
+    Member m = (Member) session.getAttribute("loginUser");
+
+    return pointService.findPointLog(m.getNo());
   }
 
   @GetMapping("board/{no}")
