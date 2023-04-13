@@ -83,80 +83,32 @@ public class BoardController {
       String fileName = UUID.randomUUID().toString() + ".png";
       
       // GPU 로 요청 보냄
-      // http://localhost:8085
       HttpClient httpClient = HttpClient.newHttpClient();
-      String url = "http://localhost:8085";
-      
+      String url = "http://localhost:8085/generate";
       String requestBody = "transContent=" + URLEncoder.encode(transContent, StandardCharsets.UTF_8) + "&fileName=" + fileName;
+      
       HttpRequest httpRequest = HttpRequest.newBuilder()
           .uri(URI.create(url))
           .header("Content-Type", "application/x-www-form-urlencoded")
           .POST(HttpRequest.BodyPublishers.ofString(requestBody))
           .build();
+      String fileUrl = "";
       
       try {
         HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        log.info("Response status code: " + httpResponse.statusCode());
-        log.info("Response body: " + httpResponse.body());
+        
+        // GPU 응답 옴!
+        log.info("Response status code >>> " + httpResponse.statusCode());
+        log.info("Response body >>> " + httpResponse.body());
+        
+        fileUrl = httpResponse.body();
         
       } catch (IOException | InterruptedException e) {
           log.error("Error sending POST request", e);
       }
       
-//      String scriptPath = "";
-//      String command = "";
-//      String osName = System.getProperty("os.name").toLowerCase();
-
-//      if (osName.contains("win")) {
-//        scriptPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
-//        command = "python \"" + scriptPath + "\" \"" + transContent + "\" " + fileName;
-//
-//      } else {
-//        scriptPath = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
-//        command = "python " + scriptPath + " \"" + transContent + "\" " + fileName;
-//
-//      }
-
-//      log.info("osName >>> " + osName);
-//      log.info("command >>> " + command);
-
-//      try {
-//        Process process = Runtime.getRuntime().exec(command);
-//        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-//        String s = null;
-//
-//        while ((s = stdInput.readLine()) != null) {
-//          log.info("stdInput >>> " + s);
-//          //클라이언트에게 진행상태 바로 % 표시
-//        }
-//
-//        while ((s = stdError.readLine()) != null) {
-//          log.info("stdError >>> " + s);
-//        }
-      
-      // GPU 응답 옴!
         log.info("명령 프롬프트 이미지 생성 완료!");
         
-        String baseDir = System.getProperty("user.dir");  // C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end
-
-        // 상대 경로를 사용하여 이미지 파일 디렉토리 경로를 설정합니다.
-        String imageDir = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "results" + File.separator;
-        //log.info("imageDir >>> " + imageDir); //imageDir >>> src\main\pythonapp\results\
-
-        // 이미지 파일의 전체 경로를 생성합니다.
-        String filePath = baseDir + File.separator + imageDir + fileName;
-        //log.info("filePath >>> " + filePath); //filePath >>> C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end\src\main\pythonapp\results\f2df4782-2720-4b5a-8e85-f6b512c0a465.png
-
-        // 이미지 파일을 File 객체에 담습니다.
-        File file = new File(filePath);
-
-        // file 을 multipartFile 로 변환
-        MultipartFile multipartFile = new CustomMultipartFile(file);
-
-        String fileUrl = objectStorageService.uploadFile(bucketName, "board/", multipartFile);
-        // log.info("fileUrl >>> " + fileUrl);  //fileUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
-
         String summaryContent = summaryContentAtomicRef.get();
         // log.info("summaryContent >>> " + summaryContent);  // 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
 
@@ -177,13 +129,6 @@ public class BoardController {
 
         //사용자에게 완료 표시 및 알람
         log.info("DB에 게시글 및 파일 업로드 완료함");
-
-
-
-//      } catch (IOException e) {
-//        log.error("명령 프롬프트 에러 발생!: " + command, e);
-//      }
-
 
     });
 
