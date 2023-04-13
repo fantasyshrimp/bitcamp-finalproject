@@ -9,7 +9,8 @@ import FollowBtn from "../profile/FollowBtn";
 import Report from "./Report";
 import getTimeReply from "../../utils/DateReply";
 import getTimeBoard from "../../utils/DateBoard";
-import BoardMenu from "./BoardMenu";
+import BoardUpdate from "./BoardUpdate";
+import BoardDelete from "./BoardDelete";
 import Money from "./Money";
 
 function FeedModal(props) {
@@ -17,7 +18,8 @@ function FeedModal(props) {
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMoneyModalOpen, setIsMoneyModalOpen] = useState(false);
   const [point, setPoint] = useState();
 
@@ -29,8 +31,12 @@ function FeedModal(props) {
     setIsModalOpen(false);
   };
 
-  const MenuModalHandler = () => {
-    setIsMenuModalOpen(!isMenuModalOpen);
+  const UpdateModalHandler = () => {
+    setisUpdateModalOpen(!isUpdateModalOpen);
+  };
+
+  const DeleteModalHandler = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
   const MoneyModalHandler = () => {
@@ -123,7 +129,7 @@ function FeedModal(props) {
             onClick={MoneyModalHandler}
           ></div>
           <div id="modal-money">{numberWithCommas(point)}</div>
-          {isMoneyModalOpen && (
+          {props.user.data.no !== writerNo && isMoneyModalOpen && (
             <Money
               boardNo={boardNo}
               writerNo={writerNo}
@@ -144,29 +150,6 @@ function FeedModal(props) {
           <div id="feed-modal-follow">
             <FollowBtn followerNo={props.data.writer.no} />
           </div>
-          <div
-            id="feed-modal-setting"
-            style={{
-              backgroundImage: `url(/menu.png)`,
-              backgroundSize: "cover",
-            }}
-            onClick={MenuModalHandler}
-          ></div>
-          {isMenuModalOpen && (
-            <BoardMenu
-              boardNo={boardNo}
-              MenuModalHandler={MenuModalHandler}
-              originContent={props.data.originContent}
-              closeModal={props.closeModal}
-            />
-          )}
-          {/* <div
-            id="feed-modal-like"
-            style={{
-              backgroundImage: `url(/menu.png)`,
-              backgroundSize: "cover",
-            }}
-          ></div> */}
         </div>
         <div id="feed-modal-originalcontent" key={props.data.originContent}>
           <p>{props.data.originContent}</p>
@@ -175,10 +158,38 @@ function FeedModal(props) {
           </div>
           <div id="feed-modal-tag" key={props.data.tag}>
             {props.data.tag}
-            <div id="feed-modal-boardreport" onClick={openModal}>
-              신고하기
-            </div>
+            {props.user.data.no !== writerNo && (
+              <div id="feed-modal-boardreport" onClick={openModal}>
+                신고하기
+              </div>
+            )}
+            {props.user.data.no === writerNo && (
+              <>
+                <div id="feed-modal-boarddelete" onClick={DeleteModalHandler}>
+                  삭제하기
+                </div>
+                <div id="feed-modal-boardupdate" onClick={UpdateModalHandler}>
+                  수정하기
+                </div>
+              </>
+            )}
           </div>
+          {isUpdateModalOpen && (
+            <BoardUpdate
+              boardNo={boardNo}
+              UpdateModalHandler={UpdateModalHandler}
+              originContent={props.data.originContent}
+              closeModal={props.closeModal}
+            />
+          )}
+          {isDeleteModalOpen && (
+            <BoardDelete
+              boardNo={boardNo}
+              DeleteModalHandler={DeleteModalHandler}
+              originContent={props.data.originContent}
+              closeModal={props.closeModal}
+            />
+          )}
           {isModalOpen && (
             <Report boardNo={boardNo} handleCloseModal={handleCloseModal} />
           )}
@@ -235,6 +246,9 @@ function FeedModal(props) {
               </div>
             </>
           ))}
+          {data.length === 0 && (
+            <div id="nocommnet">댓글이 없습니다. 첫 댓글을 작성해보세요 !</div>
+          )}
         </div>
       </div>
     </>

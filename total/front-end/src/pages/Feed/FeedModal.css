@@ -434,8 +434,9 @@
 #menu-text {
   width: 90%;
   height: 85%;
-  margin-left: 5%;
+  text-align: center;
   margin-top: 15%;
+  margin-left: 5%;
 }
 
 #modal-money-icon {
@@ -529,4 +530,52 @@
   color: white;
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
+}
+
+#feed-modal-boarddelete {
+  height: 15px;
+  width: 15%;
+  float: right;
+  color: #e75656;
+  font-size: 7px;
+  text-align: right;
+  margin-top: 8px;
+  margin-right: 20px;
+}
+
+#feed-modal-boardupdate {
+  height: 15px;
+  width: 15%;
+  float: right;
+  color: #717171;
+  font-size: 7px;
+  text-align: right;
+  margin-top: 8px;
+}
+
+#feed-modal-boardupdate:hover,
+#feed-modal-boarddelete:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+}
+
+#modal-money-icon:hover::before {
+  /* content: "0"; */
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  width: auto;
+}
+
+#nocommnet {
+  color: #717171;
+  margin-top: 100px;
 }
