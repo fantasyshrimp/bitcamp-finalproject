@@ -4,14 +4,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import bitcamp.app.dao.LogDao;
 import bitcamp.app.dao.ReplyDao;
 import bitcamp.app.service.ReplyService;
+import bitcamp.app.vo.Log;
 import bitcamp.app.vo.Reply;
 
 @Service
 public class DefaultReplyService implements ReplyService{
 
   @Autowired private ReplyDao replyDao;
+  @Autowired private LogDao logDao;
 
   @Override
   public List<Reply> get(int no) {
@@ -47,6 +50,12 @@ public class DefaultReplyService implements ReplyService{
   @Override
   public void like(Reply reply) {
     replyDao.like(reply);
+    Log log = new Log();
+    log.setMemberNo(reply.getMemberNo());
+    log.setContentNo(reply.getReplyNo());
+    log.setTypeNo(24);
+    log.setContent("");
+    logDao.insert(log);
   }
 
   @Override

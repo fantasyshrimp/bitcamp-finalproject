@@ -4,23 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.app.dao.LikeBoardDao;
 import bitcamp.app.dao.LikeReplyDao;
+import bitcamp.app.dao.LogDao;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.vo.Like;
+import bitcamp.app.vo.Log;
 
 @Service
 public class DefaultLikeService implements LikeService{
 
   @Autowired private LikeReplyDao likeReplyDao;
   @Autowired private LikeBoardDao likeBoardDao;
+  @Autowired private LogDao logDao;
 
   @Override
   public void like(Like like, String type) {
+    Log log = new Log();
+    log.setMemberNo(like.getLikerNo());
+    log.setContentNo(like.getContentNo());
     switch(type) {
       case "reply":
         likeReplyDao.insert(like);
+        log.setTypeNo(24);
+        logDao.insert(log);
         break;
       case "board":
         likeBoardDao.insert(like);
+        log.setTypeNo(14);
+        logDao.insert(log);
         break;
       default:
     }

@@ -66,3 +66,117 @@ select hs.range_no from aim_hide_setting hs inner join aim_public_range pr on hs
   WHERE (select count(range_no) from aim_hide_setting hs where hs.no='5' and hs.member_no=m.member_no and range_no=2) != 1;
 
   select count(board_no) from aim_board where member_no=5;
+
+
+
+
+ALTER TABLE aim_alarm_log 
+ADD COLUMN reply_no int(11) DEFAULT NULL AFTER other_no,
+MODIFY COLUMN other_no int(11) DEFAULT NULL;
+
+ALTER TABLE aim_alarm_log 
+ADD COLUMN follow_no int(11) DEFAULT NULL AFTER other_no;
+
+
+
+ALTER TABLE aim_alarm_log 
+MODIFY COLUMN reply_no int(11) DEFAULT NULL AFTER board_no,
+MODIFY COLUMN follow_no int(11) DEFAULT NULL AFTER reply_no,
+MODIFY COLUMN content text NOT NULL AFTER other_no;
+
+ALTER TABLE aim_alarm_log 
+MODIFY COLUMN content text NOT NULL AFTER follow_no;
+
+
+----------------------------- Log table 생성
+CREATE TABLE aim_log_type (
+  type_no    INTEGER        NOT NULL COMMENT '로그유형번호',
+  log_type VARCHAR(50)      NOT NULL COMMENT '로그유형이름',
+  log_comment VARCHAR(255)  NOT NULL COMMENT '로그유형설명'
+);
+
+ALTER TABLE aim_log_type
+  ADD CONSTRAINT PK_aim_log_type
+  PRIMARY KEY ( type_no );
+
+ALTER TABLE aim_log_type
+  MODIFY COLUMN type_no INTEGER NOT NULL AUTO_INCREMENT;
+
+-------------------------------
+
+CREATE TABLE aim_log (
+  log_no     INTEGER  NOT NULL COMMENT '로그번호',
+  type_no    INTEGER  NOT NULL COMMENT '로그유형번호',
+  member_no  INTEGER  NOT NULL COMMENT '회원번호',
+  content_no INTEGER  NOT NULL COMMENT '컨텐츠번호',
+  content    TEXT         NULL COMMENT '로그내용',
+  read_flag  BOOLEAN  NOT NULL DEFAULT 0 COMMENT '읽음여부',
+  log_dt     DATETIME NOT NULL DEFAULT now() COMMENT '로그기록일'
+);
+
+ALTER TABLE aim_log
+  ADD CONSTRAINT PK_aim_log
+  PRIMARY KEY ( log_no );
+
+ALTER TABLE aim_log
+  MODIFY COLUMN log_no INTEGER NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE aim_log
+  ADD CONSTRAINT FK_aim_log_type_TO_aim_log
+  FOREIGN KEY ( type_no )
+  REFERENCES aim_log_type ( type_no );
+
+ALTER TABLE aim_log
+  ADD CONSTRAINT FK_aim_member_TO_aim_log
+  FOREIGN KEY ( member_no )
+  REFERENCES aim_member ( member_no );
+
+  ------------------------------------------------------------ insert log type data
+INSERT INTO aim_log_type (type_no, log_type, log_comment)
+VALUES 
+  (1, '회원가입', '계정이 생성되었습니다.'), 
+  (2, '로그인', '사용자가 로그인하였습니다.'),
+  (3, '로그아웃', '사용자가 로그아웃하였습니다.'),
+
+  (11, '게시글작성', '게시글이 작성되었습니다.'),
+  (12, '게시글수정', '게시글이 수정되었습니다.'),
+  (13, '게시글삭제', '게시글이 삭제되었습니다.'),
+  (14, '게시글좋아요', '게시글을 좋아합니다.'),
+
+  (21, '댓글작성', '댓글이 작성되었습니다.'),
+  (22, '댓글수정', '댓글이 수정되었습니다.'),
+  (23, '댓글삭제', '댓글이 삭제되었습니다.'),
+  (24, '댓글좋아요', '댓글을 좋아합니다.'),
+
+  (31, '팔로우', '님을 팔로우합니다.');
+
+
+  ------------------------------------------------------------ insert log data
+
+INSERT INTO aim_log (type_no, member_no, content_no, content)
+VALUES 
+  (1, 1234, 5678, '로그 내용입니다.'); -- tmp
+
+
+INSERT INTO aim_log (type_no, member_no, content_no, content)
+VALUES 
+  (11, 5, 5, '조쉬가 개시글을 작성했다?'); -- tmp
+
+INSERT INTO aim_log (type_no, member_no, content_no, content)
+VALUES 
+  (14, 5, 59, '조쉬가 내 개시글을 좋아한다?'); -- tmp
+
+select * from aim_log
+where type_no=11 and member_no in (select follower_no from aim_follow where following_no=12)
+ union
+select * from aim_log
+where type_no=14 and content_no in (select board_no from aim_board where member_no=12)
+ union
+select * from aim_log
+where type_no=21 and (select board_no from aim_reply where reply_no=content_no) in (select board_no from aim_board where member_no=12)
+ union
+select * from aim_log
+where type_no=24 and content_no in (select reply_no from aim_reply where member_no=12)
+ union
+select * from aim_log
+where type_no=31 and content_no=12;

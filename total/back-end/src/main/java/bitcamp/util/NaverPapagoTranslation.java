@@ -8,25 +8,30 @@ import java.net.URL;
 import java.net.URLEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import bitcamp.app.NaverAiConfig;
 
-//네이버 Papago Text Translation API 예제
+@Component
 public class NaverPapagoTranslation {
 
   static Logger log = LogManager.getLogger(NaverPapagoTranslation.class);
 
-  public static String translate(String summaryContent) {
-    String clientId = "gpic0fhuug"; //애플리케이션 클라이언트 아이디값";
-    String clientSecret = "JEPi5MMr30nyF4uLLMOmwUk6LIpM9ne0BAgOyKcH"; //애플리케이션 클라이언트 시크릿값";
+  @Autowired private NaverAiConfig naverAiConfig;
+
+  public String translate(String summaryContent) {
+
+    String clientId = naverAiConfig.getClientIdTrans();
+    String clientSecret = naverAiConfig.getClientSecretTrans();
+    String apiURL = naverAiConfig.getUrlTrans();
     String source = "ko";
     String target = "en";
-    String transContent;
 
     try {
       String text = URLEncoder.encode(summaryContent, "UTF-8");
-      String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
       URL url = new URL(apiURL);
 
-      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+      HttpURLConnection con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("POST");
       con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
       con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
@@ -57,9 +62,10 @@ public class NaverPapagoTranslation {
       }
       br.close();
 
-      transContent = response.toString();
-
-      //      log.info("transContent >>> " +transContent);
+      String transContent0 = response.toString();
+      log.info("transContent0 >>> " + transContent0);
+      String transContent = transContent0.replaceAll("[가-힣]", "");
+      log.info("transContent >>> " + transContent);
 
       return transContent;
 

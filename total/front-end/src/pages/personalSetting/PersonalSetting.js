@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 import AlamSetting from "./AlamSetting";
+import PersonalAlarms from "./PersonalAlarms";
 
 function PersonalSetting() {
   const [temp, setTemp] = useState(0);
-  const menu = ["프로필 수정", "공개 설정", "알람 설정"];
+  const menu = ["프로필 수정", "공개 설정", "알람 설정", "임시 알람 페이지"];
 
   return (
     <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "800px"}}>
@@ -29,6 +30,7 @@ function PersonalSetting() {
         {temp === 0 && <ModifyProfile title={menu[0]}/>}
         {temp === 1 && <PublicSetting title={menu[1]}/>}
         {temp === 2 && <AlamSetting title={menu[2]}/>}
+        {temp === 3 && <PersonalAlarms title={menu[3]}/>}
       </div>
     </div>
   );

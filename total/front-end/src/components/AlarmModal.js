@@ -47,6 +47,7 @@ function AlarmModal(props) {
   const handleLoadMore = () => {
     setDisplayedAlarmsCount(displayedAlarmsCount + 5);
   };
+  console.log(alarms);
 
   return (
     <>
