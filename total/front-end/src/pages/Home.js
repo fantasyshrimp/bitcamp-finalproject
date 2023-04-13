@@ -2,6 +2,7 @@ import React from "react";
 //import { createRoot } from "react-dom/client";
 import Video from "./Main/Video";
 import Parallax from "./Main/Parallax";
+import ImageText from "./Main/ImageText";
 
 /*
 const root = createRoot(document.getElementById("root"));
@@ -26,6 +27,7 @@ function Home(props) {
         showExternalLogin={props.showExternalLogin}
         setShowExternalLogin={props.setShowExternalLogin}
       />
+      <ImageText />
       <Parallax />
     </div>
   );
