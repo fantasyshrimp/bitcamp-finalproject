@@ -39,4 +39,78 @@
     where type_no=31 and content_no=#{memberNo}
     order by log_no DESC;
   </select>
+  
+  
+  <update id="read" parameterType="int">
+    update aim_log
+    set 
+      read_flag=1    
+    where log_no=#{no}
+  </update>
+  
+  <update id="readAll" parameterType="int">
+		UPDATE aim_log 
+		JOIN (
+		    SELECT log_no FROM aim_log 
+		    WHERE type_no=11 AND member_no IN (
+		        SELECT follower_no FROM aim_follow WHERE following_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=14 AND content_no IN (
+		        SELECT board_no FROM aim_board WHERE member_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=21 AND content_no IN (
+		        SELECT reply_no FROM aim_reply WHERE board_no IN (
+		            SELECT board_no FROM aim_board WHERE member_no=#{memberNo}
+		        )
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=24 AND content_no IN (
+		        SELECT reply_no FROM aim_reply WHERE member_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=31 AND content_no=#{memberNo}
+		) AS sub_query
+		ON aim_log.log_no = sub_query.log_no
+		SET read_flag=1;
+  </update>
+  
+  <update id="readAllCancel" parameterType="int">
+		UPDATE aim_log 
+		JOIN (
+		    SELECT log_no FROM aim_log 
+		    WHERE type_no=11 AND member_no IN (
+		        SELECT follower_no FROM aim_follow WHERE following_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=14 AND content_no IN (
+		        SELECT board_no FROM aim_board WHERE member_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=21 AND content_no IN (
+		        SELECT reply_no FROM aim_reply WHERE board_no IN (
+		            SELECT board_no FROM aim_board WHERE member_no=#{memberNo}
+		        )
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=24 AND content_no IN (
+		        SELECT reply_no FROM aim_reply WHERE member_no=#{memberNo}
+		    )
+		    UNION
+		    SELECT log_no FROM aim_log
+		    WHERE type_no=31 AND content_no=#{memberNo}
+		) AS sub_query
+		ON aim_log.log_no = sub_query.log_no
+		SET read_flag=0;
+  </update> 
+  
+  
 </mapper>

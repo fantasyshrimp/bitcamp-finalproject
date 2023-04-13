@@ -1,15 +1,24 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-
-function TempAlarmData(props) {
+function AlarmInfo(props) {
     const {log, giver} = props.data;
     const receiver = props.receiver;
     const [isMouseOver, setIsMouseOver] = useState(false);
+    const [isRead, setIsRead] = useState(log.readFlag);
     const navigate = useNavigate();
     //navigate('/Profile', { state: { no: no } });
 
     function moveDirect() {
+      setIsRead(true);
+
+      axios.put(`http://localhost:8080/alarm/${log.logNo}`)
+      .then((response) => {
+        if (response.data.status === "failure") {
+          navigate("/");
+        }
+      })
       //읽음처리 필요
       switch (log.typeNo) {
         case 11:
@@ -60,7 +69,7 @@ function TempAlarmData(props) {
       display: "flex",
       backgroundColor: isMouseOver ? "#007bff" : "#00000000",
       boxSizing: "border-box", borderBottom: "1px solid white",
-      color: "white"
+      color: isRead ? "gray" : "white"
       }} >
       <div style={{width: "80%"}}>
         <img src={giver.profilePhoto} 
@@ -75,4 +84,4 @@ function TempAlarmData(props) {
     );
 }
 
-export default TempAlarmData;
+export default AlarmInfo;

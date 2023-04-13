@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Container, Row, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./AlarmModal.css";
 import FeedModal from "../pages/Feed/FeedModal";
 
@@ -25,6 +26,12 @@ function AlarmModal(props) {
   const handleClickReadAll = (e) => {
     e.preventDefault();
     // ReadAll 처리하기
+    axios.put(`http://localhost:8080/alarm/readAll`)
+    .then((response) => {
+      if (response.data.status === "failure") {
+        navigate("/");
+      }
+    })
   };
 
   const moveProfile = (no) => {

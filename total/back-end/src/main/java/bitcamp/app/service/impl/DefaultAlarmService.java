@@ -29,4 +29,19 @@ public class DefaultAlarmService implements AlarmService {
     return logDao.alarmList(memberNo);
   }
 
+  @Override
+  public void read(int no) {
+    logDao.read(no);
+  }
+
+  @Override
+  public void readAll(int memberNo) {
+    logDao.readAll(memberNo);
+  }
+
+  @Override
+  public void readAllCancel(int memberNo) {
+    logDao.readAllCancel(memberNo);
+  }
+
 }

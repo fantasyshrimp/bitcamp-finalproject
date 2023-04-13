@@ -167,28 +167,64 @@ INSERT INTO aim_log (type_no, member_no, content_no, content)
 VALUES 
   (14, 5, 59, '조쉬가 내 개시글을 좋아한다?'); -- tmp
 
-select * from aim_log
-where type_no=11 and member_no in (select follower_no from aim_follow where following_no=12)
- union
-select * from aim_log
-where type_no=14 and content_no in (select board_no from aim_board where member_no=12)
- union
-select * from aim_log
-where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=12))
- union
-select * from aim_log
-where type_no=24 and content_no in (select reply_no from aim_reply where member_no=12)
- union
-select * from aim_log
-where type_no=31 and content_no=12
+    select * from aim_log
+    where type_no=11 and member_no in (select follower_no from aim_follow where following_no=12)
+    union
+    select * from aim_log
+    where type_no=14 and content_no in (select board_no from aim_board where member_no=12)
+    union
+    select * from aim_log
+    where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=12))
+    union
+    select * from aim_log
+    where type_no=24 and content_no in (select reply_no from aim_reply where member_no=12)
+    union
+    select * from aim_log
+    where type_no=31 and content_no=12
 order by log_no DESC;
 
+    select * from aim_log
+    where type_no=11 and member_no in (select follower_no from aim_follow where following_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=14 and content_no in (select board_no from aim_board where member_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=#{memberNo}))
+    union
+    select * from aim_log
+    where type_no=24 and content_no in (select reply_no from aim_reply where member_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=31 and content_no=#{memberNo}
 
-select count(member_no) from aim_like_board where board_no in (select board_no from aim_board where member_no=12);
 
-  select 
-    count(member_no) 
-  from 
-    aim_like_reply 
-  where 
-    reply_no in (select reply_no from aim_reply where member_no=12);
+UPDATE aim_log 
+JOIN (
+    SELECT log_no FROM aim_log 
+    WHERE type_no=11 AND member_no IN (
+        SELECT follower_no FROM aim_follow WHERE following_no=12
+    )
+    UNION
+    SELECT log_no FROM aim_log
+    WHERE type_no=14 AND content_no IN (
+        SELECT board_no FROM aim_board WHERE member_no=12
+    )
+    UNION
+    SELECT log_no FROM aim_log
+    WHERE type_no=21 AND content_no IN (
+        SELECT reply_no FROM aim_reply WHERE board_no IN (
+            SELECT board_no FROM aim_board WHERE member_no=12
+        )
+    )
+    UNION
+    SELECT log_no FROM aim_log
+    WHERE type_no=24 AND content_no IN (
+        SELECT reply_no FROM aim_reply WHERE member_no=12
+    )
+    UNION
+    SELECT log_no FROM aim_log
+    WHERE type_no=31 AND content_no=12
+) AS sub_query
+ON aim_log.log_no = sub_query.log_no
+SET read_flag=0;

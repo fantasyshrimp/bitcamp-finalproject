@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.AlarmService;
@@ -55,5 +57,50 @@ public class AlarmController {
     data.put("logData", logData);
 
     return data;
+  }
+
+  @PutMapping("{no}")
+  public Object read(@PathVariable int no, HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+    alarmService.read(no);
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+  @PutMapping("readAll")
+  public Object readAll(HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+    alarmService.readAll(loginUser.getNo());
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+  @PutMapping("readAllCancel")
+  public Object readAllCancel(HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+    alarmService.readAllCancel(loginUser.getNo());
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
   }
 }
