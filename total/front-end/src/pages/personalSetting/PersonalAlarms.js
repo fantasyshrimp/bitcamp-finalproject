@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TempAlarmData from "./TempAlarmData";
 
 function PersonalAlarms() {
+    const navigate = useNavigate();
     const [alarms, setAlarms] = useState([]);
     useEffect(() => {
         axios.get("http://localhost:8080/alarm/test/1")
         .then((response) => {
+            if (response.data.status === "failure") {
+                navigate("/");
+              }
             setAlarms(response.data); //컨트롤러에서 한번에 받아오는데 로그인유저정보를 따로 빼야할수도
         })
     }, [])

@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SettingPrompt from "./SettingPrompt"
 
 function PublicSetting(props) {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:8080/publicSetting")
       .then((response) => {
+        if (response.data.status === "failure") {
+          navigate("/");
+        }
         setData(response.data);
       });
   }, []);

@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { PencilSquare } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
-import axios from "axios";
 import ImageResizer from "react-image-file-resizer";
 import SettingInput from "./SettingInput"
 
 function ModifyProfile(props) {
+  const navigate = useNavigate();
+
   const [memberData, setMemberData] = useState({});
   const [imageUrl, setImageUrl] = useState("");
 
@@ -35,6 +38,9 @@ function ModifyProfile(props) {
     axios
       .get("http://localhost:8080/auth/user")
       .then((response) => {
+        if (response.data.status === "failure") {
+          navigate("/");
+        }
         setMemberData(response.data.data);        
         setImageUrl(response.data.data.profilePhoto);
         setGender(response.data.data.gender);

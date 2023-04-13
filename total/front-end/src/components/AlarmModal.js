@@ -47,6 +47,11 @@ function AlarmModal(props) {
     setDisplayedAlarmsCount(displayedAlarmsCount + 5);
   };
 
+  const navigateAllAlam = () => {
+    setAlarmShow(false);
+    navigate("/personalSetting", { state: { menuNo: 3 } });
+  }
+
   return (
     <>
       <Modal
@@ -155,7 +160,18 @@ function AlarmModal(props) {
             )}
           </Container>
         </Modal.Body>
-        <Modal.Footer className="p-2"></Modal.Footer>
+        <Modal.Footer className="p-2">
+          <div className="alarm-read-more"
+            onClick={navigateAllAlam}
+            style={{
+              padding: "1px",
+              color: "gray",
+              cursor: "pointer",
+            }}
+          >
+            전체 보기
+          </div>
+        </Modal.Footer>
       </Modal>
 
       {isFeedModalOpen && (

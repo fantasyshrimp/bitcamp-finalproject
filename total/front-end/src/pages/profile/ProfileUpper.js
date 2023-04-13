@@ -44,7 +44,6 @@ function ProfileUpper(props) {
   const pointModalHandler = () => {
     setPointModal(!pointModal);
   };
-  const count = 100;
 
   axios
     .get("http://localhost:8080/point/member/" + props.member.no)

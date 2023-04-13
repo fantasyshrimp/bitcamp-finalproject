@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 import AlamSetting from "./AlamSetting";
 import PersonalAlarms from "./PersonalAlarms";
 
 function PersonalSetting() {
-  const [temp, setTemp] = useState(0);
-  const menu = ["프로필 수정", "공개 설정", "알람 설정", "임시 알람 페이지"];
+  const location = useLocation();
 
+  const [menuNo, setMenuNo] = useState(location.state ? location.state.menuNo : 0);
+  const menu = ["프로필 수정", "공개 설정", "알람 설정"];
+  
   return (
     <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "800px"}}>
         
@@ -20,17 +23,17 @@ function PersonalSetting() {
           <h2 style={{boxSizing: "border-box"}}>설정</h2>
           
           {menu.map((title, index) => {
-            return (<div key={title + index} onClick={() => {setTemp(index)}}>{title}</div>);
+            return (<div key={title + index} onClick={() => {setMenuNo(index)}}>{title}</div>);
           })}  
         </div>
 
       </div>
         
       <div style={{width: "90%", height: "100%"}}>
-        {temp === 0 && <ModifyProfile title={menu[0]}/>}
-        {temp === 1 && <PublicSetting title={menu[1]}/>}
-        {temp === 2 && <AlamSetting title={menu[2]}/>}
-        {temp === 3 && <PersonalAlarms title={menu[3]}/>}
+        {menuNo === 0 && <ModifyProfile title={menu[0]}/>}
+        {menuNo === 1 && <PublicSetting title={menu[1]}/>}
+        {menuNo === 2 && <AlamSetting title={menu[2]}/>}
+        {menuNo === 3 && <PersonalAlarms title={menu[3]}/>}
       </div>
     </div>
   );
