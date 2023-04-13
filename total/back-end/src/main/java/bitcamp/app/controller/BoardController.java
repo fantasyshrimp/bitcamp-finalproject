@@ -1,9 +1,13 @@
 package bitcamp.app.controller;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -77,39 +81,64 @@ public class BoardController {
       log.info("transContent >>> " + transContent);
 
       String fileName = UUID.randomUUID().toString() + ".png";
-      String baseDir = System.getProperty("user.dir");  // C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end
-      String scriptPath = "";
-      String command = "";
-      String osName = System.getProperty("os.name").toLowerCase();
-
-      if (osName.contains("win")) {
-        scriptPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
-        command = "python \"" + scriptPath + "\" \"" + transContent + "\" " + fileName;
-
-      } else {
-        scriptPath = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
-        command = "python " + scriptPath + " \"" + transContent + "\" " + fileName;
-
-      }
-
-      log.info("osName >>> " + osName);
-      log.info("command >>> " + command);
-
+      
+      // GPU 로 요청 보냄
+      // http://localhost:8085
+      HttpClient httpClient = HttpClient.newHttpClient();
+      String url = "http://localhost:8085";
+      
+      String requestBody = "transContent=" + URLEncoder.encode(transContent, StandardCharsets.UTF_8) + "&fileName=" + fileName;
+      HttpRequest httpRequest = HttpRequest.newBuilder()
+          .uri(URI.create(url))
+          .header("Content-Type", "application/x-www-form-urlencoded")
+          .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+          .build();
+      
       try {
-        Process process = Runtime.getRuntime().exec(command);
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        String s = null;
+        HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        log.info("Response status code: " + httpResponse.statusCode());
+        log.info("Response body: " + httpResponse.body());
+        
+      } catch (IOException | InterruptedException e) {
+          log.error("Error sending POST request", e);
+      }
+      
+//      String scriptPath = "";
+//      String command = "";
+//      String osName = System.getProperty("os.name").toLowerCase();
 
-        while ((s = stdInput.readLine()) != null) {
-          log.info("stdInput >>> " + s);
-          //클라이언트에게 진행상태 바로 % 표시
-        }
+//      if (osName.contains("win")) {
+//        scriptPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
+//        command = "python \"" + scriptPath + "\" \"" + transContent + "\" " + fileName;
+//
+//      } else {
+//        scriptPath = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "simple_cmd.py";
+//        command = "python " + scriptPath + " \"" + transContent + "\" " + fileName;
+//
+//      }
 
-        while ((s = stdError.readLine()) != null) {
-          log.info("stdError >>> " + s);
-        }
+//      log.info("osName >>> " + osName);
+//      log.info("command >>> " + command);
+
+//      try {
+//        Process process = Runtime.getRuntime().exec(command);
+//        BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//        BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+//        String s = null;
+//
+//        while ((s = stdInput.readLine()) != null) {
+//          log.info("stdInput >>> " + s);
+//          //클라이언트에게 진행상태 바로 % 표시
+//        }
+//
+//        while ((s = stdError.readLine()) != null) {
+//          log.info("stdError >>> " + s);
+//        }
+      
+      // GPU 응답 옴!
         log.info("명령 프롬프트 이미지 생성 완료!");
+        
+        String baseDir = System.getProperty("user.dir");  // C:\Users\bitcamp\git\bitcamp-finalproject\total\back-end
 
         // 상대 경로를 사용하여 이미지 파일 디렉토리 경로를 설정합니다.
         String imageDir = "src" + File.separator + "main" + File.separator + "pythonapp" + File.separator + "results" + File.separator;
@@ -151,9 +180,9 @@ public class BoardController {
 
 
 
-      } catch (IOException e) {
-        log.error("명령 프롬프트 에러 발생!: " + command, e);
-      }
+//      } catch (IOException e) {
+//        log.error("명령 프롬프트 에러 발생!: " + command, e);
+//      }
 
 
     });
