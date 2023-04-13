@@ -37,7 +37,7 @@ public class MemberController {
   @Autowired private PublicSettingService publicSettingService;
 
   @Autowired private ObjectStorageService objectStorageService;
-  private String bucketName = "bitcamp-bucket04-member-photo";
+  private String bucketName = "artify-bucket";
 
   @PostMapping
   public void insert(@RequestBody Member member) {
@@ -56,7 +56,6 @@ public class MemberController {
     Map<String, Object> data = new HashMap<>();
     data.put("member", memberService.get(no));
 
-
     if (!boardHideSetting ||
         (session.getAttribute("loginUser") != null &&
         ((Member)session.getAttribute("loginUser")).getNo() == no)) {
@@ -73,7 +72,7 @@ public class MemberController {
     data.put("followerList", memberService.getFollowers(no)); //얘는 실시간 변경이 필요없을까
     data.put("followingCount", followService.getFollowingCount(no));
     data.put("followerCount", followService.getFollowerCount(no));
-
+    data.put("likeCount", likeService.countLikerAllContnet(no));
     return new RestResult()
         .setStatus(RestStatus.SUCCESS)
         .setData(data);
@@ -92,7 +91,6 @@ public class MemberController {
           .setData("로그인 요망");
     }
 
-    memberService.get(0);
 
     loginUser.setPassword(member.getPassword() != null && member.getPassword() != ""
         ?  member.getPassword() : loginUser.getPassword());
@@ -122,16 +120,16 @@ public class MemberController {
           .setData("로그인 요망");
     }
     // 받은 파일 스토리지에 업로드
-    String filename = objectStorageService.uploadFile(bucketName, "", profilePhoto);
+    String filename = objectStorageService.uploadFile(bucketName, "profile", profilePhoto);
     if (filename == null) {
       System.out.println("파일명 null");
     }
-
+    System.out.println(filename);
     //기존에 올라가있던 프로필 사진 삭제
-    objectStorageService.deleteFile(loginUser.getProfilePhoto());
+    //objectStorageService.deleteFile(loginUser.getProfilePhoto());
 
-    //"https://kr.object.ncloudstorage.com/bitcamp-bucket04-member-photo/"
-    loginUser.setProfilePhoto("https://kr.object.ncloudstorage.com/bitcamp-bucket04-member-photo/" + filename);
+    //https://artify-bucket.kr.object.ncloudstorage.com/profile9d1e9f43-e57d-4a32-b884-2679a3d23310
+    loginUser.setProfilePhoto(filename);
 
 
     memberService.updateProfilePhoto(loginUser);

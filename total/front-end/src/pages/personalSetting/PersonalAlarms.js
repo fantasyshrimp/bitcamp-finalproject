@@ -5,19 +5,21 @@ import TempAlarmData from "./TempAlarmData";
 function PersonalAlarms() {
     const [alarms, setAlarms] = useState([]);
     useEffect(() => {
-        axios.post("http://localhost:8080/alarm/test/1")
+        axios.get("http://localhost:8080/alarm/test/1")
         .then((response) => {
-            setAlarms(response.data);
+            setAlarms(response.data); //컨트롤러에서 한번에 받아오는데 로그인유저정보를 따로 빼야할수도
         })
     }, [])
     
 
 
     return(
-    <div>알람페이지
-    {alarms.map((alarm)=> (
-        <TempAlarmData data={alarm}/>
-    ))}
+    <div style={{height: "100%", overflowY: "auto"}}>알람페이지
+    {alarms.map((alarm)=> {
+    return (
+      <TempAlarmData key={alarm.log.logNo} data={alarm}/>
+      );
+    })}
 
 
 

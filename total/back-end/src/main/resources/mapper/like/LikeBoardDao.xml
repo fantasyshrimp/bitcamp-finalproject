@@ -36,4 +36,13 @@
   where 
     board_no=#{boardNo}    
   </select>
+  
+  <select id="countLikerAll" parameterType="int" resultType="int">
+  select 
+    count(member_no) 
+  from 
+    aim_like_board 
+  where 
+    board_no in (select board_no from aim_board where member_no=#{memberNo});
+  </select>
 </mapper>

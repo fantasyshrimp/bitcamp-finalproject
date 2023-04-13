@@ -7,4 +7,5 @@ public interface LikeService {
   void disLike(Like like, String type);
   boolean checkState(Like like, String type);
   int countLiker(int contentNo, String type);
+  int countLikerAllContnet(int memberNo);
 }

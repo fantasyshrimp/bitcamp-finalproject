@@ -37,4 +37,13 @@
     reply_no=#{replyNo}    
   </select>
   
+  <select id="countLikerAll" parameterType="int" resultType="int">
+  select 
+    count(member_no) 
+  from 
+    aim_like_reply 
+  where 
+    reply_no in (select reply_no from aim_reply where member_no=#{memberNo});
+  </select>
+  
 </mapper>

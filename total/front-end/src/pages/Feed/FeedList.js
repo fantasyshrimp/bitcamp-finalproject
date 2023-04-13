@@ -5,7 +5,7 @@ import FeedModal from "./FeedModal";
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [loginShow, setLoginShow] = useState(null);
-
+  
   function handleCloseModal() {
     setModalOpen(false);
   }
@@ -18,6 +18,12 @@ function FeedList(props) {
     props.setIsLoginModal(true);
     props.setLoginShow(true);
   };
+  
+  useEffect(() => {
+    if (props.directModal !== undefined) {
+      setModalOpen(true);
+    }
+  }, [props.directModal]);
 
   return (
     <>

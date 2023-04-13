@@ -9,15 +9,17 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.AlarmService;
 import bitcamp.app.service.LogService;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Log;
+import bitcamp.app.vo.Member;
+import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/alarm")
@@ -41,12 +43,23 @@ public class AlarmController {
         .setData(alarmService.list(no));
   }
 
-  @PostMapping("test/1")
-  public Object recordingTest() {
+  @GetMapping("test/1")
+  public Object recordingTest(HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+
+
     List<Object> data = new ArrayList<>();
     for (Log l : alarmService.getLogs(12)) {
       Map<String, Object> part = new HashMap<>();
-      part.put("user", memberService.get(l.getMemberNo()));
+      part.put("receiver", loginUser);
+      part.put("giver", memberService.get(l.getMemberNo()));
       part.put("log", l);
       data.add(part);
     }

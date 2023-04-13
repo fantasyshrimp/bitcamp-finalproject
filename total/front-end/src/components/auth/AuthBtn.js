@@ -4,6 +4,7 @@ import { Nav } from "react-bootstrap";
 import { Bell, BellFill } from "react-bootstrap-icons";
 import AlarmModal from "../AlarmModal";
 import axios from "axios";
+import { resolvePath } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 function AuthBtn(props) {
@@ -39,10 +40,11 @@ function AuthBtn(props) {
   useEffect(() => {
     if (currentUser !== null) {
       const fetchData = async () => {
-        axios(`http://localhost:8080/alarm/${currentUser.no}`) //
+        //axios(`http://localhost:8080/alarm/${currentUser.no}`) //
+        axios(`http://localhost:8080/alarm/test/1`) //
           .then((response) => {
-            if (response.data.status === "success") {
-              setAlarms(response.data.data);
+            if (response.status === 200) {
+              setAlarms(response.data);
             } else {
               console.log("failure 발생");
             }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./ProfileUpper.css";
@@ -6,7 +6,7 @@ import FollowBtn from "./FollowBtn";
 import FollowListModal from "./FollowListModal";
 
 function ProfileUpper(props) {
-  const { followingCnt, followerCnt } = props;
+  const { followingCnt, followerCnt, likeCnt } = props;
   const [followingList, setFollowingList] = useState([]);
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
   const [point, setPoint] = useState();
@@ -31,7 +31,13 @@ function ProfileUpper(props) {
   const closeFollowerModal = () => {
     setFollowerModalIsOpen(false);
   };
-  const count = 100;
+
+  useEffect(() => {
+    if (props.directModal !== undefined) {
+      setFollowerModalIsOpen(true);
+    }
+  }, [props.directModal]);
+
 
   axios
     .get("http://localhost:8080/point/member/" + props.member.no)
@@ -68,7 +74,7 @@ function ProfileUpper(props) {
               <span>{followerCnt}</span> followers
             </div>
             <div>
-              <span>{count}</span> likes
+              <span>{likeCnt}</span> likes
             </div>
             <div>
               <span>{numberWithCommas(point)}</span>

@@ -9,4 +9,5 @@ public interface LikeBoardDao {
   void delete(Like like);
   int checkState(Like like);
   int countLiker(int boardNo);
+  int countLikerAll(int member);
 }

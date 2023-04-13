@@ -8,7 +8,6 @@ function AlamSetting(props) {
     axios
       .get("http://localhost:8080/alarmSetting")
       .then((response) => {
-        console.log(response);
         setData(response.data);
       });
   }, []);

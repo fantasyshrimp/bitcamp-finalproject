@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { PencilSquare } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
 import axios from "axios";
 import ImageResizer from "react-image-file-resizer";
@@ -15,6 +16,7 @@ function ModifyProfile(props) {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
+  const [nicknameChageState, setNicknameChageState] = useState(false);
   const [condition, setCondition] = useState(true);
 
   const divStyle = {
@@ -26,13 +28,13 @@ function ModifyProfile(props) {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    borderRadius: '20%'
   }; 
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/auth/user")
       .then((response) => {
-        console.log(response);
         setMemberData(response.data.data);        
         setImageUrl(response.data.data.profilePhoto);
         setGender(response.data.data.gender);
@@ -41,13 +43,11 @@ function ModifyProfile(props) {
         setAddress(response.data.data.basicAddress);
       });
   }, []);
-
   
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append("profilePhoto", file);
-  
     if (file) {
       ImageResizer.imageFileResizer(
         file,
@@ -62,7 +62,7 @@ function ModifyProfile(props) {
         "base64"
       );
       try {
-      const response = await axios.put("http://localhost:8080/member/upload/profileImg/" + memberData.no, formData, {
+      const response = await axios.put("http://localhost:8080/member/upload/profileImg", formData, {
         headers: {
           "Content-Type": "multipart/form-data;",
         },
@@ -73,6 +73,18 @@ function ModifyProfile(props) {
       }
     }
   };
+
+  const handleNickNameChage = (event) => {
+    setNicknameChageState(!nicknameChageState);
+  }
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) { // 엔터키가 눌렸을 때
+      console.log('엔터키 입력됨');
+      // 원하는 동작을 수행합니다.
+      handleNickNameChage(event);
+    }
+  }
 
   return (
     <div id="setting-feild" style={{ width: "100%", height: "90%",
@@ -93,9 +105,31 @@ function ModifyProfile(props) {
             onClick={() => {document.querySelector('input[type=file]#profile-photo').click()}}
           >
             <input id="profile-photo" type="file" accept="image/*" name='profilePhoto' onChange={handleFileUpload} style={{display:"none"}}/>
-          </div> 
-          <div>{memberData.nickname}</div>
-          <div>{memberData.email}</div>
+          </div>
+          <div style={{ width: "300px"}} >
+            {nicknameChageState 
+            ? <div style={{  display: "flex", justifyContent: "flex-end", alignItems: "flex-end",
+              height: "50px", marginTop: "10px" }}>
+              <input value={memberData.nickname} onKeyDown={handleKeyDown}            
+              style={{ 
+              width: "150px",  height: "30px", marginTop: "10px",
+              backgroundColor: "#212529",
+              border: "1px solid #ced4da",
+              borderRadius: "0.375rem",
+              padding: "0.375rem 0.75rem",
+              color: "rgb(248,249,250)",
+              fontSize: "1rem",
+              fontWeight: "400"
+              }} />
+              </div>
+            : <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-end",
+              height: "50px", marginTop: "10px" }}>
+              <span style={{ fontWeight: "bolder", fontSize: "1.4rem" }}>{memberData.nickname}</span>
+              <PencilSquare onClick={handleNickNameChage}
+                style={{width: "25px", height: "25px", paddingBottom: "5px"}}/>
+            </div>}
+            <div style={{textAlign: "right"}}>{memberData.email}</div>
+          </div>
         </div>
         <div style={{width: "60%", height: "90%",
           display: "flex", flexDirection: "column", minWidth: "500px"
@@ -154,7 +188,15 @@ function ModifyProfile(props) {
                   });
                 }
               })
-          }}> 제출버튼예정</div>
+          }}> 
+          <div 
+            style={{ width: "150px", height: "30px", backgroundColor: "gray", 
+            borderRadius: "50px",
+            textAlign: "center", lineHeight: "30px",
+            color: "white", fontWeight: "bolder" }}
+          >
+            개인정보 수정</div>
+          </div>
         </div>
       </div>
     </div>

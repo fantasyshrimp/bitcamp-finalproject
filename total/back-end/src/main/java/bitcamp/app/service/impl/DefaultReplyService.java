@@ -24,6 +24,13 @@ public class DefaultReplyService implements ReplyService{
   @Override
   public void insert(Reply reply) {
     replyDao.insert(reply);
+
+    Log log = new Log();
+    log.setMemberNo(reply.getWriter().getNo());
+    log.setContentNo(reply.getReplyNo());
+    log.setTypeNo(21);
+    log.setContent("");
+    logDao.insert(log);
   }
 
   @Override
@@ -50,6 +57,7 @@ public class DefaultReplyService implements ReplyService{
   @Override
   public void like(Reply reply) {
     replyDao.like(reply);
+    System.out.println("like" + reply);
     Log log = new Log();
     log.setMemberNo(reply.getMemberNo());
     log.setContentNo(reply.getReplyNo());

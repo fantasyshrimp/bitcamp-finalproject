@@ -77,4 +77,9 @@ public class DefaultLikeService implements LikeService{
         return 0;
     }
   }
+
+  @Override
+  public int countLikerAllContnet(int memberNo) {
+    return likeReplyDao.countLikerAll(memberNo)+likeBoardDao.countLikerAll(memberNo);
+  }
 }

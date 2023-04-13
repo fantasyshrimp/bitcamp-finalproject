@@ -173,10 +173,21 @@ select * from aim_log
 where type_no=14 and content_no in (select board_no from aim_board where member_no=12)
  union
 select * from aim_log
-where type_no=21 and (select board_no from aim_reply where reply_no=content_no) in (select board_no from aim_board where member_no=12)
+where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=12))
  union
 select * from aim_log
 where type_no=24 and content_no in (select reply_no from aim_reply where member_no=12)
  union
 select * from aim_log
-where type_no=31 and content_no=12;
+where type_no=31 and content_no=12
+order by log_no DESC;
+
+
+select count(member_no) from aim_like_board where board_no in (select board_no from aim_board where member_no=12);
+
+  select 
+    count(member_no) 
+  from 
+    aim_like_reply 
+  where 
+    reply_no in (select reply_no from aim_reply where member_no=12);

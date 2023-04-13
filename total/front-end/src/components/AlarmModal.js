@@ -17,7 +17,6 @@ function AlarmModal(props) {
   useEffect(() => {
     if (props.alarms !== null) {
       setAlarms(props.alarms);
-      // console.log(props.alarms);
     }
   }, [props.alarms]);
 
@@ -47,7 +46,6 @@ function AlarmModal(props) {
   const handleLoadMore = () => {
     setDisplayedAlarmsCount(displayedAlarmsCount + 5);
   };
-  console.log(alarms);
 
   return (
     <>
@@ -78,7 +76,7 @@ function AlarmModal(props) {
           <Container className="">
             {alarms && alarms.length > 0 ? (
               alarms.slice(0, displayedAlarmsCount).map((element) => (
-                <Row className="p-2 alarm-modal-row" key={element.no}>
+                <Row className="p-2 alarm-modal-row" key={element.log.logNo}>
                   <div
                     style={{
                       width: "40px",
@@ -87,27 +85,27 @@ function AlarmModal(props) {
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center center",
                       backgroundSize: "cover",
-                      backgroundImage: `url(${element.otherMember.profilePhoto})`,
+                      backgroundImage: `url(${element.giver.profilePhoto})`,
                       cursor: "pointer",
                     }}
-                    onClick={() => moveProfile(element.otherMember.no)}
+                    onClick={() => moveProfile(element.giver.no)}
                   ></div>
 
                   <Col
                     style={{
-                      color: element.readFlag ? "#aaa" : "#000",
+                      color: element.log.readFlag ? "#aaa" : "#000",
                       maxHeight: "40px",
                       overflow: "hidden",
                     }}
                   >
                     <b
                       className="alarm-modal-nickname"
-                      onClick={() => moveProfile(element.otherMember.no)}
+                      onClick={() => moveProfile(element.giver.no)}
                       style={{ cursor: "pointer" }}
                     >
-                      {element.otherMember.nickname}
+                      {element.giver.nickname}
                     </b>
-                    <span> {element.content}</span>
+                    <span>님이 {element.log.content}</span>
                     <br />
                     {/* {element.typeNo === 1 ? (
                       <span> "{element.reply.content}"`</span>
@@ -115,7 +113,7 @@ function AlarmModal(props) {
                       <span></span>
                     )} */}
                   </Col>
-                  {element.board === null || element.board.fileName === null ? (
+                  {element.board === undefined || element.board.fileName === undefined ? (
                     <div />
                   ) : (
                     <div

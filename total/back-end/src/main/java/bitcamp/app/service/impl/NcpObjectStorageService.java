@@ -57,7 +57,8 @@ public class NcpObjectStorageService implements ObjectStorageService {
       // log.info("filename >>> " + filename);  ////filename >>> 8acfad7b-0ff4-46ca-b921-322133575836
       // return filename;
 
-      // log.info("s3.getUrl >>> " + s3.getUrl(bucketName, directoryPath + filename).toString());  //s3.getUrl >>> https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
+      // log.info("s3.getUrl >>> " + s3.getUrl(bucketName, directoryPath + filename).toString());  //s3.getUrl >>>
+      //https://project-bucket1.kr.object.ncloudstorage.com/board/8acfad7b-0ff4-46ca-b921-322133575836
       return s3.getUrl(bucketName, directoryPath + filename).toString();
 
     } catch (Exception e) {
@@ -67,8 +68,9 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
   @Override
   public String deleteFile(String storageUrl) {
-    String bucketName = "bitcamp-bucket04-member-photo";
-    String fileName = storageUrl.split(bucketName + "/")[1];
+    //https://artify-bucket.kr.object.ncloudstorage.com/profile9d1e9f43-e57d-4a32-b884-2679a3d23310
+    String bucketName = "artify-bucket";
+    String fileName = storageUrl.split(bucketName + "profile/")[1];
     try {
       s3.deleteObject(bucketName, fileName);
     } catch (Exception e) {

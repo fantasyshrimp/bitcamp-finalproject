@@ -30,7 +30,7 @@
     where type_no=14 and content_no in (select board_no from aim_board where member_no=#{memberNo})
     union
     select * from aim_log
-    where type_no=21 and (select board_no from aim_reply where reply_no=#{contentNo}) in (select board_no from aim_board where member_no=#{memberNo})
+    where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=#{memberNo}))
     union
     select * from aim_log
     where type_no=24 and content_no in (select reply_no from aim_reply where member_no=#{memberNo})

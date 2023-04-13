@@ -147,6 +147,7 @@
   float: left;
   outline: none;
   /* margin-left: 15px; */
+  padding-left: 10px;
 }
 
 #feed-modal-comscroll {
@@ -475,6 +476,7 @@
   margin-top: 10px;
   margin-bottom: 5px;
   border: 0.1px solid #5b5b5b;
+  padding-left: 10px;
 }
 
 #feed-money-credit {
