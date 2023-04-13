@@ -1,24 +1,21 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import TempAlarmData from "./TempAlarmData";
+import AlarmInfo from "./AlarmInfo";
 
 function PersonalAlarms() {
     const navigate = useNavigate();
     const [alarms, setAlarms] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:8080/alarm/test/1")
+        axios.get("http://localhost:8080/alarm")
         .then((response) => {
-          console.log(response);
             if (response.data.status === "failure") {
                 navigate("/");
               }
-            setAlarms(response.data); //컨트롤러에서 한번에 받아오는데 로그인유저정보를 따로 빼야할수도
+            setAlarms(response.data);
         })
     }, [])
-    
-
-
+   
     return(
     <div id="setting-feild" style={{ width: "100%", height: "100%", overflowY: "auto",
       color: "white"  
@@ -34,7 +31,7 @@ function PersonalAlarms() {
         <div style={{marginTop:"3%"}}>
         {alarms.logData && alarms.logData.map((alarm)=> {
           return (
-            <TempAlarmData key={alarm.log.logNo} data={alarm} receiver={alarms.receiver}/>
+            <AlarmInfo key={alarm.log.logNo} data={alarm} receiver={alarms.receiver}/>
             );
           })}
         </div>

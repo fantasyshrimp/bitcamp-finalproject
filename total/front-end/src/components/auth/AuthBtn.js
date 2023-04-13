@@ -40,8 +40,7 @@ function AuthBtn(props) {
   useEffect(() => {
     if (currentUser !== null) {
       const fetchData = async () => {
-        //axios(`http://localhost:8080/alarm/${currentUser.no}`) //
-        axios(`http://localhost:8080/alarm/test/1`) //
+        axios(`http://localhost:8080/alarm`) //
           .then((response) => {
             if (response.status === 200) {
               setAlarms(response.data);
