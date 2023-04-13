@@ -19,10 +19,18 @@
     VALUES (6, #{getMemberNo}, #{sendmemberNo}, #{boardNo}, #{point});
   </insert>
   
+  <select id="findPointLog" parameterType="int" resultMap="pointMap">
+    SELECT *
+    FROM aim_pt_get_log
+    WHERE get_member_no = #{no} OR send_member_no = #{no}
+    ORDER BY 
+    get_log_no DESC
+  </select>
+  
   <select id="findPointByBoard" parameterType="int" resultType="int">
     SELECT COALESCE(SUM(get_pt), 0) AS total_received_points
     FROM aim_pt_get_log
-    WHERE board_no = #{no};
+    WHERE board_no = #{no}
   </select>
   
   <select id="findPoint" parameterType="int" resultType="int">

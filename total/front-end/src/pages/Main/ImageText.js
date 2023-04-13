@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="text-box">
+import React from "react";
+import styles from "./ImageText.module.css";
+
+function ImageText() {
+  <div className={styles.frame}>
+    <div className={styles.wrapper}>
+      <div className={styles.box}>
         <img
           src="https://imgnews.pstatic.net/image/008/2023/04/10/0004873083_001_20230410154403052.jpg?type=w647"
+          className={styles.img}
           alt=""
         />
-        <h2>단 몇 초면 그림 뚝딱…한달만에 100만장 그린 'AI 화가'의 정체</h2>
-        <p>
+        <img
+          src="https://blog.kakaocdn.net/dn/bezjux/btqCX8fuOPX/6uq138en4osoKRq9rtbEG0/img.jpg"
+          alt=""
+        ></img>
+
+        <h2 className={styles.h2}>
+          단 몇 초면 그림 뚝딱…한달만에 100만장 그린 'AI 화가'의 정체
+        </h2>
+        <p className={styles.p}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -28,5 +31,7 @@
         </p>
       </div>
     </div>
-  </body>
-</html>
+  </div>;
+}
+
+export default ImageText;

@@ -4,12 +4,15 @@ import axios from "axios";
 import "./ProfileUpper.css";
 import FollowBtn from "./FollowBtn";
 import FollowListModal from "./FollowListModal";
+import PointModal from "./PointModal";
 
 function ProfileUpper(props) {
   const { followingCnt, followerCnt, likeCnt } = props;
   const [followingList, setFollowingList] = useState([]);
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
+  const [pointModal, setPointModal] = useState(false);
   const [point, setPoint] = useState();
+  const [user, setUser] = useState();
   const openFollowingModal = () => {
     axios
       .get("http://localhost:8080/follow/" + props.member.no)
@@ -31,6 +34,7 @@ function ProfileUpper(props) {
   const closeFollowerModal = () => {
     setFollowerModalIsOpen(false);
   };
+<<<<<<< HEAD
 
   useEffect(() => {
     if (props.directModal !== undefined) {
@@ -38,6 +42,12 @@ function ProfileUpper(props) {
     }
   }, [props.directModal]);
 
+=======
+  const pointModalHandler = () => {
+    setPointModal(!pointModal);
+  };
+  const count = 100;
+>>>>>>> 1fe5560aa9d2b3da671b0aa89d68630646c4a171
 
   axios
     .get("http://localhost:8080/point/member/" + props.member.no)
@@ -51,6 +61,13 @@ function ProfileUpper(props) {
       ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       : "0";
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/auth/user`)
+      .then((response) => setUser(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <>
@@ -67,19 +84,21 @@ function ProfileUpper(props) {
         <div className="profile-info">
           <div className="profile-name">{props.member.nickname}</div>
           <div className="profile-detail">
-            <div onClick={openFollowingModal}>
+            <div onClick={openFollowingModal} id="profile-menu">
               <span>{followingCnt}</span> followings
             </div>
-            <div onClick={openFollowerModal}>
+            <div onClick={openFollowerModal} id="profile-menu">
               <span>{followerCnt}</span> followers
             </div>
             <div>
               <span>{likeCnt}</span> likes
             </div>
-            <div>
-              <span>{numberWithCommas(point)}</span>
-              <span></span> point
-            </div>
+            {user?.data.no === props.member.no && (
+              <div onClick={pointModalHandler} id="profile-menu">
+                <span>{numberWithCommas(point)}</span>
+                <span></span> point
+              </div>
+            )}
           </div>
         </div>
         <div
@@ -99,6 +118,11 @@ function ProfileUpper(props) {
         isOpen={followerModalIsOpen}
         onRequestClose={closeFollowerModal}
         follows={props.followers}
+      />
+      <PointModal
+        isOpen={pointModal}
+        onRequestClose={pointModalHandler}
+        memberNo={props.member.no}
       />
     </>
   );

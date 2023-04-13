@@ -1,9 +1,11 @@
 package bitcamp.app.service;
 
+import java.util.List;
 import bitcamp.app.vo.Point;
 
 public interface PointService {
 
+  List<Point> findPointLog(int no);
   void userInsert(Point point);
   int findPointByBoard(int no);
   int findPoint(int no);

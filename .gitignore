@@ -43,4 +43,10 @@ node_modules/
 *.properties
 
 ### generated image folder ###
+
+src/main/pythonapp/results/
+
+#naver.properties
+=======
 pythonapp/results/*
+

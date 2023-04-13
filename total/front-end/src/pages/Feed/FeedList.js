@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
 // import "./Feed.css";
 import FeedModal from "./FeedModal";
+import axios from "axios";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
+<<<<<<< HEAD
   const [loginShow, setLoginShow] = useState(null);
   
   function handleCloseModal() {
     setModalOpen(false);
   }
+=======
+  const [user, setUser] = useState();
+>>>>>>> 1fe5560aa9d2b3da671b0aa89d68630646c4a171
 
   function ShowModal() {
-    setModalOpen(true);
+    setModalOpen(!modalOpen);
+    if (modalOpen !== true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
   }
 
   const handleLoginShow = () => {
@@ -24,6 +34,13 @@ function FeedList(props) {
       setModalOpen(true);
     }
   }, [props.directModal]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/auth/user`)
+      .then((response) => setUser(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <>
@@ -50,14 +67,8 @@ function FeedList(props) {
           <>
             <div
               id="modal-background"
-              style={{
-                opacity: 0.3,
-                backgroundColor: "black",
-                pointerEvents: "all",
-                cursor: "Default",
-              }}
               onClick={() => {
-                handleCloseModal();
+                ShowModal();
               }}
             ></div>
             <div
@@ -69,12 +80,12 @@ function FeedList(props) {
               <div
                 id="feed-close"
                 onClick={() => {
-                  handleCloseModal();
+                  ShowModal();
                 }}
               >
                 &times;
               </div>
-              <FeedModal data={props.item} closeModal={handleCloseModal} />
+              <FeedModal data={props.item} closeModal={ShowModal} user={user} />
             </div>
           </>
         )}
