@@ -15,19 +15,19 @@ function MemberView(props) {
   console.log(no);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/admin/` + no);
-        const data = await response.json();
-        setData(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [no, setData]);
-
-  console.log("data", data);
+    if (setShow) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:8080/admin/` + no);
+          const data = await response.json();
+          setData(data.data.no);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }
+  }, [no, setShow]);
 
   return (
     <>

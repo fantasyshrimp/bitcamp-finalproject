@@ -1,0 +1,35 @@
+.frame {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  margin: 150px auto;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: lightcoral;
+}
+
+.img {
+  max-width: 320px;
+  float: left;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.box {
+  color: white;
+}
+
+.box h2 {
+  font-size: 42px;
+}
+
+.box p {
+  font-size: 16px;
+}
