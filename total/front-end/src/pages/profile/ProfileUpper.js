@@ -34,7 +34,6 @@ function ProfileUpper(props) {
   const closeFollowerModal = () => {
     setFollowerModalIsOpen(false);
   };
-<<<<<<< HEAD
 
   useEffect(() => {
     if (props.directModal !== undefined) {
@@ -42,12 +41,10 @@ function ProfileUpper(props) {
     }
   }, [props.directModal]);
 
-=======
   const pointModalHandler = () => {
     setPointModal(!pointModal);
   };
   const count = 100;
->>>>>>> 1fe5560aa9d2b3da671b0aa89d68630646c4a171
 
   axios
     .get("http://localhost:8080/point/member/" + props.member.no)

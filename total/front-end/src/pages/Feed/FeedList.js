@@ -5,15 +5,12 @@ import axios from "axios";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
-<<<<<<< HEAD
   const [loginShow, setLoginShow] = useState(null);
-  
+
   function handleCloseModal() {
     setModalOpen(false);
   }
-=======
   const [user, setUser] = useState();
->>>>>>> 1fe5560aa9d2b3da671b0aa89d68630646c4a171
 
   function ShowModal() {
     setModalOpen(!modalOpen);
@@ -28,7 +25,7 @@ function FeedList(props) {
     props.setIsLoginModal(true);
     props.setLoginShow(true);
   };
-  
+
   useEffect(() => {
     if (props.directModal !== undefined) {
       setModalOpen(true);
