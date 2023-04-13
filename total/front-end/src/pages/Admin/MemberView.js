@@ -15,18 +15,16 @@ function MemberView(props) {
   console.log(no);
 
   useEffect(() => {
-    if (setShow) {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`http://localhost:8080/admin/` + no);
-          const data = await response.json();
-          setData(data.data.no);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchData();
-    }
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/admin/` + no);
+        const data = await response.json();
+        setData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [no, setShow]);
 
   return (
@@ -43,7 +41,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="no"
-                  value={data.no}
+                  value={data ? data.no : ""}
                   autoFocus
                   readOnly
                 />
@@ -56,7 +54,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="nickname"
-                  value={data.nickname}
+                  value={data ? data.nickname : ""}
                   autoFocus
                 />
               </div>
@@ -68,7 +66,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="email"
-                  value={data.email}
+                  value={data ? data.email : ""}
                   autoFocus
                 />
               </div>
@@ -80,7 +78,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="password"
-                  value={data.password}
+                  value={data ? data.password : ""}
                   autoFocus
                 />
               </div>
@@ -92,7 +90,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="createdDate"
-                  value={data.createdDate}
+                  value={data ? data.createdDate : ""}
                   autoFocus
                 />
               </div>
@@ -104,7 +102,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="gender"
-                  value={data.gender}
+                  value={data ? data.gender : ""}
                   autoFocus
                 />
               </div>
@@ -116,7 +114,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="profilePhoto"
-                  value={data.profilePhoto}
+                  value={data ? data.profilePhoto : ""}
                   autoFocus
                 />
               </div>
@@ -128,7 +126,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="basicAddress"
-                  value={data.basicAddress}
+                  value={data ? data.basicAddress : ""}
                   autoFocus
                 />
               </div>
@@ -140,7 +138,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="point"
-                  value={data.point}
+                  value={data ? data.point : ""}
                   autoFocus
                 />
               </div>
@@ -152,7 +150,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="information"
-                  value={data.information}
+                  value={data ? data.information : ""}
                   autoFocus
                 />
               </div>
@@ -164,7 +162,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="birthDate"
-                  value={data.birthDate}
+                  value={data ? data.birthDate : ""}
                   autoFocus
                 />
               </div>
@@ -176,7 +174,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="tel"
-                  value={data.tel}
+                  value={data ? data.tel : ""}
                   autoFocus
                 />
               </div>
@@ -190,7 +188,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="passwordDate"
-                  value={data.passwordDate}
+                  value={data ? data.passwordDate : ""}
                   autoFocus
                 />
               </div>
@@ -202,7 +200,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="accountState"
-                  value={data.accountState}
+                  value={data ? data.accountState : ""}
                   autoFocus
                 />
               </div>
@@ -214,7 +212,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="authLevel"
-                  value={data.authLevel}
+                  value={data ? data.authLevel : ""}
                   autoFocus
                 />
               </div>
