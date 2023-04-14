@@ -8,6 +8,7 @@ import bitcamp.app.vo.Member;
 @Mapper
 public interface MemberDao {
   void insert(Member m);
+  void insertExternal(Member m);
   List<Member> findAll();
   Member findByNo(int no);
   Member findByEmailAndPassword(Map<String,Object> map);

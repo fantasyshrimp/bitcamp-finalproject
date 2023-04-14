@@ -29,6 +29,12 @@
     insert into aim_member(name, email, pw, pt, token, link)
     values(#{nickname}, #{email}, sha2(#{password},256), 0, token, #{link})
   </insert>
+
+  <insert id="insertExternal" parameterType="member" 
+          useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
+    insert into aim_member(name, email, pw, pt, state, link)
+    values(#{nickname}, #{email}, sha2(#{password},256), 0, 0, #{link})
+  </insert>
   
   <select id="findAll" resultMap="memberMap">
     select *

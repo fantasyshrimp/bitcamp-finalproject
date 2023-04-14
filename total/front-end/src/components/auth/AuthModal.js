@@ -29,14 +29,15 @@ function AuthModal(props) {
     setShow(false);
   };
 
-  const handleClickLogout = () => {
+  const handleClickLogout = (e) => {
+    e.preventDefault();
     handleClose();
 
     axios
       .get("http://localhost:8080/auth/logout")
       .then((response) => {
         setCurrentUser(null);
-        window.location.reload();
+        window.location.href = "http://localhost:3000";
       })
       .catch((error) => {
         alert("로그아웃 중 오류 발생!");
@@ -45,12 +46,10 @@ function AuthModal(props) {
 
   const handleClickAdminPage = () => {
     handleClose();
-    console.log("관리자 페이지 클릭!");
   };
 
   const handleClickStats = () => {
     handleClose();
-    console.log("통계 페이지 클릭!");
   };
 
   return (
