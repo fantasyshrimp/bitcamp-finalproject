@@ -13,9 +13,10 @@ public interface MemberService {
   Member getByNickname(String nickname);
   Member get(int no);
   void update(Member member);
+  void updateProfilePhoto(Member member);
+  void updateNickname(Member member);
   void delete(int no);
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);
-  void updateProfilePhoto(Member member);
   Member updateByVerifyToken(String token);
 }

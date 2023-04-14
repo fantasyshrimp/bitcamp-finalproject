@@ -18,6 +18,7 @@ public interface MemberDao {
   int update(Member m);
   int delete(int no);
   void updateProfile(Member m);
+  void updateNickname(Member m);
   void updateToken(Member m);
   void updateStateByToken(String token);
 }

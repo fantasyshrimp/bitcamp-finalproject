@@ -99,6 +99,16 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
+  public void updateProfilePhoto(Member member) {
+    memberDao.updateProfile(member);
+  }
+
+  @Override
+  public void updateNickname(Member member) {
+    memberDao.updateNickname(member);
+  }
+
+  @Override
   public void delete(int no) {
 
   }
@@ -126,11 +136,6 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public void updateProfilePhoto(Member member) {
-    memberDao.updateProfile(member);
-  }
-
-  @Override
   public Member updateByVerifyToken(String token) {
     Member member = memberDao.findByToken(token);
 
@@ -146,4 +151,5 @@ public class DefaultMemberService implements MemberService {
   public void lastLoginUpdate(int no) {
     memberDao.lastLoginUpdate(no);
   }
+
 }

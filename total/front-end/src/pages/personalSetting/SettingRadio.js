@@ -1,15 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 
 function SettingRadio(props) {
-  const {title, options, value, setValue, check, comment} = props;
-  const [stateCondition, setStateCondition] = useState(true);
-  function checkCondition(value) {
-    if (check !== undefined){
-      setStateCondition(check(value));
-      return stateCondition;
-    }
-    return false;
-  }
+  const {title, options, value, setValue} = props;
+
   return (
     <div>
       <h5>{title}</h5>

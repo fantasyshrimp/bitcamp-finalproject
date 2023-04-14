@@ -15,7 +15,7 @@ function PublicSetting(props) {
         }
         setData(response.data);
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <div id="setting-feild" style={{ width: "100%", height: "100%",

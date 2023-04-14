@@ -160,6 +160,12 @@
     set filename=#{profilePhoto}
     where member_no=#{no}
   </update>
+  
+  <update id="updateNickname" parameterType="member">
+    update aim_member
+    set name=#{nickname}
+    where member_no=#{no}
+  </update>
 
   <update id="updateToken" parameterType="member">
     update aim_member

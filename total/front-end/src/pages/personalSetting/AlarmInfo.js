@@ -48,6 +48,7 @@ function AlarmInfo(props) {
             directModal: { type: "follow", no: giver.contentNo }
           }});
           break;
+        default :
       }
     }
 
@@ -72,7 +73,7 @@ function AlarmInfo(props) {
       color: isRead ? "gray" : "white"
       }} >
       <div style={{width: "80%"}}>
-        <img src={giver.profilePhoto} 
+        <img src={giver.profilePhoto} alt={"profile img"}
           style={{width: "50px", height: "50px", marginRight: "10px",
           borderRadius: "50%", backgroundColor: "white"}}/>
         <span> {giver.nickname}님이 {log.content}</span>

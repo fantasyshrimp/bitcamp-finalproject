@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PencilSquare } from 'react-bootstrap-icons';
@@ -7,11 +8,19 @@ import ImageResizer from "react-image-file-resizer";
 import SettingInput from "./SettingInput"
 import SettingRadio from "./SettingRadio"
 
+Modal.setAppElement('#root')
+
 function ModifyProfile(props) {
   const navigate = useNavigate();
 
-  const [memberData, setMemberData] = useState({});
   const [imageUrl, setImageUrl] = useState("");
+  
+  const [memberData, setMemberData] = useState({});
+  const [beforeNick, setBeforeNick] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [nicknameChageState, setNicknameChageState] = useState(false);
+  const [nickCheckState, setNickCheckState] = useState(false);
+  const [isNickDuplication, setIsNickDuplication] = useState(true);
 
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -19,8 +28,8 @@ function ModifyProfile(props) {
   const [birthdate, setBirthdate] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  
 
-  const [nicknameChageState, setNicknameChageState] = useState(false);
   const [condition, setCondition] = useState(true);
 
   const divStyle = {
@@ -42,14 +51,16 @@ function ModifyProfile(props) {
         if (response.data.status === "failure") {
           navigate("/");
         }
-        setMemberData(response.data.data);        
+        setMemberData(response.data.data);
+        setBeforeNick(response.data.data.nickname);
+        setNickname(response.data.data.nickname);      
         setImageUrl(response.data.data.profilePhoto);
         setGender(response.data.data.gender);
         setBirthdate(response.data.data.birthDate);
         setPhone(response.data.data.tel);
         setAddress(response.data.data.basicAddress);
       });
-  }, []);
+  }, [navigate]);
   
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -81,8 +92,8 @@ function ModifyProfile(props) {
     }
   };
 
-  const handleNickNameChage = (event) => {
-    setNicknameChageState(!nicknameChageState);
+  const handleNickNameChage = () => {
+    setNicknameChageState(false);
   }
 
   function handleKeyDown(event) {
@@ -94,6 +105,7 @@ function ModifyProfile(props) {
   }
 
   return (
+    <>
     <div id="setting-feild" style={{ width: "100%", height: "90%",
       color: "white"  
     }}>
@@ -102,8 +114,9 @@ function ModifyProfile(props) {
         boxSizing: "border-box", borderBottom: "1px solid rgba(255,255,255,0.5)"
       }}>{props.title}</div>
       
-      <div style={{width: "90%", height: "90%",
-        display: "flex",  marginLeft: "5%"
+      <div style={{width: "90%", height: "90%", marginLeft: "5%", 
+        display: "flex", flexDirection: props.flexDirection,
+        overflow: "auto"
       }}>
         <div style={{width: "30%", height: "90%", marginTop: "5%",
           display: "flex", flexDirection: "column", minWidth: "400px"
@@ -114,32 +127,24 @@ function ModifyProfile(props) {
             <input id="profile-photo" type="file" accept="image/*" name='profilePhoto' onChange={handleFileUpload} style={{display:"none"}}/>
           </div>
           <div style={{ width: "300px"}} >
-            {nicknameChageState 
-            ? <div style={{  display: "flex", justifyContent: "flex-end", alignItems: "flex-end",
-              height: "50px", marginTop: "10px" }}>
-              <input value={memberData.nickname} onKeyDown={handleKeyDown}            
-              style={{ 
-              width: "150px",  height: "30px", marginTop: "10px",
-              backgroundColor: "#212529",
-              border: "1px solid #ced4da",
-              borderRadius: "0.375rem",
-              padding: "0.375rem 0.75rem",
-              color: "rgb(248,249,250)",
-              fontSize: "1rem",
-              fontWeight: "400"
-              }} />
-              </div>
+            {false 
+            ? ""
             : <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "flex-end",
               height: "50px", marginTop: "10px" }}>
-              <span style={{ fontWeight: "bolder", fontSize: "1.4rem" }}>{memberData.nickname}</span>
-              <PencilSquare onClick={handleNickNameChage}
+              <span style={{ fontWeight: "bolder", fontSize: "1.4rem" }}>{beforeNick}</span>
+              <PencilSquare onClick={() => {
+                setIsNickDuplication(true);
+                setNicknameChageState(true);
+                setNickCheckState(false);}}
                 style={{width: "25px", height: "25px", paddingBottom: "5px"}}/>
             </div>}
             <div style={{textAlign: "right"}}>{memberData.email}</div>
           </div>
         </div>
         <div style={{width: "60%", height: "90%",
-          display: "flex", flexDirection: "column", minWidth: "500px"
+          display: "flex", flexDirection: "column", minWidth: "500px", 
+          paddingTop: props.flexDirection === "column" ? "30px" : "",
+          borderTop: props.flexDirection === "column" ? "1px solid white" : "",
         }}>
           <SettingInput title={"비밀번호 수정"} placeholder={"******"} value={password} setValue={setPassword} type={"password"} />
           <SettingInput title={"비밀번호 확인"} placeholder={"******"} value={passwordConfirm} setValue={setPasswordConfirm} type={"password"} setCondition={setCondition}
@@ -207,6 +212,88 @@ function ModifyProfile(props) {
         </div>
       </div>
     </div>
+
+    <Modal isOpen={nicknameChageState} onRequestClose={() => setNicknameChageState(false)}
+        style={{
+        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+        content: { width: '350px', height: '180px', margin: 'auto', backgroundColor: '#212529',
+        border: 'none', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)', color: "white"       
+        }}}
+        >
+        <div style={{ width: "100%", height: "45%", borderBottom: "1px solid gray",
+          display: "flex", justifyContent: "center", alignItems: "center"
+        }}>
+          <span style={{ color: "white", fontSize: "1.3rem", fontWeight: "bolder" }}>
+            닉네임 변경
+          </span>
+        </div>
+        <div style={{ width: "100%", display: "flex", alignItems: "center", marginTop: "2%" }}>
+          <input defaultValue={memberData.nickname}
+          onChange={(e) => {
+            const newValue = e.target.value.trim()
+            setNickname(newValue);
+            setNickCheckState(false);     
+          }}
+          style={{ 
+          width: "220px",  height: "50px", marginTop: "10px",
+          backgroundColor: "#212529",
+          border: "1px solid #ced4da",
+          borderRadius: "0.375rem",
+          padding: "0.375rem 0.75rem",
+          color: "rgb(248,249,250)",
+          fontSize: "1.1rem",
+          fontWeight: "bolder"
+          }} />
+          <div onClick={() => {
+            if(nickCheckState && !isNickDuplication) {
+              axios.put("http://localhost:8080/member/nickname", {}, {
+                params: {
+                  nickname: nickname
+                }
+              })
+              .then((response) => {
+                if (response.data.status === 'success') {    
+                  setBeforeNick(nickname);
+                }
+                setNicknameChageState(false);
+                window.location.reload();
+              })
+              return;
+            } else {
+              axios.get(`http://localhost:8080/member/check/nickname/${nickname}`)
+              .then((response)=> {
+                if (response.data.status === 'failure') {
+                  setIsNickDuplication(true);
+                } else if (response.data.status === 'success') {
+                  setIsNickDuplication(false);
+                }
+                setNickCheckState(true);
+              });   
+            }
+
+            }}
+            style={{ marginLeft: "20px", marginTop: "20px",
+            backgroundColor: (nickCheckState && !isNickDuplication) ? "#ffffff" : "#000000",
+            color: (nickCheckState && !isNickDuplication) ? "black" : "white",
+            padding: "8px 8px",
+            textAlign: "center",            
+            fontSize: "12px",
+            cursor: "pointer",
+            borderRadius: "6px"            
+            }}>
+            {nickCheckState && !isNickDuplication 
+            ? <span>변경하기</span>
+            : <span>중복확인</span>}
+          </div>
+        </div>
+        {nickCheckState 
+        ? (isNickDuplication 
+          ? <div style={{marginLeft: "5px", fontSize: "0.8rem"}}>사용 불가능한 닉네임입니다.</div>
+          : <div style={{marginLeft: "5px", fontSize: "0.8rem"}}>사용 가능한 닉네임입니다.</div>        
+          ) 
+        : ""}
+    </Modal>
+    </>
   );
 }
 

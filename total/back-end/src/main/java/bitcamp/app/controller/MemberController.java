@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.app.service.BoardService;
@@ -104,6 +105,25 @@ public class MemberController {
         .setStatus(RestStatus.SUCCESS);
   }
 
+  @PutMapping("nickname")
+  public Object updateNickname(
+      @RequestParam String nickname,
+      HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+    loginUser.setNickname(nickname);
+    memberService.updateNickname(loginUser);
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
+
 
   @PutMapping("upload/profileImg")
   public Object updateProfileImg(
@@ -135,6 +155,19 @@ public class MemberController {
     memberService.updateProfilePhoto(loginUser);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
+  }
+
+  @GetMapping("check/nickname/{nickname}")
+  public Object checkNinckname(@PathVariable String nickname) {
+    Member m = memberService.getByNickname(nickname);
+    if (m == null) {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setData("사용가능");
+    }
+    return new RestResult()
+        .setStatus(RestStatus.FAILURE)
+        .setData("사용불가");
   }
 }
 
