@@ -43,6 +43,7 @@ public class DefaultMemberService implements MemberService {
         + "<h1> 안녕하세요. Artify 입니다</h1>"
         + "<br>"
         + "<p>아래 링크를 클릭하면 이메일 인증이 완료됩니다.<p>"
+        + "<br>"
         + "<a href='http://localhost:3000/auth/verify?token=" + member.getToken() + "'>인증 링크</a>"
         + "</div>";
 
@@ -64,7 +65,7 @@ public class DefaultMemberService implements MemberService {
       }
     }
 
-    memberDao.insert(member);
+    memberDao.insertExternal(member);
   }
 
   @Override

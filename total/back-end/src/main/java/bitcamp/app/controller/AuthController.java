@@ -224,7 +224,7 @@ public class AuthController {
         member.setPassword(password);
         member.setLink(link);
 
-        memberService.add(member);
+        memberService.addOfExternal(member);
       }
 
       Member user = memberService.getByEmail(email);
@@ -241,6 +241,7 @@ public class AuthController {
       //      log.info("세선에 user 정보 입력 >>> " + user);
 
       return new RestResult()
+          .setData(user)
           .setStatus(RestStatus.SUCCESS);
 
     } catch (Exception e) {

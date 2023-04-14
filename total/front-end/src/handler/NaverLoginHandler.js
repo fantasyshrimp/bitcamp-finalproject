@@ -27,8 +27,12 @@ const NaverLoginHandler = () => {
           params
         );
 
-        // console.log("서버에서 naverLogin 응답 옴!");
-        // console.log(response);
+        console.log(response);
+        alert(
+          `${
+            response.data?.data.link === "naver" ? "네이버 계정" : ""
+          } 회원가입이 완료 되었습니다.`
+        );
 
         if (response.data.status === "failure") {
           if (response.data.errorCode == "502") {
