@@ -140,7 +140,7 @@ public class MemberController {
           .setData("로그인 요망");
     }
     // 받은 파일 스토리지에 업로드
-    String filename = objectStorageService.uploadFile(bucketName, "profile", profilePhoto);
+    String filename = objectStorageService.uploadFile(bucketName, "profile/", profilePhoto);
     if (filename == null) {
       System.out.println("파일명 null");
     }
