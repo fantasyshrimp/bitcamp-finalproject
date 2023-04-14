@@ -799,7 +799,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-5. PYTHONPATH 설정
+5. PYTHONPATH 설정 및 alias 설정
 
 - MacOS/Linux
 
@@ -809,6 +809,9 @@ nano ~/.bashrc
 
 #2 파일 끝에 내용 추가
 export PYTHONPATH=/root/git/stable-diffusion-keras/venv/lib/python3.8/site-packages:$PYTHONPATH
+
+alias python=python3.8
+alias python3=python3.8
 
 #3 파일 저장하고 종료 후 적용을 위해 아래 입력
 source ~/.bashrc
@@ -871,6 +874,8 @@ pip install tensorflow-gpu
 
 ### 1. GPU Server 생성 및 stable-diffusion 환경 세팅함
 
+### 2. 도커 이미지 생성 및 컨테이너 실행 평가함
+
 ## 시행착오 또는 기억할 것
 
 ### 1. 리눅스에서 OpenJDK 17 설치 방법
@@ -905,3 +910,13 @@ lsof -i :3000
 
 kill $(sudo lsof -t -i :3000)
 ```
+
+# 4월14일 금
+
+## 작업내용
+
+### 1.
+
+## 시행착오 또는 기억할 것
+
+### 1.
