@@ -734,105 +734,7 @@ AtomicReference는 또한 null 값도 참조할 수 있습니다.
 
 ### 2. Linux 환경에서 그림 생성
 
-_simple_cmd.py 실행 요구사항_
-
-1. Python 3.8 설치
-
-- 저장소 및 패키지 목록 업데이트:
-
-```bash
-sudo apt update
-```
-
-- 시스템을 업그레이드하고 필요한 종속성을 설치합니다:
-
-```bash
-sudo apt upgrade
-```
-
-- python3.8 및 python3.8-venv 패키지를 설치합니다:
-
-```bash
-sudo apt install python3.8 python3.8-venv
-```
-
-2. git repository 가져오기
-
-```bash
-git clone https://github.com/AssemblyAI-Examples/stable-diffusion-keras.git
-cd stable-diffusion-keras
-```
-
-3. 가상 환경 설정
-
-```bash
-apt-get install python3-venv
-```
-
-```bash
-python3 -m venv venv
-```
-
-- Activate (MacOS/Linux)
-
-```bash
-source venv/bin/activate
-```
-
-- Activate (Windows)
-
-```bash
-.\venv\Scripts\activate.bat
-```
-
-4. 라이브러리 설치
-
-```bash
-pip install "setuptools<60.0"
-```
-
-```bash
-pip install --upgrade pip
-```
-
-```bash
-pip install -r requirements.txt
-```
-
-5. PYTHONPATH 설정 및 alias 설정
-
-- MacOS/Linux
-
-```bash
-#1 .bashrc 편집
-nano ~/.bashrc
-
-#2 파일 끝에 내용 추가
-export PYTHONPATH=/root/git/stable-diffusion-keras/venv/lib/python3.8/site-packages:$PYTHONPATH
-
-alias python=python3.8
-alias python3=python3.8
-
-#3 파일 저장하고 종료 후 적용을 위해 아래 입력
-source ~/.bashrc
-```
-
-- Windows
-
-```
-1. 제어판 > 시스템 > 고급 시스템 설정 > 환경 변수를 엽니다.
-2. "시스템 변수" 영역에서 "새로 만들기"를 클릭하거나 "PYTHONPATH" 변수가 이미 있는 경우 "편집"을 클릭합니다.
-3. 변수 값에 C:\Users\bitcamp\git\stable-diffusion-keras\venv\Lib\site-packages를 추가하고, 다른 경로와 구분하기 위해 세미콜론(;)을 사용합니다.
-4. 확인을 클릭하여 변경 사항을 저장하고 창을 닫습니다.
-```
-
-6. CLI 환경 리눅스에서 이미지 보는 방법
-
-```bash
-sudo apt-get install catimg
-
-catimg img.png
-```
+티스토리 참조
 
 ### 3. CPU 환경에서 그림 생성 후 발생하는 에러
 
@@ -874,8 +776,6 @@ pip install tensorflow-gpu
 
 ### 1. GPU Server 생성 및 stable-diffusion 환경 세팅함
 
-### 2. 도커 이미지 생성 및 컨테이너 실행 평가함
-
 ## 시행착오 또는 기억할 것
 
 ### 1. 리눅스에서 OpenJDK 17 설치 방법
@@ -915,7 +815,7 @@ kill $(sudo lsof -t -i :3000)
 
 ## 작업내용
 
-### 1.
+### 1. Container 에 gpu-server 넣어도 Docker 에 올리는 중
 
 ## 시행착오 또는 기억할 것
 
