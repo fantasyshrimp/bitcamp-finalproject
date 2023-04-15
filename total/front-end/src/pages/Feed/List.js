@@ -39,12 +39,14 @@ function List(props) {
   }, [data]);
 
   async function loadData() {
+    const currentPage = Math.ceil(data.length / 10) + 1;
     const response = await axios.get("http://localhost:8080/boards", {
       params: {
-        page: data.length / 10,
+        currentPage: currentPage,
       },
     });
-    setData((prevData) => [...prevData, ...response.data]);
+    const randomData = response.data.sort(() => Math.random() - 0.5);
+    setData((prevData) => [...prevData, ...randomData]);
   }
 
   return (

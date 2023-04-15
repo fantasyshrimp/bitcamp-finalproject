@@ -1,13 +1,14 @@
 package bitcamp.app.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import bitcamp.app.vo.Board;
 
 @Mapper
 public interface BoardDao {
   void insert(Board b);
-  List<Board> findAll(String keyword);
+  List<Board> findAll(Map<Object, Object> page);
   List<Board> findAllHot();
   List<Board> findAllRecent();
   List<Board> findFollow(int no);

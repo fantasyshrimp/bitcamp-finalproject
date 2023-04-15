@@ -1,5 +1,6 @@
 package bitcamp.app.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ReplyController {
   @PostMapping
   public Object insert(
       Reply reply,
-      HttpSession session) {
+      HttpSession session) throws IOException {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
     reply.setWriter(loginUser);
