@@ -1,6 +1,7 @@
 package bitcamp.app.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +38,8 @@ public class DefaultBoardService implements BoardService{
   }
 
   @Override
-  public List<Board> list(String keyword) {
-    return boardDao.findAll(keyword);
+  public List<Board> list(Map<Object, Object> page) {
+    return boardDao.findAll(page);
   }
 
   @Override

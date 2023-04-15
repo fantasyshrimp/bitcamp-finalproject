@@ -1,11 +1,12 @@
 package bitcamp.app.service;
 
 import java.util.List;
+import java.util.Map;
 import bitcamp.app.vo.Board;
 
 public interface BoardService {
   void add(Board board);
-  List<Board> list(String keyword);
+  List<Board> list(Map<Object, Object> page);
   List<Board> listHot();
   List<Board> listRecent();
   List<Board> listFollow(int no);

@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -54,6 +56,7 @@ public class BoardController {
   @Autowired private NaverObjectStorageConfig naverObjectStorageConfig;
   @Autowired private NaverClovaSummary naverClovaSummary;
   @Autowired private NaverPapagoTranslation naverPapagoTranslation;
+  //  @Autowired private TagExtract tagExtract;
 
   @PostMapping
   public Object insert(int writerNo, String originContent) {
@@ -131,6 +134,9 @@ public class BoardController {
         String summaryContent = summaryContentAtomicRef.get();
         // log.info("summaryContent >>> " + summaryContent);  // 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
 
+        //        String oriCon = tagExtract.koToEn(originContent);
+        //        String tag = tagExtract.extract(oriCon);
+
         Member member = memberService.get(writerNo);
 
         Board board = new Board();
@@ -138,6 +144,7 @@ public class BoardController {
         board.setOriginContent(originContent);
         board.setSummaryContent(summaryContent);
         board.setTransContent(transContent);
+        //        board.setTag(tag);
 
         GeneratedImg generatedImg = new GeneratedImg();
         generatedImg.setFilename(fileUrl);
@@ -164,7 +171,7 @@ public class BoardController {
   }
 
   @GetMapping
-  public List<Board> list(String keyword, HttpSession session) {
+  public List<Board> list(String keyword, int currentPage,  HttpSession session) {
 
     String sort = (String) session.getAttribute("sort");
 
@@ -188,7 +195,15 @@ public class BoardController {
     }
 
     String key = (String) session.getAttribute("keyword");
-    List<Board> list = boardService.list(key);
+
+    System.out.println(currentPage);
+    Map<Object, Object> page = new HashMap<Object, Object>();
+
+    page.put("keyword", key);
+    page.put("pageSize", 10);
+    page.put("offset", (currentPage - 1) * 10);
+
+    List<Board> list = boardService.list(page);
 
     session.removeAttribute("keyword");
 
