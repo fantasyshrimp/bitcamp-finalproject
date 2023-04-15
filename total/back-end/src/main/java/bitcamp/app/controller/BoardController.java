@@ -196,7 +196,6 @@ public class BoardController {
 
     String key = (String) session.getAttribute("keyword");
 
-    System.out.println(currentPage);
     Map<Object, Object> page = new HashMap<Object, Object>();
 
     page.put("keyword", key);
