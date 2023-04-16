@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./SettingPrompt.css"
+import { EyeFill, EyeSlashFill } from 'react-bootstrap-icons';
 
 function SettingPrompt(props) {
   const {classKey, data, stateArray, settingType, requestBody} = props;
   const [selectedValue, setSelectedValue] = useState(data.rangeState === 0 ? 1 : data.rangeState);
+  const [hideState, setHideState] = useState(selectedValue === 1 ? false : true);
   const root = document.querySelector(':root');
   const controlClass = "selected-setting" + classKey
   useEffect(() => {
@@ -14,7 +16,8 @@ function SettingPrompt(props) {
   const handleButtonClick = (target) => {
     const selectedNo = target.getAttribute("data-value");
     const moveValue = selectedNo - selectedValue;
-    
+    selectedNo === '1' ? setHideState(false) : setHideState(true);
+    console.log(hideState);
     let movePx = 30 * parseInt(moveValue);
     root.style.setProperty('--slide-side-distance', `${movePx}px`);
     
@@ -49,11 +52,16 @@ function SettingPrompt(props) {
         <div style={{fontSize: "small", color:"gray"}}>{data.description}</div>
       </div>
 
-      <div id="setting-type-btn" style={{position: "absolute", top: "0", right: "0"}}>
+      <div id="setting-type-btn" 
+        style={{position: "absolute", top: "5px", right: "0",
+        backgroundColor : hideState ? "red" : "green"
+        }}>
         {stateArray.map((value) => (
           <div key={value} data-value={value} onClick={(event) => handleButtonClick(event.currentTarget)}></div>
         ))}
-      <div className={controlClass}></div>
+      <div className={controlClass}>
+        {hideState ? <EyeSlashFill /> : <EyeFill />}
+      </div>
       </div>
 
     </div>

@@ -1,21 +1,33 @@
 
 #setting-type-btn {
-    display: flex;
     position: relative;
+    display: flex;
+    justify-content: center;
+
+    background-color: gray;
+    border-radius: 15px;
 }
 
 #setting-type-btn > div {
     width: 30px;
-    height: 30px;
-
-    border: 1px solid white;
+    height: 25px;
     box-sizing: border-box;
 }
 
 #setting-type-btn > [class^="selected-setting"] {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#setting-type-btn > .setting-prompt-background {
+    position: absolute;
+    width: 60px;
     background-color: gray;
 }
+
+
 
 :root {
     --slide-side-distance: 0px;

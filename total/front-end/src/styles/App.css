@@ -1,3 +1,21 @@
+:root {
+  /* color */
+
+  --aim-navbar            : "white";
+  --aim-body-background   : "white";
+  --aim-text              : "white";
+  
+  --aim-modal-background  : "white";
+  
+  --aim-button-primary    : "white";
+  --aim-button-after      : "white";
+
+
+}
+
+
+
+
 /* .App {
   text-align: center;
 }
@@ -12,7 +30,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+ 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
