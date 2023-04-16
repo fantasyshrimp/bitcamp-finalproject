@@ -12,7 +12,7 @@ function Faq() {
       <div id="type">
         <h2
           style={{
-            color: "var(--color4)",
+            color: `var(--aim-default-white)`,
             paddingTop: "60%",
           }}
         >

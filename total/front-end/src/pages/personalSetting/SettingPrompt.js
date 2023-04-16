@@ -49,12 +49,12 @@ function SettingPrompt(props) {
     }}>
       <div style={{width: "400px"}}>
         <div style={{fontSize: "x-large"}}><b>{data.title}</b></div>
-        <div style={{fontSize: "small", color:"gray"}}>{data.description}</div>
+        <div style={{fontSize: "small", color:`var(--aim-default-gray)`}}>{data.description}</div>
       </div>
 
       <div id="setting-type-btn" 
         style={{position: "absolute", top: "5px", right: "0",
-        backgroundColor : hideState ? "red" : "green"
+        backgroundColor : hideState ? `var(--aim-btn-close)` : `var(--aim-fill-green)`
         }}>
         {stateArray.map((value) => (
           <div key={value} data-value={value} onClick={(event) => handleButtonClick(event.currentTarget)}></div>

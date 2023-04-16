@@ -129,7 +129,7 @@ function LoginModal(props) {
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "#00000000",
+          backgroundColor: `var(--aim-fill-alpa)`,
           border: "none",
         }}
         contentClassName="bg-dark"

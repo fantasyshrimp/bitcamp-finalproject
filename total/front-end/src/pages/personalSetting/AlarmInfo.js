@@ -68,17 +68,17 @@ function AlarmInfo(props) {
       style={{width: "100%", height: "60px", minWidth: "600px",
       padding: "5px 0px", marginLeft: "50px", 
       display: "flex",
-      backgroundColor: isMouseOver ? "#007bff" : "#00000000",
+      backgroundColor: isMouseOver ? `var(--aim-btn-emphasis)` : `var(--aim-fill-alpa)`,
       boxSizing: "border-box", borderBottom: "1px solid white",
-      color: isRead ? "gray" : "white"
+      color: isRead ? `var(--aim-default-gray)` : `var(--aim-default-white)`
       }} >
       <div style={{width: "80%"}}>
         <img src={giver.profilePhoto} alt={"profile img"}
           style={{width: "50px", height: "50px", marginRight: "10px",
-          borderRadius: "50%", backgroundColor: "white"}}/>
+          borderRadius: "50%", backgroundColor: `var(--aim-img-background)`}}/>
         <span> {giver.nickname}님이 {log.content}</span>
       </div>
-      <div style={{paddingLeft: "5px", borderLeft: "1px solid gray"}}>
+      <div style={{paddingLeft: "5px", borderLeft: `1px solid var(--aim-border)`}}>
         {log.recordDate}
       </div>      
     </div>

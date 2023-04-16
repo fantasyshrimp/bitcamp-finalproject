@@ -7,7 +7,7 @@ function BoardMenu(props) {
         id="modal-background"
         style={{
           opacity: 0.3,
-          backgroundColor: "black",
+          backgroundColor: `var(--aim-modal-background)`,
           pointerEvents: "all",
           cursor: "Default",
         }}

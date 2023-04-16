@@ -22,10 +22,10 @@ function SettingInput(props) {
             checkCondition(newValue)}}
           style={{ width:"50%", 
           backgroundColor: "#212529",
-          border: "1px solid #ced4da",
+          border: `1px solid var(--aim-input)`,
           borderRadius: "0.375rem",
           padding: "0.375rem 0.75rem",
-          color: "rgb(248,249,250)",
+          color: `var(--aim-default-white)`,
           fontSize: "1rem",
           fontWeight: "400"
           }} />

@@ -20,7 +20,7 @@
 #point-log-content {
   width: auto;
   height: 32px;
-  color: white;
+  color: var(--aim-default-white);
   font-size: 20px;
 }
 
@@ -35,7 +35,7 @@
   float: left;
   height: auto;
   text-align: right;
-  color: #888fff;
+  color: var(--aim-point-color);
 }
 
 #point-log-sendpoint {
@@ -43,12 +43,12 @@
   float: left;
   height: auto;
   text-align: right;
-  color: #e75656;
+  color: var(--aim-btn-close);
 }
 
 #point-log-time {
   width: 35%;
-  color: #a1a1a1;
+  color: var(--aim-default-gray);
   height: 20px;
   font-size: 12px;
   float: left;
@@ -56,7 +56,7 @@
 
 #point-log-total {
   width: 50%;
-  color: #a1a1a1;
+  color: var(--aim-default-gray);
   height: 20px;
   font-size: 12px;
   float: right;
@@ -66,5 +66,5 @@
 
 #profile-menu:hover {
   cursor: pointer;
-  color: #a1a1a1;
+  color: var(--aim-default-gray);
 }

@@ -198,7 +198,7 @@ function SignupModal(props) {
         show={props.signupShow}
         onHide={handleClose}
         centered
-        style={{ width: "100%", height: "100%", backgroundColor: "#00000000" }}
+        style={{ width: "100%", height: "100%", backgroundColor: `var(--aim-fill-alpa)` }}
         contentClassName="bg-dark"
       >
         <Modal.Header

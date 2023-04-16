@@ -1,7 +1,7 @@
 .signup-modal-login,
 .login-modal-signup,
 .login-modal-forget-pw {
-  color: #406ed8;
+  color: var(--aim-href-font-color);
   cursor: pointer;
 }
 
@@ -13,9 +13,9 @@
 
 .naver-login-container,
 .naver-login-container:hover {
-  background-color: #03c75a;
+  background-color: var(--aim-fill-green);
   width: 400px;
-  border: 1.111px solid #03c75a;
+  border: 1.111px solid var(--aim-fill-green);
   border-radius: 0.375rem;
   cursor: pointer;
 }

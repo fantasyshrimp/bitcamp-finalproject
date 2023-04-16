@@ -29,8 +29,8 @@ function PersonalSetting() {
     <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "600px"}}>
         
       <div style={{ width: "14.3%", minWidth: "100px", height: "100%", marginLeft: "5%",
-        boxSizing: "border-box", borderRight: "solid 1px white",
-        color: "white"
+        boxSizing: "border-box", borderRight: `solid 1px var(--aim-border-line)`,
+        color: `var(--aim-default-white)`
       }}>
         <div style={{height: "20%"}}></div>
         <div style={{marginRight: "5%"}}>

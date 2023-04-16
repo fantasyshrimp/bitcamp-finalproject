@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
 
-    background-color: gray;
     border-radius: 15px;
 }
 
@@ -24,10 +23,7 @@
 #setting-type-btn > .setting-prompt-background {
     position: absolute;
     width: 60px;
-    background-color: gray;
 }
-
-
 
 :root {
     --slide-side-distance: 0px;

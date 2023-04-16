@@ -78,7 +78,7 @@ function AuthBtn(props) {
               style={{
                 width: "9px",
                 height: "9px",
-                backgroundColor: "red",
+                backgroundColor: `var(--aim-alarm-icon)`,
                 borderRadius: "50%",
                 position: "relative",
                 left: "21px",

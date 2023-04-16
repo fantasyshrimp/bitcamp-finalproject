@@ -14,7 +14,7 @@
   height: 100vh;
   float: left;
   margin: 0% 10% 0% 5%;
-  border-right: 1px solid white;
+  border-right: 1px solid var(--aim-border-line);
   /* background-color: red; */
   /* border-right: 1px solid black; */
   /* border: 1px solid black; */
@@ -39,17 +39,17 @@
 }
 
 .accordion-button {
-  color: white;
+  color: var(--aim-default-white);
   background-color: transparent !important;
 }
 
 .accordion-button:active {
-  color: white !important;
+  color: var(--aim-default-white) !important;
   background-color: transparent !important;
 }
 
 html {
-  --bs-accordion-active-color: white;
+  --bs-accordion-active-color: var(--aim-default-white);
 }
 
 .accordion {

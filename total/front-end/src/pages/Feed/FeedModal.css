@@ -69,7 +69,7 @@
   text-align: left;
   line-height: 38px;
   float: left;
-  color: white;
+  color: var(--aim-default-white);
 }
 
 #feed-modal-follow {
@@ -87,7 +87,7 @@
   float: right;
   margin-top: 10px;
   margin-right: 6px;
-  color: white;
+  color: var(--aim-default-white);
   line-height: 28px;
   border-radius: 15px;
 }
@@ -107,7 +107,7 @@
   width: 95%;
   height: 44%;
   position: relative;
-  color: white;
+  color: var(--aim-default-white);
   text-align: left;
   margin-top: 10px;
 }
@@ -117,7 +117,7 @@
   height: 30px;
   position: absolute;
   bottom: 3px;
-  color: white;
+  color: var(--aim-default-white);
   text-align: left;
 }
 
@@ -126,7 +126,7 @@
   height: 25px;
   position: absolute;
   bottom: 35px;
-  color: white;
+  color: var(--aim-default-white);
   text-align: right;
 }
 
@@ -137,12 +137,12 @@
 }
 
 #feed-modal-inputbox {
-  background-color: rgba(17, 15, 26, 1);
+  background-color: var(--aim-input);
   border-radius: 30px;
   /* width: 85%; */
   width: 100%;
   height: 75%;
-  color: white;
+  color: var(--aim-default-white);
   border: 0.1px black solid;
   float: left;
   outline: none;
@@ -177,7 +177,7 @@
   width: 77%;
   height: auto;
   float: left;
-  color: white;
+  color: var(--aim-default-white);
   margin-left: 7px;
   margin-top: 10px;
 }
@@ -213,13 +213,13 @@
   height: 15px;
   width: 100%;
   float: left;
-  color: #717171;
+  color: var(--aim-default-gray);
   font-size: 7px;
 }
 
 #feed-modal-commentdelete {
   float: right;
-  color: #e75656;
+  color: var(--aim-btn-close);
 }
 
 #feed-modal-commentdelete:hover {
@@ -272,10 +272,10 @@
   left: 38%;
   width: 300px;
   height: auto;
-  background-color: #141414;
-  border: 1px #333333 solid;
+  background-color: var(--aim-inner-modal);
+  border: 1px solid var(--aim-border);
   border-radius: 10px;
-  color: white;
+  color: var(--aim-default-white);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
 }
@@ -292,7 +292,7 @@
   right: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: #e75656;
+  color: var(--aim-btn-close);
 }
 
 #report-contentbox {
@@ -316,7 +316,7 @@
 
 #report-menu:hover {
   cursor: pointer;
-  color: #e75656;
+  color: var(--aim-btn-close);
 }
 
 #report-box {
@@ -332,8 +332,8 @@
 #report-textarea {
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d;
-  color: white;
+  background-color: var(--aim-inner-modal-next);
+  color: var(--aim-default-white);
   outline: none;
   border: none;
   border-radius: 10px;
@@ -350,14 +350,14 @@
   text-align: center;
   margin-left: 35%;
   margin-top: 3%;
-  background-color: #1d1d1d;
+  background-color: var(--aim-inner-modal);
   border-radius: 10px;
-  color: #e75656;
+  color: var(--aim-btn-close);
   font-weight: bold;
 }
 
 #report-btn:hover {
-  background-color: black;
+  background-color: var(--aim-button-after);
   cursor: pointer;
 }
 
@@ -365,7 +365,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: #717171;
+  color: var(--aim-default-gray);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -379,8 +379,8 @@
 #menu-textarea {
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d;
-  color: #818181;
+  background-color: var(--aim-inner-modal-next);
+  color: var(--aim-default-gray);
   outline: none;
   border: none;
   border-radius: 10px;
@@ -400,16 +400,16 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: #1d1d1d;
+  background-color: var(--aim-inner-modal);
   border-radius: 10px;
-  color: #e75656;
+  color: var(--aim-btn-close);
   font-weight: bold;
   float: left;
   margin-bottom: 10px;
 }
 
 #menu-btn:hover {
-  background-color: black;
+  background-color: var(--aim-button-after);
   cursor: pointer;
 }
 
@@ -420,15 +420,15 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: #1d1d1d;
+  background-color: var(--aim-inner-modal-next);
   border-radius: 10px;
-  color: white;
+  color: var( --aim-default-white);
   float: left;
   margin-bottom: 30px;
 }
 
 #menu-btn2:hover {
-  background-color: black;
+  background-color: var(--aim-button-after);
   cursor: pointer;
 }
 
@@ -456,7 +456,7 @@
   position: absolute;
   bottom: 28px;
   margin-left: 75px;
-  color: white;
+  color: var(--aim-default-white);
 }
 
 #modal-money-icon:hover {
@@ -472,11 +472,11 @@
   border-radius: 30px;
   width: 70%;
   height: 30px;
-  color: white;
+  color: var(--aim-default-white);
   outline: none;
   margin-top: 10px;
   margin-bottom: 5px;
-  border: 0.1px solid #5b5b5b;
+  border: 0.1px solid var(--aim-border);
   padding-left: 10px;
 }
 
@@ -484,23 +484,23 @@
   margin-bottom: 30px;
   margin-right: 70px;
   margin-top: 5px;
-  color: #818181;
+  color: var(--aim-default-gray);
 }
 
 #money-btn {
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: #1d1d1d;
+  background-color: var(--aim-inner-modal-next);
   border-radius: 10px;
-  color: #888fff;
+  color: var(--aim-point-color);
   font-weight: bold;
   float: left;
   margin-bottom: 10px;
 }
 
 #money-btn:hover {
-  background-color: black;
+  background-color: var(--aim-button-after);
   cursor: pointer;
 }
 
@@ -508,15 +508,15 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: #1d1d1d;
+  background-color: var(--aim-inner-modal-next);
   border-radius: 10px;
-  color: white;
+  color: var(--aim-default-white);
   float: left;
   margin-bottom: 30px;
 }
 
 #money-btn2:hover {
-  background-color: black;
+  background-color: var(--aim-button-after);
   cursor: pointer;
 }
 
@@ -526,10 +526,10 @@
   left: 38%;
   width: 300px;
   height: auto;
-  background-color: #141414;
-  border: 1px #333333 solid;
+  background-color: var(--aim-inner-modal);
+  border: 1px solid var(--aim-border);
   border-radius: 10px;
-  color: white;
+  color: var(--aim-default-white);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
 }
@@ -538,7 +538,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: #e75656;
+  color: var(--aim-btn-close);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -549,7 +549,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: #717171;
+  color: var(--aim-default-gray);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -570,14 +570,14 @@
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
-  color: white;
+  background-color: var(--aim-default-gray);
+  color: var(--aim-default-white);
   padding: 5px;
   border-radius: 3px;
   width: auto;
 }
 
 #nocommnet {
-  color: #717171;
+  color: var(--aim-default-gray);
   margin-top: 100px;
 }

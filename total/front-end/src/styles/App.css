@@ -1,19 +1,79 @@
 :root {
   /* color */
 
-  --aim-navbar            : "white";
-  --aim-body-background   : "white";
-  --aim-text              : "white";
+  --aim-navbar             : "white";
+  --aim-body-background    : "white";
+  --aim-text               : "white";
   
-  --aim-modal-background  : "white";
+
+  --aim-modal-background   : black;
+  --aim-inner-modal        : #141414;
+  --aim-inner-modal-next   : #1d1d1d;
+  --aim-modal-white        : white;
   
-  --aim-button-primary    : "white";
-  --aim-button-after      : "white";
+  --aim-border             : dimgray;
+  --aim-border-line        : white;
+
+
+  --aim-input              : #212529;
+  
+  --aim-button-primary     : white;
+  --aim-button-after       : black;
+  
+  --aim-btn-emphasis       : #1f1d21;
+  --aim-btn-emphasis-hover : #1f1d21;
+  --aim-btn-close          : #e75656;
+
+  /* `var(--aim-default-white)` */
+
+  --aim-fill-alpa          : #00000000;
+  --aim-almost-alpa        : rgba(0, 0, 0, 1);
+  --aim-cover-alpa         : rgba(0, 0, 0, 0.5);
+  --aim-bright-alpa        : rgba(255, 255, 255,0.2);
+
+  /* tmp color */
+  --aim-img-background     : white;
+  --aim-alarm-icon         : red;
+  --aim-auth-modal         : black;
+
+  --aim-hover-white        : #eee3e3;
+  
+
+  /* naver login */
+  --aim-fill-green         : #03c75a;
+
+  /* `var()` */
+  /* ----------------------------------------------------------- */
+
+  /* font color */
+  --aim-default-black      : black;
+  --aim-default-gray       : gray;
+  --aim-default-white      : white;
+
+  --aim-href-font-color    : #406ed8;
+  --aim-href-hover-color   : #4328b9;
+
+  --aim-point-color        : #888fff;
+
+  /* font size */
+  --aim-small-font-size    : 0.8rem;
+  --aim-nomal-font-size    : 1.4rem;
+  --aim-large-font-size    : 1.8rem;
+  --aim-larger-font-size   : 2rem;
+  --aim-largest-font-size   : 3rem;
+
+  /* font weight */
+
 
 
 }
 
+/* 
+다크모드 스위치 패스
+#feed-modal-like css 용도 불명
+#feed-modal-inputbox border color 의미가 있나..?
 
+*/
 
 
 /* .App {

@@ -35,7 +35,7 @@ function FaqType({ onTypeSelected }) {
     >
       {dbData.map((data, index) => (
         <Accordion.Item
-          style={{ backgroundColor: "transparent" }}
+          style={{ backgroundColor: `var(--aim-fill-alpa)` }}
           key={index}
           eventKey={index.toString()}
         >

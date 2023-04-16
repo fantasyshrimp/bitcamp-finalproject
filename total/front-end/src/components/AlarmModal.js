@@ -111,7 +111,7 @@ function AlarmModal(props) {
 
                   <Col
                     style={{
-                      color: element.log.readFlag ? "#aaa" : "#000",
+                      color: element.log.readFlag ? `var(--aim-default-gray)` : `var(--aim-default-black)`,
                       maxHeight: "40px",
                       overflow: "hidden",
                     }}
@@ -163,7 +163,7 @@ function AlarmModal(props) {
                   style={{
                     display: "inline-block",
                     padding: "1px",
-                    color: "gray",
+                    color: `var(--aim-default-gray)`,
                     cursor: "pointer",
                   }}
                 >
@@ -178,7 +178,7 @@ function AlarmModal(props) {
             onClick={navigateAllAlam}
             style={{
               padding: "1px",
-              color: "gray",
+              color: `var(--aim-default-gray)`,
               cursor: "pointer",
             }}
           >
@@ -193,7 +193,7 @@ function AlarmModal(props) {
             id="modal-background"
             style={{
               opacity: 0.3,
-              backgroundColor: "black",
+              backgroundColor: `var(--aim-default-black)`,
               pointerEvents: "all",
               cursor: "Default",
             }}

@@ -78,7 +78,7 @@ function AuthModal(props) {
                 >
                   <ShieldLock
                     style={{
-                      fontSize: "1.4rem",
+                      fontSize: `var(--aim-nomal-font-size)`,
                       position: "relative",
                       bottom: "2px",
                     }}
@@ -94,7 +94,7 @@ function AuthModal(props) {
                 >
                   <GraphUp
                     style={{
-                      fontSize: "1.4rem",
+                      fontSize: `var(--aim-nomal-font-size)`,
                       position: "relative",
                       bottom: "2px",
                     }}
@@ -112,7 +112,7 @@ function AuthModal(props) {
             >
               <Pencil
                 style={{
-                  fontSize: "1.3rem",
+                  fontSize: `var(--aim-nomal-font-size)`,
                   position: "relative",
                   bottom: "2px",
                 }}
@@ -138,7 +138,7 @@ function AuthModal(props) {
             >
               <Person
                 style={{
-                  fontSize: "1.4rem",
+                  fontSize: `var(--aim-nomal-font-size)`,
                   position: "relative",
                   bottom: "2px",
                 }}
@@ -154,7 +154,7 @@ function AuthModal(props) {
             >
               <Gear
                 style={{
-                  fontSize: "1.4rem",
+                  fontSize: `var(--aim-nomal-font-size)`,
                   position: "relative",
                   bottom: "1px",
                 }}
@@ -166,7 +166,7 @@ function AuthModal(props) {
             <a href="/" className="auth-modal-link" onClick={handleClickLogout}>
               <BoxArrowRight
                 style={{
-                  fontSize: "1.4rem",
+                  fontSize: `var(--aim-nomal-font-size)`,
                   position: "relative",
                   left: "3px",
                   bottom: "3px",

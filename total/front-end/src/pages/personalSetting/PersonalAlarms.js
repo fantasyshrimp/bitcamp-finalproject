@@ -18,11 +18,11 @@ function PersonalAlarms() {
    
     return(
     <div id="setting-feild" style={{ width: "100%", height: "100%", overflowY: "auto",
-      color: "white"  
+      color: `var(--aim-default-white)`  
     }}>
 
       <div style={{ width:"250px", marginLeft: "5%", marginTop: "5%",
-        boxSizing: "border-box", borderBottom: "1px solid rgba(255,255,255,0.5)"
+        boxSizing: "border-box", borderBottom: `1px solid var(--aim-border)`
       }}>전체 알람</div>
       
       <div style={{width: "100%", height: "100%",
