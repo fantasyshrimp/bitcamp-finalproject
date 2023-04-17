@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.management.RuntimeErrorException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,8 @@ public class NaverClovaSummary {
     String tone = "0";
     String summaryCount = "2";
     String summaryContent;
-    
-    String content = originContent.replaceAll("\n", ". ");
+
+    String content = originContent.replaceAll("\n", ". ").replaceAll("\"", "'");
 
     try {
       URL url = new URL(apiUrl);
@@ -46,10 +45,10 @@ public class NaverClovaSummary {
       OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
       String jsonRequest = "{\"document\": {\"content\": \"" + content + "\"}, \"option\": {\"language\": \"" + language + "\", \"model\": \"" + model + "\", \"tone\": " + tone + ", \"summaryCount\": " + summaryCount + "}}";
       log.info("jsonRequest >>> " + jsonRequest);
-      
+
       wr.write(jsonRequest);
       wr.flush();
- 
+
       int responseCode = con.getResponseCode();
       log.info("responseCode >>> " + responseCode);
       BufferedReader br;
@@ -73,8 +72,8 @@ public class NaverClovaSummary {
       log.info("summaryContent >>> "+ summaryContent);
       //{"summary":"도시의 야경을 방안에서 보고 있다.\n분주한 도시는 항상 차가운 얼굴을 하고 있다."}
       //{"status":400,"error":{"errorCode":"E100","message":"Insufficient valid sentence"}}
-      
-      
+
+
       JSONObject jsonObject = new JSONObject(summaryContent);
       log.info("jsonObject.has(\"status\") >>> " + jsonObject.has("status"));
       if (jsonObject.has("status")) {
@@ -82,21 +81,21 @@ public class NaverClovaSummary {
         log.info("error >>> " + error);
         String errorCode = error.getString("errorCode");
         log.info("errorCode >>> " + errorCode);
-        
+
         switch (errorCode) {
           case "E001":  // 빈 문자열 or blank 문자
-//            throw new RuntimeException("빈 문자열이 입력 되었습니다.");
+            //            throw new RuntimeException("빈 문자열이 입력 되었습니다.");
           case "E003":  // 문장이 기준치보다 초과 했을 경우
-//            throw new RuntimeException("입력된 문장 길이가 기준치를 초과 하였습니다.");
+            //            throw new RuntimeException("입력된 문장 길이가 기준치를 초과 하였습니다.");
           case "E100":  //유효한 문장이 부족한 경우
-//            throw new RuntimeException("유효한 문장이 부족합니다.");
+            //            throw new RuntimeException("유효한 문장이 부족합니다.");
             log.info("summaryContent E100 >>> "+ summaryContent);
             return summaryContent;
           case "E101":  // ko, ja 가 아닌 경우
             summaryContent = content;
             break;
           default:
-//            throw new RuntimeException("Clova Summary 응답에서 기타 오류가 발생했습니다.");
+            //            throw new RuntimeException("Clova Summary 응답에서 기타 오류가 발생했습니다.");
         }
       }
 
