@@ -77,5 +77,11 @@ public class DefaultBoardService implements BoardService{
     return boardDao.findFollow(no);
   }
 
+  @Override
+  public void addTag(Map tag) {
+    boardDao.insertTag(tag);
+
+  }
+
 
 }

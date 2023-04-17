@@ -32,7 +32,7 @@ public class TagExtract {
 
   @Autowired private NaverAiConfig naverAiConfig;
 
-  public String extract(String content) throws IOException {
+  public List<String> extract(String content) throws IOException {
 
     InputStream modelIn = TagExtract.class.getResourceAsStream("/en-token.bin");
     TokenizerModel model = new TokenizerModel(modelIn);
@@ -74,11 +74,11 @@ public class TagExtract {
         .collect(Collectors.joining());
     System.out.println(formattedKeywords);
 
-    String clientId = naverAiConfig.getClientIdTrans();
-    String clientSecret = naverAiConfig.getClientSecretTrans();
+    String clientId = "i36yjziieo";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "6iGQfllD98T5LXsiNAj6tGSlgNOOHsxgdIxLlU1G";//애플리케이션 클라이언트 시크릿값";
     try {
       String text = URLEncoder.encode(formattedKeywords, "UTF-8");
-      String apiURL = naverAiConfig.getUrlTrans();
+      String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
       con.setRequestMethod("POST");
@@ -109,9 +109,17 @@ public class TagExtract {
       Gson gson = new Gson();
       Map<String, Object> map = gson.fromJson(jsonStr, Map.class);
       String translatedText = ((Map<String, Object>) ((Map<String, Object>) map.get("message")).get("result")).get("translatedText").toString();
-      System.out.println(translatedText);
 
-      return translatedText;
+      String[] words = translatedText.split(" ");
+      List<String> tagList = new ArrayList<>();
+
+      for (String word : words) {
+        tagList.add(word);
+      }
+
+      System.out.println(tagList);
+
+      return tagList;
 
     } catch (Exception e) {
       System.out.println(e);
@@ -120,11 +128,11 @@ public class TagExtract {
   }
 
   public String koToEn(String cotent) {
-    String clientId = naverAiConfig.getClientIdTrans();
-    String clientSecret = naverAiConfig.getClientSecretTrans();
+    String clientId = "i36yjziieo";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "6iGQfllD98T5LXsiNAj6tGSlgNOOHsxgdIxLlU1G";//애플리케이션 클라이언트 시크릿값";
     try {
       String text = URLEncoder.encode(cotent, "UTF-8");
-      String apiURL = naverAiConfig.getUrlTrans();
+      String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
       con.setRequestMethod("POST");
@@ -164,6 +172,14 @@ public class TagExtract {
       System.out.println(e);
       return null;
     }
+  }
+
+  public static void main(String[] args) throws IOException {
+    TagExtract tag = new TagExtract();
+
+    String str = tag.koToEn("'천지창조'는 미켈란젤로의 명작으로, 대형 천장에 그려진 아름다운 그림입니다. 그림에서는 하느님이 아담에게 생명의 기운을 불어넣는 장면이 그려져 있으며, 하느님은 하늘의 구름과 햇빛을 배경으로 유난히 크고 강력한 모습으로 묘사되어 있습니다. 그림의 컬러는 밝고 화려한 톤으로, 인체의 아름다움과 능력을 최대한으로 살려 미켈란젤로의 대표작 중 하나로 자리잡았습니다. ");
+
+    tag.extract(str);
   }
 
 }

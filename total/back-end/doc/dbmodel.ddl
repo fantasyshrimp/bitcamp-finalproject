@@ -848,3 +848,26 @@ ADD UNIQUE INDEX UIX_aim_member_email (email ASC);
 ALTER TABLE aim_member
   ADD link VARCHAR(255) NOT NULL DEFAULT 'artify' COMMENT '외부계정연동정보', -- 외부계정연동정보
 
+-- 태그
+CREATE TABLE aim_board_tag (
+  board_no  INTEGER      NOT NULL COMMENT '게시글 번호', -- 게시글 번호
+  board_tag VARCHAR(255) NOT NULL COMMENT '태그' -- 태그
+)
+COMMENT '태그';
+
+-- 태그
+ALTER TABLE aim_board_tag
+  ADD CONSTRAINT PK_aim_board_tag -- 태그 기본키
+  PRIMARY KEY (
+  board_no -- 게시글 번호
+  );
+
+-- 태그
+ALTER TABLE aim_board_tag
+  ADD CONSTRAINT FK_aim_board_TO_aim_board_tag -- 게시글 -> 태그
+  FOREIGN KEY (
+  board_no -- 게시글 번호
+  )
+  REFERENCES aim_board ( -- 게시글
+  board_no -- 게시글 번호
+  );
