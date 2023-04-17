@@ -9,28 +9,64 @@ import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/Admin/MemberList";
 import Stats from "./pages/Admin/Stats";
-import { LoginModal, SignupModal, Verify } from "./components/auth";
+import { LoginModal, SignupModal } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
+import axios from "axios";
 
-const useVisitedCheck = (sendVisitorData) => {
-  const checkAndSendVisitorData = () => {
-    const currentDate = new Date().toLocaleDateString();
-    const lastVisitedDate = localStorage.getItem("visited");
+// 로컬스토리지 강제 삭제
+// function clearLocalStorage() {
+//   localStorage.clear();
+// }
+// clearLocalStorage();
 
-    if (!lastVisitedDate) {
-      localStorage.setItem("visited", currentDate);
-      sendVisitorData();
-    } else if (lastVisitedDate !== currentDate) {
-      localStorage.setItem("visited", currentDate);
-      sendVisitorData();
-    }
+const getKSTDate = () => {
+  const now = new Date();
+  const timezoneOffset = now.getTimezoneOffset() * 60 * 1000;
+  const kstOffset = 9 * 60 * 60 * 1000;
+  const kstDate = new Date(now.getTime() + timezoneOffset + kstOffset);
+
+  const year = kstDate.getFullYear();
+  const month = String(kstDate.getMonth() + 1).padStart(2, "0");
+  const day = String(kstDate.getDate()).padStart(2, "0");
+  const hours = String(kstDate.getHours()).padStart(2, "0");
+  const minutes = String(kstDate.getMinutes()).padStart(2, "0");
+  const seconds = String(kstDate.getSeconds()).padStart(2, "0");
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
+const useVisitorCheck = (sendVisitorData) => {
+  const removeVisitorKeyAfterTimeout = () => {
+    setTimeout(() => {
+      localStorage.removeItem("visitor");
+    }, 10 * 60 * 1000); // 10분 뒤 로컬스토리지 삭제
   };
 
   useEffect(() => {
+    const checkAndSendVisitorData = async () => {
+      const currentDate = new Date();
+      const lastVisitedDate = localStorage.getItem("visitor");
+
+      if (
+        !lastVisitedDate ||
+        new Date(lastVisitedDate).toLocaleDateString() !==
+          currentDate.toLocaleDateString()
+      ) {
+        const kstDate = getKSTDate();
+        localStorage.setItem("visitor", kstDate);
+        sendVisitorData();
+        removeVisitorKeyAfterTimeout();
+      }
+    };
+
     checkAndSendVisitorData();
   }, [sendVisitorData]);
+
+  useEffect(() => {
+    removeVisitorKeyAfterTimeout();
+  }, []);
 };
 
 function App() {
@@ -40,40 +76,20 @@ function App() {
   const [showExternalLogin, setShowExternalLogin] = useState(null);
 
   const sendVisitorData = useCallback(async () => {
-    // console.log("sendVisitorData 불러옴");
     try {
-      const now = new Date();
-      const koreanTimeOffset =
-        now.getTimezoneOffset() * 60000 + 9 * 60 * 60 * 1000;
-      const koreanDate = new Date(now.getTime() + koreanTimeOffset);
-      const year = koreanDate.getFullYear();
-      const month = String(koreanDate.getMonth() + 1).padStart(2, "0");
-      const day = String(koreanDate.getDate()).padStart(2, "0");
-      const hours = String(koreanDate.getHours()).padStart(2, "0");
-      const minutes = String(koreanDate.getMinutes()).padStart(2, "0");
-      const seconds = String(koreanDate.getSeconds()).padStart(2, "0");
-      const visitedDt = `${year}-${month}-${day} / ${hours}:${minutes}:${seconds}`;
+      const response = await axios.post("http://localhost:8080/visitors");
 
-      // console.log("방문자 접속일시:", visitedDt);
-
-      const response = await fetch("/visitors", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          visitedDt: visitedDt,
-        }),
-      });
-
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`HTTP error ${response.status}`);
+      } else {
+        console.log("방문자 데이터 전송 성공");
       }
     } catch (error) {
       console.error("실패 사유:", error);
     }
   }, []);
 
-  //방문자 체크 커스텀 훅 사용
-  useVisitedCheck(sendVisitorData);
+  useVisitorCheck(sendVisitorData);
 
   return (
     <>

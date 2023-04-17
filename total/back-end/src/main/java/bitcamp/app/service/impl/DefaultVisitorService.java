@@ -1,6 +1,6 @@
 package bitcamp.app.service.impl;
 
-import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import bitcamp.app.dao.VisitorDao;
@@ -14,12 +14,9 @@ public class DefaultVisitorService implements VisitorService {
   private VisitorDao visitorDao;
 
   @Override
-  public Visitor addVisitor(LocalDateTime visitedDt) {
-    Visitor visitor = new Visitor();
-    visitor.setVisitedDt(visitedDt);
-    return visitorDao.save(visitor);
+  public void add(Visitor visitor) {
+    visitorDao.insert(visitor);
   }
-
 }
 
 //  @Override

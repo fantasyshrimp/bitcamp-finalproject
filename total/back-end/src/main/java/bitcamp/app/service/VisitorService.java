@@ -1,10 +1,10 @@
 package bitcamp.app.service;
 
-import java.time.LocalDateTime;
+
 import bitcamp.app.vo.Visitor;
 
 public interface VisitorService {
-  Visitor addVisitor(LocalDateTime visitedDt);
+  void add(Visitor visitor);
 }
 
 //public interface VisitorService {

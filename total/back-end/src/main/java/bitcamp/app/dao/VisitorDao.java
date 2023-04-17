@@ -5,5 +5,5 @@ import bitcamp.app.vo.Visitor;
 
 @Mapper
 public interface VisitorDao {
-  Visitor save(Visitor visitor);
+  void insert(Visitor visitor);
 }
