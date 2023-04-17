@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
+import bitcamp.app.NaverAiConfig;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.Tokenizer;
@@ -27,6 +29,8 @@ import opennlp.tools.tokenize.TokenizerModel;
 
 @Component
 public class TagExtract {
+
+  @Autowired private NaverAiConfig naverAiConfig;
 
   public String extract(String content) throws IOException {
 
@@ -70,12 +74,11 @@ public class TagExtract {
         .collect(Collectors.joining());
     System.out.println(formattedKeywords);
 
-
-    String clientId = "#";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "#";//애플리케이션 클라이언트 시크릿값";
+    String clientId = naverAiConfig.getClientIdTrans();
+    String clientSecret = naverAiConfig.getClientSecretTrans();
     try {
       String text = URLEncoder.encode(formattedKeywords, "UTF-8");
-      String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
+      String apiURL = naverAiConfig.getUrlTrans();
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
       con.setRequestMethod("POST");
@@ -117,11 +120,11 @@ public class TagExtract {
   }
 
   public String koToEn(String cotent) {
-    String clientId = "#";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "#";//애플리케이션 클라이언트 시크릿값";
+    String clientId = naverAiConfig.getClientIdTrans();
+    String clientSecret = naverAiConfig.getClientSecretTrans();
     try {
       String text = URLEncoder.encode(cotent, "UTF-8");
-      String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
+      String apiURL = naverAiConfig.getUrlTrans();
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
       con.setRequestMethod("POST");

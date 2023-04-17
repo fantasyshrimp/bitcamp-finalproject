@@ -60,7 +60,7 @@
     <if test="keyword != '' and keyword != null">
       AND (b.tag LIKE CONCAT('%', #{keyword}, '%') OR b.origin_content LIKE CONCAT('%', #{keyword}, '%'))
     </if>
-  ORDER BY b.board_no DESC
+  ORDER BY RAND()
   LIMIT #{pageSize} OFFSET #{offset}
 </select>
   
