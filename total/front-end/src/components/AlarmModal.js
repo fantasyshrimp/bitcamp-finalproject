@@ -78,7 +78,10 @@ function AlarmModal(props) {
         contentClassName="alarm-modal-content"
         id="#alarm-modal"
       >
-        <Modal.Header className="pt-2 pb-2" style={{color: `var(--aim-text-default)`}}>
+        <Modal.Header className="pt-2 pb-2" style={{
+          color: `var(--aim-text-default)`,
+          backgroundColor: `var(--aim-base-tone-up)`
+          }}>
           <div className="d-flex justify-content-between w-100">
             <div className="align-self-center" style={{ fontWeight: "bold" }}>
               알림
@@ -174,7 +177,7 @@ function AlarmModal(props) {
             )}
           </Container>
         </Modal.Body>
-        <Modal.Footer className="p-2">
+        <Modal.Footer className="p-2" style={{backgroundColor: `var(--aim-base-tone-up)`}}>
           <div className="alarm-read-more"
             onClick={navigateAllAlam}
             style={{

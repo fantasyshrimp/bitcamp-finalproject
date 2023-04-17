@@ -20,3 +20,7 @@
 #auth-modal .modal-body {
   background-color: var(--aim-base-tone-up);
 }
+
+#auth-modal .modal-body .mb-3:hover {
+  
+}

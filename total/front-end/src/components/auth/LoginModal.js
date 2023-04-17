@@ -144,23 +144,24 @@ function LoginModal(props) {
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
           <Modal.Title className="text-light">로그인</Modal.Title>
+
         </Modal.Header>
 
         <Form>
-          <Modal.Body className="p-5 pb-4 pt-4">
-            <Form.Group className="mb-4" controlId="email">
+          <Modal.Body className="p-5 pb-4 pt-4" style={{backgroundColor: `var(--aim-base-tone)`}}>
+            <Form.Group className="mb-4" controlId="email" >
               <Form.Label className="text-light">
                 사용자의 이메일 주소를 입력해주세요
               </Form.Label>
               <Form.Control
                 type="email"
                 name="email"
-                placeholder="name@naver.com"
-                className="bg-dark text-light"
+                placeholder="name@naver.com"                
                 onChange={checkEmail}
                 onKeyDown={handleEnter}
                 ref={emailRef}
                 autoComplete="username"
+                style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
               />
               <Form.Text id="emailHelpBlock"></Form.Text>
             </Form.Group>
@@ -172,10 +173,10 @@ function LoginModal(props) {
               <Form.Control
                 type="password"
                 name="password"
-                className="bg-dark text-light"
                 onChange={handleChangePassword}
                 onKeyDown={handleEnter}
                 autoComplete="current-password"
+                style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
               />
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>

@@ -16,9 +16,13 @@
 }
 
 
-.alarm-modal-row, .modal-header, .modal-footer {
-  background-color: var(--aim-base-tone-up);
+.modal-header, .modal-footer {
+  background-color: var(--aim-base-tone);
   border-color: var(--aim-base-tone);
+}
+
+.alarm-modal-row {
+  background-color: var(--aim-base-tone-up);
 }
 
 .alarm-modal-row:hover {

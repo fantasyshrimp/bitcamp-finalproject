@@ -236,7 +236,7 @@ function ModifyProfile(props) {
           }}
           style={{ 
           width: "220px",  height: "50px", marginTop: "10px",
-          backgroundColor: "#212529",
+          backgroundColor: `var(--aim-base-tone)`,
           border: `1px solid var(--aim-border)`,
           borderRadius: "0.375rem",
           padding: "0.375rem 0.75rem",
@@ -277,7 +277,7 @@ function ModifyProfile(props) {
             color: (nickCheckState && !isNickDuplication) ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
             padding: "8px 8px",
             textAlign: "center",            
-            fontSize: "12px",
+            fontSize: `var(--aim-small-font-size)`,
             cursor: "pointer",
             borderRadius: "6px"            
             }}>

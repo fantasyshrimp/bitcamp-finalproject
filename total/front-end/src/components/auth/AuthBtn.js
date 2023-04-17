@@ -84,15 +84,15 @@ function AuthBtn(props) {
                 left: "21px",
                 bottom: "8px",
                 visibility: "hidden",
-                color: "#FFFFFF",
+                color: `var(--aim-text-default)`,
                 fontSize: "9px",
               }}
             ></div>
-            <Bell size="1.4rem" className="text-light" />
+            <Bell size="1.4rem" style={{color: `var(--aim-text-default)`}} />
           </a>
           <Nav.Link
             onClick={handleClickUser}
-            style={{ padding: "0" }}
+            style={{ padding: "0" , color: `var(--aim-text-sub)`}}
             className="d-flex"
           >
             <div
@@ -116,10 +116,10 @@ function AuthBtn(props) {
         </>
       ) : (
         <>
-          <Nav.Link>
+          <Nav.Link style={{color: `var(--aim-text-sub)`}}>
             <div onClick={handleSignupShow}>회원가입</div>
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link style={{color: `var(--aim-text-sub)`}}>
             <div onClick={handleLoginShow}>로그인</div>
           </Nav.Link>
         </>

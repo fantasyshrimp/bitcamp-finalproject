@@ -214,7 +214,7 @@ function SignupModal(props) {
         </Modal.Header>
 
         <Form>
-          <Modal.Body className="p-5 pb-4 pt-4">
+          <Modal.Body className="p-5 pb-4 pt-4" style={{backgroundColor: `var(--aim-base-tone)`}}>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label className="text-light">이메일</Form.Label>
               <InputGroup>
@@ -222,11 +222,11 @@ function SignupModal(props) {
                   type="email"
                   name="email"
                   placeholder="name@naver.com"
-                  className="bg-dark text-light"
                   onChange={checkEmail}
                   onBlur={blurEmail}
                   ref={emailRef}
                   autoComplete="username"
+                  style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
                 />
               </InputGroup>
               <Form.Text id="emailHelpBlock"></Form.Text>
@@ -239,11 +239,11 @@ function SignupModal(props) {
                   type="text"
                   name="nickname"
                   placeholder="nickname"
-                  className="bg-dark text-light"
                   onChange={checkNickname}
                   onBlur={blurNickname}
                   autoComplete="username"
-                />
+                  style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
+                  />
               </InputGroup>
               <Form.Text id="nicknameHelpBlock"></Form.Text>
             </Form.Group>
@@ -254,8 +254,8 @@ function SignupModal(props) {
                 type="password"
                 name="password"
                 onChange={checkPasswordChar}
-                className="bg-dark text-light"
                 autoComplete="current-password"
+                style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
               />
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
@@ -263,13 +263,13 @@ function SignupModal(props) {
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label className="text-light">비밀번호 확인</Form.Label>
               <Form.Control
-                className="bg-dark text-light"
                 type="password"
                 name="passwordConfirm"
                 onChange={checkBothPasswordSame}
                 onKeyDown={handleEnter}
                 autoComplete="current-password"
-              />
+                style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
+                />
               <Form.Text id="passwordConfirmHelpBlock"></Form.Text>
             </Form.Group>
           </Modal.Body>

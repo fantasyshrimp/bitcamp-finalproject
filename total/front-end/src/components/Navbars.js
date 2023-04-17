@@ -29,12 +29,12 @@ function Navbars(props) {
   return (
     <Navbar collapseOnSelect expand="md" variant="dark" style={{backgroundColor: `var(--aim-base-tone)`}}>
       <Container fluid>
-        <Navbar.Brand href="/">Artify</Navbar.Brand>
+        <Navbar.Brand href="/" style={{color: `var(--aim-text-default)`}}>Artify</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/feed/">Feed</Nav.Link>
-            <Nav.Link href="/faq/">FAQ</Nav.Link>
+            <Nav.Link href="/feed/" style={{color: `var(--aim-text-sub)`}}>Feed</Nav.Link>
+            <Nav.Link href="/faq/" style={{color: `var(--aim-text-sub)`}}>FAQ</Nav.Link>
             <Searchs />
           </Nav>
 

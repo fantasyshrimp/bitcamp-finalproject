@@ -120,13 +120,12 @@ function PostModal(props) {
             closeButton
             closeVariant="white"          
             style={{ position: "absolute", right: "10px", 
-
             borderBottom: "none" }}
             className="d-flex p-0"
             ></Modal.Header>
         </Modal.Header>
 
-        <Modal.Body className="pt-0 pb-0">
+        <Modal.Body className="pt-0 pb-0" style={{backgroundColor: `var(--aim-base-tone)`}}>
           <Form>
             <Form.Group>
               <Form.Label></Form.Label>
@@ -136,9 +135,8 @@ function PostModal(props) {
                 rows={12}
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!
                 - 두 문장 이상, 20자 이상 작성해야 그림 생성이 원활합니다."
-                style={{ resize: "none" }}
-                className="bg-dark text-light"
                 onChange={handlePostChange}
+                style={{backgroundColor: `var(--aim-base-tone)`, color: `var(--aim-text-default)`, resize: "none" }}
               />
               <div className="d-flex justify-content-between">
                 <Form.Text id="postHelpBlock" muted></Form.Text>

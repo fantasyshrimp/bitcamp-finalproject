@@ -570,7 +570,7 @@
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--aim-text-sub);
+  background-color: var(--aim-base-tone-sub);
   color: var(--aim-text-default);
   padding: 5px;
   border-radius: 3px;

@@ -17,7 +17,6 @@ function SettingPrompt(props) {
     const selectedNo = target.getAttribute("data-value");
     const moveValue = selectedNo - selectedValue;
     selectedNo === '1' ? setHideState(false) : setHideState(true);
-    console.log(hideState);
     let movePx = 30 * parseInt(moveValue);
     root.style.setProperty('--slide-side-distance', `${movePx}px`);
     

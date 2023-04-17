@@ -46,7 +46,8 @@ function Searchs() {
       <Form.Control
         type="search"
         placeholder="Search"
-        className="me-2 bg-dark text-light"
+        className="me-2"
+        style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
         aria-label="Search"
         value={searchTerm}
         onChange={handleChange}

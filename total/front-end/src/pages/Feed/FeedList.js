@@ -46,6 +46,7 @@ function FeedList(props) {
         className="feed-list"
         key={props.item.fileName}
         style={{
+          color: `var(--aim-text-default)`,
           backgroundImage: `url(${props.item.fileName})`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
