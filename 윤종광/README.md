@@ -853,3 +853,7 @@ tail -f /git/bitcamp-finalproject-gpu/server-gpu/output.log
 # 프로세스 종료
 kill [프로세스_ID]
 ```
+
+### 2. Generate 클릭 후 부터 그림 나오는 시간
+
+87초, 87초, 87초
