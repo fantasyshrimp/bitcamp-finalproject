@@ -88,7 +88,13 @@ function MemberList() {
                   className="td"
                   onClick={() => handleColumnSelect(member.no)}
                 >
-                  {member.gender}
+                  {member.gender === 0
+                    ? "미정"
+                    : member.gender === 1
+                    ? "남"
+                    : member.gender === 2
+                    ? "여"
+                    : ""}
                 </td>
                 <td
                   className="td"
@@ -118,13 +124,27 @@ function MemberList() {
                   className="td"
                   onClick={() => handleColumnSelect(member.no)}
                 >
-                  {member.accountState}
+                  {member.accountState === 0
+                    ? "이메일 인증"
+                    : member.accountState === 1
+                    ? "이메일 미인증"
+                    : member.accountState === 2
+                    ? "휴면계정"
+                    : member.accountState === 3
+                    ? "탈퇴"
+                    : member.accountState === 4
+                    ? "정지"
+                    : ""}
                 </td>
                 <td
                   className="td"
                   onClick={() => handleColumnSelect(member.no)}
                 >
-                  {member.authLevel}
+                  {member.authLevel === 0
+                    ? "일반"
+                    : member.authLevel === 9
+                    ? "관리자"
+                    : ""}
                 </td>
               </tr>
             ))}
