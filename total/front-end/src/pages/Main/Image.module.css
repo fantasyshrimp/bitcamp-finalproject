@@ -15,7 +15,7 @@ x.content {
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
 }
 
 x.h1 {
@@ -38,7 +38,7 @@ x.button {
   font-weight: bold;
   border: 2px solid #009688;
   background: transparent;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   cursor: pointer;
   position: relative;
   overflow: hidden;

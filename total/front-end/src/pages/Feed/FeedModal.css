@@ -69,7 +69,7 @@
   text-align: left;
   line-height: 38px;
   float: left;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
 }
 
 #feed-modal-follow {
@@ -87,7 +87,7 @@
   float: right;
   margin-top: 10px;
   margin-right: 6px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   line-height: 28px;
   border-radius: 15px;
 }
@@ -107,7 +107,7 @@
   width: 95%;
   height: 44%;
   position: relative;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   text-align: left;
   margin-top: 10px;
 }
@@ -117,7 +117,7 @@
   height: 30px;
   position: absolute;
   bottom: 3px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   text-align: left;
 }
 
@@ -126,7 +126,7 @@
   height: 25px;
   position: absolute;
   bottom: 35px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   text-align: right;
 }
 
@@ -137,12 +137,12 @@
 }
 
 #feed-modal-inputbox {
-  background-color: var(--aim-input);
+  background-color: var(--aim-base-tone-up);
   border-radius: 30px;
   /* width: 85%; */
   width: 100%;
   height: 75%;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   border: 0.1px black solid;
   float: left;
   outline: none;
@@ -177,7 +177,7 @@
   width: 77%;
   height: auto;
   float: left;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   margin-left: 7px;
   margin-top: 10px;
 }
@@ -213,13 +213,13 @@
   height: 15px;
   width: 100%;
   float: left;
-  color: var(--aim-default-gray);
+  color: var(--aim-text-sub);
   font-size: 7px;
 }
 
 #feed-modal-commentdelete {
   float: right;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
 }
 
 #feed-modal-commentdelete:hover {
@@ -272,10 +272,10 @@
   left: 38%;
   width: 300px;
   height: auto;
-  background-color: var(--aim-inner-modal);
+  background-color: var(--aim-base-tone);
   border: 1px solid var(--aim-border);
   border-radius: 10px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
 }
@@ -292,7 +292,7 @@
   right: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
 }
 
 #report-contentbox {
@@ -316,7 +316,7 @@
 
 #report-menu:hover {
   cursor: pointer;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
 }
 
 #report-box {
@@ -332,8 +332,8 @@
 #report-textarea {
   width: 100%;
   height: 100%;
-  background-color: var(--aim-inner-modal-next);
-  color: var(--aim-default-white);
+  background-color: var(--aim-base-tone-sub);
+  color: var(--aim-text-default);
   outline: none;
   border: none;
   border-radius: 10px;
@@ -350,14 +350,14 @@
   text-align: center;
   margin-left: 35%;
   margin-top: 3%;
-  background-color: var(--aim-inner-modal);
+  background-color: var(--aim-base-tone);
   border-radius: 10px;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
   font-weight: bold;
 }
 
 #report-btn:hover {
-  background-color: var(--aim-button-after);
+  background-color: var(--aim-base-tone-down);
   cursor: pointer;
 }
 
@@ -365,7 +365,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: var(--aim-default-gray);
+  color: var(--aim-emphasis-red);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -379,8 +379,8 @@
 #menu-textarea {
   width: 100%;
   height: 100%;
-  background-color: var(--aim-inner-modal-next);
-  color: var(--aim-default-gray);
+  background-color: var(--aim-base-tone-sub);
+  color: var(--aim-text-sub);
   outline: none;
   border: none;
   border-radius: 10px;
@@ -400,16 +400,16 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-inner-modal);
+  background-color: var(--aim-base-tone);
   border-radius: 10px;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
   font-weight: bold;
   float: left;
   margin-bottom: 10px;
 }
 
 #menu-btn:hover {
-  background-color: var(--aim-button-after);
+  background-color: var(--aim-base-tone-down);
   cursor: pointer;
 }
 
@@ -420,15 +420,15 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-inner-modal-next);
+  background-color: var(--aim-base-tone-sub);
   border-radius: 10px;
-  color: var( --aim-default-white);
+  color: var(--aim-text-default);
   float: left;
   margin-bottom: 30px;
 }
 
 #menu-btn2:hover {
-  background-color: var(--aim-button-after);
+  background-color: var(--aim-base-tone-down);
   cursor: pointer;
 }
 
@@ -456,7 +456,7 @@
   position: absolute;
   bottom: 28px;
   margin-left: 75px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
 }
 
 #modal-money-icon:hover {
@@ -472,7 +472,7 @@
   border-radius: 30px;
   width: 70%;
   height: 30px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   outline: none;
   margin-top: 10px;
   margin-bottom: 5px;
@@ -484,23 +484,23 @@
   margin-bottom: 30px;
   margin-right: 70px;
   margin-top: 5px;
-  color: var(--aim-default-gray);
+  color: var(--aim-text-sub);
 }
 
 #money-btn {
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-inner-modal-next);
+  background-color: var(--aim-base-tone-sub);
   border-radius: 10px;
-  color: var(--aim-point-color);
+  color: var(--aim-text-href);
   font-weight: bold;
   float: left;
   margin-bottom: 10px;
 }
 
 #money-btn:hover {
-  background-color: var(--aim-button-after);
+  background-color: var(--aim-base-tone-down);
   cursor: pointer;
 }
 
@@ -508,15 +508,15 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-inner-modal-next);
+  background-color: var(--aim-base-tone-sub);
   border-radius: 10px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   float: left;
   margin-bottom: 30px;
 }
 
 #money-btn2:hover {
-  background-color: var(--aim-button-after);
+  background-color: var(--aim-base-tone-down);
   cursor: pointer;
 }
 
@@ -526,10 +526,10 @@
   left: 38%;
   width: 300px;
   height: auto;
-  background-color: var(--aim-inner-modal);
+  background-color: var(--aim-base-tone);
   border: 1px solid var(--aim-border);
   border-radius: 10px;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
 }
@@ -538,7 +538,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -549,7 +549,7 @@
   height: 15px;
   width: 15%;
   float: right;
-  color: var(--aim-default-gray);
+  color: var(--aim-text-sub);
   font-size: 7px;
   text-align: right;
   margin-top: 8px;
@@ -570,14 +570,14 @@
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--aim-default-gray);
-  color: var(--aim-default-white);
+  background-color: var(--aim-text-sub);
+  color: var(--aim-text-default);
   padding: 5px;
   border-radius: 3px;
   width: auto;
 }
 
 #nocommnet {
-  color: var(--aim-default-gray);
+  color: var(--aim-text-sub);
   margin-top: 100px;
 }

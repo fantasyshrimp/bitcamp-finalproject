@@ -25,7 +25,7 @@ function SettingInput(props) {
           border: `1px solid var(--aim-input)`,
           borderRadius: "0.375rem",
           padding: "0.375rem 0.75rem",
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: "1rem",
           fontWeight: "400"
           }} />

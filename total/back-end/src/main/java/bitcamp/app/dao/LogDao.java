@@ -8,6 +8,7 @@ import bitcamp.app.vo.Log;
 public interface LogDao {
   void insert(Log log);
   List<Log> alarmList(int memberNo);
+  List<Log> publicAlarmList(int memberNo);
   void read(int no);
   void readAll(int memberNo);
   void readAllCancel(int memberNo);

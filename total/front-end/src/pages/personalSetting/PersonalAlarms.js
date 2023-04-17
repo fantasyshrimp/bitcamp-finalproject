@@ -18,7 +18,7 @@ function PersonalAlarms() {
    
     return(
     <div id="setting-feild" style={{ width: "100%", height: "100%", overflowY: "auto",
-      color: `var(--aim-default-white)`  
+      color: `var(--aim-text-default)`  
     }}>
 
       <div style={{ width:"250px", marginLeft: "5%", marginTop: "5%",

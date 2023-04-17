@@ -59,6 +59,34 @@ public class AlarmController {
     return data;
   }
 
+
+  @GetMapping("public") // modal용 요청
+  public Object publicAlarms(HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+
+    Map<String, Object> data = new HashMap<>();
+    List<Object> logData = new ArrayList<>();
+    data.put("receiver", loginUser);
+    for (Log l : alarmService.getPublicLogs(loginUser.getNo())) {
+      Map<String, Object> part = new HashMap<>();
+      part.put("giver", memberService.get(l.getMemberNo()));
+      part.put("log", l);
+      logData.add(part);
+    }
+    data.put("logData", logData);
+
+    return data;
+  }
+
+
+
   @PutMapping("{no}")
   public Object read(@PathVariable int no, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");

@@ -66,6 +66,7 @@ function AuthModal(props) {
             ? "auth-modal-dialog auth-modal-dialog-wide"
             : "auth-modal-dialog"
         }
+        id="auth-modal"
       >
         <Modal.Body>
           {currentUser && currentUser.authLevel === 9 && (

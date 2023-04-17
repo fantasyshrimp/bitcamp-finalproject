@@ -20,7 +20,7 @@ function Parallax() {
     <div className={styles.wrapper}>
       <p
         style={{
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: `var(--aim-largest-font-size)`,
           letterSpacing: "4px",
           transform: `translateX(${-position}px)`,
@@ -32,7 +32,7 @@ function Parallax() {
 
       <p
         style={{
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: `var(--aim-larger-font-size)`,
           transform: `translateX(${position}px)`,
         }}
@@ -47,7 +47,7 @@ function Parallax() {
       </p>
       <p
         style={{
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: `var(--aim-nomal-font-size)`,
           opacity: (position - 900) / 50,
         }}
@@ -57,7 +57,7 @@ function Parallax() {
       </p>
       <p
         style={{
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: `var(--aim-nomal-font-size)`,
           opacity: (position - 1000) / 100,
         }}

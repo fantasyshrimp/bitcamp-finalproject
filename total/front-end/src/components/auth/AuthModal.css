@@ -1,5 +1,5 @@
 .auth-modal-backdrop {
-  background-color: var(--aim-fill-alpa);
+  background-color: var(--aim-base-alpa);
 }
 
 .auth-modal-dialog {
@@ -14,5 +14,9 @@
 
 .auth-modal-link {
   text-decoration: none;
-  color: var(--aim-auth-modal);
+  color: var(--aim-text-default);
+}
+
+#auth-modal .modal-body {
+  background-color: var(--aim-base-tone-up);
 }

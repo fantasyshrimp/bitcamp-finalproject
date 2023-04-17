@@ -27,7 +27,7 @@ function Navbars(props) {
   }, []);
 
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" variant="dark" style={{backgroundColor: `var(--aim-base-tone)`}}>
       <Container fluid>
         <Navbar.Brand href="/">Artify</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

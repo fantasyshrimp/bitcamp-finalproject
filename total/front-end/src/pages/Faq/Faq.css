@@ -14,7 +14,7 @@
   height: 100vh;
   float: left;
   margin: 0% 10% 0% 5%;
-  border-right: 1px solid var(--aim-border-line);
+  border-right: 1px solid var(--aim-border);
   /* background-color: red; */
   /* border-right: 1px solid black; */
   /* border: 1px solid black; */
@@ -39,17 +39,17 @@
 }
 
 .accordion-button {
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   background-color: transparent !important;
 }
 
 .accordion-button:active {
-  color: var(--aim-default-white) !important;
+  color: var(--aim-text-default) !important;
   background-color: transparent !important;
 }
 
 html {
-  --bs-accordion-active-color: var(--aim-default-white);
+  --bs-accordion-active-color: var(--aim-text-default);
 }
 
 .accordion {

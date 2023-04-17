@@ -59,7 +59,7 @@ function Report(props) {
         id="modal-background"
         style={{
           opacity: 0.3,
-          backgroundColor: `var(--aim-modal-background)`,
+          backgroundColor: `var(--aim-base-tone-down)`,
           pointerEvents: "all",
           cursor: "Default",
         }}

@@ -107,7 +107,7 @@ function ModifyProfile(props) {
   return (
     <>
     <div id="setting-feild" style={{ width: "100%", height: "90%",
-      color: `var(--aim-default-white)` 
+      color: `var(--aim-text-default)` 
     }}>
 
       <div style={{ width:"250px", marginLeft: "5%", marginTop: "5%", marginBottom: "3%",
@@ -144,7 +144,7 @@ function ModifyProfile(props) {
         <div style={{width: "60%", height: "90%",
           display: "flex", flexDirection: "column", minWidth: "500px", 
           paddingTop: props.flexDirection === "column" ? "30px" : "",
-          borderTop: props.flexDirection === "column" ? `1px solid var(--aim-border-line)`  : "",
+          borderTop: props.flexDirection === "column" ? `1px solid var(--aim-border)`  : "",
         }}>
           <SettingInput title={"비밀번호 수정"} placeholder={"******"} value={password} setValue={setPassword} type={"password"} />
           <SettingInput title={"비밀번호 확인"} placeholder={"******"} value={passwordConfirm} setValue={setPasswordConfirm} type={"password"} setCondition={setCondition}
@@ -202,10 +202,10 @@ function ModifyProfile(props) {
               })
           }}> 
           <div 
-            style={{ width: "150px", height: "30px", backgroundColor: `var(--aim-button-primary)`, 
+            style={{ width: "150px", height: "30px", backgroundColor: `var(--aim-base-tone)`, 
             borderRadius: "50px",
             textAlign: "center", lineHeight: "30px",
-            color: `var(--aim-default-white)`, fontWeight: "bolder" }}
+            color: `var(--aim-text-default)`, fontWeight: "bolder" }}
           >
             개인정보 수정</div>
           </div>
@@ -215,15 +215,15 @@ function ModifyProfile(props) {
 
     <Modal isOpen={nicknameChageState} onRequestClose={() => setNicknameChageState(false)}
         style={{
-        overlay: { backgroundColor: `var(--aim-cover-alpa)` },
-        content: { width: '350px', height: '180px', margin: 'auto', backgroundColor: `var(--aim-input)`,
-        border: 'none', boxShadow: `0 2px 8px var(--aim-cover-alpa)`, color: `var(--aim-default-white)`       
+        overlay: { backgroundColor: `var(--aim-harf-alpa)` },
+        content: { width: '350px', height: '180px', margin: 'auto', backgroundColor: `var(--aim-base-tone)`,
+        border: 'none', boxShadow: `0 2px 8px var(--aim-harf-alpa)`, color: `var(--aim-text-default)`       
         }}}
         >
         <div style={{ width: "100%", height: "45%", borderBottom: `1px solid var(--aim-border)`,
           display: "flex", justifyContent: "center", alignItems: "center"
         }}>
-          <span style={{ color: `var(--aim-default-white)`, fontSize: `var(--aim-nomal-font-size)`, fontWeight: "bolder" }}>
+          <span style={{ color: `var(--aim-text-default)`, fontSize: `var(--aim-nomal-font-size)`, fontWeight: "bolder" }}>
             닉네임 변경
           </span>
         </div>
@@ -237,10 +237,10 @@ function ModifyProfile(props) {
           style={{ 
           width: "220px",  height: "50px", marginTop: "10px",
           backgroundColor: "#212529",
-          border: `1px solid var(--aim-border-line)`,
+          border: `1px solid var(--aim-border)`,
           borderRadius: "0.375rem",
           padding: "0.375rem 0.75rem",
-          color: `var(--aim-default-white)`,
+          color: `var(--aim-text-default)`,
           fontSize: `var(--aim-nomal-font-size)`,
           fontWeight: "bolder"
           }} />
@@ -273,8 +273,8 @@ function ModifyProfile(props) {
 
             }}
             style={{ marginLeft: "20px", marginTop: "20px",
-            backgroundColor: (nickCheckState && !isNickDuplication) ? `var(--aim-button-primary)` : `var(--aim-button-after)`,
-            color: (nickCheckState && !isNickDuplication) ? `var(--aim-default-black)` : `var(--aim-default-white)`,
+            backgroundColor: (nickCheckState && !isNickDuplication) ? `var(--aim-base-tone)` : `var(--aim-base-tone-down)`,
+            color: (nickCheckState && !isNickDuplication) ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
             padding: "8px 8px",
             textAlign: "center",            
             fontSize: "12px",

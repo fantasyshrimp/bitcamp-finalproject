@@ -1,5 +1,5 @@
 .alarm-modal-backdrop {
-  background-color: var(--aim-fill-alpa);
+  background-color: var(--aim-base-alpa);
 }
 
 .alarm-modal-dialog {
@@ -12,15 +12,21 @@
 
 .alarm-modal-link {
   text-decoration: none;
-  color: var(--aim-default-black);
+  color: var(--aim-text-default);
+}
+
+
+.alarm-modal-row, .modal-header, .modal-footer {
+  background-color: var(--aim-base-tone-up);
+  border-color: var(--aim-base-tone);
 }
 
 .alarm-modal-row:hover {
-  background-color: var(--aim-hover-white);
+  background-color: var(--aim-base-tone);
 }
 
 .alarm-modal-nickname:hover {
-  color: var(--aim-href-hover-color);
+  color: var(--aim-text-href);
 }
 
 .alarm-read-all {
@@ -30,4 +36,8 @@
 .alarm-read-all:hover,
 .alarm-read-more:hover {
   text-decoration: underline;
+}
+
+#alarm-modal div {
+  background-color: var(--aim-base-tone-up);
 }

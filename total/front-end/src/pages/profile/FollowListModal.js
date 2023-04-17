@@ -11,9 +11,9 @@ function FollowListModal(props) {
   return (
         <Modal isOpen={props.isOpen} onRequestClose={props.onRequestClose}
         style={{
-        overlay: { backgroundColor: `var(--aim-cover-alpa)` },
-        content: { width: '380px', height: '500px', margin: 'auto', backgroundColor: `var(--aim-inner-modal)`,
-        border: 'none', boxShadow: `0 2px 8px var(--aim-almost-alpa)`,
+        overlay: { backgroundColor: `var(--aim-harf-alpa)` },
+        content: { width: '380px', height: '500px', margin: 'auto', backgroundColor: `var(--aim-base-tone)`,
+        border: 'none', boxShadow: `0 2px 8px var(--aim-fill-alpa)`,
         overflow: 'auto', 
         display: 'flex',
         justifyContent: 'center',

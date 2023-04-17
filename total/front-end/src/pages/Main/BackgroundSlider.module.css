@@ -23,11 +23,11 @@
   width: 80%;
   position: absolute;
   z-index: 999;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   top: 20%;
   left: 10%;
 
-  border-right: 3px solid var(--aim-default-black);
+  border-right: 3px solid var(--aim-border);
   animation: blink 0.5s infinite, typing 2s steps(22);
   white-space: nowrap;
   overflow: hidden;

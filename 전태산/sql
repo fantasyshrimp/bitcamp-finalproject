@@ -228,3 +228,68 @@ JOIN (
 ) AS sub_query
 ON aim_log.log_no = sub_query.log_no
 SET read_flag=0;
+
+
+
+
+
+-----------------------------------------------------------------------------
+
+CREATE TABLE aim_alarm_setting (
+  member_no  INTEGER  NOT NULL COMMENT '맴버번호',
+  type_no    INTEGER  NOT NULL COMMENT '로그유형번호'  
+);
+
+ALTER TABLE aim_alarm_setting
+  ADD CONSTRAINT PK_aim_alarm_setting
+  PRIMARY KEY ( member_no, type_no );
+
+ALTER TABLE aim_alarm_setting
+  ADD CONSTRAINT FK_aim_log_type_TO_aim_alarm_setting
+  FOREIGN KEY ( type_no )
+  REFERENCES aim_log_type ( type_no );
+
+ALTER TABLE aim_log
+  ADD CONSTRAINT FK_aim_member_TO_aim_alarm_setting
+  FOREIGN KEY ( member_no )
+  REFERENCES aim_member ( member_no );
+
+
+
+
+
+
+
+
+
+      select
+      lt.type_no,
+      lt.log_type,
+      a.member_no
+    from aim_log_type lt
+    left join aim_alarm_setting a
+      on a.type_no = lt.type_no 
+      and a.member_no = 12
+    where lt.type_no = 11 
+      or lt.type_no = 14 
+      or lt.type_no = 21 
+      or lt.type_no = 24 
+      or lt.type_no = 31
+    order by lt.type_no;
+
+
+    select * from aim_log
+    where type_no=11 and member_no in (select follower_no from aim_follow where following_no=12)
+    union
+    select * from aim_log
+    where type_no=14 and (select count(type_no) from aim_alarm_setting where type_no=14 and member_no=12) != 1 and content_no in (select board_no from aim_board where member_no=12)
+    union
+    select * from aim_log
+    where type_no=21 and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=12))
+    union
+    select * from aim_log
+    where type_no=24 and content_no in (select reply_no from aim_reply where member_no=12)
+    union
+    select * from aim_log
+    where type_no=31 and content_no=12
+order by log_no DESC;

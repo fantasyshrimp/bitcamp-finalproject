@@ -19,16 +19,16 @@
   margin-top: 20px;
   margin-left: 20px;
   border-radius: 10%;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   text-align: center;
   line-height: 16px;
-  background-color: var(--aim-btn-emphasis);
+  background-color: var(--aim-base-tone);
   padding: 6px;
   font-size: 20px;
 }
 
 #tag:hover {
-  background-color: var(--aim-btn-emphasis-hover);
+  background-color: var(--aim-base-tone-up);
   cursor: pointer;
 }
 
@@ -132,7 +132,7 @@
 }
 
 #feed-list:hover {
-  background-color: var(--aim-cover-alpa);
+  background-color: var(--aim-harf-alpa);
   background-blend-mode: multiply;
   cursor: pointer;
 }
@@ -163,7 +163,7 @@
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: var(--aim-modal-background);
+  background-color: var(--aim-base-tone-down);
   cursor: default;
   animation: modal-show 0.2s ease-in-out;
   border-radius: 10px;
@@ -176,7 +176,7 @@
   right: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: var(--aim-btn-close);
+  color: var(--aim-emphasis-red);
 }
 
 #modal-background {
@@ -185,7 +185,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--aim-modal-background);
+  background-color: var(--aim-base-tone-down);
   z-index: 99;
   backdrop-filter: blur(5px);
   opacity: 0.3;

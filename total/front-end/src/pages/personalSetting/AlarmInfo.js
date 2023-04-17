@@ -68,9 +68,9 @@ function AlarmInfo(props) {
       style={{width: "100%", height: "60px", minWidth: "600px",
       padding: "5px 0px", marginLeft: "50px", 
       display: "flex",
-      backgroundColor: isMouseOver ? `var(--aim-btn-emphasis)` : `var(--aim-fill-alpa)`,
+      backgroundColor: isMouseOver ? `var(--aim-base-tone)` : `var(--aim-base-alpa)`,
       boxSizing: "border-box", borderBottom: "1px solid white",
-      color: isRead ? `var(--aim-default-gray)` : `var(--aim-default-white)`
+      color: isRead ? `var(--aim-text-sub)` : `var(--aim-text-default)`
       }} >
       <div style={{width: "80%"}}>
         <img src={giver.profilePhoto} alt={"profile img"}

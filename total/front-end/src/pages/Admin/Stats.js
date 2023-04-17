@@ -113,7 +113,7 @@ const data = [
 ];
 
 const Stats = () => (
-  <div style={{ height: "300px", backgroundColor: `var(--aim-default-white)` }}>
+  <div style={{ height: "300px", backgroundColor: `var(--aim-text-default)` }}>
     <ResponsiveLine
       data={data}
       margin={{ top: 50, right: 40, bottom: 50, left: 80 }}

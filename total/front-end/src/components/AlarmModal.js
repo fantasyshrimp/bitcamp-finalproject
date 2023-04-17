@@ -76,8 +76,9 @@ function AlarmModal(props) {
         backdropClassName="alarm-modal-backdrop"
         dialogClassName="alarm-modal-dialog"
         contentClassName="alarm-modal-content"
+        id="#alarm-modal"
       >
-        <Modal.Header className="pt-2 pb-2">
+        <Modal.Header className="pt-2 pb-2" style={{color: `var(--aim-text-default)`}}>
           <div className="d-flex justify-content-between w-100">
             <div className="align-self-center" style={{ fontWeight: "bold" }}>
               알림
@@ -111,7 +112,7 @@ function AlarmModal(props) {
 
                   <Col
                     style={{
-                      color: element.log.readFlag ? `var(--aim-default-gray)` : `var(--aim-default-black)`,
+                      color: element.log.readFlag ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
                       maxHeight: "40px",
                       overflow: "hidden",
                     }}
@@ -163,7 +164,7 @@ function AlarmModal(props) {
                   style={{
                     display: "inline-block",
                     padding: "1px",
-                    color: `var(--aim-default-gray)`,
+                    color: `var(--aim-text-default)`,
                     cursor: "pointer",
                   }}
                 >
@@ -178,7 +179,7 @@ function AlarmModal(props) {
             onClick={navigateAllAlam}
             style={{
               padding: "1px",
-              color: `var(--aim-default-gray)`,
+              color: `var(--aim-text-default)`,
               cursor: "pointer",
             }}
           >
@@ -193,7 +194,7 @@ function AlarmModal(props) {
             id="modal-background"
             style={{
               opacity: 0.3,
-              backgroundColor: `var(--aim-default-black)`,
+              backgroundColor: `var(--aim-text-default)`,
               pointerEvents: "all",
               cursor: "Default",
             }}

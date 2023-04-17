@@ -9,7 +9,7 @@
 .MemberList {
   xfont-family: "PuradakGentleGothicR";
   xfont-weight: lighter;
-  color: var(--aim-default-white);
+  color: var(--aim-text-default);
   margin: 1% 10% 2% 10%;
 }
 

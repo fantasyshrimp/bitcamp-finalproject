@@ -6,31 +6,37 @@
 
   <resultMap type="alarmSetting" id="alarmSettingMap">  
     <id column="type_no" property="typeNo"/>
-    <result column="alarm_type" property="typeName"/>
+    <result column="log_type" property="typeName"/>
     <result column="description" property="description"/>
     <result column="member_no" property="memberNo"/>
   </resultMap>
   
   <insert id="insert" parameterType="alarmSetting">
-    insert into aim_alarm(type, member_no)
-    values (#{typeNo}, #{memberNo})
+    insert into aim_alarm_setting(member_no, type_no)
+    values (#{memberNo}, #{typeNo})
   </insert>
   
   <delete id="delete" parameterType="alarmSetting">
-    delete from aim_alarm
-    where member_no=#{memberNo} and type=#{typeNo}
+    delete from aim_alarm_setting
+    where member_no=#{memberNo} and type_no=#{typeNo}
   </delete>
   
 
   <select id="getAll" parameterType="int" resultMap="alarmSettingMap">
     select
-      at.type_no,
-      at.alarm_type,
+      lt.type_no,
+      lt.log_type,
       a.member_no
-    from aim_alarm_type at
-    left join aim_alarm a
-      on a.type=at.type_no and a.member_no = #{memberNo}
-    order by at.type_no
+    from aim_log_type lt
+    left join aim_alarm_setting a
+      on a.type_no = lt.type_no 
+      and a.member_no = #{memberNo}
+    where lt.type_no = 11 
+      or lt.type_no = 14 
+      or lt.type_no = 21 
+      or lt.type_no = 24 
+      or lt.type_no = 31
+    order by lt.type_no;
   </select>
   
 </mapper>

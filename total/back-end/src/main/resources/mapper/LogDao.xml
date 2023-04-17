@@ -18,9 +18,7 @@
     insert into aim_log(type_no, member_no, content_no, content)
     values (#{typeNo}, #{memberNo}, #{contentNo}, 
       concat(ifnull(#{content}, ''), (select log_comment from aim_log_type where type_no = #{typeNo})))
-  </insert>  
-    
-    
+  </insert>      
     
   <select id="alarmList" parameterType="int" resultMap="logMap">
     select * from aim_log
@@ -37,6 +35,34 @@
     union
     select * from aim_log
     where type_no=31 and content_no=#{memberNo}
+    order by log_no DESC;
+  </select>
+  
+    <select id="publicAlarmList" parameterType="int" resultMap="logMap">
+    select * from aim_log
+    where type_no=11
+      and (select count(type_no) from aim_alarm_setting where type_no=11 and member_no=#{memberNo}) != 1 
+      and member_no in (select follower_no from aim_follow where following_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=14 
+      and (select count(type_no) from aim_alarm_setting where type_no=14 and member_no=#{memberNo}) != 1 
+      and content_no in (select board_no from aim_board where member_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=21
+      and (select count(type_no) from aim_alarm_setting where type_no=21 and member_no=#{memberNo}) != 1  
+      and content_no in (select reply_no from aim_reply where board_no in (select board_no from aim_board where member_no=#{memberNo}))
+    union
+    select * from aim_log
+    where type_no=24
+      and (select count(type_no) from aim_alarm_setting where type_no=24 and member_no=#{memberNo}) != 1  
+      and content_no in (select reply_no from aim_reply where member_no=#{memberNo})
+    union
+    select * from aim_log
+    where type_no=31 
+      and (select count(type_no) from aim_alarm_setting where type_no=31 and member_no=#{memberNo}) != 1 
+      and content_no=#{memberNo}
     order by log_no DESC;
   </select>
   

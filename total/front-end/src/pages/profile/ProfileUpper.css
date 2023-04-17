@@ -3,7 +3,7 @@
     display: flex;
     width: 100%;
     height: 140px;
-    background-color: var(--aim-inner-modal-next);
+    background-color: var(--aim-base-tone-up);
     box-sizing: border-box;
 }
 
@@ -30,13 +30,13 @@
     margin-right: 25px;
     font-size: var(--aim-larger-font-size);
     font-weight: bold;
-    color: var(--aim-default-white);
+    color: var(--aim-text-default);
 }
 
 .profile-info > .profile-detail {
     display: flex;
     margin-top: 15px;
-    color: var(--aim-default-white);
+    color: var(--aim-text-default);
 }
 
 .profile-info > .profile-detail > div {

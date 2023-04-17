@@ -106,7 +106,7 @@ function PostModal(props) {
         onHide={handleClose}
         backdrop="static"
         centered
-        style={{ width: "100%", height: "100%", backgroundColor: `var(--aim-fill-alpa)` }}
+        style={{ width: "100%", height: "100%", backgroundColor: `var(--aim-base-alpa)` }}
         contentClassName="bg-dark"
       >
         <Modal.Header

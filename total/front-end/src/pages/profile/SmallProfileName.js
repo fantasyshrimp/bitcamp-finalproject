@@ -15,7 +15,7 @@ function SmallProfileName(props) {
     height !== undefined ? 
     <div className="small-profile-nickname" onClick={moveProfile}
       style={{ marginLeft: height/5,
-      fontSize: height/3, fontWeight: 'bold', color: `var(--aim-default-white)`,
+      fontSize: height/3, fontWeight: 'bold', color: `var(--aim-text-default)`,
       alignSelf: 'center', marginTop: height / 10
       }}>
       <span>{nickname}</span>

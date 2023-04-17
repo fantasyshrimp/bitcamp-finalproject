@@ -30,6 +30,11 @@ public class DefaultAlarmService implements AlarmService {
   }
 
   @Override
+  public List<Log> getPublicLogs(int memberNo) {
+    return logDao.publicAlarmList(memberNo);
+  }
+
+  @Override
   public void read(int no) {
     logDao.read(no);
   }
@@ -43,5 +48,7 @@ public class DefaultAlarmService implements AlarmService {
   public void readAllCancel(int memberNo) {
     logDao.readAllCancel(memberNo);
   }
+
+
 
 }

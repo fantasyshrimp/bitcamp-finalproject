@@ -40,7 +40,7 @@ function AuthBtn(props) {
   useEffect(() => {
     if (currentUser !== null) {
       const fetchData = async () => {
-        axios(`http://localhost:8080/alarm`) //
+        axios(`http://localhost:8080/alarm/public`) //
           .then((response) => {
             if (response.status === 200) {
               setAlarms(response.data);
@@ -78,7 +78,7 @@ function AuthBtn(props) {
               style={{
                 width: "9px",
                 height: "9px",
-                backgroundColor: `var(--aim-alarm-icon)`,
+                backgroundColor: `var(--aim-emphasis-red)`,
                 borderRadius: "50%",
                 position: "relative",
                 left: "21px",

@@ -1,7 +1,7 @@
 .signup-modal-login,
 .login-modal-signup,
 .login-modal-forget-pw {
-  color: var(--aim-href-font-color);
+  color: var(--aim-text-href);
   cursor: pointer;
 }
 

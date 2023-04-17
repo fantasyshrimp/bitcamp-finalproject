@@ -27,8 +27,8 @@ function FaqTitleContent({ selectedType }) {
     <Accordion
       style={{
         width: "100%",
-        color: `var(--aim-default-white)`,
-        backgroundColor: `var(--aim-fill-alpa)`,
+        color: `var(--aim-text-default)`,
+        backgroundColor: `var(--aim-base-alpa)`,
       }}
       defaultActiveKey="0"
       flush
@@ -36,8 +36,8 @@ function FaqTitleContent({ selectedType }) {
       {dbData.map((data, index) => (
         <Accordion.Item
           style={{
-            color: `var(--aim-default-white)`,
-            backgroundColor: `var(--aim-fill-alpa)`,
+            color: `var(--aim-text-default)`,
+            backgroundColor: `var(--aim-base-alpa)`,
           }}
           key={index}
           eventKey={index.toString()}
