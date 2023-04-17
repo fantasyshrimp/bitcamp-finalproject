@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.app.NaverObjectStorageConfig;
@@ -171,30 +172,46 @@ public class BoardController {
   }
 
   @GetMapping
-  public List<Board> list(String keyword, int currentPage,  HttpSession session) {
+  @ResponseBody
+  public Map<String, Object> list(String keyword, int currentPage, HttpSession session) {
 
     String sort = (String) session.getAttribute("sort");
+    Map<String, Object> resultMap = new HashMap<>();
 
     if (Objects.equals(sort, "hot")) {
       List<Board> list = boardService.listHot();
       session.removeAttribute("sort");
-      return list;
+
+      resultMap.put("state", false);
+      resultMap.put("data", list);
+      return resultMap;
 
     } else if (Objects.equals(sort, "recent")) {
       List<Board> list = boardService.listRecent();
       session.removeAttribute("sort");
 
-      return list;
+      resultMap.put("state", false);
+      resultMap.put("data", list);
+      return resultMap;
+
     } else if (Objects.equals(sort, "follow")) {
       Member loginUser = (Member) session.getAttribute("loginUser");
 
       List<Board> list = boardService.listFollow(loginUser.getNo());
       session.removeAttribute("sort");
 
-      return list;
+      resultMap.put("state", true);
+      resultMap.put("data", list);
+      return resultMap;
     }
 
     String key = (String) session.getAttribute("keyword");
+
+    if (key != null) {
+      resultMap.put("key", false);
+    } else {
+      resultMap.put("key", true);
+    }
 
     Map<Object, Object> page = new HashMap<Object, Object>();
 
@@ -209,7 +226,10 @@ public class BoardController {
     for (Board b : list) {
       b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
     }
-    return list;
+
+    resultMap.put("state", true);
+    resultMap.put("data", list);
+    return resultMap;
   }
 
   @GetMapping("{no}")

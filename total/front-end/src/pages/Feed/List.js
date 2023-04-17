@@ -5,6 +5,7 @@ import FeedList from "./FeedList";
 function List(props) {
   const [data, setData] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [keyState, setKeyState] = useState(true);
 
   function isScrolledToBottom() {
     return (
@@ -31,7 +32,11 @@ function List(props) {
       }
     }
 
-    window.addEventListener("scroll", handleScroll);
+    if (keyState) {
+      window.addEventListener("scroll", handleScroll);
+    } else {
+      window.removeEventListener("scroll", handleScroll);
+    }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -45,8 +50,15 @@ function List(props) {
         currentPage: currentPage,
       },
     });
-    const randomData = response.data.sort(() => Math.random() - 0.5);
-    setData((prevData) => [...prevData, ...randomData]);
+    setKeyState(response.data.key);
+
+    if (response.data.state) {
+      const randomData = response.data.data.sort(() => Math.random() - 0.5);
+      setData((prevData) => [...prevData, ...randomData]);
+    } else {
+      const newData = response.data.data;
+      setData((prevData) => [...prevData, ...newData]);
+    }
   }
 
   return (
