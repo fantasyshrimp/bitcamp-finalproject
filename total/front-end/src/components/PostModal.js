@@ -109,16 +109,21 @@ function PostModal(props) {
         style={{ width: "100%", height: "100%", backgroundColor: `var(--aim-base-alpa)` }}
         contentClassName="bg-dark"
       >
+
         <Modal.Header
-          closeButton
-          closeVariant="white"
-          style={{ borderBottom: "none" }}
-        ></Modal.Header>
-        <Modal.Header
-          style={{ borderBottom: "none" }}
+          style={{ borderBottom: "none", height :"70px" }}
           className="d-flex justify-content-center p-0"
         >
-          <Modal.Title className="text-light">Post</Modal.Title>
+          <Modal.Title className="text-light"
+          >Post</Modal.Title>
+            <Modal.Header
+            closeButton
+            closeVariant="white"          
+            style={{ position: "absolute", right: "10px", 
+
+            borderBottom: "none" }}
+            className="d-flex p-0"
+            ></Modal.Header>
         </Modal.Header>
 
         <Modal.Body className="pt-0 pb-0">

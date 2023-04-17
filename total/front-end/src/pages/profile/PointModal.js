@@ -42,6 +42,7 @@ function PointModal(props) {
       : "0";
   };
 
+  let beforeItem = {point:0};
   return (
     <Modal
       isOpen={props.isOpen}
@@ -63,11 +64,14 @@ function PointModal(props) {
     >
       <div id="point">
         {pointLog.map((item) => {
-          if (props.memberNo === item.getMemberNo) {
-            toPoint -= item.point;
-          } else if (props.memberNo !== item.getMemberNo) {
-            toPoint += item.point;
-          }
+          if (beforeItem.getMemberNo !== undefined) {          
+            if (props.memberNo === beforeItem.getMemberNo) {
+              toPoint -= beforeItem.point;
+            } else if (props.memberNo !== beforeItem.getMemberNo) {
+              toPoint += beforeItem.point;
+            }
+          }          
+          beforeItem = item;
 
           return (
             <div id="point-log">
@@ -82,7 +86,7 @@ function PointModal(props) {
               </div>
               <div id="point-log-time">{item.getDt}</div>
               <div id="point-log-total">
-                이전 포인트 : {numberWithCommas(toPoint)}
+                누적 포인트 : {numberWithCommas(toPoint)}
               </div>
             </div>
           );
