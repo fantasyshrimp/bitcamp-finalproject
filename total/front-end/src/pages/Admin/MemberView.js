@@ -102,7 +102,15 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="gender"
-                  value={data ? data.gender : ""}
+                  value={
+                    data
+                      ? data.gender === 1
+                        ? "남"
+                        : data.gender === 2
+                        ? "여"
+                        : "미정"
+                      : ""
+                  }
                   autoFocus
                 />
               </div>
@@ -200,7 +208,19 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="accountState"
-                  value={data ? data.accountState : ""}
+                  value={
+                    data
+                      ? data.accountState === 0
+                        ? "이메일 인증"
+                        : data.accountState === 1
+                        ? "이메일 미인증"
+                        : data.accountState === 2
+                        ? "휴면계정"
+                        : data.accountState === 3
+                        ? "탈퇴"
+                        : "정지"
+                      : ""
+                  }
                   autoFocus
                 />
               </div>
@@ -212,7 +232,7 @@ function MemberView(props) {
                 <Form.Control
                   type="email"
                   placeholder="authLevel"
-                  value={data ? data.authLevel : ""}
+                  value={data ? (data.authLevel === 9 ? "관리자" : "일반") : ""}
                   autoFocus
                 />
               </div>
