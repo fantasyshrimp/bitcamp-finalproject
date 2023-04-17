@@ -500,7 +500,8 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 cmd 에 아래 명령 입력해서 8080 포트 사용중인 PID 를 확인한다.
 
 ```bash
-netstat -ano | findstr :8080
+netstat -ano | findstr :8080  # 윈도우
+netstat -ano | grep :8080  # 리눅스
 ```
 
 명령 프롬프트 우클릭해서 관리자 권한으로 실행한 다음 아래 처럼 입력한다.
@@ -820,3 +821,35 @@ kill $(sudo lsof -t -i :3000)
 ## 시행착오 또는 기억할 것
 
 ### 1.
+
+# 4월17일 월
+
+## 작업내용
+
+### 1. GPU server 에서 그림 생성 구현 완료
+
+Docker 에 컨테이너 생성해서 연결하니 gpu 사용 안됨
+server-gpu 컨테이너에 올리지 않고 GPU server 에서 jar 파일 실행하여 포트 연결함
+
+## 시행착오 또는 기억할 것
+
+### 1. Linux 백그라운드 프로세스 실행 방법
+
+```bash
+# final-gpu-0.0.1-SNAPSHOT.jar 파일을 실행하면서 표준 출력 및 오류를 output.log 파일에 저장하고, 백그라운드에서 실행
+$ nohup java -jar build/libs/final-gpu-0.0.1-SNAPSHOT.jar > output.log 2>&1 &
+
+# 프로세스 정상 실행 확인(터미널 세션 종료하면 jobs 로 확인 불가)
+$ jobs
+[1]+  Running                 nohup java -jar build/libs/final-gpu-0.0.1-SNAPSHOT.jar > output.log 2>&1 &
+
+# 터미널 세션 종료해도 프로세스 실행 확인 가능
+$ ps aux | grep java
+root     62785 14.2  0.2 40157920 391648 ?     Sl   18:49   0:15 java -jar build/libs/final-gpu-0.0.1-SNAPSHOT.jar
+
+# 실시간 프로세스 출력 확인
+tail -f /git/bitcamp-finalproject-gpu/server-gpu/output.log
+
+# 프로세스 종료
+kill [프로세스_ID]
+```
