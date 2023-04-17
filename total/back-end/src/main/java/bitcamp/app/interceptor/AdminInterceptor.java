@@ -1,30 +1,46 @@
 package bitcamp.app.interceptor;
 
+import java.io.PrintWriter;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import bitcamp.app.service.MemberService;
 import bitcamp.app.vo.Member;
+import bitcamp.util.ErrorCode;
+import bitcamp.util.RestResult;
+import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Component
 public class AdminInterceptor implements HandlerInterceptor {
-	@Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HttpSession session = request.getSession();
-        Member member = (Member) session.getAttribute("member");
-        System.out.println("AdminInterceptor 동작");
+	@Autowired
+	private MemberService memberService;
+	
+	public Object preHandle(HttpSession session, HttpServletResponse response, Object handler) throws Exception {
+	    System.out.println("preHandle() 호출됨!");
 
-        if (member != null && member.getAuthLevel() == 9) {
-        	return true;
-        	
-        } else {
-        	response.sendRedirect("https://www.naver.com/");	// sweetalert2 알람 창 띄우기
-            return false;
-        }
-    }
+	    
+	    System.out.println("preHandle()!");
+
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    System.out.println("loginUser test");
+	    System.out.println(loginUser);
+	    if (loginUser == null || loginUser.getNo() != 9) {
+	    	System.out.println("if문 동작");
+	    	return true;
+	    } else {
+	        System.out.println("test2");
+	        return false;
+	    }
+	}
+
 
     // Controller가 실행된 후 실행되는 postHandle 메소드
     @Override

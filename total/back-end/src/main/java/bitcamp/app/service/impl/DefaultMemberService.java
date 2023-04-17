@@ -72,6 +72,12 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list(String keyword) {
     return memberDao.findAll();
   }
+  
+  public Member getByNo(int no) {
+	  System.out.println(no);
+    return memberDao.findByNo(no);
+  }
+  
 
   @Override
   public Member get(String email, String password) {
@@ -122,7 +128,7 @@ public class DefaultMemberService implements MemberService {
   public List<Member> getFollowings(int no) {
     List<Member> memberList = new ArrayList<>();
     followDao.findAllFollowingNumbers(no).forEach((followingNo) -> {
-      memberList.add(get(followingNo));
+      memberList.add(getByNo(followingNo));
     });
     return memberList;
   }
@@ -131,7 +137,7 @@ public class DefaultMemberService implements MemberService {
   public List<Member> getFollowers(int no) {
     List<Member> memberList = new ArrayList<>();
     followDao.findAllFollowerNumbers(no).forEach((followerNo) -> {
-      memberList.add(get(followerNo));
+      memberList.add(getByNo(followerNo));
     });
     return memberList;
   }

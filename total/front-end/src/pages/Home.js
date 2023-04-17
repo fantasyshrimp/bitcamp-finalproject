@@ -3,6 +3,8 @@ import React from "react";
 import Video from "./Main/Video";
 import Parallax from "./Main/Parallax";
 import Image from "./Main/Image";
+import ImageText from "./Main/ImageText";
+import Scroll from "./Main/Scroll";
 
 /*
 const root = createRoot(document.getElementById("root"));
@@ -28,6 +30,8 @@ function Home(props) {
         setShowExternalLogin={props.setShowExternalLogin}
       />
       <Parallax />
+      <ImageText />
+      <Scroll />
       <Image />
     </div>
   );

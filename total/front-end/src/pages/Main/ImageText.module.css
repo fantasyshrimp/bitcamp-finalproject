@@ -5,17 +5,18 @@
 }
 
 .wrapper {
-  margin: 150px auto;
-  width: 70%;
+  margin: 3%;
+  xmargin-right: 3%;
+  width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: var(--aim-emphasis-red);
+  min-height: 80vh;
+  xbackground: var(--aim-emphasis-red);
 }
 
 .img {
-  max-width: 320px;
+  max-width: 600px;
   float: left;
   border: 3px solid var(--aim-border);
   border-radius: 10px;
@@ -27,9 +28,9 @@
 }
 
 .box h2 {
-  font-size: 42px;
+  font-size: 50px;
 }
 
 .box p {
-  font-size: 16px;
+  font-size: 25px;
 }
