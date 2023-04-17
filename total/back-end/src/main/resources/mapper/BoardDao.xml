@@ -33,6 +33,11 @@
     insert into aim_board(member_no, origin_content, summary_content, trans_content)
       values(#{writer.no}, #{originContent}, #{summaryContent}, #{transContent})
   </insert>
+  
+<insert id="insertTag" parameterType="map">
+  INSERT INTO aim_board_tag (board_no, board_tag)
+  VALUES (#{boardNo}, #{tag})
+</insert>
 
   <select id="findAll" resultMap="boardMap" parameterType="map">
   SELECT

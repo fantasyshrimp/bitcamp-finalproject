@@ -8,6 +8,7 @@ import bitcamp.app.vo.Board;
 @Mapper
 public interface BoardDao {
   void insert(Board b);
+  void insertTag(Map tag);
   List<Board> findAll(Map<Object, Object> page);
   List<Board> findAllHot();
   List<Board> findAllRecent();

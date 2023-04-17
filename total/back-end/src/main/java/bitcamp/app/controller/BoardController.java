@@ -36,6 +36,7 @@ import bitcamp.util.NaverClovaSummary;
 import bitcamp.util.NaverPapagoTranslation;
 import bitcamp.util.RestResult;
 import bitcamp.util.RestStatus;
+import bitcamp.util.TagExtract;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -57,7 +58,7 @@ public class BoardController {
   @Autowired private NaverObjectStorageConfig naverObjectStorageConfig;
   @Autowired private NaverClovaSummary naverClovaSummary;
   @Autowired private NaverPapagoTranslation naverPapagoTranslation;
-  //  @Autowired private TagExtract tagExtract;
+  @Autowired private TagExtract tagExtract;
 
   @PostMapping
   public Object insert(int writerNo, String originContent) {
@@ -135,8 +136,8 @@ public class BoardController {
         String summaryContent = summaryContentAtomicRef.get();
         // log.info("summaryContent >>> " + summaryContent);  // 해안가에서는 스노클링을 즐기는 사람들이 많았고, 내가 챙긴 노르딕 스타킹을 신고 바다 속으로 뛰어들었습니다. 몰디브의 아름다운 자연환경과 더불어 즐거운 수상 스포츠를 즐길 수 있는 멋진 곳이라는 생각이 들었습니다.
 
-        //        String oriCon = tagExtract.koToEn(originContent);
-        //        String tag = tagExtract.extract(oriCon);
+        String oriCon = tagExtract.koToEn(originContent);
+        List<String> tags = tagExtract.extract(oriCon);
 
         Member member = memberService.get(writerNo);
 
@@ -153,6 +154,14 @@ public class BoardController {
 
         // 게시글 DB 에 업로드
         boardService.add(board);
+
+        // 태그 업로드
+        for (String tag : tags) {
+          Map<String, Object> paramMap = new HashMap<>();
+          paramMap.put("boardNo", board.getBoardNo());
+          paramMap.put("tag", tag);
+          boardService.addTag(paramMap);
+        }
 
         //사용자에게 완료 표시 및 알람
         log.info("DB에 게시글 및 파일 업로드 완료함");
