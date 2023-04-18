@@ -61,6 +61,7 @@ public class BoardController {
   @Autowired private NaverClovaSummary naverClovaSummary;
   @Autowired private NaverPapagoTranslation naverPapagoTranslation;
   @Autowired private TagExtract tagExtract;
+  @Autowired private SseController sseController;
 
   @PostMapping
   public Object insert(int writerNo, String originContent) {
@@ -143,6 +144,9 @@ public class BoardController {
 
               //사용자에게 완료 표시 및 알람
               log.info("DB에 게시글 및 파일 업로드 완료함");
+              sseController.sendMessageToAll("DB에 게시글 및 파일 업로드 완료");
+              //              SseController sseController = new SseController();
+              //              sseController.sendMessageToAll("DB에 게시글 및 파일 업로드 완료");
 
               return new RestResult()
                   .setStatus(RestStatus.SUCCESS);
@@ -267,5 +271,17 @@ public class BoardController {
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
+
+  //  @PostMapping("test")
+  //  public void sse() {
+  //    log.info("DB에 게시글 및 파일 업로드 완료");
+  //    try {
+  //      Thread.sleep(3000);
+  //    } catch (InterruptedException e) {
+  //      // TODO Auto-generated catch block
+  //      e.printStackTrace();
+  //    }
+  //    sseController.sendMessageToAll("DB에 게시글 및 파일 업로드 완료");
+  //  }
 
 }

@@ -13,7 +13,7 @@ function MemberList() {
     console.log("=====================>>>>");
     fetch("http://localhost:8080/admin")
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((data) => console.log(data), setData(data))
       .catch((error) => console.error(error));
   }, []);
 
