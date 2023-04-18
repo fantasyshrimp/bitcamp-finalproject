@@ -22,6 +22,34 @@
     insert into aim_reply(board_no, member_no, content)
     values(#{boardNo}, #{writer.no}, #{content})
    </insert>
+   
+   <select id="findAll" resultMap="replyMap" parameterType="int">
+			SELECT 
+			    r.reply_no, 
+			    r.board_no, 
+			    r.member_no, 
+			    r.content, 
+			    r.write_dt, 
+			    m.name, 
+			    m.filename 
+			FROM 
+			    aim_reply r
+			    INNER JOIN aim_member m ON m.member_no = r.member_no  
+			    LEFT JOIN (
+			        SELECT 
+			            reply_no, 
+			            COUNT(*) as report_cnt
+			        FROM 
+			            aim_report_reply 
+			        GROUP BY 
+			            reply_no 
+			        HAVING 
+			            COUNT(*) &lt;= 5
+			    ) rr ON r.reply_no = rr.reply_no 
+			ORDER BY 
+			    r.reply_no DESC;
+   </select>
+  
   
    <select id="findByNo" resultMap="replyMap" parameterType="int">
 			SELECT 
