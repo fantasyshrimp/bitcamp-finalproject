@@ -121,6 +121,21 @@
   text-align: left;
 }
 
+#feed-modal-t {
+  width: auto;
+  height: 30px;
+  float: left;
+  font-size: 12px;
+  margin-right: 4px;
+  margin-top: 6px;
+  color: var(--aim-text-sub);
+}
+
+#feed-modal-t:hover {
+  color: var(--aim-text-default);
+  cursor: pointer;
+}
+
 #feed-modal-day {
   width: 95%;
   height: 25px;

@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,8 +115,16 @@ public class BoardController {
               String summaryContent = summaryContentAtomicRef.get();
               // log.info("summaryContent >>> " + summaryContent);
 
-              String oriCon = tagExtract.koToEn(originContent);
-              List<String> tags = tagExtract.extract(oriCon);
+              String koContent = tagExtract.koToEn(originContent);
+              List<String> tags = tagExtract.extract(koContent);
+              List<String> koLists = new ArrayList<>();
+
+              for (String tag : tags) {
+                String originTag = tagExtract.enToKo(tag).replace(".", "");
+                String modifyTag = "";
+                modifyTag += "#" + originTag;
+                koLists.add(modifyTag);
+              }
 
               Member member = memberService.get(writerNo);
 
@@ -134,10 +143,10 @@ public class BoardController {
               boardService.add(board);
 
               // 태그 업로드
-              for (String tag : tags) {
+              for (String koList : koLists) {
                 Map<String, Object> paramMap = new HashMap<>();
                 paramMap.put("boardNo", board.getBoardNo());
-                paramMap.put("tag", tag);
+                paramMap.put("tag", koList);
                 boardService.addTag(paramMap);
               }
 
@@ -234,6 +243,12 @@ public class BoardController {
   public Board view(@PathVariable int no) {
 
     return boardService.get(no);
+  }
+
+  @GetMapping("tag/{no}")
+  public List<Board> findTag(@PathVariable int no) {
+
+    return boardService.listTag(no);
   }
 
   @GetMapping("auth")

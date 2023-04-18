@@ -22,6 +22,7 @@ function FeedModal(props) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMoneyModalOpen, setIsMoneyModalOpen] = useState(false);
   const [point, setPoint] = useState();
+  const [tag, setTag] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -92,6 +93,13 @@ function FeedModal(props) {
     setPoint(response.data);
   });
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/boards/tag/${boardNo}`)
+      .then((response) => setTag(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+
   const numberWithCommas = (number) => {
     // 천의 자리마다 , 찍기
     return number
@@ -156,8 +164,13 @@ function FeedModal(props) {
           <div id="feed-modal-day" key={props.data.writeDt}>
             {getTimeBoard(props.data.writeDt)}
           </div>
-          <div id="feed-modal-tag" key={props.data.tag}>
-            {props.data.tag}
+          <div id="feed-modal-tag">
+
+            {tag.map((item) => (
+            <div id="feed-modal-t" value="item.tag">
+              {item.tag}
+            </div>
+            ))}
             {props.user.data.no !== writerNo && (
               <div id="feed-modal-boardreport" onClick={openModal}>
                 신고하기

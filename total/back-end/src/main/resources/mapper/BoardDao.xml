@@ -9,7 +9,7 @@
     <result column="origin_content" property="originContent"/>
     <result column="summary_content" property="summaryContent"/>
     <result column="trans_content" property="transContent"/>
-    <result column="tag" property="tag"/>
+    <result column="board_tag" property="tag"/>
     <result column="like_cnt" property="likeCnt"/>
     <result column="view_cnt" property="viewCnt"/>
     <result column="board_public" property="boardPublic"/>
@@ -88,9 +88,18 @@
     from 
       aim_board b
       inner join aim_member m on b.member_no = m.member_no 
-      inner join aim_generated_img i on b.board_no = i.board_no 
+      inner join aim_generated_img i on b.board_no = i.board_no
     where 
       b.board_no=#{no}
+  </select>
+  
+  <select id="findTag" resultMap="boardMap" parameterType="int">
+    select 
+	  board_tag 
+    from 
+      aim_board_tag 
+    where 
+      board_no=#{no}
   </select>
   
   <select id="findByMemberNo" resultMap="boardMap" parameterType="int">

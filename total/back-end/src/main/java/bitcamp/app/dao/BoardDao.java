@@ -14,6 +14,7 @@ public interface BoardDao {
   List<Board> findAllRecent();
   List<Board> findFollow(int no);
   Board findByNo(int no);
+  List<Board> findTag(int no);
   List<Board> findByMemberNo(int no);
   int update(Board b);
   int delete(int no);

@@ -11,6 +11,7 @@ public interface BoardService {
   List<Board> listHot();
   List<Board> listRecent();
   List<Board> listFollow(int no);
+  List<Board> listTag(int no);
   Board get(int no);
   List<Board> getByMemberNo(int memeberNo);
   void update(Board board);

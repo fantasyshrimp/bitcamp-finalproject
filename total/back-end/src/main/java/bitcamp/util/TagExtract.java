@@ -70,14 +70,23 @@ public class TagExtract {
         .collect(Collectors.toList());
 
     String formattedKeywords = topKeywords.stream()
-        .map(keyword -> "#" + keyword + " ")
+        .map(keyword -> keyword + " ")
         .collect(Collectors.joining());
-    System.out.println(formattedKeywords);
 
+    String[] tagWords = formattedKeywords.split(" ");
+    List<String> tagWordList = new ArrayList<>();
+
+    for (String tagWord : tagWords) {
+      tagWordList.add(tagWord);
+    }
+
+    return tagWordList;
+  }
+  public String enToKo(String cotent) {
     String clientId = "i36yjziieo";//애플리케이션 클라이언트 아이디값";
     String clientSecret = "6iGQfllD98T5LXsiNAj6tGSlgNOOHsxgdIxLlU1G";//애플리케이션 클라이언트 시크릿값";
     try {
-      String text = URLEncoder.encode(formattedKeywords, "UTF-8");
+      String text = URLEncoder.encode(cotent, "UTF-8");
       String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -110,23 +119,13 @@ public class TagExtract {
       Map<String, Object> map = gson.fromJson(jsonStr, Map.class);
       String translatedText = ((Map<String, Object>) ((Map<String, Object>) map.get("message")).get("result")).get("translatedText").toString();
 
-      String[] words = translatedText.split(" ");
-      List<String> tagList = new ArrayList<>();
-
-      for (String word : words) {
-        tagList.add(word);
-      }
-
-      System.out.println(tagList);
-
-      return tagList;
+      return translatedText;
 
     } catch (Exception e) {
       System.out.println(e);
       return null;
     }
   }
-
   public String koToEn(String cotent) {
     String clientId = "i36yjziieo";//애플리케이션 클라이언트 아이디값";
     String clientSecret = "6iGQfllD98T5LXsiNAj6tGSlgNOOHsxgdIxLlU1G";//애플리케이션 클라이언트 시크릿값";
@@ -158,13 +157,11 @@ public class TagExtract {
         response.append(inputLine);
       }
       br.close();
-      System.out.println(response.toString());
 
       String jsonStr = response.toString();
       Gson gson = new Gson();
       Map<String, Object> map = gson.fromJson(jsonStr, Map.class);
       String translatedText = ((Map<String, Object>) ((Map<String, Object>) map.get("message")).get("result")).get("translatedText").toString();
-      System.out.println(translatedText);
 
       return translatedText;
 
@@ -177,9 +174,24 @@ public class TagExtract {
   public static void main(String[] args) throws IOException {
     TagExtract tag = new TagExtract();
 
-    String str = tag.koToEn("'천지창조'는 미켈란젤로의 명작으로, 대형 천장에 그려진 아름다운 그림입니다. 그림에서는 하느님이 아담에게 생명의 기운을 불어넣는 장면이 그려져 있으며, 하느님은 하늘의 구름과 햇빛을 배경으로 유난히 크고 강력한 모습으로 묘사되어 있습니다. 그림의 컬러는 밝고 화려한 톤으로, 인체의 아름다움과 능력을 최대한으로 살려 미켈란젤로의 대표작 중 하나로 자리잡았습니다. ");
+    String str = tag.koToEn("나뭇잎의 그늘을 만져보고 싶을 땐\r\n"
+        + "연못 아래로 드리운 나무 그늘을 만져봅니다.\r\n"
+        + "내 안에 있는 그대 영혼 같아서,\r\n"
+        + "내 영혼의 가지에 드리운\r\n"
+        + "길이 마르지 않을 값없는 그늘 같아서.");
 
-    tag.extract(str);
+    List<String> lists = tag.extract(str);
+    List<String> kolists = new ArrayList<>();
+    System.out.println(lists);
+
+    for (String list : lists) {
+      System.out.println(list);
+      String T = tag.enToKo(list).replace(".", "");
+      String M = "";
+      M += "#" + T;
+      kolists.add(M);
+    }
+    System.out.println(kolists);
   }
 
 }

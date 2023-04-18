@@ -83,5 +83,10 @@ public class DefaultBoardService implements BoardService{
 
   }
 
+  @Override
+  public List<Board> listTag(int no) {
+    return boardDao.findTag(no);
+  }
+
 
 }
