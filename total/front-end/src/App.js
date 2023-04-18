@@ -146,8 +146,8 @@ function App() {
             <Route path="/Faq" element={<Faq />} />
             <Route path="/admin/memberlist" element={<MemberList />} />
             <Route path="/admin/stats" element={<Stats />} />
+            <Route path="/admin/commentlist" element={<CommentList />} />
             <Route path="/boardlist" element={<BoardList />} />
-            <Route path="/commentlist" element={<CommentList />} />
 
             <Route path="/auth/verify" element={<EmailVerifyHandler />} />
             <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
