@@ -74,6 +74,7 @@ function App() {
   const [signupShow, setSignupShow] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -104,6 +105,8 @@ function App() {
             setLoginShow={setLoginShow}
             signupShow={signupShow}
             setSignupShow={setSignupShow}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
           />
           <Routes>
             <Route
@@ -142,9 +145,16 @@ function App() {
               element={<PersonalSetting />}
             ></Route>
             <Route path="/Faq" element={<Faq />} />
-            <Route path="/admin" element={<MemberList />} />
+            <Route
+              path="/admin/memberlist"
+              element={
+                <MemberList
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
             <Route path="/admin/stats" element={<Stats />} />
-            <Route path="/MemberList" element={<MemberList />} />
             <Route path="/auth/verify" element={<EmailVerifyHandler />} />
             <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
           </Routes>
