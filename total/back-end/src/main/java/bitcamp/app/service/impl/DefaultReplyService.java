@@ -8,6 +8,7 @@ import bitcamp.app.dao.LogDao;
 import bitcamp.app.dao.ReplyDao;
 import bitcamp.app.service.ReplyService;
 import bitcamp.app.vo.Log;
+import bitcamp.app.vo.Member;
 import bitcamp.app.vo.Reply;
 
 @Service
@@ -15,6 +16,11 @@ public class DefaultReplyService implements ReplyService{
 
   @Autowired private ReplyDao replyDao;
   @Autowired private LogDao logDao;
+
+  @Override
+  public List<Reply> list() {
+    return replyDao.findAll();
+  }
 
   @Override
   public List<Reply> get(int no) {

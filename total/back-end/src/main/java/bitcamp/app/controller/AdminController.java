@@ -16,6 +16,7 @@ import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.service.ObjectStorageService;
+import bitcamp.app.service.ReplyService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
@@ -29,6 +30,7 @@ public class AdminController {
   @Autowired private MemberService memberService;
   @Autowired private BoardService boardService;
   @Autowired private LikeService likeService;
+  @Autowired private ReplyService replyService;
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -50,6 +52,11 @@ public class AdminController {
           .setStatus(RestStatus.FAILURE)
           .setErrorCode(ErrorCode.rest.NO_DATA);
     }
+  }
+  
+  @GetMapping("/commentlist")
+  public Object test3() {
+    return replyService.list();
   }
   
   //List<Board> list(Map<Object, Object> page);

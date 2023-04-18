@@ -6,6 +6,7 @@ import bitcamp.app.vo.Reply;
 
 @Mapper
 public interface ReplyDao {
+  List<Reply> findAll();
   List<Reply> findByNo(int no);
   void insert(Reply reply);
   int countCommentLike(int no);
