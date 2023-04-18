@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
+import axios from "axios";
 
 function MemberView(props) {
   const { show, setShow, no } = props;
@@ -13,9 +14,8 @@ function MemberView(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/admin/` + no);
-        const data = await response.json();
-        setData(data.data);
+        const response = await axios.get(`http://localhost:8080/admin/` + no);
+        setData(response.data.data);
       } catch (error) {
         console.error(error);
       }

@@ -36,22 +36,19 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Member member = (Member) session.getAttribute("loginUser");
 
-        
         if (member != null && member.getAuthLevel() == 9) {
-        	System.out.println(member.getNo());
-        	System.out.println(member.getAuthLevel());
+            System.out.println(member.getNo());
+            System.out.println(member.getAuthLevel());
             pointService.loginInsert(member.getNo());
             return true;
         } else {
-            System.out.println("loginUser is null");
-            response.setContentType("application/json;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.print(new ObjectMapper().writeValueAsString(
-                new RestResult()
-                .setStatus(RestStatus.FAILURE)
-                .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
-                .setData("권한이 없습니다.")));
+            out.print("<script>alert('권한이 없습니다.');history.back();</script>");
+            response.sendRedirect("http://localhost:3000");
             return false;
         }
     }
+
+
 }

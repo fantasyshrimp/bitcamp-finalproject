@@ -11,7 +11,6 @@ function MemberList() {
   const [selectedNo, setSelectedNo] = useState();
 
   useEffect(() => {
-    console.log("=====================>>>>");
     axios
       .get("http://localhost:8080/admin")
       .then((response) => {
@@ -28,31 +27,6 @@ function MemberList() {
     setModalShow(true);
   }
 
-  /*
-  const [data, setData] = useState([]);
-  const [viewData, setViewData] = useState([]);
-  const [modalShow, setModalShow] = useState(false);
-  const [selectedNo, setSelectedNo] = useState();
-
-
-  useEffect(() => {
-    console.log("=====================>>>>");
-    fetch("http://localhost:8080/admin")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error(error));
-
-    console.log("data : ");
-    console.log(data);
-  }, []);
-
-  function handleColumnSelect(selectedNo) {
-    console.log("Selected number:", selectedNo);
-    setSelectedNo(selectedNo);
-    setModalShow(true);
-  }
-
-  */
   return (
     <>
       <div className={styles.MemberList}>
@@ -67,7 +41,6 @@ function MemberList() {
               <th>가입일</th>
               <th>포인트</th>
               <th>성별</th>
-              <th>기본주소</th>
               <th>포인트</th>
               <th>전화번호</th>
               <th>비밀번호 변경일시</th>
@@ -119,12 +92,6 @@ function MemberList() {
                     : member.gender === 2
                     ? "여"
                     : ""}
-                </td>
-                <td
-                  className="td"
-                  onClick={() => handleColumnSelect(member.no)}
-                >
-                  {member.basicAddress}
                 </td>
                 <td
                   className="td"
