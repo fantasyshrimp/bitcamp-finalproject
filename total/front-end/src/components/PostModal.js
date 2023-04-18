@@ -28,11 +28,11 @@ function PostModal(props) {
       document.querySelector("#postHelpBlock").innerText =
         "내용을 작성해 주세요";
       return;
-    } else if (postText.length < 20) {
+    } /*else if (postText.length < 20) {
       document.querySelector("#postHelpBlock").innerText =
         "두 문장 이상, 20자 이상 작성해 주세요";
       return;
-    }
+    }*/
 
     setIsLoading(true);
 
@@ -85,11 +85,12 @@ function PostModal(props) {
           console.log("Generated 응답 옴!");
           console.log(response);
         } else {
-          alert("AI 그림 생성 중 이상 발생!");
+          alert("AI 그림 생성 중 이상 발생 했습니다.");
         }
       })
       .catch((error) => {
-        alert("Generate 요청 중 오류 발생!");
+        console.log(error);
+        alert("입력된 문자열 처리 중 오류가 발생 했습니다.");
       });
   };
 
@@ -141,8 +142,7 @@ function PostModal(props) {
                 as="textarea"
                 id="post-text"
                 rows={12}
-                placeholder="당신의 이야기를 그림으로 만들어 드려요!
-                - 두 문장 이상, 20자 이상 작성해야 그림 생성이 원활합니다."
+                placeholder="당신의 이야기를 그림으로 만들어 드려요!"
                 onChange={handlePostChange}
                 style={{
                   backgroundColor: `var(--aim-base-tone)`,
