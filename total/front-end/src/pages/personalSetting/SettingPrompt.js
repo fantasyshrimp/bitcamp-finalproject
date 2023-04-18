@@ -9,14 +9,17 @@ function SettingPrompt(props) {
   const [hideState, setHideState] = useState(selectedValue === 1 ? false : true);
   const root = document.querySelector(':root');
   const controlClass = "selected-setting" + classKey
+  const ajaxFalg = true;
   useEffect(() => {
     document.querySelector(`.${controlClass}`).style.left = `${((data.rangeState === 0 ? 1 : data.rangeState ) - 1) * 30}px`;
   }, [controlClass, data.rangeState]);
 
   const handleButtonClick = (target) => {
-    const selectedNo = target.getAttribute("data-value");
-    const moveValue = selectedNo - selectedValue;
-    selectedNo === '1' ? setHideState(false) : setHideState(true);
+    const selectedNo = target.getAttribute("data-select-value");
+    console.log(selectedNo);
+
+    const moveValue = selectedNo === '1' ? 1 : -1;
+    selectedNo === '1' ? setHideState(true) : setHideState(false);
     let movePx = 30 * parseInt(moveValue);
     root.style.setProperty('--slide-side-distance', `${movePx}px`);
     
@@ -29,7 +32,9 @@ function SettingPrompt(props) {
     }, 200);
 
     //console.log(selectedValue + "에서" +selectedNo+ "으로이동");
-    setSelectedValue(selectedNo);  //이거 왜이렇게 늦게들어감?
+    setSelectedValue(selectedNo === '1' ? 2 : 1);  //이거 왜이렇게 늦게들어감?
+    target.setAttribute("data-select-value", selectedNo === 1 ? 2 : 1);
+    console.log(selectedNo);
     //console.log(selectedValue);
     requestBody[Object.keys(requestBody)[0]] = data.typeNo;
     requestBody[Object.keys(requestBody)[1]] = selectedNo;
@@ -51,12 +56,12 @@ function SettingPrompt(props) {
         <div style={{fontSize: "small", color:`var(--aim-text-sub)`}}>{data.description}</div>
       </div>
 
-      <div id="setting-type-btn" 
+      <div id="setting-type-btn" data-select-value={selectedValue} onClick={(event) => handleButtonClick(event.currentTarget)}
         style={{position: "absolute", top: "5px", right: "0",
         backgroundColor : hideState ? `var(--aim-emphasis-red)` : `var(--aim-fill-green)`
         }}>
         {stateArray.map((value) => (
-          <div key={value} data-value={value} onClick={(event) => handleButtonClick(event.currentTarget)}></div>
+          <div key={value} data-value={value}></div>
         ))}
       <div className={controlClass}>
         {hideState ? <EyeSlashFill /> : <EyeFill />}

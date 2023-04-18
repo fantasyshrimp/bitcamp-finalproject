@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PencilSquare } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2'
+import './SweetAlert.css'
 import ImageResizer from "react-image-file-resizer";
 import SettingInput from "./SettingInput"
 import SettingRadio from "./SettingRadio"
@@ -185,7 +186,6 @@ function ModifyProfile(props) {
 
               Swal.fire({
                 title: '수정하시겠습니까?',
-                icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: '수정',
                 cancelButtonText: '취소', //취소하면 초기값으로?
@@ -273,8 +273,8 @@ function ModifyProfile(props) {
 
             }}
             style={{ marginLeft: "20px", marginTop: "20px",
-            backgroundColor: (nickCheckState && !isNickDuplication) ? `var(--aim-base-tone)` : `var(--aim-base-tone-down)`,
-            color: (nickCheckState && !isNickDuplication) ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
+            backgroundColor: (nickCheckState && !isNickDuplication) ? `var(--aim-base-tone-sub)` : `var(--aim-base-tone-down)`,
+            color: (nickCheckState && !isNickDuplication) ? `var(--aim-text-default)` : `var(--aim-text-default)`,
             padding: "8px 8px",
             textAlign: "center",            
             fontSize: `var(--aim-small-font-size)`,

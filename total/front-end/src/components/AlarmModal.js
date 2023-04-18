@@ -93,7 +93,7 @@ function AlarmModal(props) {
         </Modal.Header>
         <Modal.Body
           className="p-0"
-          style={{ maxHeight: "calc(56px * 5)", overflowY: "auto" }}
+          style={{ maxHeight: "calc(56px * 5)", overflowY: "auto", backgroundColor: `var(--aim-base-tone-up)`, }}
         >
           <Container className="">
             {alarms && alarms.logData.length > 0 ? (
@@ -154,7 +154,8 @@ function AlarmModal(props) {
                 </Row>
               ))
             ) : (
-              <div className="pb-2 pt-2 d-flex align-items-center">
+              <div className="pb-2 pt-2 d-flex align-items-center"
+              >
                 알림이 없습니다.
               </div>
             )}
