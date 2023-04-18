@@ -108,26 +108,26 @@ public class AuthController {
       String password,
       HttpSession session) {
 
-    Member member = memberService.get(email, password);
-    System.out.println(member);
-    if (member != null) {
-      session.setAttribute("loginUser", member);
-      
-      member = memberService.get(member.getNo());
+    Member m = memberService.get(email, password);
+    System.out.println(m);
+    if (m != null) {
+      session.setAttribute("loginUser", m);
 
-      Member m = (Member) session.getAttribute("loginUser");
+      //Member m = (Member) session.getAttribute("loginUser");
 
       LocalDateTime now = LocalDateTime.now(); // 현재 시간
       LocalDateTime resetTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0, 0);  // 매일 00시에 리셋되는 기준 시간
 
-      if (m.getLastLoginDt() == null || member.getLastLoginDt().isBefore(resetTime)) {  // 기준 시간 이후에 로그인한 경우
+      if (m.getLastLoginDt() == null || m.getLastLoginDt().isBefore(resetTime)) {  // 기준 시간 이후에 로그인한 경우
         pointService.loginInsert(m.getNo());
       }
       memberService.lastLoginUpdate(m.getNo());
       
+      System.out.println(m.getNo());
+      System.out.println(m.getAuthLevel());
 
       return new RestResult()
-          .setData(member)
+          .setData(m)
           .setStatus(RestStatus.SUCCESS);
     } else {
       return new RestResult()

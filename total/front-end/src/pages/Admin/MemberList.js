@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./MemberList.module.css";
 import Table from "react-bootstrap/Table";
 import MemberView from "./MemberView";
+import axios from "axios";
 
 function MemberList() {
   const [data, setData] = useState([]);
@@ -11,9 +12,13 @@ function MemberList() {
 
   useEffect(() => {
     console.log("=====================>>>>");
-    fetch("http://localhost:8080/admin")
-      .then((response) => response.json())
-      .then((data) => setData(data))
+    axios
+      .get("http://localhost:8080/admin")
+      .then((response) => {
+        console.log("data : ");
+        console.log(response.data);
+        setData(response.data);
+      })
       .catch((error) => console.error(error));
   }, []);
 
@@ -21,15 +26,33 @@ function MemberList() {
     console.log("Selected number:", selectedNo);
     setSelectedNo(selectedNo);
     setModalShow(true);
-
-    fetch("http://localhost:8080/admin/" + selectedNo)
-      .then((response) => response.json())
-      .then((viewData) => {
-        setViewData(viewData);
-      })
-      .catch((error) => console.error(error));
   }
 
+  /*
+  const [data, setData] = useState([]);
+  const [viewData, setViewData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedNo, setSelectedNo] = useState();
+
+
+  useEffect(() => {
+    console.log("=====================>>>>");
+    fetch("http://localhost:8080/admin")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error(error));
+
+    console.log("data : ");
+    console.log(data);
+  }, []);
+
+  function handleColumnSelect(selectedNo) {
+    console.log("Selected number:", selectedNo);
+    setSelectedNo(selectedNo);
+    setModalShow(true);
+  }
+
+  */
   return (
     <>
       <div className={styles.MemberList}>

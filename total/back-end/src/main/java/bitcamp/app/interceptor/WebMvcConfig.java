@@ -7,12 +7,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-	@Autowired
+
+    @Autowired
     private AdminInterceptor adminInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(adminInterceptor).addPathPatterns("/admin/*", "/admin");
-        System.out.println("WebMvcConfig 동작");
+        registry.addInterceptor(adminInterceptor)
+                .addPathPatterns("/admin/**"); // 인터셉터를 /admin/** 경로에 적용
     }
 }

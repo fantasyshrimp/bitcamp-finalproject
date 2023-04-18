@@ -7,6 +7,7 @@ function ImageText() {
   const [image, setImage] = useState([]);
   const [content, setContent] = useState([]);
 
+  /*
   useEffect(() => {
     async function fetchData() {
       try {
@@ -23,7 +24,7 @@ function ImageText() {
   }, []);
 
   const randomImage = image[Math.floor(Math.random() * image.length)];
-
+*/
   return (
     <div className={styles.frame}>
       <div className={styles.wrapper}>
