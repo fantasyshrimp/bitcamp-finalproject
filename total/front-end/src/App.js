@@ -14,6 +14,7 @@ import NaverLoginHandler from "./handler/NaverLoginHandler";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 import axios from "axios";
+import BoardList from "./pages/Admin/BoardList";
 
 // 로컬스토리지 강제 삭제
 // function clearLocalStorage() {
@@ -144,7 +145,7 @@ function App() {
             <Route path="/Faq" element={<Faq />} />
             <Route path="/admin/memberlist" element={<MemberList />} />
             <Route path="/admin/stats" element={<Stats />} />
-            <Route path="/MemberList" element={<MemberList />} />
+            <Route path="/boardlist" element={<BoardList />} />
             <Route path="/auth/verify" element={<EmailVerifyHandler />} />
             <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
           </Routes>

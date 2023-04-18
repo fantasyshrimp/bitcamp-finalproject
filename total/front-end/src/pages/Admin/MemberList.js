@@ -3,6 +3,7 @@ import styles from "./MemberList.module.css";
 import Table from "react-bootstrap/Table";
 import MemberView from "./MemberView";
 import axios from "axios";
+import BoardList from "./BoardList";
 
 function MemberList() {
   const [data, setData] = useState([]);
@@ -31,7 +32,11 @@ function MemberList() {
     <>
       <div className={styles.MemberList}>
         <h1>회원 관리</h1>
-        <h3>회원 목록</h3>
+        <h3>
+          회원 목록
+          <a href="../BoardList">(test)게시물 목록</a>
+          <a href="#">(test)댓글 목록</a>
+        </h3>
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>
