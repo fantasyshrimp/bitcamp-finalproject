@@ -73,28 +73,30 @@ public class NaverClovaSummary {
       //{"summary":"도시의 야경을 방안에서 보고 있다.\n분주한 도시는 항상 차가운 얼굴을 하고 있다."}
       //{"status":400,"error":{"errorCode":"E100","message":"Insufficient valid sentence"}}
 
-
       JSONObject jsonObject = new JSONObject(summaryContent);
       log.info("jsonObject.has(\"status\") >>> " + jsonObject.has("status"));
       if (jsonObject.has("status")) {
         JSONObject error = jsonObject.getJSONObject("error");
-        log.info("error >>> " + error);
         String errorCode = error.getString("errorCode");
-        log.info("errorCode >>> " + errorCode);
+        log.error("error >>> " + error);
+        log.error("errorCode >>> " + errorCode);
 
         switch (errorCode) {
           case "E001":  // 빈 문자열 or blank 문자
             //            throw new RuntimeException("빈 문자열이 입력 되었습니다.");
+            log.info("summaryContent E001 (빈 문자열) >>> "+ summaryContent);
           case "E003":  // 문장이 기준치보다 초과 했을 경우
             //            throw new RuntimeException("입력된 문장 길이가 기준치를 초과 하였습니다.");
+            log.info("summaryContent E0013(문장 과다) >>> "+ summaryContent);
           case "E100":  //유효한 문장이 부족한 경우
             //            throw new RuntimeException("유효한 문장이 부족합니다.");
-            log.info("summaryContent E100 >>> "+ summaryContent);
-            return summaryContent;
+            log.info("summaryContent E100 (유효 문장 부족, 원문 전송) >>> "+ summaryContent);
+            return "{\"summary\":\"" + content + "\"}";
           case "E101":  // ko, ja 가 아닌 경우
-            summaryContent = content;
-            break;
+            log.info("summaryContent E101 (ko, ja 아님, 원문 전송) >>> "+ summaryContent);
+            return "{\"summary\":\"" + content + "\"}";
           default:
+            log.info("summaryContent E??? (기타 에러) >>> "+ summaryContent);
             //            throw new RuntimeException("Clova Summary 응답에서 기타 오류가 발생했습니다.");
         }
       }

@@ -142,7 +142,7 @@ function App() {
               element={<PersonalSetting />}
             ></Route>
             <Route path="/Faq" element={<Faq />} />
-            <Route path="/admin" element={<MemberList />} />
+            <Route path="/admin/memberlist" element={<MemberList />} />
             <Route path="/admin/stats" element={<Stats />} />
             <Route path="/MemberList" element={<MemberList />} />
             <Route path="/auth/verify" element={<EmailVerifyHandler />} />

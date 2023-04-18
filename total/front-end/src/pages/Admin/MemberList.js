@@ -10,6 +10,7 @@ function MemberList() {
   const [selectedNo, setSelectedNo] = useState();
 
   useEffect(() => {
+    console.log("=====================>>>>");
     fetch("http://localhost:8080/admin")
       .then((response) => response.json())
       .then((data) => setData(data))
