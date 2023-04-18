@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import ReactDOM from "react-dom"; // ReactDOM import 추가
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
-import axios from "axios";
 
 function MemberView(props) {
   const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
-  const [nickname, setNickname] = useState("");
   console.log(no);
 
   useEffect(() => {

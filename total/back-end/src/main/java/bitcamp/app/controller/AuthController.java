@@ -109,9 +109,12 @@ public class AuthController {
       HttpSession session) {
 
     Member member = memberService.get(email, password);
-
+    System.out.println(member);
     if (member != null) {
       session.setAttribute("loginUser", member);
+      
+      member = memberService.get(member.getNo());
+
       Member m = (Member) session.getAttribute("loginUser");
 
       LocalDateTime now = LocalDateTime.now(); // 현재 시간
@@ -121,6 +124,7 @@ public class AuthController {
         pointService.loginInsert(m.getNo());
       }
       memberService.lastLoginUpdate(m.getNo());
+      
 
       return new RestResult()
           .setData(member)
