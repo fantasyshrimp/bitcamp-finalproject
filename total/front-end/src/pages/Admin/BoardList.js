@@ -6,7 +6,7 @@ function BoardList() {
   return (
     <>
       <div className={styles.BoardList}>
-        <h1>게시물 관리</h1>
+        <h1>게시물 관리 // back-end 컨트롤러 작성 및 mapper 질문하기</h1>
         <h3>
           <a href="./Admin/MemberList">회원 목록</a>
           <a href="#">(test)게시물 목록</a>
