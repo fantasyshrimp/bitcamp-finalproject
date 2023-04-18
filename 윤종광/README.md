@@ -837,7 +837,7 @@ server-gpu 컨테이너에 올리지 않고 GPU server 에서 jar 파일 실행�
 
 ```bash
 # final-gpu-0.0.1-SNAPSHOT.jar 파일을 실행하면서 표준 출력 및 오류를 output.log 파일에 저장하고, 백그라운드에서 실행
-$ nohup java -jar build/libs/final-gpu-0.0.1-SNAPSHOT.jar > output.log 2>&1 &
+$ nohup java -jar server-gpu/build/libs/final-gpu-0.0.1-SNAPSHOT.jar > server-gpu/output.log 2>&1 &
 
 # 프로세스 정상 실행 확인(터미널 세션 종료하면 jobs 로 확인 불가)
 $ jobs

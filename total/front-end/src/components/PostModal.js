@@ -85,11 +85,11 @@ function PostModal(props) {
           console.log("Generated 응답 옴!");
           console.log(response);
         } else {
-          alert("이상 발생!");
+          alert("AI 그림 생성 중 이상 발생!");
         }
       })
       .catch((error) => {
-        alert("글쓰기 중 오류 발생");
+        alert("Generate 요청 중 오류 발생!");
       });
   };
 
@@ -106,26 +106,34 @@ function PostModal(props) {
         onHide={handleClose}
         backdrop="static"
         centered
-        style={{ width: "100%", height: "100%", backgroundColor: `var(--aim-base-alpa)` }}
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: `var(--aim-base-alpa)`,
+        }}
         contentClassName="bg-dark"
       >
-
         <Modal.Header
-          style={{ borderBottom: "none", height :"70px" }}
+          style={{ borderBottom: "none", height: "70px" }}
           className="d-flex justify-content-center p-0"
         >
-          <Modal.Title className="text-light"
-          >Post</Modal.Title>
-            <Modal.Header
+          <Modal.Title className="text-light">Post</Modal.Title>
+          <Modal.Header
             closeButton
-            closeVariant="white"          
-            style={{ position: "absolute", right: "10px", 
-            borderBottom: "none" }}
+            closeVariant="white"
+            style={{
+              position: "absolute",
+              right: "10px",
+              borderBottom: "none",
+            }}
             className="d-flex p-0"
-            ></Modal.Header>
+          ></Modal.Header>
         </Modal.Header>
 
-        <Modal.Body className="pt-0 pb-0" style={{backgroundColor: `var(--aim-base-tone)`}}>
+        <Modal.Body
+          className="pt-0 pb-0"
+          style={{ backgroundColor: `var(--aim-base-tone)` }}
+        >
           <Form>
             <Form.Group>
               <Form.Label></Form.Label>
@@ -136,7 +144,11 @@ function PostModal(props) {
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!
                 - 두 문장 이상, 20자 이상 작성해야 그림 생성이 원활합니다."
                 onChange={handlePostChange}
-                style={{backgroundColor: `var(--aim-base-tone)`, color: `var(--aim-text-default)`, resize: "none" }}
+                style={{
+                  backgroundColor: `var(--aim-base-tone)`,
+                  color: `var(--aim-text-default)`,
+                  resize: "none",
+                }}
               />
               <div className="d-flex justify-content-between">
                 <Form.Text id="postHelpBlock" muted></Form.Text>
