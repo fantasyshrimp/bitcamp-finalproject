@@ -64,6 +64,9 @@ DROP TABLE IF EXISTS aim_public_range RESTRICT;
 -- FAQ유형
 DROP TABLE IF EXISTS aim_faq_type RESTRICT;
 
+-- 방문자
+DROP TABLE IF EXISTS aim_visitor RESTRICT;
+
 -- 회원
 CREATE TABLE aim_member (
   member_no    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
@@ -483,6 +486,23 @@ ALTER TABLE aim_faq_type
   PRIMARY KEY (
   faq_type_no -- 문의유형번호
   );
+  
+-- 방문자
+CREATE TABLE aim_visitor (
+  visitor_no INTEGER  NOT NULL COMMENT '방문자 번호', -- 방문자 번호
+  visitor_dt DATETIME NOT NULL DEFAULT now() COMMENT '방문자 접속일시' -- 방문자 접속일시
+)
+COMMENT '방문자';
+
+-- 방문자
+ALTER TABLE aim_visitor
+  ADD CONSTRAINT PK_aim_visitor -- 방문자 기본키
+  PRIMARY KEY (
+  visitor_no -- 방문자 번호
+  );
+
+ALTER TABLE aim_visitor
+  MODIFY COLUMN visitor_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '방문자 번호';
 
 -- 정보비공개설정
 ALTER TABLE aim_hide_setting

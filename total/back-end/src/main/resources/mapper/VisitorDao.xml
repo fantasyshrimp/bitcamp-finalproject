@@ -16,4 +16,10 @@
   VALUES (#{visitorDt})
 </insert>
 
+<select id="findByDateRange" resultMap="visitorMap" parameterType="map">
+    SELECT *
+    FROM aim_visitor
+    WHERE visitor_dt &gt;= #{start_date} AND visitor_dt &lt;= #{end_date}
+</select>
+
 </mapper>
