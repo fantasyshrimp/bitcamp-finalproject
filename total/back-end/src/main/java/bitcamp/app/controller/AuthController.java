@@ -109,7 +109,7 @@ public class AuthController {
       HttpSession session) {
 
     Member m = memberService.get(email, password);
-    System.out.println(m);
+
     if (m != null) {
       session.setAttribute("loginUser", m);
 
@@ -123,8 +123,8 @@ public class AuthController {
       }
       memberService.lastLoginUpdate(m.getNo());
       
-      System.out.println(m.getNo());
-      System.out.println(m.getAuthLevel());
+//      System.out.println(m.getNo());
+//      System.out.println(m.getAuthLevel());
 
       return new RestResult()
           .setData(m)

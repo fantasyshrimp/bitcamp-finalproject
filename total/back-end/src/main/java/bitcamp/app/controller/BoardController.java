@@ -6,8 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -17,9 +17,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -117,7 +119,7 @@ public class BoardController {
 
               String koContent = tagExtract.koToEn(originContent);
               List<String> tags = tagExtract.extract(koContent);
-              List<String> koLists = new ArrayList<>();
+              HashSet<String> koLists = new HashSet<>();
 
               for (String tag : tags) {
                 String originTag = tagExtract.enToKo(tag).replace(".", "");
@@ -213,17 +215,17 @@ public class BoardController {
     }
 
     String key = (String) session.getAttribute("keyword");
+    Map<Object, Object> page = new HashMap<Object, Object>();
 
     if (key != null) {
       resultMap.put("key", false);
+      page.put("pageSize", 1000000);
     } else {
       resultMap.put("key", true);
+      page.put("pageSize", 10);
     }
 
-    Map<Object, Object> page = new HashMap<Object, Object>();
-
     page.put("keyword", key);
-    page.put("pageSize", 10);
     page.put("offset", (currentPage - 1) * 10);
 
     List<Board> list = boardService.list(page);
@@ -281,6 +283,11 @@ public class BoardController {
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
+  }
+
+  @DeleteMapping("/{boardNo}")
+  public void delete(@PathVariable int boardNo, @RequestBody List<Integer> replyNos) {
+    boardService.deleteBoard(boardNo, replyNos);
   }
 
 }

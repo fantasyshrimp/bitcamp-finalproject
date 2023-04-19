@@ -57,9 +57,22 @@ public class DefaultBoardService implements BoardService{
 
   }
 
+  @Transactional
   @Override
-  public void delete(int no) {
-
+  public void deleteBoard(int boardNo, List<Integer> replyNos) {
+    for (Integer replyNo : replyNos) {
+      boardDao.deleteReplyLikeByReplyNo(replyNo);
+      boardDao.deleteReplyReportByReplyNo(replyNo);
+      boardDao.deleteAlarmLogByReplyNo(replyNo);
+    }
+    boardDao.deleteGeneratedImgByBoardNo(boardNo);
+    boardDao.deleteTagByBoardNo(boardNo);
+    boardDao.deleteBoardLikeByBoardNo(boardNo);
+    boardDao.deleteReplyByBoardNo(boardNo);
+    boardDao.deleteReportByBoardNo(boardNo);
+    boardDao.deletePointLogByBoardNo(boardNo);
+    boardDao.deleteAlarmLogByBoardNo(boardNo);
+    boardDao.deleteBoard(boardNo);
   }
 
   @Override

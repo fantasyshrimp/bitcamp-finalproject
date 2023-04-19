@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,74 +55,33 @@ public class AdminController {
     }
   }
   
-  @GetMapping("/commentlist")
+  @GetMapping("/comment")
   public Object test3() {
     return replyService.list();
   }
   
-  //List<Board> list(Map<Object, Object> page);
-  
-  
   @GetMapping("/board")
   @ResponseBody
-  public Map<String, Object> list(String keyword, int currentPage, HttpSession session) {
+  public Map<String, Object> list(HttpSession session) {
+      session.setAttribute("sort", "recent"); // sort 세션 속성을 "recent"로 설정
+      Map<String, Object> resultMap = new HashMap<>();
 
-    String sort = (String) session.getAttribute("sort");
-    Map<String, Object> resultMap = new HashMap<>();
-
-    if (Objects.equals(sort, "hot")) {
-      List<Board> list = boardService.listHot();
-      session.removeAttribute("sort");
-
-      resultMap.put("state", false);
-      resultMap.put("data", list);
-      return resultMap;
-
-    } else if (Objects.equals(sort, "recent")) {
       List<Board> list = boardService.listRecent();
       session.removeAttribute("sort");
 
       resultMap.put("state", false);
       resultMap.put("data", list);
-      return resultMap;
 
-    } else if (Objects.equals(sort, "follow")) {
-      Member loginUser = (Member) session.getAttribute("loginUser");
-
-      List<Board> list = boardService.listFollow(loginUser.getNo());
-      session.removeAttribute("sort");
+      for (Board b : list) {
+          b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
+      }
 
       resultMap.put("state", true);
       resultMap.put("data", list);
       return resultMap;
-    }
-
-    String key = (String) session.getAttribute("keyword");
-
-    if (key != null) {
-      resultMap.put("key", false);
-    } else {
-      resultMap.put("key", true);
-    }
-
-    Map<Object, Object> page = new HashMap<Object, Object>();
-
-    page.put("keyword", key);
-    page.put("pageSize", 10);
-    page.put("offset", (currentPage - 1) * 10);
-
-    List<Board> list = boardService.list(page);
-
-    session.removeAttribute("keyword");
-
-    for (Board b : list) {
-      b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
-    }
-
-    resultMap.put("state", true);
-    resultMap.put("data", list);
-    return resultMap;
   }
+
+
 
 }
 
