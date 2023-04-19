@@ -24,6 +24,33 @@ function FeedModal(props) {
   const [point, setPoint] = useState();
   const [tag, setTag] = useState([]);
 
+  function handleTagClick(e) {
+    const keyword = e.target.getAttribute("value").replace("#", "");
+    axios
+      .post(
+        "http://localhost:8080/boards/keyword",
+        {},
+        {
+          params: {
+            keyword: keyword,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "success") {
+          if (window.location.pathname === "/Feed") {
+            window.location.reload();
+          } else {
+            // Navigate("/Feed");
+            window.location.href = "/Feed";
+          }
+        } else {
+          console.log("에러");
+        }
+      })
+      .catch((error) => {});
+  }
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -165,11 +192,10 @@ function FeedModal(props) {
             {getTimeBoard(props.data.writeDt)}
           </div>
           <div id="feed-modal-tag">
-
             {tag.map((item) => (
-            <div id="feed-modal-t" value="item.tag">
-              {item.tag}
-            </div>
+              <div id="feed-modal-t" value={item.tag} onClick={handleTagClick}>
+                {item.tag}
+              </div>
             ))}
             {props.user.data.no !== writerNo && (
               <div id="feed-modal-boardreport" onClick={openModal}>

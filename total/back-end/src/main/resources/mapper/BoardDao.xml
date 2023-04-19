@@ -39,7 +39,7 @@
   VALUES (#{boardNo}, #{tag})
 </insert>
 
-  <select id="findAll" resultMap="boardMap" parameterType="map">
+<select id="findAll" resultMap="boardMap" parameterType="map">
   SELECT
     b.board_no,
     b.member_no,
@@ -60,11 +60,13 @@
   FROM aim_board b
     INNER JOIN aim_member m ON b.member_no = m.member_no
     INNER JOIN aim_generated_img i ON b.board_no = i.board_no
+    LEFT JOIN aim_board_tag bt ON b.board_no = bt.board_no
   WHERE (SELECT COUNT(range_no) FROM aim_hide_setting hs WHERE hs.no='5' AND hs.member_no=m.member_no AND range_no=2) != 1
     AND b.board_public = 1
     <if test="keyword != '' and keyword != null">
-      AND (b.tag LIKE CONCAT('%', #{keyword}, '%') OR b.origin_content LIKE CONCAT('%', #{keyword}, '%'))
+      AND (b.tag LIKE CONCAT('%', #{keyword}, '%') OR b.origin_content LIKE CONCAT('%', #{keyword}, '%') OR bt.board_tag LIKE CONCAT('%', #{keyword}, '%'))
     </if>
+  GROUP BY b.board_no
   ORDER BY RAND()
   LIMIT #{pageSize} OFFSET #{offset}
 </select>

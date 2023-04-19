@@ -213,17 +213,17 @@ public class BoardController {
     }
 
     String key = (String) session.getAttribute("keyword");
+    Map<Object, Object> page = new HashMap<Object, Object>();
 
     if (key != null) {
       resultMap.put("key", false);
+      page.put("pageSize", 1000000);
     } else {
       resultMap.put("key", true);
+      page.put("pageSize", 10);
     }
 
-    Map<Object, Object> page = new HashMap<Object, Object>();
-
     page.put("keyword", key);
-    page.put("pageSize", 10);
     page.put("offset", (currentPage - 1) * 10);
 
     List<Board> list = boardService.list(page);
