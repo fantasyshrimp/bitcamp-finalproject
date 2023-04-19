@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Feed from "./pages/Feed/Feed";
 import Faq from "./pages/Faq/Faq";
+import FaqControl from "./pages/Faq/FaqControl";
 import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/Admin/MemberList";
@@ -144,6 +145,7 @@ function App() {
               element={<PersonalSetting />}
             ></Route>
             <Route path="/Faq" element={<Faq />} />
+            <Route path="/FaqControl" element={<FaqControl />} />
             <Route path="/admin/memberlist" element={<MemberList />} />
             <Route path="/admin/stats" element={<Stats />} />
             <Route path="/admin/commentlist" element={<CommentList />} />

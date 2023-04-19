@@ -46,7 +46,7 @@ function FaqTitleContent({ selectedType }) {
           <Accordion.Body dangerouslySetInnerHTML={{ __html: data.content }} />
         </Accordion.Item>
       ))}
-    </Accordion>
+    </Accordion>    
   );
 }
 

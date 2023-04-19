@@ -132,7 +132,6 @@ function LoginModal(props) {
           backgroundColor: `var(--aim-base-alpa)`,
           border: "none",
         }}
-        contentClassName="bg-dark"
       >
         <Modal.Header
           closeButton
@@ -140,7 +139,7 @@ function LoginModal(props) {
           style={{ borderBottom: "none" }}
         ></Modal.Header>
         <Modal.Header
-          style={{ borderBottom: "none" }}
+          style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
           <Modal.Title className="text-light">로그인</Modal.Title>

@@ -1,10 +1,12 @@
 // FaqType.js
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import axios from "axios";
 
 function FaqType({ onTypeSelected }) {
   const [dbData, setDbData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -28,6 +30,7 @@ function FaqType({ onTypeSelected }) {
   }
 
   return (
+    <>
     <Accordion
       defaultActiveKey="0"
       flush
@@ -43,6 +46,11 @@ function FaqType({ onTypeSelected }) {
         </Accordion.Item>
       ))}
     </Accordion>
+        <div style={{fontSize: `var(--aim-largest-font-size)`}}
+        onClick={() => {
+          navigate("/FaqControl");
+        }}
+      >+</div></>
   );
 }
 
