@@ -77,9 +77,6 @@ function App() {
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [message, setMessage] = useState(null);
-
-  const value = useMemo(() => ({ message, setMessage }), [message, setMessage]);
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -100,7 +97,7 @@ function App() {
   return (
     <>
       <div>
-        <SSEProvider value={value}>
+        <SSEProvider>
           <BrowserRouter>
             <Navbars
               isLoginModal={isLoginModal}

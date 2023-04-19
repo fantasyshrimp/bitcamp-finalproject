@@ -7,7 +7,9 @@ import SSEContext from "../handler/SSEContext";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
-  const { message, setMessage } = useContext(SSEContext);
+  let [currentUser, setCurrentUser] = useState(null);
+  const sseMessage = useContext(SSEContext);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +28,10 @@ function Navbars(props) {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setMessage(sseMessage);
+  }, [sseMessage]);
 
   return (
     <>
@@ -54,11 +60,10 @@ function Navbars(props) {
 
             <Nav>
               <div className="d-flex ms-2 me-2 justify-content-center align-items-center">
-                {console.log("message")}
                 {console.log(message)}
                 {message || props.currentUser?.isGenerating === 1 ? (
                   (() => {
-                    let variant, label, status;
+                    let variant, label, animated, status;
 
                     status = message
                       ? message.status
@@ -70,18 +75,18 @@ function Navbars(props) {
                       case "success":
                         variant = "success";
                         label = "생성 완료";
+                        animated = false;
                         break;
                       case "failure":
                         variant = "danger";
                         label = "에러 발생";
+                        animated = false;
                         break;
                       case "process":
-                        variant = "info";
-                        label = "생성 중";
-                        break;
                       default:
                         variant = "info";
                         label = "생성 중";
+                        animated = true;
                     }
 
                     return (
@@ -89,14 +94,7 @@ function Navbars(props) {
                         variant={variant}
                         now={100}
                         label={label}
-                        animated={
-                          !(
-                            message?.status === "success" ||
-                            message?.status === "failure"
-                          ) ||
-                          message?.status === "process" ||
-                          props.currentUser?.isGenerating === 1
-                        }
+                        animated={animated}
                         style={{
                           width: "70px",
                           height: "20px",

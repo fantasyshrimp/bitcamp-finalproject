@@ -1,38 +1,35 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import SSEContext from "./SSEContext";
-import { EventSourcePolyfill } from "event-source-polyfill";
 
-const EventSource = EventSourcePolyfill;
-let eventSource;
-
-const setupEventSource = (setMessage) => {
-  // Create a new EventSource instance to connect to the server
-  eventSource = new EventSource("http://localhost:8080/sse", {
-    withCredentials: true,
-  });
-
-  // Set up the event listener for the 'message' event
-  eventSource.onmessage = (event) => {
-    console.log("Received SSE message:", event.data);
-    setMessage(JSON.parse(event.data));
-  };
-
-  // Set up the event listener for the 'error' event
-  eventSource.onerror = (error) => {
-    console.error("SSE error:", error);
-    setTimeout(() => {
-      setupEventSource(setMessage);
-    }, 60 * 1000);
-  };
-};
-
-const SSEProvider = ({ children, value }) => {
-  const { message, setMessage } = value;
+const SSEProvider = ({ children }) => {
+  const [sseMessage, setSseMessage] = useState("");
 
   useEffect(() => {
-    if (!eventSource) {
-      setupEventSource(setMessage);
-    }
+    let eventSource;
+
+    // Create a new EventSource instance to connect to the server
+    const setupEventSource = () => {
+      eventSource = new EventSource("http://localhost:8080/sse", {
+        withCredentials: true,
+      });
+
+      // Set up the event listener for the 'message' event
+      eventSource.onmessage = (event) => {
+        console.log("Received SSE message:", event.data);
+        const parsedData = JSON.parse(event.data);
+        setSseMessage(parsedData);
+      };
+
+      // Set up the event listener for the 'error' event
+      eventSource.onerror = (error) => {
+        console.error("SSE error:", error);
+        setTimeout(() => {
+          setupEventSource();
+        }, 5000);
+      };
+    };
+
+    setupEventSource();
 
     // Clean up the connection when the component is unmounted
     return () => {
@@ -43,9 +40,7 @@ const SSEProvider = ({ children, value }) => {
   }, []);
 
   return (
-    <SSEContext.Provider value={{ message, setMessage }}>
-      {children}
-    </SSEContext.Provider>
+    <SSEContext.Provider value={sseMessage}>{children}</SSEContext.Provider>
   );
 };
 
