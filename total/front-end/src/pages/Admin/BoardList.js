@@ -10,7 +10,7 @@ function BoardList() {
         <h3>
           <a href="./Admin/MemberList">회원 목록</a>
           <a href="#">(test)게시물 목록</a>
-          <a href="../CommentList">(test)댓글 목록</a>
+          <a href="./Admin/CommentList">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>

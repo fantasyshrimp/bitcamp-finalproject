@@ -13,7 +13,6 @@ function CommentList() {
         console.log("data : ");
         console.log(response.data);
         setData(response.data);
-        console.log(data.replyNo);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -21,11 +20,11 @@ function CommentList() {
   return (
     <>
       <div className={styles.CommentList}>
-        <h1>댓글 관리 // 백엔드 데이터연결까지 완료 </h1>
+        <h1>댓글 관리</h1>
         <h3>
-          <a href="./Admin/MemberList">회원 목록</a>
+          <a href="./MemberList">회원 목록</a>
           <a href="../BoardList">(test)게시물 목록</a>
-          <a href="#">(test)댓글 목록</a>
+          <a href="./CommentList">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>
@@ -38,13 +37,15 @@ function CommentList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{data.no}</td>
-              <td>게시물번호</td>
-              <td>닉네임</td>
-              <td>내용</td>
-              <td>작성일시</td>
-            </tr>
+            {data.map((item) => (
+              <tr key={item.replyNo}>
+                <td>{item.replyNo}</td>
+                <td>{item.boardNo}</td>
+                <td>{item.writer.nickname}</td>
+                <td>{item.content}</td>
+                <td>{item.writeDt}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
