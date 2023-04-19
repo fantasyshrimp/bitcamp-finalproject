@@ -871,3 +871,7 @@ ALTER TABLE aim_board_tag
   REFERENCES aim_board ( -- 게시글
   board_no -- 게시글 번호
   );
+  
+-- 회원 정보(aim_member)에 이미지 생성중 여부 추가
+ALTER TABLE aim_member
+  ADD is_generating BOOLEAN NOT NULL DEFAULT 0 COMMENT '이미지생성중여부', -- 이미지생성중여부

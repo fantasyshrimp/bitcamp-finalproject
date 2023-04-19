@@ -69,15 +69,15 @@ function AuthBtn(props) {
         <>
           <a
             href=""
-            className="d-flex align-items-center"
+            className="d-flex align-items-center me-1"
             onClick={handleClickBell}
           >
             <div
               className="d-flex justify-content-center align-items-center"
               id="auth-has-alarm"
               style={{
-                width: "9px",
-                height: "9px",
+                width: "8px",
+                height: "8px",
                 backgroundColor: `var(--aim-emphasis-red)`,
                 borderRadius: "50%",
                 position: "relative",
@@ -96,7 +96,7 @@ function AuthBtn(props) {
             className="d-flex"
           >
             <div
-              className="ms-3 me-3 d-flex align-items-center"
+              className="ms-2 me-2 d-flex align-items-center"
               style={{ display: "inline-block" }}
             >
               {currentUser.nickname}

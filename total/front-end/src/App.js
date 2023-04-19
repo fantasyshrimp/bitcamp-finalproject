@@ -1,5 +1,6 @@
 import "./styles/App.css";
 import React, { useState, useEffect, useCallback } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -11,10 +12,10 @@ import MemberList from "./pages/Admin/MemberList";
 import Stats from "./pages/Admin/Stats";
 import { LoginModal, SignupModal } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
+import SSEProvider from "./handler/SSEProvider";
+import SSEContext from "./handler/SSEContext";
 import axios from "axios";
-import SSEProvider from "./components/SSEProvider";
 
 // 로컬스토리지 강제 삭제
 // function clearLocalStorage() {
@@ -75,6 +76,7 @@ function App() {
   const [signupShow, setSignupShow] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -106,6 +108,8 @@ function App() {
               setLoginShow={setLoginShow}
               signupShow={signupShow}
               setSignupShow={setSignupShow}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
             />
             <Routes>
               <Route

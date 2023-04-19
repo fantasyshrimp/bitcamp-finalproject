@@ -22,6 +22,7 @@
     <result column="auth" property="authLevel"/>
     <result column="link" property="link"/>
     <result column="last_login_dt" property="lastLoginDt"/>
+    <result column="is_generating" property="isGenerating"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
@@ -187,6 +188,14 @@
       state=0
     where
       token=#{token}
+  </update>
+  
+  <update id="updateIsGenerating" parameterType="member">
+    update aim_member
+    set
+      is_generating=#{isGenerating}
+    where
+      member_no=#{no}
   </update>
   
   </mapper>

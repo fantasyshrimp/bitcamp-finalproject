@@ -15,7 +15,7 @@ public class SseManager {
     emitters.remove(emitter);
   }
 
-  public synchronized void sendToAll(Object message) {
+  public synchronized void sendToAll(String message) {
     List<SseEmitter> deadEmitters = new ArrayList<>();
     emitters.forEach(emitter -> {
       try {
