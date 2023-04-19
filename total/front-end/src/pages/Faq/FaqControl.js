@@ -17,12 +17,25 @@ function FaqControl(props) {
     const selection = window.getSelection();
     if (selection.type === 'Range') {
       const range = selection.getRangeAt(0);
-      const clone = range.cloneContents();
-      const fragment = document.createDocumentFragment();
+
+      const newRange = document.createRange();
+      newRange.setStart(range.startContainer, range.startOffset);
+      //newRange.setEnd(range.startContainer, range.startContainer.length); //컨테이너가 짤리는애는 클론을하고? 아닌애들은 text면 스판으로 감싸서 스타일지정하고 아니면  꽉이면 부모에다 지정?
+
+      let st = range.startContainer; 
+      while (st !== range.endContainer && st != null && st != undefined) {
+        console.log('먼가여러개가선택됨');
+        st = st.nextSibling; // 여기서 코드를 돌면서 선택된걸 다 뽑아낼수 있으면 될듯?
+      }
+
+      newRange.setEnd(range.endContainer, range.endOffset);
+
+       const clone = newRange.cloneContents();
+       const fragment = document.createDocumentFragment();
 
       handleStyle(fragment, clone, styles);
-      range.deleteContents();
-      range.insertNode(fragment);
+      newRange.deleteContents();
+      newRange.insertNode(fragment);
     }  
   }
 
@@ -48,13 +61,13 @@ function FaqControl(props) {
           }
         }
         fragment.appendChild(childNode.cloneNode(true));
-        console.log("span이라 그냥 적용됨");
       } else {
-        if (childNode.nodeType === Node.ELEMENT_NODE && childNode.tagName.toLowerCase() === 'br') {
-          fragment.appendChild(document.createElement('br'));
+        if (styles && styles.length > 0) {
+          for (let j = 0; j < styles.length; j++) {
+            childNode.style[styles[j][0]] = styles[j][1];
+          }
         }
-        const clonedNode = childNode.cloneNode(true);
-        handleStyle(fragment, clonedNode, styles);
+        fragment.appendChild(childNode.cloneNode(true));
       }
     }
   }
@@ -74,30 +87,28 @@ function FaqControl(props) {
       color: 'white',
       }} />
 
-    <div id="hohohohoho"
+    <div id="faq-body"
       contentEditable={true}
       onInput={handleChange} onKeyDown={(event) => {
         if (event.key === 'Enter') {
-          event.preventDefault();
-    
-          for (let i= 0; i < 2; i++) {
-
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
+          // event.preventDefault();
+  
+          // const selection = window.getSelection();
+          // const range = selection.getRangeAt(0);
       
-          const br = document.createElement('br');
-          range.insertNode(br);
-          range.setStartAfter(br);
-          range.setEndAfter(br);
-          range.collapse(false);
+          // const br = document.createElement('br');
+          // range.insertNode(br);
+          // range.setStartAfter(br);
+          // range.setEndAfter(br);
+          // range.insertNode(br);
+          // range.collapse(false);
           
-          const newRange = document.createRange();
-          newRange.setStart(br.nextSibling, 0);
-          newRange.setEnd(br.nextSibling, 0);
+          // const newRange = document.createRange();
+          // newRange.setStart(br.nextSibling, 0);
+          // newRange.setEnd(br.nextSibling, 0);
           
-          selection.removeAllRanges();
-          selection.addRange(newRange);
-        }
+          // selection.removeAllRanges();
+          // selection.addRange(newRange);
       }
     }}
 
@@ -108,7 +119,7 @@ function FaqControl(props) {
         margin: '0 auto',
         border: '1px solid white',
         color: 'white', 
-        overflow: 'auto'
+        overflow: 'auto',
       }}
 
     >
@@ -120,29 +131,3 @@ function FaqControl(props) {
 }
 
 export default FaqControl;
-
-
-
-
-// npm install --save react-contenteditable
-// 설치가 완료되면, react-contenteditable에서 제공하는 ContentEditable 컴포넌트를 사용하여 contentEditable 속성을 가진 엘리먼트를 생성할 수 있습니다. 예를 들어, 다음과 같이 ContentEditable 컴포넌트를 사용하여 <div> 엘리먼트를 생성할 수 있습니다.
-
-// jsx
-// Copy code
-// import React, { useState } from 'react';
-// import { ContentEditable } from 'react-contenteditable';
-
-// function MyComponent() {
-//   const [html, setHtml] = useState('<div>내용을 입력하세요.</div>');
-
-//   const handleChange = (event) => {
-//     setHtml(event.target.value);
-//   }
-
-//   return (
-//     <ContentEditable
-//       html={html}
-//       onChange={handleChange}
-//     />
-//   );
-// }
