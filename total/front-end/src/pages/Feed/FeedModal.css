@@ -123,12 +123,22 @@
 
 #feed-modal-t {
   width: auto;
-  height: 30px;
+  height: 7px;
   float: left;
   font-size: 12px;
   margin-right: 4px;
   margin-top: 6px;
   color: var(--aim-text-sub);
+}
+
+#feed-modal-tagdiv {
+  width: 63%;
+  height: 75%;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-x: scroll;
 }
 
 #feed-modal-t:hover {
@@ -146,7 +156,7 @@
 }
 
 #feed-modal-commentinput {
-  width: 100%;
+  width: 95%;
   height: 45px;
   margin-top: 10px;
 }
@@ -284,6 +294,20 @@
 #report-main {
   position: fixed;
   top: 21%;
+  left: 38%;
+  width: 300px;
+  height: auto;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-border);
+  border-radius: 10px;
+  color: var(--aim-text-default);
+  z-index: 200;
+  animation: modal-show 0.1s ease-in-out;
+}
+
+#report-delete {
+  position: fixed;
+  top: 31%;
   left: 38%;
   width: 300px;
   height: auto;
@@ -595,4 +619,5 @@
 #nocommnet {
   color: var(--aim-text-sub);
   margin-top: 100px;
+  margin-right: 20px;
 }

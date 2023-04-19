@@ -17,5 +17,15 @@ public interface BoardDao {
   List<Board> findTag(int no);
   List<Board> findByMemberNo(int no);
   int update(Board b);
-  int delete(int no);
+  int deleteBoard(int no);
+  void deleteGeneratedImgByBoardNo(int no);
+  void deleteTagByBoardNo(int no);
+  void deleteBoardLikeByBoardNo(int no);
+  void deleteReplyLikeByReplyNo(int no);
+  void deleteReplyReportByReplyNo(int no);
+  void deleteReplyByBoardNo(int no);
+  void deleteReportByBoardNo(int no);
+  void deletePointLogByBoardNo(int no);
+  void deleteAlarmLogByBoardNo(int no);
+  void deleteAlarmLogByReplyNo(int no);
 }
