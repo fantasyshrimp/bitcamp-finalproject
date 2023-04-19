@@ -62,26 +62,15 @@ public class AdminController {
   
   @GetMapping("/board")
   @ResponseBody
-  public Map<String, Object> list(@RequestParam(required = false) String keyword, HttpSession session) {
+  public Map<String, Object> list(HttpSession session) {
+      session.setAttribute("sort", "recent"); // sort 세션 속성을 "recent"로 설정
       Map<String, Object> resultMap = new HashMap<>();
 
-      String key = (String) session.getAttribute("keyword");
+      List<Board> list = boardService.listRecent();
+      session.removeAttribute("sort");
 
-      if (key != null) {
-          resultMap.put("key", false);
-      } else {
-          resultMap.put("key", true);
-      }
-
-      Map<Object, Object> page = new HashMap<Object, Object>();
-
-      page.put("keyword", key);
-      page.put("pageSize", Integer.MAX_VALUE); // 한 페이지에 모든 결과 출력
-      page.put("offset", 0); // offset은 0으로 지정
-
-      List<Board> list = boardService.list(page);
-
-      session.removeAttribute("keyword");
+      resultMap.put("state", false);
+      resultMap.put("data", list);
 
       for (Board b : list) {
           b.setLikeCnt(likeService.countLiker(b.getBoardNo(), "board"));
@@ -91,6 +80,7 @@ public class AdminController {
       resultMap.put("data", list);
       return resultMap;
   }
+
 
 
 }

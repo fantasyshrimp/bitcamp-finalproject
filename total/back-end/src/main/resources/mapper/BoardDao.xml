@@ -51,7 +51,6 @@
     b.view_cnt,
     b.board_public,
     b.reply_public,
-    b.report_cnt,
     b.write_dt,
     b.update_dt,
     b.report_cnt,
@@ -164,7 +163,8 @@ SELECT
    SELECT 
     b.board_no, 
     b.member_no, 
-    b.origin_content, 
+    b.origin_content,
+    b.summary_content,
     b.trans_content,
     b.tag, 
     (SELECT COUNT(*) FROM aim_like_board lb WHERE lb.board_no = b.board_no) AS like_cnt,
