@@ -192,11 +192,17 @@ function FeedModal(props) {
             {getTimeBoard(props.data.writeDt)}
           </div>
           <div id="feed-modal-tag">
-            {tag.map((item) => (
-              <div id="feed-modal-t" value={item.tag} onClick={handleTagClick}>
-                {item.tag}
-              </div>
-            ))}
+            <div id="feed-modal-tagdiv">
+              {tag.map((item) => (
+                <div
+                  id="feed-modal-t"
+                  value={item.tag}
+                  onClick={handleTagClick}
+                >
+                  {item.tag}
+                </div>
+              ))}
+            </div>
             {props.user.data.no !== writerNo && (
               <div id="feed-modal-boardreport" onClick={openModal}>
                 신고하기

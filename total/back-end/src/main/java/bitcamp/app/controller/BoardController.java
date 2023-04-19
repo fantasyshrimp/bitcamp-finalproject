@@ -6,8 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -119,7 +119,7 @@ public class BoardController {
 
               String koContent = tagExtract.koToEn(originContent);
               List<String> tags = tagExtract.extract(koContent);
-              List<String> koLists = new ArrayList<>();
+              HashSet<String> koLists = new HashSet<>();
 
               for (String tag : tags) {
                 String originTag = tagExtract.enToKo(tag).replace(".", "");
