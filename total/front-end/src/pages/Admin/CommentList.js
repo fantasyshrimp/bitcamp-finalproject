@@ -9,7 +9,7 @@ function CommentList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/admin/commentlist")
+      .get("http://localhost:8080/admin/comment")
       .then((response) => {
         console.log("data : ");
         console.log(response.data);
