@@ -1,15 +1,28 @@
 * {
-  margin: 0;
+  xmargin: 5px;
   scroll-behavior: smooth;
+  color: white;
 }
 
 section {
   width: 100%;
   height: 50vh;
+  height: auto;
+}
+
+.box {
+  color: var(--aim-text-default);
+}
+
+.box h2 {
+  font-size: 30px;
+}
+
+.box p {
+  font-size: 18px;
 }
 
 #s1 {
-  background-color: #1abc9c;
 }
 
 #s2 {
@@ -17,7 +30,6 @@ section {
 }
 
 #s3 {
-  background-color: green;
 }
 
 #s4 {
