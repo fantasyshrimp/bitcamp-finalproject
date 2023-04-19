@@ -185,7 +185,12 @@ function AuthModal(props) {
         </Modal.Body>
       </Modal>
 
-      <PostModal show={postShow} setShow={setPostShow} />
+      <PostModal
+        show={postShow}
+        setShow={setPostShow}
+        currentUser={props.currentUser}
+        setCurrentUser={props.setCurrentUser}
+      />
     </>
   );
 }

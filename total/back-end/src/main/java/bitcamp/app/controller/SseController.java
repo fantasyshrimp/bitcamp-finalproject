@@ -37,7 +37,7 @@ public class SseController {
   public void sendMessageToAll(Map<String, String> message) {
     try {
       String jsonMessage = objectMapper.writeValueAsString(message);
-      // log.info("jsonMessage >>> " + jsonMessage);
+      log.info("jsonMessage >>> " + jsonMessage);
       sseManager.sendToAll(jsonMessage);
     } catch (JsonProcessingException e) {
       // JSON 변환 중 에러 처리

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import SSEContext from "./SSEContext";
 
-const SSEProvider = ({ children }) => {
-  const [message, setMessage] = useState(null);
-
+const SSEProvider = ({ children, message, setMessage }) => {
   useEffect(() => {
     let eventSource;
 
