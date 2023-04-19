@@ -22,4 +22,5 @@ public interface MemberDao {
   void updateNickname(Member m);
   void updateToken(Member m);
   void updateStateByToken(String token);
+  void updateIsGenerating(Member m);
 }

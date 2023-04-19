@@ -26,11 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
-import bitcamp.app.NaverObjectStorageConfig;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
-import bitcamp.app.service.ObjectStorageService;
 import bitcamp.app.service.PointService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.GeneratedImg;
@@ -59,17 +57,23 @@ public class BoardController {
   @Autowired private BoardService boardService;
   @Autowired private LikeService likeService;
   @Autowired private PointService pointService;
-  @Autowired private ObjectStorageService objectStorageService;
-  @Autowired private NaverObjectStorageConfig naverObjectStorageConfig;
   @Autowired private NaverClovaSummary naverClovaSummary;
   @Autowired private NaverPapagoTranslation naverPapagoTranslation;
   @Autowired private TagExtract tagExtract;
+  @Autowired private SseController sseController;
 
   @PostMapping
-  public Object insert(int writerNo, String originContent) {
+  public Object insert(int writerNo, String originContent, HttpSession session) {
 
-    String bucketName = naverObjectStorageConfig.getBucketName();
     AtomicReference<String> summaryContentAtomicRef = new AtomicReference<>();
+
+    Member member = memberService.get(writerNo);
+    member.setIsGenerating(1);
+    memberService.updateIsGenerating(member);
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    loginUser.setIsGenerating(1);
+    session.setAttribute("loginUser", loginUser);
 
     RestResult result = CompletableFuture.supplyAsync(
         () -> naverClovaSummary.summarize(originContent))
@@ -86,7 +90,6 @@ public class BoardController {
 
           String fileName = UUID.randomUUID().toString() + ".png";
 
-          // GPU 로 요청 보냄
           HttpClient httpClient = HttpClient.newHttpClient();
           String url = "http://223.130.129.169:8085/generate";  // String url = "http://localhost:8085/generate";
           String requestBody = "transContent=" + URLEncoder.encode(transContent, StandardCharsets.UTF_8) + "&fileName=" + fileName;
@@ -98,7 +101,13 @@ public class BoardController {
               .POST(HttpRequest.BodyPublishers.ofString(requestBody))
               .build();
 
+          Map<String, String> sseMap = new HashMap<>();
+          sseMap.put("status", "process");
+          sseMap.put("message", "GPU Server 이미지 생성 중");
+          sseController.sendMessageToAll(sseMap);
+
           try {
+            // GPU 로 요청 보냄
             HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
             // GPU Server 응답 옴!
@@ -128,8 +137,6 @@ public class BoardController {
                 koLists.add(modifyTag);
               }
 
-              Member member = memberService.get(writerNo);
-
               Board board = new Board();
               board.setWriter(member);
               board.setOriginContent(originContent);
@@ -155,6 +162,11 @@ public class BoardController {
               //사용자에게 완료 표시 및 알람
               log.info("DB에 게시글 및 파일 업로드 완료함");
 
+              sseMap = new HashMap<>();
+              sseMap.put("status", "success");
+              sseMap.put("message", "GPU Server 이미지 생성, DB에 게시글, 파일 업로드 완료");
+              sseController.sendMessageToAll(sseMap);
+
               return new RestResult()
                   .setStatus(RestStatus.SUCCESS);
 
@@ -169,12 +181,24 @@ public class BoardController {
 
             log.error("GPU Server 에러 발생!: ", e);
 
+            sseMap = new HashMap<>();
+            sseMap.put("status", "failure");
+            sseMap.put("message", "GPU Server 이미지 생성 중 에러 발생");
+            sseController.sendMessageToAll(sseMap);
+
             return new RestResult()
                 .setErrorCode(ErrorCode.rest.SERVER_EXCEPTION)
                 .setStatus(RestStatus.FAILURE);
           }
 
         }).join();
+
+    member.setIsGenerating(0);
+    memberService.updateIsGenerating(member);
+
+    loginUser = (Member) session.getAttribute("loginUser");
+    loginUser.setIsGenerating(0);
+    session.setAttribute("loginUser", loginUser);
 
     return result;
 

@@ -1,5 +1,6 @@
 import "./styles/App.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -12,8 +13,9 @@ import MemberList from "./pages/Admin/MemberList";
 import Stats from "./pages/Admin/Stats";
 import { LoginModal, SignupModal } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
+import SSEProvider from "./handler/SSEProvider";
+import SSEContext from "./handler/SSEContext";
 import axios from "axios";
 import BoardList from "./pages/Admin/BoardList";
 import CommentList from "./pages/Admin/CommentList";
@@ -77,6 +79,7 @@ function App() {
   const [signupShow, setSignupShow] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -97,65 +100,74 @@ function App() {
   return (
     <>
       <div>
-        <BrowserRouter>
-          <Navbars
-            isLoginModal={isLoginModal}
-            setIsLoginModal={setIsLoginModal}
-            showExternalLogin={showExternalLogin}
-            setShowExternalLogin={setShowExternalLogin}
-            loginShow={loginShow}
-            setLoginShow={setLoginShow}
-            signupShow={signupShow}
-            setSignupShow={setSignupShow}
-          />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  isLoginModal={isLoginModal}
-                  setIsLoginModal={setIsLoginModal}
-                  showExternalLogin={showExternalLogin}
-                  setShowExternalLogin={setShowExternalLogin}
-                  loginShow={loginShow}
-                  setLoginShow={setLoginShow}
-                  signupShow={signupShow}
-                  setSignupShow={setSignupShow}
-                />
-              }
-            ></Route>
-            <Route
-              path="/Feed"
-              element={
-                <Feed
-                  isLoginModal={isLoginModal}
-                  setIsLoginModal={setIsLoginModal}
-                  showExternalLogin={showExternalLogin}
-                  setShowExternalLogin={setShowExternalLogin}
-                  loginShow={loginShow}
-                  setLoginShow={setLoginShow}
-                  signupShow={signupShow}
-                  setSignupShow={setSignupShow}
-                />
-              }
-            ></Route>
-            <Route path="/Profile" element={<Profile />}></Route>
-            <Route
-              path="/PersonalSetting"
-              element={<PersonalSetting />}
-            ></Route>
-            <Route path="/Faq" element={<Faq />} />
-            <Route path="/FaqControl" element={<FaqControl />} />
-            <Route path="/admin/memberlist" element={<MemberList />} />
-            <Route path="/admin/stats" element={<Stats />} />
-            <Route path="/admin/commentlist" element={<CommentList />} />
-            <Route path="/admin/boardlist" element={<BoardList />} />
-
-            <Route path="/auth/verify" element={<EmailVerifyHandler />} />
-            <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        <SSEProvider>
+          <BrowserRouter>
+            <Navbars
+              isLoginModal={isLoginModal}
+              setIsLoginModal={setIsLoginModal}
+              showExternalLogin={showExternalLogin}
+              setShowExternalLogin={setShowExternalLogin}
+              loginShow={loginShow}
+              setLoginShow={setLoginShow}
+              signupShow={signupShow}
+              setSignupShow={setSignupShow}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    isLoginModal={isLoginModal}
+                    setIsLoginModal={setIsLoginModal}
+                    showExternalLogin={showExternalLogin}
+                    setShowExternalLogin={setShowExternalLogin}
+                    loginShow={loginShow}
+                    setLoginShow={setLoginShow}
+                    signupShow={signupShow}
+                    setSignupShow={setSignupShow}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/Feed"
+                element={
+                  <Feed
+                    isLoginModal={isLoginModal}
+                    setIsLoginModal={setIsLoginModal}
+                    showExternalLogin={showExternalLogin}
+                    setShowExternalLogin={setShowExternalLogin}
+                    loginShow={loginShow}
+                    setLoginShow={setLoginShow}
+                    signupShow={signupShow}
+                    setSignupShow={setSignupShow}
+                  />
+                }
+              ></Route>
+              <Route path="/Profile" element={<Profile />}></Route>
+              <Route
+                path="/PersonalSetting"
+                element={<PersonalSetting />}
+              ></Route>
+              <Route path="/Faq" element={<Faq />} />
+              <Route
+                path="/admin/memberlist"
+                element={
+                  <MemberList
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
+              <Route path="/admin/stats" element={<Stats />} />
+              <Route path="/MemberList" element={<MemberList />} />
+              <Route path="/auth/verify" element={<EmailVerifyHandler />} />
+              <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </SSEProvider>
       </div>
 
       <SignupModal

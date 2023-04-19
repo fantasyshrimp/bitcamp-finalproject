@@ -866,4 +866,27 @@ kill [프로세스_ID]
 
 ## 시행착오 또는 기억할 것
 
-### 1.
+### 1. Server(SpringBoot) 에서 Client(React) 로 Message 보내기
+
+1. web socket
+2. SSE (Server-Sent Events) - 사용
+
+# 4월19일 수
+
+## 작업내용
+
+### 1. generate 클릭시 진행 바 나타냄(SSE 방식)
+
+## 시행착오 또는 기억할 것
+
+### 1. JSON.parse 오류
+
+이 한 줄 때문에 6시간 이상을 허비했다.
+바로 parse 해서 set 하면 안되고 객체에 담아서 set 하면 되더라.
+
+```javascript
+setSseMessage(JSON.parse(event.data));
+
+const parsedData = JSON.parse(event.data);
+setSseMessage(parsedData);
+```
