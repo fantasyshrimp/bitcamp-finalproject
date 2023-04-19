@@ -5,6 +5,7 @@ import axios from "axios";
 
 function CommentList() {
   const [data, setData] = useState([]);
+  const [selectedNo, setSelectedNo] = useState();
 
   useEffect(() => {
     axios
@@ -16,6 +17,11 @@ function CommentList() {
       })
       .catch((error) => console.error(error));
   }, []);
+
+  function handleBoardSelect(selectedNo) {
+    console.log("Selected board:", selectedNo);
+    setSelectedNo(selectedNo);
+  }
 
   return (
     <>
@@ -37,13 +43,23 @@ function CommentList() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr key={item.replyNo}>
-                <td>{item.replyNo}</td>
-                <td>{item.boardNo}</td>
-                <td>{item.writer.nickname}</td>
-                <td>{item.content}</td>
-                <td>{item.writeDt}</td>
+            {data.map((comment) => (
+              <tr key={comment.replyNo}>
+                <td onClick={() => handleBoardSelect(comment.boardNo)}>
+                  {comment.replyNo}
+                </td>
+                <td onClick={() => handleBoardSelect(comment.boardNo)}>
+                  {comment.boardNo}
+                </td>
+                <td onClick={() => handleBoardSelect(comment.boardNo)}>
+                  {comment.writer.nickname}
+                </td>
+                <td onClick={() => handleBoardSelect(comment.boardNo)}>
+                  {comment.content}
+                </td>
+                <td onClick={() => handleBoardSelect(comment.boardNo)}>
+                  {comment.writeDt}
+                </td>
               </tr>
             ))}
           </tbody>
