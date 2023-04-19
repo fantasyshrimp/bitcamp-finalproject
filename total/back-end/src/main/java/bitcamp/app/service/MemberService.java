@@ -15,6 +15,7 @@ public interface MemberService {
   void update(Member member);
   void updateProfilePhoto(Member member);
   void updateNickname(Member member);
+  void updateIsGenerating(Member member);
   void delete(int no);
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);

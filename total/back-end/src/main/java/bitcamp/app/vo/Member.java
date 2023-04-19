@@ -26,6 +26,7 @@ public class Member implements Serializable {
   private String token;
   private String birthDate;
   private String link;
+  private int isGenerating;
 
   @JsonFormat(
       shape = Shape.STRING,

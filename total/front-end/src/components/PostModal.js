@@ -28,17 +28,23 @@ function PostModal(props) {
       document.querySelector("#postHelpBlock").innerText =
         "내용을 작성해 주세요";
       return;
-    } /*else if (postText.length < 20) {
-      document.querySelector("#postHelpBlock").innerText =
-        "두 문장 이상, 20자 이상 작성해 주세요";
-      return;
-    }*/
+    }
 
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
       setIsCompleted(true);
+
+      axios("http://localhost:8080/auth/user")
+        .then((response) => {
+          if (response.data.status == "success") {
+            props.setCurrentUser(response.data.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }, 2000);
 
     setTimeout(() => {
@@ -46,12 +52,12 @@ function PostModal(props) {
       setIsLoading(false);
       handleClose();
     }, 3000);
-    // return; //spinner 테스트시 사용
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
         if (response.data.status == "success") {
           setCurrentUser(response.data.data);
+          props.setCurrentUser(response.data.data);
         } else {
           setCurrentUser(null);
           alert("로그인 후 이용하세요");

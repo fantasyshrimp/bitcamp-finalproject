@@ -107,9 +107,15 @@ function AuthModal(props) {
           )}
           <div className="mb-3">
             <a
-              href=""
-              className="auth-modal-link"
-              onClick={handleClickPostModal}
+              href={props.currentUser?.isGenerating === 0 ? "" : "#"}
+              className={`auth-modal-link ${
+                props.currentUser?.isGenerating && "auth-generating"
+              }`}
+              onClick={
+                props.currentUser?.isGenerating === 0
+                  ? handleClickPostModal
+                  : undefined
+              }
             >
               <Pencil
                 style={{
@@ -179,7 +185,12 @@ function AuthModal(props) {
         </Modal.Body>
       </Modal>
 
-      <PostModal show={postShow} setShow={setPostShow} />
+      <PostModal
+        show={postShow}
+        setShow={setPostShow}
+        currentUser={props.currentUser}
+        setCurrentUser={props.setCurrentUser}
+      />
     </>
   );
 }

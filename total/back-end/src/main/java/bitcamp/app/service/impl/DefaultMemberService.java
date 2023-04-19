@@ -72,12 +72,12 @@ public class DefaultMemberService implements MemberService {
   public List<Member> list(String keyword) {
     return memberDao.findAll();
   }
-  
+
   public Member getByNo(int no) {
-	  System.out.println(no);
+    System.out.println(no);
     return memberDao.findByNo(no);
   }
-  
+
 
   @Override
   public Member get(String email, String password) {
@@ -157,6 +157,12 @@ public class DefaultMemberService implements MemberService {
   @Override
   public void lastLoginUpdate(int no) {
     memberDao.lastLoginUpdate(no);
+  }
+
+  @Override
+  public void updateIsGenerating(Member member) {
+    memberDao.updateIsGenerating(member);
+
   }
 
 }

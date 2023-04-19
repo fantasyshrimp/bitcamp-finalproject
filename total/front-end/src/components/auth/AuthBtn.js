@@ -69,15 +69,15 @@ function AuthBtn(props) {
         <>
           <a
             href=""
-            className="d-flex align-items-center"
+            className="d-flex align-items-center me-1"
             onClick={handleClickBell}
           >
             <div
               className="d-flex justify-content-center align-items-center"
               id="auth-has-alarm"
               style={{
-                width: "9px",
-                height: "9px",
+                width: "8px",
+                height: "8px",
                 backgroundColor: `var(--aim-emphasis-red)`,
                 borderRadius: "50%",
                 position: "relative",
@@ -88,15 +88,15 @@ function AuthBtn(props) {
                 fontSize: "9px",
               }}
             ></div>
-            <Bell size="1.4rem" style={{color: `var(--aim-text-default)`}} />
+            <Bell size="1.4rem" style={{ color: `var(--aim-text-default)` }} />
           </a>
           <Nav.Link
             onClick={handleClickUser}
-            style={{ padding: "0" , color: `var(--aim-text-sub)`}}
+            style={{ padding: "0", color: `var(--aim-text-sub)` }}
             className="d-flex"
           >
             <div
-              className="ms-3 me-3 d-flex align-items-center"
+              className="ms-2 me-2 d-flex align-items-center"
               style={{ display: "inline-block" }}
             >
               {currentUser.nickname}
@@ -116,10 +116,10 @@ function AuthBtn(props) {
         </>
       ) : (
         <>
-          <Nav.Link style={{color: `var(--aim-text-sub)`}}>
+          <Nav.Link style={{ color: `var(--aim-text-sub)` }}>
             <div onClick={handleSignupShow}>회원가입</div>
           </Nav.Link>
-          <Nav.Link style={{color: `var(--aim-text-sub)`}}>
+          <Nav.Link style={{ color: `var(--aim-text-sub)` }}>
             <div onClick={handleLoginShow}>로그인</div>
           </Nav.Link>
         </>
