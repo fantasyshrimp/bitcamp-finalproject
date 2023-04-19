@@ -30,7 +30,6 @@ function Home(props) {
         setShowExternalLogin={props.setShowExternalLogin}
       />
       <Parallax />
-      <ImageText />
       <Scroll />
       <Image />
     </div>
