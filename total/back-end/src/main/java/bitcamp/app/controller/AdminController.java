@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,7 +65,7 @@ public class AdminController {
   
   @GetMapping("/board")
   @ResponseBody
-  public Map<String, Object> list(String keyword, int currentPage, HttpSession session) {
+  public Map<String, Object> list(@RequestParam(required = false) String keyword, @RequestParam(defaultValue = "1") int currentPage, HttpSession session) {
 
     String sort = (String) session.getAttribute("sort");
     Map<String, Object> resultMap = new HashMap<>();
