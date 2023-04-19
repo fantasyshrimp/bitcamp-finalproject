@@ -295,6 +295,20 @@
   animation: modal-show 0.1s ease-in-out;
 }
 
+#report-delete {
+  position: fixed;
+  top: 31%;
+  left: 38%;
+  width: 300px;
+  height: auto;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-border);
+  border-radius: 10px;
+  color: var(--aim-text-default);
+  z-index: 200;
+  animation: modal-show 0.1s ease-in-out;
+}
+
 #report-title {
   text-align: center;
   font-size: 24px;

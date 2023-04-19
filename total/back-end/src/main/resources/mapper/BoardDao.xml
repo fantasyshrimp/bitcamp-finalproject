@@ -218,6 +218,49 @@ SELECT
 	ORDER BY 
 		b.write_dt desc
       </select>
+      
+  <delete id="deleteGeneratedImgByBoardNo" parameterType="int">
+    DELETE FROM aim_generated_img WHERE board_no = #{boardNo}
+  </delete>
   
+  <delete id="deleteTagByBoardNo" parameterType="int">
+    DELETE FROM aim_board_tag WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deleteBoardLikeByBoardNo" parameterType="int">
+    DELETE FROM aim_like_board WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deleteReplyLikeByReplyNo" parameterType="int">
+    DELETE FROM aim_like_reply WHERE reply_no = #{replyNo}
+  </delete>
+  
+  <delete id="deleteReplyReportByReplyNo" parameterType="int">
+    DELETE FROM aim_report_reply WHERE reply_no = #{replyNo}
+  </delete>
+  
+  <delete id="deleteReplyByBoardNo" parameterType="int">
+    DELETE FROM aim_reply WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deleteReportByBoardNo" parameterType="int">
+    DELETE FROM aim_report_board WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deletePointLogByBoardNo" parameterType="int">
+    DELETE FROM aim_pt_get_log WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deleteAlarmLogByBoardNo" parameterType="int">
+    DELETE FROM aim_alarm_log WHERE board_no = #{boardNo}
+  </delete>
+  
+  <delete id="deleteAlarmLogByReplyNo" parameterType="int">
+    DELETE FROM aim_alarm_log WHERE reply_no = #{replyNo}
+  </delete>
+  
+  <delete id="deleteBoard" parameterType="int">
+    DELETE FROM aim_board WHERE board_no = #{boardNo}
+  </delete>
   
   </mapper>

@@ -1,6 +1,21 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-function BoardMenu(props) {
+function BoardDelete(props) {
+  const replyNos = props.reply.map((reply) => reply.replyNo);
+  function deleteBoard(boardNo) {
+    axios
+      .delete(`http://localhost:8080/boards/${boardNo}`, {
+        data: replyNos,
+      })
+      .then((response) => {
+        alert("삭제되었습니다!");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   return (
     <>
       <div
@@ -13,7 +28,7 @@ function BoardMenu(props) {
         }}
         onClick={props.DeleteModalHandler}
       ></div>
-      <div id="report-main">
+      <div id="report-delete">
         <div id="report-title">
           <span id="report-close" onClick={props.DeleteModalHandler}>
             &times;
@@ -24,7 +39,13 @@ function BoardMenu(props) {
           <div id="menu-box">
             <div id="menu-text">정말 삭제하시겠습니까?</div>
             <div id="btn-div">
-              <div id="menu-btn" onClick={props.closeModal}>
+              <div
+                id="menu-btn"
+                onClick={() => {
+                  deleteBoard(props.boardNo);
+                  props.closeModal();
+                }}
+              >
                 네
               </div>
               <div id="menu-btn2" onClick={props.DeleteModalHandler}>
@@ -38,4 +59,4 @@ function BoardMenu(props) {
   );
 }
 
-export default BoardMenu;
+export default BoardDelete;

@@ -15,5 +15,5 @@ public interface BoardService {
   Board get(int no);
   List<Board> getByMemberNo(int memeberNo);
   void update(Board board);
-  void delete(int no);
+  void deleteBoard(int boardNo, List<Integer> replyNos);
 }

@@ -224,6 +224,7 @@ function FeedModal(props) {
           {isDeleteModalOpen && (
             <BoardDelete
               boardNo={boardNo}
+              reply={data}
               DeleteModalHandler={DeleteModalHandler}
               originContent={props.data.originContent}
               closeModal={props.closeModal}
