@@ -26,6 +26,7 @@ public class SseController {
   public SseEmitter handleSse() {
 
     SseEmitter emitter = new SseEmitter();
+    log.info("등록된 emitter 주소 >>> " + emitter.toString());
     sseManager.addEmitter(emitter);
 
     emitter.onCompletion(() -> sseManager.removeEmitter(emitter));

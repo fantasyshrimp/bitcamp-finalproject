@@ -90,6 +90,10 @@ function Navbars(props) {
                         now={100}
                         label={label}
                         animated={
+                          !(
+                            message?.status === "success" ||
+                            message?.status === "failure"
+                          ) ||
                           message?.status === "process" ||
                           props.currentUser?.isGenerating === 1
                         }

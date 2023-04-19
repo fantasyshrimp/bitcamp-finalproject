@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
@@ -79,6 +79,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [message, setMessage] = useState(null);
 
+  const value = useMemo(() => ({ message, setMessage }), [message, setMessage]);
+
   const sendVisitorData = useCallback(async () => {
     try {
       const response = await axios.post("http://localhost:8080/visitors");
@@ -98,7 +100,7 @@ function App() {
   return (
     <>
       <div>
-        <SSEProvider message={message} setMessage={setMessage}>
+        <SSEProvider value={value}>
           <BrowserRouter>
             <Navbars
               isLoginModal={isLoginModal}
