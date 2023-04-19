@@ -24,6 +24,10 @@ function MemberList() {
   }, []);
 
   function handleColumnSelect(selectedNo) {
+    if (!selectedNo) {
+      return;
+    }
+
     console.log("Selected number:", selectedNo);
     setSelectedNo(selectedNo);
     setModalShow(true);
