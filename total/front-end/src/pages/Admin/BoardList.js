@@ -5,6 +5,7 @@ import axios from "axios";
 
 function BoardList() {
   const [data, setData] = useState([]);
+  const [selectedNo, setSelectedNo] = useState();
 
   useEffect(() => {
     axios
@@ -12,19 +13,25 @@ function BoardList() {
       .then((response) => {
         console.log("data : ");
         console.log(response.data);
-        setData(response.data);
+        console.log(typeof data);
+        setData(response.data.data);
       })
       .catch((error) => console.error(error));
   }, []);
+
+  function handleBoardSelect(selectedNo) {
+    console.log("Selected board:", selectedNo);
+    setSelectedNo(selectedNo);
+  }
 
   return (
     <>
       <div className={styles.BoardList}>
         <h1>게시물 관리</h1>
         <h3>
-          <a href="./Admin/MemberList">회원 목록</a>
-          <a href="#">(test)게시물 목록</a>
-          <a href="./Admin/CommentList">(test)댓글 목록</a>
+          <a href="./MemberList">회원 목록</a>
+          <a href="./BoardList">(test)게시물 목록</a>
+          <a href="./CommentList">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>
@@ -42,18 +49,20 @@ function BoardList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>게시글번호</td>
-              <td>닉네임</td>
-              <td>원본내용</td>
-              <td>요약내용</td>
-              <td>번역내용</td>
-              <td>좋아요</td>
-              <td>조회수</td>
-              <td>작성일</td>
-              <td>수정일</td>
-              <td>신고횟수</td>
-            </tr>
+            {data.map((board) => (
+              <tr key={board.boardNo}>
+                <td>{board.boardNo}</td>
+                <td>{board.writer.nickname}</td>
+                <td>{board.originContent}</td>
+                <td>{board.summaryContent}</td>
+                <td>{board.transContent}</td>
+                <td>{board.likeCnt}</td>
+                <td>{board.viewCnt}</td>
+                <td>{board.writeDt}</td>
+                <td>{board.updateDt}</td>
+                <td>{board.reportCnt}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>

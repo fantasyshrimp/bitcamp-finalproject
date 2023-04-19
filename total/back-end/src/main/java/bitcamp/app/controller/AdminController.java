@@ -63,35 +63,7 @@ public class AdminController {
   @GetMapping("/board")
   @ResponseBody
   public Map<String, Object> list(@RequestParam(required = false) String keyword, HttpSession session) {
-      String sort = (String) session.getAttribute("sort");
       Map<String, Object> resultMap = new HashMap<>();
-
-      if (Objects.equals(sort, "hot")) {
-          List<Board> list = boardService.listHot();
-          session.removeAttribute("sort");
-
-          resultMap.put("state", false);
-          resultMap.put("data", list);
-          return resultMap;
-
-      } else if (Objects.equals(sort, "recent")) {
-          List<Board> list = boardService.listRecent();
-          session.removeAttribute("sort");
-
-          resultMap.put("state", false);
-          resultMap.put("data", list);
-          return resultMap;
-
-      } else if (Objects.equals(sort, "follow")) {
-          Member loginUser = (Member) session.getAttribute("loginUser");
-
-          List<Board> list = boardService.listFollow(loginUser.getNo());
-          session.removeAttribute("sort");
-
-          resultMap.put("state", true);
-          resultMap.put("data", list);
-          return resultMap;
-      }
 
       String key = (String) session.getAttribute("keyword");
 
@@ -119,6 +91,7 @@ public class AdminController {
       resultMap.put("data", list);
       return resultMap;
   }
+
 
 }
 

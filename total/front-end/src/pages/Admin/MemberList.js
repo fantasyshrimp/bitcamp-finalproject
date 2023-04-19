@@ -39,7 +39,7 @@ function MemberList() {
         <h1>회원 관리</h1>
         <h3>
           회원 목록
-          <a href="../BoardList">(test)게시물 목록</a>
+          <a href="./BoardList">(test)게시물 목록</a>
           <a href="./CommentList">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
