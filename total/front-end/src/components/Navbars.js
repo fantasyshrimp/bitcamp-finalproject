@@ -60,7 +60,6 @@ function Navbars(props) {
 
             <Nav>
               <div className="d-flex ms-2 me-2 justify-content-center align-items-center">
-                {console.log(message)}
                 {message || props.currentUser?.isGenerating === 1 ? (
                   (() => {
                     let variant, label, animated, status;

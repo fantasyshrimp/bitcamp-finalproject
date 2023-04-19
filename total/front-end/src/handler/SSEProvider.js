@@ -15,7 +15,7 @@ const SSEProvider = ({ children }) => {
 
       // Set up the event listener for the 'message' event
       eventSource.onmessage = (event) => {
-        console.log("Received SSE message:", event.data);
+        // console.log("Received SSE message:", event.data);
         const parsedData = JSON.parse(event.data);
         setSseMessage(parsedData);
       };
