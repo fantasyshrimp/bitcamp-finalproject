@@ -25,7 +25,7 @@ const SSEProvider = ({ children }) => {
         console.error("SSE error:", error);
         setTimeout(() => {
           setupEventSource();
-        }, 5000);
+        }, 5000); // 에러 발생시 재연결에 걸리는 시간
       };
     };
 
