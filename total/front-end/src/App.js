@@ -11,7 +11,7 @@ import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/Admin/MemberList";
 import Stats from "./pages/Admin/Stats";
-import { LoginModal, SignupModal } from "./components/auth";
+import { LoginModal, SignupModal, SearchPwModal } from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 import SSEProvider from "./handler/SSEProvider";
@@ -77,6 +77,7 @@ const useVisitorCheck = (sendVisitorData) => {
 function App() {
   const [loginShow, setLoginShow] = useState(false);
   const [signupShow, setSignupShow] = useState(false);
+  const [searchPwShow, setSearchPwShow] = useState(false);
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -127,6 +128,8 @@ function App() {
                     setLoginShow={setLoginShow}
                     signupShow={signupShow}
                     setSignupShow={setSignupShow}
+                    searchPwShow={searchPwShow}
+                    setSearchPwShow={setSearchPwShow}
                   />
                 }
               ></Route>
@@ -142,6 +145,8 @@ function App() {
                     setLoginShow={setLoginShow}
                     signupShow={signupShow}
                     setSignupShow={setSignupShow}
+                    searchPwShow={searchPwShow}
+                    setSearchPwShow={setSearchPwShow}
                   />
                 }
               ></Route>
@@ -184,10 +189,16 @@ function App() {
         loginShow={loginShow}
         setLoginShow={setLoginShow}
         setSignupShow={setSignupShow}
+        setSearchPwShow={setSearchPwShow}
         showExternalLogin={loginShow}
         setShowExternalLogin={setShowExternalLogin}
         isLoginModal={isLoginModal}
         setIsLoginModal={setIsLoginModal}
+      />
+
+      <SearchPwModal
+        searchPwShow={searchPwShow}
+        setSearchPwShow={setSearchPwShow}
       />
     </>
   );

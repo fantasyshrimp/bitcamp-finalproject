@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
-import authBtnStyle from "./style";
+import { useEffect, useRef, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
-import ExternalLogin from "./ExternalLogin";
 axios.defaults.withCredentials = true;
 
-function LoginModal(props) {
+function SearchPwModal(props) {
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const emailRef = useRef(null);
 
   const handleClose = () => {
-    props.setShowExternalLogin(true);
-    props.setLoginShow(false);
+    props.setSearchPwShow(false);
   };
 
   const handleEnter = (e) => {
@@ -76,61 +73,20 @@ function LoginModal(props) {
       });
   };
 
-  const checkEmail = () => {
-    const email = document.getElementsByName("email")[0].value;
-    document.querySelector("#passwordHelpBlock").innerText = "";
-
-    if (!email.includes("@")) {
-      setValidEmail(false);
-      return;
-    } else {
-      setValidEmail(true);
-    }
-  };
-
-  const handleChangePassword = () => {
-    if (document.getElementsByName("password")[0].value.length > 0) {
-      document.querySelector("#passwordHelpBlock").innerText = "";
-      setValidPassword(true);
-    } else {
-      document.querySelector("#passwordHelpBlock").innerText =
-        "비밀번호를 입력하세요";
-      setValidPassword(false);
-    }
-  };
-
-  const isDisabled = () => {
-    return !(validEmail && validPassword);
-  };
-
   useEffect(() => {
     // 모달 열렸을 때 오토포커스 주기
-    if (props.loginShow) {
+    if (props.searchPwShow) {
       const emailInput = document.getElementsByName("email")[0];
       if (emailInput) {
         emailRef.current.focus();
       }
     }
-  }, [props.loginShow]);
-
-  const handleClickSignup = () => {
-    handleClose();
-    props.setSignupShow(true); // AuthBtn.js 에서 상태 관리
-    props.setShowExternalLogin(false);
-    props.setIsLoginModal(false);
-  };
-
-  const handleClickSearchPw = () => {
-    handleClose();
-    props.setSearchPwShow(true);
-    props.setShowExternalLogin(false);
-    props.setIsLoginModal(false);
-  };
+  }, [props.searchPwShow]);
 
   return (
     <>
       <Modal
-        show={props.loginShow}
+        show={props.searchPwShow}
         onHide={handleClose}
         centered
         style={{
@@ -149,7 +105,7 @@ function LoginModal(props) {
           style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
-          <Modal.Title className="text-light">로그인</Modal.Title>
+          <Modal.Title className="text-light">비밀번호 찾기</Modal.Title>
         </Modal.Header>
 
         <Form>
@@ -159,16 +115,15 @@ function LoginModal(props) {
           >
             <Form.Group className="mb-4" controlId="email">
               <Form.Label className="text-light">
-                사용자의 이메일 주소를 입력해주세요
+                이메일 주소로 인증번호를 보내 드립니다.
               </Form.Label>
               <Form.Control
                 type="email"
                 name="email"
                 placeholder="name@naver.com"
-                onChange={checkEmail}
                 onKeyDown={handleEnter}
                 ref={emailRef}
-                autoComplete="username"
+                // autoComplete="username"
                 style={{
                   color: `var(--aim-text-default)`,
                   backgroundColor: `var(--aim-base-tone)`,
@@ -176,56 +131,14 @@ function LoginModal(props) {
               />
               <Form.Text id="emailHelpBlock"></Form.Text>
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-light">
-                사용자의 비밀번호를 입력해주세요
-              </Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={handleChangePassword}
-                onKeyDown={handleEnter}
-                autoComplete="current-password"
-                style={{
-                  color: `var(--aim-text-default)`,
-                  backgroundColor: `var(--aim-base-tone)`,
-                }}
-              />
-              <Form.Text id="passwordHelpBlock"></Form.Text>
-            </Form.Group>
           </Modal.Body>
           <Modal.Footer
             style={{ borderTop: "none" }}
             className="d-flex flex-column justify-content-center pt-2 pb-4 ps-5 pe-5"
           >
-            <Button
-              variant="primary"
-              type="button"
-              onClick={handleClickLogin}
-              style={authBtnStyle}
-              disabled={isDisabled()}
-              className="mb-4"
-            >
-              로그인
+            <Button variant="primary" type="button" className="mb-4">
+              인증번호 받기
             </Button>
-            <div>
-              {props.showExternalLogin && (
-                <ExternalLogin isLoginModal={props.isLoginModal} />
-              )}
-            </div>
-            <div className="text-light mt-2 mb-2">
-              <span>아직 계정이 없으신가요? </span>
-              <span className="login-modal-signup" onClick={handleClickSignup}>
-                회원가입
-              </span>
-            </div>
-            <div
-              className="mb-3 login-modal-forget-pw"
-              onClick={handleClickSearchPw}
-            >
-              비밀번호를 잊으셨나요?
-            </div>
           </Modal.Footer>
         </Form>
       </Modal>
@@ -233,4 +146,4 @@ function LoginModal(props) {
   );
 }
 
-export default LoginModal;
+export default SearchPwModal;
