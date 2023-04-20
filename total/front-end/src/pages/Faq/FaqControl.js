@@ -17,57 +17,122 @@ function FaqControl(props) {
     const selection = window.getSelection();
     if (selection.type === 'Range') {
       const range = selection.getRangeAt(0);
-
-      const newRange = document.createRange();
-      newRange.setStart(range.startContainer, range.startOffset);
-      //newRange.setEnd(range.startContainer, range.startContainer.length); //컨테이너가 짤리는애는 클론을하고? 아닌애들은 text면 스판으로 감싸서 스타일지정하고 아니면  꽉이면 부모에다 지정?
-
       let st = range.startContainer; 
-      while (st !== range.endContainer && st != null && st != undefined) {
-        console.log('먼가여러개가선택됨');
-        st = st.nextSibling; // 여기서 코드를 돌면서 선택된걸 다 뽑아낼수 있으면 될듯?
+      let count = 1;
+      let loopFlag = true;
+
+
+      let currentNode = range.startContainer;
+      while (currentNode && currentNode !== range.endContainer.nextSibling) {
+
+        const newRange = document.createRange();
+
+        if (currentNode === range.startContainer) { //현재 노드가 startContainer면
+          newRange.setStart(currentNode.childNodes[0], range.startOffset)
+          newRange.setEnd(range.startOffset, currentNode.childNodes[0].length);
+        }
+
+        // do something with the current node
+        currentNode = currentNode.nextSibling || currentNode.parentNode.nextSibling;
       }
 
-      newRange.setEnd(range.endContainer, range.endOffset);
 
-       const clone = newRange.cloneContents();
-       const fragment = document.createDocumentFragment();
 
-      handleStyle(fragment, clone, styles);
-      newRange.deleteContents();
-      newRange.insertNode(fragment);
-    }  
+    //   while(loopFlag && st !== null && st !== undefined) {
+
+    //     let nextNode = null;        
+    //     const newRange = document.createRange();
+    //     if (st === range.startContainer) {
+    //       newRange.setStart(st, range.startOffset);
+    //     } else {
+    //       newRange.setStart(st, 0);
+    //     }
+    //     if (st === range.endContainer) {
+    //       console.log('엔드 컨테이너 만남');
+    //       newRange.setEnd(st, range.endOffset);
+    //       loopFlag = false;
+    //     } else {
+    //       newRange.setEnd(st, st.length);//이부분그냥 while문 밖으로 빼야할듯
+    //     }
+    //     const clone = newRange.cloneContents();
+    //     const fragment = document.createDocumentFragment();        
+
+    //     if (st.parentNode.tagName === 'DIV') {
+    //       nextNode = st.nextSibling;
+    //       if (nextNode === null) {
+
+    //       }
+    //       const span = document.createElement('span');
+    //       setStyle(span, styles);
+    //       span.appendChild(document.createTextNode(clone.textContent));
+    //       fragment.appendChild(span.cloneNode(true));
+    //       newRange.deleteContents();
+    //       newRange.insertNode(fragment);
+    //       nextNode=== (null || undefined) ? nextNode=st.parentNode.parentNode.nextSibling : nextNode=nextNode;
+
+    //       console.log(nextNode);
+
+    //     } else {           // div가 아니면 
+    //       if (st.parentNode.tagName === 'SPAN') {
+    //         nextNode = st.parentNode.nextSibling;
+
+    //         if (nextNode && nextNode.tagName === 'SPAN') {
+    //           console.log('다음은스판만남');
+    //         } 
+    //         if (nextNode && nextNode.tagName === 'DIV') {
+    //           console.log('다음은div만남');
+    //         }  
+
+    //         const parentText = st.parentNode.childNodes[0].textContent; //선택된놈의 길이가 이셍키랑 같으면 하나만만들어야함
+
+    //         if (newRange.startOffset > 0) {
+    //           const spanbefore = document.createElement('span');
+    //           for (let i = 0; i < st.parentNode.style.length; i++) {
+    //             spanbefore.style[st.parentNode.style[i]] = st.parentNode.style[st.parentNode.style[i]]
+    //           }
+
+    //           spanbefore.appendChild(document.createTextNode(parentText.slice(0,newRange.startOffset)));
+    //           fragment.appendChild(spanbefore);
+    //         }
+
+    //         const span = document.createElement('span')
+    //         for (let i = 0; i < st.parentNode.style.length; i++) {
+    //           span.style[st.parentNode.style[i]] = st.parentNode.style[st.parentNode.style[i]]
+    //         }
+    //         setStyle(span, styles);
+    //         span.appendChild(document.createTextNode(clone.childNodes[0].textContent));
+    //         fragment.appendChild(span);
+
+    //         if (parentText.length > newRange.endOffset) {
+    //           const spanafter = document.createElement('span')
+    //           for (let i = 0; i < st.parentNode.style.length; i++) {
+    //             spanafter.style[st.parentNode.style[i]] = st.parentNode.style[st.parentNode.style[i]]
+    //           }
+
+    //           spanafter.appendChild(document.createTextNode(parentText.slice(newRange.endOffset,parentText.length)));
+    //           fragment.appendChild(spanafter);
+    //         }
+    //       st.parentNode.remove();
+          
+    //       newRange.insertNode(fragment);
+        
+    //       }
+    //     } 
+    //     newRange.collapse(true);
+    //     console.log(`----------------------------------------------------------다음노드 ${nextNode ? nextNode.tagName : nextNode}`);
+    //     if (nextNode === null) {
+    //       loopFlag=false;
+    //     }
+    //     st = nextNode;
+    //   }
+    // }  
   }
+}
 
-  function handleStyle(fragment, node, styles) {
-
-    const childNodeCount = node.childNodes.length;
-    for (let i = 0; i < childNodeCount; i++) {
-      const childNode = node.childNodes[i];
-      if (childNode.nodeType === Node.TEXT_NODE) {
-        const span = document.createElement('span');
-
-        if (styles && styles.length > 0) {
-          for (let j = 0; j < styles.length; j++) {
-            span.style[styles[j][0]] = styles[j][1];
-          }
-        }
-      span.appendChild(document.createTextNode(childNode.textContent));
-      fragment.appendChild(span);
-      } else if (childNode.nodeType === Node.ELEMENT_NODE && childNode.tagName.toLowerCase() === 'span') {
-        if (styles && styles.length > 0) {
-          for (let j = 0; j < styles.length; j++) {
-            childNode.style[styles[j][0]] = styles[j][1];
-          }
-        }
-        fragment.appendChild(childNode.cloneNode(true));
-      } else {
-        if (styles && styles.length > 0) {
-          for (let j = 0; j < styles.length; j++) {
-            childNode.style[styles[j][0]] = styles[j][1];
-          }
-        }
-        fragment.appendChild(childNode.cloneNode(true));
+  function setStyle(element, styleArray) {
+    if (styleArray && styleArray.length > 0) {
+      for (let j = 0; j < styleArray.length; j++) {
+        element.style[styleArray[j][0]] = styleArray[j][1];
       }
     }
   }
@@ -90,25 +155,7 @@ function FaqControl(props) {
     <div id="faq-body"
       contentEditable={true}
       onInput={handleChange} onKeyDown={(event) => {
-        if (event.key === 'Enter') {
-          // event.preventDefault();
-  
-          // const selection = window.getSelection();
-          // const range = selection.getRangeAt(0);
-      
-          // const br = document.createElement('br');
-          // range.insertNode(br);
-          // range.setStartAfter(br);
-          // range.setEndAfter(br);
-          // range.insertNode(br);
-          // range.collapse(false);
-          
-          // const newRange = document.createRange();
-          // newRange.setStart(br.nextSibling, 0);
-          // newRange.setEnd(br.nextSibling, 0);
-          
-          // selection.removeAllRanges();
-          // selection.addRange(newRange);
+        if (event.key === 'Enter') {    
       }
     }}
 
@@ -124,7 +171,7 @@ function FaqControl(props) {
 
     >
     </div>
-    <StyleButton handleClick={handleClick} hi={'50px'} setStyle={[['color','red']]}/>
+    <StyleButton handleClick={handleClick} hi={'50px'} setStyle={[['color','red'],['backgroundColor','white']]}/>
     <StyleButton handleClick={handleClick} hi={'150px'} setStyle={[['font-size','20px']]}/>
     </div>
   );
