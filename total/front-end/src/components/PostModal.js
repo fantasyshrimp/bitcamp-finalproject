@@ -9,7 +9,7 @@ function PostModal(props) {
   const navigate = useNavigate(null);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   let [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,11 +22,17 @@ function PostModal(props) {
   }, [currentUser]);
 
   const HandleClickGenerate = () => {
-    let postText = document.querySelector("#post-text").value;
+    let postText = document.querySelector("#post-text").value.trim();
 
     if (postText.length === 0) {
       document.querySelector("#postHelpBlock").innerText =
         "내용을 작성해 주세요";
+      return;
+    }
+
+    if (postText.length > 500) {
+      document.querySelector("#postHelpBlock").innerText =
+        "500자 이하로 작성해주세요";
       return;
     }
 
@@ -38,7 +44,7 @@ function PostModal(props) {
 
       axios("http://localhost:8080/auth/user")
         .then((response) => {
-          if (response.data.status == "success") {
+          if (response.data.status === "success") {
             props.setCurrentUser(response.data.data);
           }
         })
@@ -55,7 +61,7 @@ function PostModal(props) {
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
-        if (response.data.status == "success") {
+        if (response.data.status === "success") {
           setCurrentUser(response.data.data);
           props.setCurrentUser(response.data.data);
         } else {
@@ -88,8 +94,7 @@ function PostModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          console.log("Generated 응답 옴!");
-          console.log(response);
+          // console.log("그림 생성 완료");
         } else {
           alert("AI 그림 생성 중 이상 발생 했습니다.");
         }
@@ -101,7 +106,10 @@ function PostModal(props) {
   };
 
   const handlePostChange = () => {
-    document.querySelector("#postHelpBlock").innerText = "";
+    document.querySelector("#postHelpBlock").innerText =
+      document.querySelector("#post-text").value.length > 500
+        ? "500자 이하로 작성해주세요"
+        : "";
     document.querySelector("#countChar").innerText =
       document.querySelector("#post-text").value.length;
   };
@@ -147,7 +155,7 @@ function PostModal(props) {
               <Form.Control
                 as="textarea"
                 id="post-text"
-                rows={12}
+                rows={16}
                 placeholder="당신의 이야기를 그림으로 만들어 드려요!"
                 onChange={handlePostChange}
                 style={{
