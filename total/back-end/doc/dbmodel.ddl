@@ -899,3 +899,8 @@ ALTER TABLE aim_member
 -- 회원 정보(aim_member)에 인증코드 추가
 ALTER TABLE aim_member
   ADD auth_code CHAR(16) NULL COMMENT '인증코드', -- 인증코드
+  
+-- 회원 정보(aim_member)에 filename 기본 값 추가
+ALTER TABLE aim_member
+  MODIFY filename VARCHAR(255) NULL DEFAULT 'https://artify-bucket.kr.object.ncloudstorage.com/profile/570d2e86-7c3b-4120-ba66-3b74795c8e57' COMMENT '프로필사진명', -- 프로필사진명
+  
