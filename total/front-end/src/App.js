@@ -161,7 +161,8 @@ function App() {
                 }
               />
               <Route path="/admin/stats" element={<Stats />} />
-              <Route path="/MemberList" element={<MemberList />} />
+              <Route path="/admin/boardlist" element={<BoardList />} />
+              <Route path="/admin/commentlist" element={<CommentList />} />
               <Route path="/auth/verify" element={<EmailVerifyHandler />} />
               <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
             </Routes>
