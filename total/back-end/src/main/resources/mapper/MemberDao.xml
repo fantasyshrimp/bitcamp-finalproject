@@ -28,8 +28,8 @@
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyProperty="no" keyColumn="member_no">
-    insert into aim_member(name, email, pw, pt, token, link)
-    values(#{nickname}, #{email}, sha2(#{password},256), 0, token, #{link})
+    insert into aim_member(name, email, pw, pt, token, link, auth_code)
+    values(#{nickname}, #{email}, sha2(#{password},256), 0, token, #{link}, #{authCode})
   </insert>
 
   <insert id="insertExternal" parameterType="member" 

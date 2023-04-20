@@ -1,45 +1,39 @@
 :root {
   /* color */
 
-  --aim-base-tone          : #262626;
-  --aim-base-tone-up       : #595959;
-  --aim-base-tone-down     : #0D0D0D;
-  --aim-base-tone-sub      : #737373;
-  
-  --aim-base-alpa          : #00000000;
-  --aim-fill-alpa          : #000000ff;
-  --aim-harf-alpa          : #00000088;
-  --aim-quarter-alpa       : #00000044;
+  --aim-base-tone: #262626;
+  --aim-base-tone-up: #595959;
+  --aim-base-tone-down: #0d0d0d;
+  --aim-base-tone-sub: #737373;
+
+  --aim-base-alpa: #00000000;
+  --aim-fill-alpa: #000000ff;
+  --aim-harf-alpa: #00000088;
+  --aim-quarter-alpa: #00000044;
   /* --aim-btn-default
   --aim-btn-hover */
 
-  --aim-border             : #A6A6A6;
+  --aim-border: #a6a6a6;
 
   /* ---------sub---------- */
-  --aim-emphasis-red       : #e75656;
+  --aim-emphasis-red: #e75656;
   /* naver login */
-  --aim-fill-green         : #4caf50;
-
-
+  --aim-fill-green: #03c75a;
 
   /* text */
-  --aim-text-default       : white;
-  --aim-text-sub           : gray;
+  --aim-text-default: white;
+  --aim-text-sub: gray;
 
-  --aim-text-href          : #7097E5;
-
+  --aim-text-href: #7097e5;
 
   /* font size */
-  --aim-small-font-size    : 0.8rem;
-  --aim-nomal-font-size    : 1.4rem;
-  --aim-large-font-size    : 1.8rem;
-  --aim-larger-font-size   : 2rem;
-  --aim-largest-font-size   : 3rem;
+  --aim-small-font-size: 0.8rem;
+  --aim-nomal-font-size: 1.4rem;
+  --aim-large-font-size: 1.8rem;
+  --aim-larger-font-size: 2rem;
+  --aim-largest-font-size: 3rem;
 
   /* font weight */
-
-
-
 }
 
 /* 
@@ -48,7 +42,6 @@
 #feed-modal-inputbox border color 의미가 있나..?
 
 */
-
 
 /* .App {
   text-align: center;

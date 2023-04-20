@@ -57,16 +57,12 @@ function FindPw2Modal(props) {
     }
 
     axios
-      .post(
-        "http://localhost:8080/auth/authcode",
-        {},
-        {
-          params: {
-            email: email,
-            authCode: authCode,
-          },
-        }
-      )
+      .get("http://localhost:8080/auth/authcode", {
+        params: {
+          email: email,
+          authCode: authCode,
+        },
+      })
       .then((response) => {
         console.log(response);
         if (response.data.status === "success") {
@@ -133,6 +129,7 @@ function FindPw2Modal(props) {
           backgroundColor: `var(--aim-base-alpa)`,
           border: "none",
         }}
+        contentClassName="bg-dark"
       >
         <Modal.Header
           closeButton

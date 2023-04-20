@@ -151,11 +151,11 @@ function SignupModal(props) {
       .then((response) => {
         if (response.data.status === "success") {
         } else {
-          console.log("가입 양식이 맞지 않음!");
+          alert("입력된 데이터 중 잘못된 데이터가 있습니다.");
         }
       })
       .catch((error) => {
-        setMessage("회원가입 중 오류 발생");
+        setMessage("회원가입 중 오류가 발생 했습니다.");
       });
   }
 

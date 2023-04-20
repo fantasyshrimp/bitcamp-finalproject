@@ -43,7 +43,7 @@ public class AuthController {
   @GetMapping("checkemail")
   public Object checkemail(String email) {
     Member member = memberService.getByEmail(email);
-    log.info(email);
+
     if (member != null) {
       return new RestResult()
           .setData(member)
@@ -83,6 +83,7 @@ public class AuthController {
         StringChecker.isValidNickname(nickname)) {
 
       String token = UUID.randomUUID().toString();
+      String authCode = UUID.randomUUID().toString().substring(0, 16);
 
       Member member = new Member();
       member.setNickname(nickname);
@@ -90,6 +91,7 @@ public class AuthController {
       member.setPassword(password);
       member.setToken(token);
       member.setLink("artify");
+      member.setAuthCode(authCode);
 
       memberService.add(member);
       pointService.signupInsert(member.getNo());
@@ -279,7 +281,7 @@ public class AuthController {
     }
   }
 
-  @PostMapping("authcode")
+  @GetMapping("authcode")
   public Object authcode(String email, String authCode) {
 
     Member member = memberService.getByEmail(email);
@@ -296,7 +298,6 @@ public class AuthController {
             .setErrorCode(ErrorCode.rest.MISS_MATCH)
             .setStatus(RestStatus.FAILURE);
       }
-
 
     } else {
       return new RestResult()

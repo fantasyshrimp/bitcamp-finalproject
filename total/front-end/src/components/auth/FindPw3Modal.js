@@ -130,6 +130,7 @@ function FindPw3Modal(props) {
           backgroundColor: `var(--aim-base-alpa)`,
           border: "none",
         }}
+        contentClassName="bg-dark"
       >
         <Modal.Header
           closeButton

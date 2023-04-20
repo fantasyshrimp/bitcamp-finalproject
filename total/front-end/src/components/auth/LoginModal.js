@@ -139,6 +139,7 @@ function LoginModal(props) {
           backgroundColor: `var(--aim-base-alpa)`,
           border: "none",
         }}
+        contentClassName="bg-dark"
       >
         <Modal.Header
           closeButton
@@ -214,7 +215,7 @@ function LoginModal(props) {
                 <ExternalLogin isLoginModal={props.isLoginModal} />
               )}
             </div>
-            <div className="text-light mt-2 mb-2">
+            <div className="text-light mt-4 mb-2">
               <span>아직 계정이 없으신가요? </span>
               <span className="login-modal-signup" onClick={handleClickSignup}>
                 회원가입
