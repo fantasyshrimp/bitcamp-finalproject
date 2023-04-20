@@ -152,7 +152,7 @@ function App() {
               ></Route>
               <Route path="/Faq" element={<Faq />} />
               <Route
-                path="/admin/memberlist"
+                path="/admin/member"
                 element={
                   <MemberList
                     currentUser={currentUser}
@@ -161,8 +161,8 @@ function App() {
                 }
               />
               <Route path="/admin/stats" element={<Stats />} />
-              <Route path="/admin/boardlist" element={<BoardList />} />
-              <Route path="/admin/commentlist" element={<CommentList />} />
+              <Route path="/admin/board" element={<BoardList />} />
+              <Route path="/admin/comment" element={<CommentList />} />
               <Route path="/auth/verify" element={<EmailVerifyHandler />} />
               <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
             </Routes>

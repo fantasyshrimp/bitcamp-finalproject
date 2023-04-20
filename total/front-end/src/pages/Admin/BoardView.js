@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./BoardView.module.css";
+import axios from "axios";
 
-function BoardView() {
-  const [show, setShow] = useState(false);
-
+function BoardView(props) {
+  const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [data, setData] = useState({});
+  console.log(no);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/board/` + no);
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no, setShow]);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleClose}>
         Launch demo modal
       </Button>
 

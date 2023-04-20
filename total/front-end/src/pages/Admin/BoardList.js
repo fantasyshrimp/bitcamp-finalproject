@@ -3,10 +3,20 @@ import styles from "./BoardList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import BoardView from "./BoardView";
+import { useNavigate } from "react-router-dom";
 
-function BoardList() {
+function BoardList(props) {
   const [data, setData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.currentUser && props.currentUser.authLevel !== 9) {
+      alert("권한이 없습니다.");
+      navigate("/");
+    }
+  }, [props.currentUser]);
 
   useEffect(() => {
     axios
@@ -25,17 +35,17 @@ function BoardList() {
 
     console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
+    setModalShow(true);
   }
 
   return (
     <>
       <div className={styles.BoardList}>
         <h1>게시물 관리</h1>
-        <BoardView />
         <h3>
-          <a href="./MemberList">회원 목록</a>
-          <a href="./BoardList">(test)게시물 목록</a>
-          <a href="./CommentList">(test)댓글 목록</a>
+          <a href="./member">회원 목록</a>
+          <a href="./board">(test)게시물 목록</a>
+          <a href="./comment">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>
@@ -90,6 +100,7 @@ function BoardList() {
           </tbody>
         </Table>
       </div>
+      <BoardView show={modalShow} setShow={setModalShow} no={selectedNo} />
     </>
   );
 }

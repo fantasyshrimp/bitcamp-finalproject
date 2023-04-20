@@ -45,9 +45,9 @@ function CommentList(props) {
       <div className={styles.CommentList}>
         <h1>댓글 관리</h1>
         <h3>
-          <a href="./MemberList">회원 목록</a>
-          <a href="./BoardList">(test)게시물 목록</a>
-          <a href="./CommentList">(test)댓글 목록</a>
+          <a href="./member">회원 목록</a>
+          <a href="./board">(test)게시물 목록</a>
+          <a href="./comment">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>
