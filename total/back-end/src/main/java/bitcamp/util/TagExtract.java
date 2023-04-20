@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class TagExtract {
 
   @Autowired private NaverAiConfig naverAiConfig;
 
-  public List<String> extract(String content) throws IOException {
+  public HashSet<String> extract(String content) throws IOException {
 
     InputStream modelIn = TagExtract.class.getResourceAsStream("/en-token.bin");
     TokenizerModel model = new TokenizerModel(modelIn);
@@ -74,7 +75,7 @@ public class TagExtract {
         .collect(Collectors.joining());
 
     String[] tagWords = formattedKeywords.split(" ");
-    List<String> tagWordList = new ArrayList<>();
+    HashSet<String> tagWordList = new HashSet<>();
 
     for (String tagWord : tagWords) {
       tagWordList.add(tagWord);
@@ -163,7 +164,7 @@ public class TagExtract {
       Map<String, Object> map = gson.fromJson(jsonStr, Map.class);
       String translatedText = ((Map<String, Object>) ((Map<String, Object>) map.get("message")).get("result")).get("translatedText").toString();
 
-      return translatedText;
+      return translatedText.toLowerCase();
 
     } catch (Exception e) {
       System.out.println(e);
@@ -174,14 +175,10 @@ public class TagExtract {
   public static void main(String[] args) throws IOException {
     TagExtract tag = new TagExtract();
 
-    String str = tag.koToEn("나뭇잎의 그늘을 만져보고 싶을 땐\r\n"
-        + "연못 아래로 드리운 나무 그늘을 만져봅니다.\r\n"
-        + "내 안에 있는 그대 영혼 같아서,\r\n"
-        + "내 영혼의 가지에 드리운\r\n"
-        + "길이 마르지 않을 값없는 그늘 같아서.");
+    String str = tag.koToEn("아이가 그림 그림속 파란 하늘과 잔디");
 
-    List<String> lists = tag.extract(str);
-    List<String> kolists = new ArrayList<>();
+    HashSet<String> lists = tag.extract(str);
+    HashSet<String> kolists = new HashSet<>();
     System.out.println(lists);
 
     for (String list : lists) {
