@@ -81,7 +81,11 @@ public class AdminController {
       return resultMap;
   }
 
+  @GetMapping("/board/{no}")
+  public Board viewBoard(@PathVariable int no) {
 
+	    return boardService.get(no);
+  }
 
 }
 

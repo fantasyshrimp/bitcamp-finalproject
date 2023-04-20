@@ -1,0 +1,17 @@
+.Label {
+  color: black;
+}
+
+.short {
+  color: black;
+  width: 80px;
+}
+
+.long {
+  color: black;
+  width: 120px;
+}
+
+.img {
+  width: 450px;
+}

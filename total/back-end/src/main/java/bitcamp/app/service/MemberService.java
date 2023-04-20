@@ -16,8 +16,10 @@ public interface MemberService {
   void updateProfilePhoto(Member member);
   void updateNickname(Member member);
   void updateIsGenerating(Member member);
+  void updatePassword(Member member);
   void delete(int no);
   List<Member> getFollowings(int no);
   List<Member> getFollowers(int no);
   Member updateByVerifyToken(String token);
+  Member updateAndSendAuthCodeByEmail(Member member);
 }

@@ -23,6 +23,7 @@
     <result column="link" property="link"/>
     <result column="last_login_dt" property="lastLoginDt"/>
     <result column="is_generating" property="isGenerating"/>
+    <result column="auth_code" property="authCode"/>
   </resultMap>
 
   <insert id="insert" parameterType="member" 
@@ -85,21 +86,7 @@
   
   <select id="findByEmail" parameterType="string" resultMap="memberMap">
     select
-      member_no,
-      name,
-      email,
-      created_dt,
-      gender,
-      filename,
-      addr,
-      pt,
-      info,
-      birth_dt,
-      tel,
-      pw_update_dt,
-      state,
-      auth,
-      link
+      *
     from
       aim_member
     where
@@ -196,6 +183,21 @@
       is_generating=#{isGenerating}
     where
       member_no=#{no}
+  </update>
+  
+  <update id="updateAuthCode" parameterType="member">
+    update aim_member
+    set
+      auth_code=#{authCode}
+    where
+      email=#{email}
+  </update>
+  
+  <update id="updatePassword" parameterType="member">
+    update aim_member
+    set 
+      pw=sha2(#{password}, 256)
+    where email=#{email}
   </update>
   
   </mapper>

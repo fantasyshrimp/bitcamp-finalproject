@@ -25,8 +25,8 @@ public class SseController {
   @GetMapping("/sse")
   public SseEmitter handleSse() {
 
-    SseEmitter emitter = new SseEmitter();
-    log.info("등록된 emitter 주소 >>> " + emitter.toString());
+    SseEmitter emitter = new SseEmitter(5 * 60 * 1000L);  // 클라이언트와 연결 유지 시간
+    // log.info("등록된 emitter 주소 >>> " + emitter.toString());
     sseManager.addEmitter(emitter);
 
     emitter.onCompletion(() -> sseManager.removeEmitter(emitter));

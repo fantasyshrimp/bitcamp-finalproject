@@ -2,26 +2,40 @@ import React, { useEffect, useState } from "react";
 import styles from "./BoardList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import BoardView from "./BoardView";
+import { useNavigate } from "react-router-dom";
 
-function BoardList() {
+function BoardList(props) {
   const [data, setData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.currentUser && props.currentUser.authLevel !== 9) {
+      alert("권한이 없습니다.");
+      navigate("/");
+    }
+  }, [props.currentUser]);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/admin/board")
       .then((response) => {
-        console.log("data : ");
         console.log(response.data);
-        console.log(typeof data);
         setData(response.data.data);
       })
       .catch((error) => console.error(error));
   }, []);
 
   function handleBoardSelect(selectedNo) {
+    if (!selectedNo) {
+      return;
+    }
+
     console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
+    setModalShow(true);
   }
 
   return (
@@ -29,9 +43,9 @@ function BoardList() {
       <div className={styles.BoardList}>
         <h1>게시물 관리</h1>
         <h3>
-          <a href="./MemberList">회원 목록</a>
-          <a href="./BoardList">(test)게시물 목록</a>
-          <a href="./CommentList">(test)댓글 목록</a>
+          <a href="./member">회원 목록</a>
+          <a href="./board">(test)게시물 목록</a>
+          <a href="./comment">(test)댓글 목록</a>
         </h3>
         <Table striped bordered hover variant="dark">
           <thead>
@@ -51,21 +65,42 @@ function BoardList() {
           <tbody>
             {data.map((board) => (
               <tr key={board.boardNo}>
-                <td>{board.boardNo}</td>
-                <td>{board.writer.nickname}</td>
-                <td>{board.originContent}</td>
-                <td>{board.summaryContent}</td>
-                <td>{board.transContent}</td>
-                <td>{board.likeCnt}</td>
-                <td>{board.viewCnt}</td>
-                <td>{board.writeDt}</td>
-                <td>{board.updateDt}</td>
-                <td>{board.reportCnt}</td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.boardNo}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writer.nickname}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.originContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.summaryContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.transContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.likeCnt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.viewCnt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writeDt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.updateDt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.reportCnt}
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
+      <BoardView show={modalShow} setShow={setModalShow} no={selectedNo} />
     </>
   );
 }

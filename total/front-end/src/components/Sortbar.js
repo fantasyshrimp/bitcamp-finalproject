@@ -30,6 +30,11 @@ function Sortbar() {
       .catch((error) => {});
   };
 
+  function handleClick(event) {
+    event.preventDefault();
+    window.location.reload();
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/boards/auth`)
@@ -39,6 +44,9 @@ function Sortbar() {
 
   return (
     <div id="tag-bar">
+      <div id="tag" onClick={handleClick}>
+        Random
+      </div>
       <div id="tag" onClick={() => Click("hot")}>
         HOT
         <div

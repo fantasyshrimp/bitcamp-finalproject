@@ -165,4 +165,41 @@ public class DefaultMemberService implements MemberService {
 
   }
 
+  @Override
+  public Member updateAndSendAuthCodeByEmail(Member member) {
+    memberDao.updateAuthCode(member);
+
+    String receiverMail = member.getEmail();
+    MimeMessage message = mailSender.createMimeMessage();
+
+    try {
+      message.addRecipients(RecipientType.TO, receiverMail);
+      message.setSubject("Artify 비밀번호 재설정 인증코드");
+
+      String body = "<div>"
+          + "<h1> 안녕하세요. Artify 입니다</h1>"
+          + "<br>"
+          + "<p>비밀번호 재설정 인증코드 입니다."
+          + "<br>아래 인증코드를 복사하여 붙여넣어 주세요.<p>"
+          + "<br>"
+          + "<p>" + member.getAuthCode() + "<p>"
+          + "</div>";
+
+      message.setText(body, "utf-8", "html");
+      message.setFrom(new InternetAddress("bitcamp1@naver.com", "Artify_Admin"));
+      mailSender.send(message);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return null;
+  }
+
+  @Override
+  public void updatePassword(Member member) {
+    memberDao.updatePassword(member);
+  }
+
+
 }

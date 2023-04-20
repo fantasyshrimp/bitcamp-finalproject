@@ -169,5 +169,18 @@ public class MemberController {
         .setStatus(RestStatus.FAILURE)
         .setData("사용불가");
   }
+
+  @PutMapping("password")
+  public Object password(String email, String password) {
+    Member member = new Member();
+    member.setEmail(email);
+    member.setPassword(password);
+
+    memberService.updatePassword(member);
+
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
+  }
+
 }
 

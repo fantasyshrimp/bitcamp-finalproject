@@ -23,4 +23,6 @@ public interface MemberDao {
   void updateToken(Member m);
   void updateStateByToken(String token);
   void updateIsGenerating(Member m);
+  void updateAuthCode(Member m);
+  void updatePassword(Member member);
 }

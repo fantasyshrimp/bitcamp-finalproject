@@ -127,11 +127,11 @@ public class BoardController {
               // log.info("summaryContent >>> " + summaryContent);
 
               String koContent = tagExtract.koToEn(originContent);
-              List<String> tags = tagExtract.extract(koContent);
+              HashSet<String> tags = tagExtract.extract(koContent);
               HashSet<String> koLists = new HashSet<>();
 
               for (String tag : tags) {
-                String originTag = tagExtract.enToKo(tag).replace(".", "");
+                String originTag = tagExtract.enToKo(tag).replace(".", "").replaceAll(" ", "");
                 String modifyTag = "";
                 modifyTag += "#" + originTag;
                 koLists.add(modifyTag);
