@@ -20,19 +20,23 @@ function ProfileUpper(props) {
         setFollowingList(response.data.data);
         if (response.data.data.length > 0) {
           setFollowingModalIsOpen(true);
+          document.body.style.overflow = "hidden";
         }
       });
   };
   const closeFollowingModal = () => {
     setFollowingModalIsOpen(false);
+    document.body.style.overflow = "";
   };
 
   const [followerModalIsOpen, setFollowerModalIsOpen] = useState(false);
   const openFollowerModal = () => {
     setFollowerModalIsOpen(true);
+    document.body.style.overflow = "hidden";
   };
   const closeFollowerModal = () => {
     setFollowerModalIsOpen(false);
+    document.body.style.overflow = "";
   };
 
   useEffect(() => {
@@ -43,6 +47,11 @@ function ProfileUpper(props) {
 
   const pointModalHandler = () => {
     setPointModal(!pointModal);
+    if (!pointModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
   };
 
   axios
