@@ -3,23 +3,41 @@ import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function SearchPwModal(props) {
+function FindPwModal(props) {
   const [validEmail, setValidEmail] = useState(false);
-  const [validPassword, setValidPassword] = useState(false);
   const emailRef = useRef(null);
 
   const handleClose = () => {
-    props.setSearchPwShow(false);
+    props.setFindPwShow(false);
   };
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
-      handleClickLogin();
+      handleClickSubmit(e);
     }
   };
 
-  const handleClickLogin = (e) => {
+  const checkEmail = () => {
     const email = document.getElementsByName("email")[0].value;
+    document.querySelector("#emailHelpBlock").innerText = "";
+
+    if (!email.includes("@")) {
+      setValidEmail(false);
+      return;
+    } else {
+      setValidEmail(true);
+    }
+  };
+
+  const isDisabled = () => {
+    return !validEmail;
+  };
+
+  const handleClickSubmit = (e) => {
+    e.preventDefault();
+
+    const email = document.getElementsByName("email")[0].value;
+
     if (!email.includes("@")) {
       document.querySelector("#emailHelpBlock").innerText =
         "이메일 형식이 올바르지 않습니다.";
@@ -30,64 +48,61 @@ function SearchPwModal(props) {
       setValidEmail(true);
     }
 
-    const password = document.getElementsByName("password")[0].value;
-    if (password.length === 0) {
-      document.querySelector("#passwordHelpBlock").innerText =
-        "비밀번호를 입력하세요";
-      setValidPassword(false);
-      document.getElementsByName("password")[0].focus();
-      return;
-    }
-    if (password.length === 10) {
-      setValidPassword(true);
-    } else {
-      document.querySelector("#passwordHelpBlock").innerText = "";
-    }
+    axios
+      .get("http://localhost:8080/auth/checkemail", {
+        params: {
+          email: email,
+        },
+      })
+      .then((response) => {
+        if (response.data.status === "success") {
+          handleClose();
+          props.setFindPw2Show(true);
+          props.setFindPwEmail(email);
+        } else {
+          alert("존재하지 않는 이메일입니다.");
+        }
+      })
+      .catch((error) => {
+        // alert("인증코드 전송 중 오류가 발생 했습니다.");
+      });
 
     axios
-      .post(
-        "http://localhost:8080/auth/login",
+      .put(
+        "http://localhost:8080/auth/findpw",
         {},
         {
           params: {
             email: email,
-            password: password,
           },
         }
       )
       .then((response) => {
         if (response.data.status === "success") {
-          if (response.data.data.accountState === 1) {
-            alert("메일 인증 후 로그인 하세요.");
-            return;
-          }
-          handleClose();
-          window.location.reload();
-        } else {
-          document.querySelector("#passwordHelpBlock").innerText =
-            "이메일 또는 비밀번호가 틀렸습니다.";
+          // console.log(response)
         }
       })
       .catch((error) => {
-        alert("로그인 중 오류 발생");
+        alert("인증코드 전송 중 오류가 발생 했습니다.");
       });
   };
 
   useEffect(() => {
     // 모달 열렸을 때 오토포커스 주기
-    if (props.searchPwShow) {
+    if (props.findPwShow) {
       const emailInput = document.getElementsByName("email")[0];
       if (emailInput) {
         emailRef.current.focus();
       }
     }
-  }, [props.searchPwShow]);
+  }, [props.findPwShow]);
 
   return (
     <>
       <Modal
-        show={props.searchPwShow}
+        show={props.findPwShow}
         onHide={handleClose}
+        backdrop="static"
         centered
         style={{
           width: "100%",
@@ -113,17 +128,18 @@ function SearchPwModal(props) {
             className="p-5 pb-4 pt-4"
             style={{ backgroundColor: `var(--aim-base-tone)` }}
           >
-            <Form.Group className="mb-4" controlId="email">
+            <Form.Group className="mb-2" controlId="email">
               <Form.Label className="text-light">
-                이메일 주소로 인증번호를 보내 드립니다.
+                비밀번호 변경을 위한 인증코드를 보내 드립니다.
               </Form.Label>
               <Form.Control
                 type="email"
                 name="email"
                 placeholder="name@naver.com"
+                onChange={checkEmail}
                 onKeyDown={handleEnter}
                 ref={emailRef}
-                // autoComplete="username"
+                autoComplete="email"
                 style={{
                   color: `var(--aim-text-default)`,
                   backgroundColor: `var(--aim-base-tone)`,
@@ -136,8 +152,14 @@ function SearchPwModal(props) {
             style={{ borderTop: "none" }}
             className="d-flex flex-column justify-content-center pt-2 pb-4 ps-5 pe-5"
           >
-            <Button variant="primary" type="button" className="mb-4">
-              인증번호 받기
+            <Button
+              variant="primary"
+              type="button"
+              className="mb-4"
+              onClick={handleClickSubmit}
+              disabled={isDisabled()}
+            >
+              인증코드 전송
             </Button>
           </Modal.Footer>
         </Form>
@@ -146,4 +168,4 @@ function SearchPwModal(props) {
   );
 }
 
-export default SearchPwModal;
+export default FindPwModal;

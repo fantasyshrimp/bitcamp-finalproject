@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +43,7 @@ public class AuthController {
   @GetMapping("checkemail")
   public Object checkemail(String email) {
     Member member = memberService.getByEmail(email);
-
+    log.info(email);
     if (member != null) {
       return new RestResult()
           .setData(member)
@@ -122,9 +123,9 @@ public class AuthController {
         pointService.loginInsert(m.getNo());
       }
       memberService.lastLoginUpdate(m.getNo());
-      
-//      System.out.println(m.getNo());
-//      System.out.println(m.getAuthLevel());
+
+      //      System.out.println(m.getNo());
+      //      System.out.println(m.getAuthLevel());
 
       return new RestResult()
           .setData(m)
@@ -252,6 +253,54 @@ public class AuthController {
       log.error("네이버 로그인 중 에러 발생! : " + e);
 
       return new RestResult()
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PutMapping("findpw")
+  public Object findpw(String email) {
+
+    Member member = memberService.getByEmail(email);
+
+    if (member != null) {
+
+      String authCode = UUID.randomUUID().toString().substring(0, 16);
+      member.setAuthCode(authCode);
+      memberService.updateAndSendAuthCodeByEmail(member);
+
+      return new RestResult()
+          .setData(member)
+          .setStatus(RestStatus.SUCCESS);
+
+    } else {
+      return new RestResult()
+          .setErrorCode(ErrorCode.rest.NO_DATA)
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
+
+  @PostMapping("authcode")
+  public Object authcode(String email, String authCode) {
+
+    Member member = memberService.getByEmail(email);
+
+    if (member != null) {
+
+      if (authCode.equals(member.getAuthCode())) {
+        return new RestResult()
+            .setData(member)
+            .setStatus(RestStatus.SUCCESS);
+
+      } else {
+        return new RestResult()
+            .setErrorCode(ErrorCode.rest.MISS_MATCH)
+            .setStatus(RestStatus.FAILURE);
+      }
+
+
+    } else {
+      return new RestResult()
+          .setErrorCode(ErrorCode.rest.NO_DATA)
           .setStatus(RestStatus.FAILURE);
     }
   }

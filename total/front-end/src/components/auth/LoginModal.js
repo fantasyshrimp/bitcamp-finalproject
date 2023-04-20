@@ -120,9 +120,9 @@ function LoginModal(props) {
     props.setIsLoginModal(false);
   };
 
-  const handleClickSearchPw = () => {
+  const handleClickFindPw = () => {
     handleClose();
-    props.setSearchPwShow(true);
+    props.setFindPwShow(true);
     props.setShowExternalLogin(false);
     props.setIsLoginModal(false);
   };
@@ -222,7 +222,7 @@ function LoginModal(props) {
             </div>
             <div
               className="mb-3 login-modal-forget-pw"
-              onClick={handleClickSearchPw}
+              onClick={handleClickFindPw}
             >
               비밀번호를 잊으셨나요?
             </div>

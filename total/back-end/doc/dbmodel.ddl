@@ -895,3 +895,7 @@ ALTER TABLE aim_board_tag
 -- 회원 정보(aim_member)에 이미지 생성중 여부 추가
 ALTER TABLE aim_member
   ADD is_generating BOOLEAN NOT NULL DEFAULT 0 COMMENT '이미지생성중여부', -- 이미지생성중여부
+  
+-- 회원 정보(aim_member)에 인증코드 추가
+ALTER TABLE aim_member
+  ADD auth_code CHAR(16) NULL COMMENT '인증코드', -- 인증코드
