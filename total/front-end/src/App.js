@@ -151,6 +151,7 @@ function App() {
                 element={<PersonalSetting />}
               ></Route>
               <Route path="/Faq" element={<Faq />} />
+              <Route path="/FaqControl" element={<FaqControl />} />
               <Route
                 path="/admin/memberlist"
                 element={
