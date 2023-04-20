@@ -1,13 +1,15 @@
 .signup-modal-login,
 .login-modal-signup,
-.login-modal-forget-pw {
+.login-modal-forget-pw,
+.findpw2-modal-resend {
   color: var(--aim-text-href);
   cursor: pointer;
 }
 
 .signup-modal-login:hover,
 .login-modal-signup:hover,
-.login-modal-forget-pw:hover {
+.login-modal-forget-pw:hover,
+.findpw2-modal-resend:hover {
   text-decoration: underline;
 }
 
@@ -27,4 +29,13 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.findpw2-modal-resend-clicked {
+  color: #999;
+  cursor: default;
+}
+
+.findpw2-modal-resend-clicked:hover {
+  text-decoration: none;
 }

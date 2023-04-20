@@ -115,6 +115,8 @@ function Navbars(props) {
                 setLoginShow={props.setLoginShow}
                 signupShow={props.signupShow}
                 setSignupShow={props.setSignupShow}
+                searchPwShow={props.searchPwShow}
+                setSearchPwShow={props.setSearchPwShow}
                 isLoginModal={props.isLoginModal}
                 setIsLoginModal={props.setIsLoginModal}
                 showExternalLogin={props.showExternalLogin}

@@ -11,7 +11,13 @@ import Profile from "./pages/profile/Profile";
 import PersonalSetting from "./pages/personalSetting/PersonalSetting";
 import MemberList from "./pages/Admin/MemberList";
 import Stats from "./pages/Admin/Stats";
-import { LoginModal, SignupModal } from "./components/auth";
+import {
+  LoginModal,
+  SignupModal,
+  FindPwModal,
+  FindPw2Modal,
+  FindPw3Modal,
+} from "./components/auth";
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 import SSEProvider from "./handler/SSEProvider";
@@ -80,6 +86,10 @@ function App() {
   const [isLoginModal, setIsLoginModal] = useState(null);
   const [showExternalLogin, setShowExternalLogin] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [findPwShow, setFindPwShow] = useState(false);
+  const [findPw2Show, setFindPw2Show] = useState(false);
+  const [findPw3Show, setFindPw3Show] = useState(false);
+  const [findPwEmail, setFindPwEmail] = useState(null);
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -185,10 +195,33 @@ function App() {
         loginShow={loginShow}
         setLoginShow={setLoginShow}
         setSignupShow={setSignupShow}
+        setFindPwShow={setFindPwShow}
         showExternalLogin={loginShow}
         setShowExternalLogin={setShowExternalLogin}
         isLoginModal={isLoginModal}
         setIsLoginModal={setIsLoginModal}
+      />
+
+      <FindPwModal
+        findPwShow={findPwShow}
+        setFindPwShow={setFindPwShow}
+        setFindPw2Show={setFindPw2Show}
+        setFindPwEmail={setFindPwEmail}
+      />
+
+      <FindPw2Modal
+        findPw2Show={findPw2Show}
+        setFindPw2Show={setFindPw2Show}
+        setFindPw3Show={setFindPw3Show}
+        findPwEmail={findPwEmail}
+        setFindPwEmail={setFindPwEmail}
+      />
+
+      <FindPw3Modal
+        findPw3Show={findPw3Show}
+        setFindPw3Show={setFindPw3Show}
+        findPwEmail={findPwEmail}
+        setFindPwEmail={setFindPwEmail}
       />
     </>
   );
