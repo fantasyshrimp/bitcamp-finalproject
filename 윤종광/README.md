@@ -890,3 +890,19 @@ setSseMessage(JSON.parse(event.data));
 const parsedData = JSON.parse(event.data);
 setSseMessage(parsedData);
 ```
+
+# 4월20일 목
+
+## 작업내용
+
+### 1. Post 작성시 클라이언트에서 trim() 후 전송하도록 변경
+
+### 2. SSE 관련 메시지 반복되어 연결 유지시간 5분으로 변경
+
+### 3. 비밀번호 찾기 구현
+
+### 4. 회원가입시 default 사진 지정
+
+## 시행착오 또는 기억할 것
+
+### 1.
