@@ -85,7 +85,7 @@ public class AdminController {
   public Board viewBoard(@PathVariable int no) {
 
 	    return boardService.get(no);
-	  }
+  }
 
 }
 

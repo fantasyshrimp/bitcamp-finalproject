@@ -2,11 +2,28 @@ import React, { useEffect, useState } from "react";
 import styles from "./CommentList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import FeedModal from "../Feed/FeedModal"; // FeedModal 컴포넌트 import
 
-function CommentList() {
+function CommentList(props) {
   const [data, setData] = useState([]);
   const [selectedNo, setSelectedNo] = useState();
+  /*
+  //
+  const [modalOpen, setModalOpen] = useState(false);
 
+  function handleCloseModal() {
+    setModalOpen(false);
+  }
+
+  function ShowModal() {
+    setModalOpen(!modalOpen);
+    if (modalOpen !== true) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }
+  //*/
   useEffect(() => {
     axios
       .get("http://localhost:8080/admin/comment")
@@ -70,3 +87,5 @@ function CommentList() {
 }
 
 export default CommentList;
+
+//<FeedModal data={props.item} closeModal={ShowModal} />
