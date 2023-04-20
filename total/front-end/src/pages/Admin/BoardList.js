@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./BoardList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import BoardView from "./BoardView";
 
 function BoardList() {
   const [data, setData] = useState([]);
@@ -11,15 +12,17 @@ function BoardList() {
     axios
       .get("http://localhost:8080/admin/board")
       .then((response) => {
-        console.log("data : ");
         console.log(response.data);
-        console.log(typeof data);
         setData(response.data.data);
       })
       .catch((error) => console.error(error));
   }, []);
 
   function handleBoardSelect(selectedNo) {
+    if (!selectedNo) {
+      return;
+    }
+
     console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
   }
@@ -28,6 +31,7 @@ function BoardList() {
     <>
       <div className={styles.BoardList}>
         <h1>게시물 관리</h1>
+        <BoardView />
         <h3>
           <a href="./MemberList">회원 목록</a>
           <a href="./BoardList">(test)게시물 목록</a>
@@ -51,16 +55,36 @@ function BoardList() {
           <tbody>
             {data.map((board) => (
               <tr key={board.boardNo}>
-                <td>{board.boardNo}</td>
-                <td>{board.writer.nickname}</td>
-                <td>{board.originContent}</td>
-                <td>{board.summaryContent}</td>
-                <td>{board.transContent}</td>
-                <td>{board.likeCnt}</td>
-                <td>{board.viewCnt}</td>
-                <td>{board.writeDt}</td>
-                <td>{board.updateDt}</td>
-                <td>{board.reportCnt}</td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.boardNo}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writer.nickname}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.originContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.summaryContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.transContent}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.likeCnt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.viewCnt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writeDt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.updateDt}
+                </td>
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.reportCnt}
+                </td>
               </tr>
             ))}
           </tbody>
