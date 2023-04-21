@@ -79,7 +79,7 @@ function AuthModal(props) {
             <div>
               <div className="mb-3">
                 <a
-                  href="/admin/management"
+                  href="/admin/member"
                   className="auth-modal-link"
                   onClick={handleClickAdminPage}
                 >
