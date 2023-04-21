@@ -14,6 +14,7 @@ function MemberList(props) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
   const navigate = useNavigate();
+  const [point, setPoint] = useState(null);
 
   useEffect(() => {
     if (props.currentUser && props.currentUser.authLevel !== 9) {
@@ -60,52 +61,24 @@ function MemberList(props) {
                 <th>닉네임</th>
                 <th>이메일</th>
                 <th>가입일</th>
-                <th>포인트</th>
                 <th>성별</th>
-                <th>포인트</th>
+                <th>계정상태</th>
                 <th>전화번호</th>
                 <th>비밀번호 변경일시</th>
-                <th>계정상태</th>
                 <th>권한레벨</th>
               </tr>
             </thead>
             <tbody>
               {data.map((member) => (
-                <tr key={member.no}>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.no}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.nickname}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.email}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.createdDate}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.point}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                <tr
+                  key={member.no}
+                  onClick={() => handleColumnSelect(member.no)}
+                >
+                  <td className="td">{member.no}</td>
+                  <td className="td">{member.nickname}</td>
+                  <td className="td">{member.email}</td>
+                  <td className="td">{member.createdDate}</td>
+                  <td className="td">
                     {member.gender === 0
                       ? "미정"
                       : member.gender === 1
@@ -114,28 +87,7 @@ function MemberList(props) {
                       ? "여"
                       : ""}
                   </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.point}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.tel}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.passwordDate}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                  <td className="td">
                     {member.accountState === 0
                       ? "이메일 인증"
                       : member.accountState === 1
@@ -148,10 +100,9 @@ function MemberList(props) {
                       ? "정지"
                       : ""}
                   </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                  <td className="td">{member.tel}</td>
+                  <td className="td">{member.passwordDate}</td>
+                  <td className="td">
                     {member.authLevel === 0
                       ? "일반"
                       : member.authLevel === 9
