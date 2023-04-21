@@ -46,7 +46,12 @@ function PostModal(props) {
       axios("http://localhost:8080/auth/user")
         .then((response) => {
           if (response.data.status === "success") {
+            if (response.data.data.isGenerating === 1) {
+              return;
+            }
             props.setCurrentUser(response.data.data);
+          } else {
+            return;
           }
         })
         .catch((error) => {
@@ -62,7 +67,16 @@ function PostModal(props) {
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
+        console.log(response);
         if (response.data.status === "success") {
+          if (response.data.data.isGenerating === 1) {
+            Swal.fire({
+              title: "AI 그림 생성 중으로 다시 요청할 수 없습니다.",
+              confirmButtonText: "확인",
+            });
+            handleClose();
+            return;
+          }
           setCurrentUser(response.data.data);
           props.setCurrentUser(response.data.data);
         } else {
