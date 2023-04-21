@@ -68,6 +68,13 @@ public class BoardController {
     AtomicReference<String> summaryContentAtomicRef = new AtomicReference<>();
 
     Member member = memberService.get(writerNo);
+
+    if (member.getIsGenerating() == 1) {
+      return new RestResult()
+          .setErrorCode(ErrorCode.rest.DUPLICATE_DATA)
+          .setStatus(RestStatus.FAILURE);
+    }
+
     member.setIsGenerating(1);
     memberService.updateIsGenerating(member);
 
