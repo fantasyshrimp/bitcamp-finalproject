@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Money(props) {
   const [textValue, setTextValue] = useState("");
@@ -10,7 +11,7 @@ function Money(props) {
     const value = event.target.value;
     if (/^\d*$/.test(value)) {
       // 입력 값이 숫자인 경우
-      if(parseInt(value) > parseInt(mypoint)) {
+      if (parseInt(value) > parseInt(mypoint)) {
         setTextValue(mypoint.toString());
       } else {
         setTextValue(value);
@@ -42,11 +43,19 @@ function Money(props) {
           setIsUpdated(!isUpdated);
           setTextValue("");
         } else {
-          alert("입력실패");
+          // alert("입력실패");
+          Swal.fire({
+            title: "입력 실패 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
-        alert("로그인 후 입력가능합니다.");
+        // alert("로그인 후 입력가능합니다.");
+        Swal.fire({
+          title: "로그인 후 입력가능합니다.",
+          confirmButtonText: "확인",
+        });
       });
   };
 

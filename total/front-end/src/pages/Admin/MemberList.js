@@ -6,6 +6,7 @@ import axios from "axios";
 import BoardList from "./BoardList";
 import CommentList from "./CommentList";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function MemberList(props) {
   const [data, setData] = useState([]);
@@ -15,7 +16,11 @@ function MemberList(props) {
 
   useEffect(() => {
     if (props.currentUser && props.currentUser.authLevel !== 9) {
-      alert("권한이 없습니다.");
+      // alert("권한이 없습니다.");
+      Swal.fire({
+        title: "권한이 없습니다.",
+        confirmButtonText: "확인",
+      });
       navigate("/");
     }
   }, [props.currentUser]);

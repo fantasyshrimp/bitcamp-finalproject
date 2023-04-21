@@ -12,6 +12,7 @@ import getTimeBoard from "../../utils/DateBoard";
 import BoardUpdate from "./BoardUpdate";
 import BoardDelete from "./BoardDelete";
 import Money from "./Money";
+import Swal from "sweetalert2";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
@@ -93,11 +94,19 @@ function FeedModal(props) {
           setIsUpdated(!isUpdated);
           setValue("");
         } else {
-          alert("입력실패");
+          // alert("입력실패");
+          Swal.fire({
+            title: "입력 실패 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
-        alert("로그인 후 입력가능합니다.");
+        // alert("로그인 후 입력가능합니다.");
+        Swal.fire({
+          title: "로그인 후 입력 가능합니다.",
+          confirmButtonText: "확인",
+        });
       });
   };
 

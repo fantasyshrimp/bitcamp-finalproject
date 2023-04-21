@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Report(props) {
   const [data, setData] = useState([]);
@@ -42,14 +43,26 @@ function Report(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          alert("신고했습니다 !");
+          // alert("신고했습니다 !");
+          Swal.fire({
+            title: "신고 했습니다.",
+            confirmButtonText: "확인",
+          });
           props.handleCloseModal();
         } else {
-          alert("신고 실패");
+          // alert("신고 실패");
+          Swal.fire({
+            title: "신고 실패 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
-        alert("중복신고입니다");
+        // alert("중복신고입니다");
+        Swal.fire({
+          title: "중복 신고입니다.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
