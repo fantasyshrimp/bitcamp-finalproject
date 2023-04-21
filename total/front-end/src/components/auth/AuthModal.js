@@ -12,6 +12,7 @@ import {
 import PostModal from "../PostModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function AuthModal(props) {
@@ -40,7 +41,12 @@ function AuthModal(props) {
         window.location.href = "http://localhost:3000";
       })
       .catch((error) => {
-        alert("로그아웃 중 오류 발생!");
+        // alert("로그아웃 중 오류 발생!");
+        Swal.fire({
+          title:
+            "로그아웃을 시도하는 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 

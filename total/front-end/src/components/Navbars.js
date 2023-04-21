@@ -4,6 +4,7 @@ import axios from "axios";
 import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 import SSEContext from "../handler/SSEContext";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
@@ -21,7 +22,12 @@ function Navbars(props) {
           props.setCurrentUser(null);
         }
       } catch (error) {
-        alert("현재 서버가 꺼져 있어 로그인 유저 정보를 가져올 수 없습니다.");
+        // alert("현재 서버가 꺼져 있어 로그인 유저 정보를 가져올 수 없습니다.");
+        Swal.fire({
+          title:
+            "서버 문제로 유저 정보를 가져올 수 없습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
         console.log(error);
       }
     };

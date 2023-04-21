@@ -4,6 +4,7 @@ import authBtnStyle from "./style";
 import "./style.css";
 import axios from "axios";
 import ExternalLogin from "./ExternalLogin";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function SignupModal(props) {
@@ -44,7 +45,12 @@ function SignupModal(props) {
         }
       })
       .catch((error) => {
-        alert("이메일 중복확인 중 오류 발생");
+        // alert("이메일 중복확인 중 오류 발생");
+        Swal.fire({
+          title:
+            "이메일 중복확인 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   }
 
@@ -84,7 +90,12 @@ function SignupModal(props) {
         }
       })
       .catch((error) => {
-        alert("닉네임 중복확인 중 오류 발생");
+        // alert("닉네임 중복확인 중 오류 발생");
+        Swal.fire({
+          title:
+            "닉네임 중복확인 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   }
 
@@ -151,18 +162,29 @@ function SignupModal(props) {
       .then((response) => {
         if (response.data.status === "success") {
         } else {
-          alert("입력된 데이터 중 잘못된 데이터가 있습니다.");
+          // alert("입력된 데이터 중 잘못된 데이터가 있습니다.");
+          Swal.fire({
+            title:
+              "입력된 데이터 중 형식에 맞지 않는 데이터가 있습니다. 알맞은 형식을 입력해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
-        setMessage("회원가입 중 오류가 발생 했습니다.");
+        setMessage(
+          "회원가입 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요."
+        );
       });
   }
 
   useEffect(() => {
     if (message) {
       handleClose();
-      alert(message);
+      // alert(message);
+      Swal.fire({
+        title: message,
+        confirmButtonText: "확인",
+      });
       window.location.reload();
     }
   }, [message]);

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function FindPw3Modal(props) {
@@ -75,12 +76,21 @@ function FindPw3Modal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          alert("비밀번호가 변경 되었습니다.");
+          // alert("비밀번호가 변경 되었습니다.");
+          Swal.fire({
+            title: "비밀번호가 변경 되었습니다.",
+            confirmButtonText: "확인",
+          });
           handleClose();
         }
       })
       .catch((error) => {
-        alert("비밀번호 변경 중 오류 발생");
+        // alert("비밀번호 변경 중 오류 발생");
+        Swal.fire({
+          title:
+            "비밀번호 변경 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
 
     axios // 인증코드 캐싱 대비 변경
