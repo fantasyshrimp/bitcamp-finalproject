@@ -155,7 +155,8 @@ SELECT
     aim_board b
   INNER JOIN aim_member m ON b.member_no = m.member_no 
   INNER JOIN aim_generated_img i ON b.board_no = i.board_no   
-  WHERE 
+  WHERE (SELECT COUNT(range_no) FROM aim_hide_setting hs WHERE hs.no='5' AND hs.member_no=m.member_no AND range_no=2) != 1
+  AND
     b.board_public = 1
   ORDER BY 
     like_cnt desc
@@ -184,7 +185,8 @@ SELECT
     aim_board b
   INNER JOIN aim_member m ON b.member_no = m.member_no 
   INNER JOIN aim_generated_img i ON b.board_no = i.board_no   
-  WHERE 
+  WHERE (SELECT COUNT(range_no) FROM aim_hide_setting hs WHERE hs.no='5' AND hs.member_no=m.member_no AND range_no=2) != 1
+  AND 
     b.board_public = 1
   ORDER BY 
     b.write_dt desc
@@ -212,7 +214,8 @@ SELECT
 	    aim_board b
 	INNER JOIN aim_member m ON b.member_no = m.member_no 
 	INNER JOIN aim_generated_img i ON b.board_no = i.board_no   
-	WHERE 
+	WHERE (SELECT COUNT(range_no) FROM aim_hide_setting hs WHERE hs.no='5' AND hs.member_no=m.member_no AND range_no=2) != 1
+  AND
 	    b.board_public = 1 AND
 	    (b.member_no = #{member_no} 
 	OR  

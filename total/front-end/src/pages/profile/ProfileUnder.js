@@ -15,8 +15,16 @@ function ProfileUnder(props) {
   return (
     <div id="feed-main">
       {props.boards.map((board) => (
-        <FeedList key={board.boardNo} item={board} auth={auth} 
-        directModal={props.directModal && props.directModal.no === board.boardNo ? props.directModal : undefined} />
+        <FeedList
+          key={board.boardNo}
+          item={board}
+          auth={auth}
+          directModal={
+            props.directModal && props.directModal.no === board.boardNo
+              ? props.directModal
+              : undefined
+          }
+        />
       ))}
     </div>
   );

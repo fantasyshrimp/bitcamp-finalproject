@@ -27,6 +27,7 @@ function FeedModal(props) {
 
   function handleTagClick(e) {
     const keyword = e.target.getAttribute("value").replace("#", "");
+    console.log(keyword);
     axios
       .post(
         "http://localhost:8080/boards/keyword",
@@ -143,10 +144,6 @@ function FeedModal(props) {
       : "0";
   };
 
-  if (!Array.isArray(data)) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
       <div id="feed-modal-image" style={{ display: "table" }}>
@@ -173,13 +170,15 @@ function FeedModal(props) {
             onClick={MoneyModalHandler}
           ></div>
           <div id="modal-money">{numberWithCommas(point)}</div>
-          {props.user.data.no !== writerNo && isMoneyModalOpen && (
-            <Money
-              boardNo={boardNo}
-              writerNo={writerNo}
-              MoneyModalHandler={MoneyModalHandler}
-            />
-          )}
+          {props.user &&
+            props.user.data.no !== writerNo &&
+            isMoneyModalOpen && (
+              <Money
+                boardNo={boardNo}
+                writerNo={writerNo}
+                MoneyModalHandler={MoneyModalHandler}
+              />
+            )}
         </div>
       </div>
       <div id="feed-modal-content">
@@ -212,18 +211,15 @@ function FeedModal(props) {
                 </div>
               ))}
             </div>
-            {props.user.data.no !== writerNo && (
+            {props.user && props.user.data.no !== writerNo && (
               <div id="feed-modal-boardreport" onClick={openModal}>
                 신고하기
               </div>
             )}
-            {props.user.data.no === writerNo && (
+            {props.user && props.user.data.no === writerNo && (
               <>
                 <div id="feed-modal-boarddelete" onClick={DeleteModalHandler}>
                   삭제하기
-                </div>
-                <div id="feed-modal-boardupdate" onClick={UpdateModalHandler}>
-                  수정하기
                 </div>
               </>
             )}
