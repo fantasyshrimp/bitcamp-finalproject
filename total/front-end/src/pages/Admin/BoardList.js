@@ -5,6 +5,7 @@ import axios from "axios";
 import BoardView from "./BoardView";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 function BoardList(props) {
   const [data, setData] = useState([]);
@@ -46,12 +47,8 @@ function BoardList(props) {
   return (
     <>
       <div className={styles.BoardList}>
-        <h1>게시물 관리</h1>
-        <h3>
-          <a href="./member">회원 목록</a>
-          <a href="./board">(test)게시물 목록</a>
-          <a href="./comment">(test)댓글 목록</a>
-        </h3>
+        <h1>관리 페이지</h1>
+        <NavBar />
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>

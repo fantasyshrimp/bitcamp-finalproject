@@ -3,6 +3,7 @@ import styles from "./CommentList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import FeedModal from "../Feed/FeedModal"; // FeedModal 컴포넌트 import
+import NavBar from "./NavBar";
 
 function CommentList(props) {
   const [data, setData] = useState([]);
@@ -43,12 +44,8 @@ function CommentList(props) {
   return (
     <>
       <div className={styles.CommentList}>
-        <h1>댓글 관리</h1>
-        <h3>
-          <a href="./member">회원 목록</a>
-          <a href="./board">(test)게시물 목록</a>
-          <a href="./comment">(test)댓글 목록</a>
-        </h3>
+        <h1>관리 페이지</h1>
+        <NavBar />
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>

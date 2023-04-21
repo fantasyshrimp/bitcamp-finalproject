@@ -7,6 +7,7 @@ import BoardList from "./BoardList";
 import CommentList from "./CommentList";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 function MemberList(props) {
   const [data, setData] = useState([]);
@@ -50,12 +51,8 @@ function MemberList(props) {
     <>
       {props.currentUser && props.currentUser.authLevel === 9 && (
         <div className={styles.MemberList}>
-          <h1>회원 관리</h1>
-          <h3>
-            회원 목록
-            <a href="./board">(test)게시물 목록</a>
-            <a href="./comment">(test)댓글 목록</a>
-          </h3>
+          <h1>관리 페이지</h1>
+          <NavBar />
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>

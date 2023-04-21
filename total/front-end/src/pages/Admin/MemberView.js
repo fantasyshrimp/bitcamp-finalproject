@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
+
 import axios from "axios";
 
 function MemberView(props) {
@@ -112,15 +113,14 @@ function MemberView(props) {
               </div>
             </Form.Group>
 
+            <img src={data.fileName} className={styles.img} alt="" />
+
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
-                <Form.Label className={styles.label}>프로필사진명</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="profilePhoto"
-                  value={data ? data.profilePhoto : ""}
-                  autoFocus
-                />
+                <Form.Label className={styles.label}>
+                  프로필 사진 &nbsp;&nbsp;
+                  <img src={data.profilePhoto} className={styles.img} alt="" />
+                </Form.Label>
               </div>
             </Form.Group>
 
