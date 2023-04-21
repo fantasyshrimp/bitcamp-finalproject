@@ -1,23 +1,23 @@
 .swal2-title {
-    font-size: var(--aim-larger-font-size) !important;
-    color: var(--aim-text-default) !important;
+  font-size: var(--aim-larger-font-size) !important;
+  color: var(--aim-text-default) !important;
 }
 
 .swal2-popup {
-    background-color: var(--aim-base-tone) !important;
+  background-color: var(--aim-base-tone) !important;
 }
 
-
 .swal2-confirm {
-    background-color: var(--aim-fill-green) !important;
-    color: var(--aim-text-default) !important;
+  background-color: var(--aim-fill-green) !important;
+  color: var(--aim-text-default) !important;
+  width: 100px;
 }
 
 .swal2-confirm:focus {
-    border: none;
+  border: none;
 }
 
 .swal2-cancel {
-    background-color: var(--aim-emphasis-red) !important;
-    color: var(--aim-text-default) !important;
+  background-color: var(--aim-emphasis-red) !important;
+  color: var(--aim-text-default) !important;
 }

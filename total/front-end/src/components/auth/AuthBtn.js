@@ -5,6 +5,7 @@ import { Bell, BellFill } from "react-bootstrap-icons";
 import AlarmModal from "../AlarmModal";
 import axios from "axios";
 import { resolvePath } from "react-router-dom";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function AuthBtn(props) {
@@ -45,11 +46,16 @@ function AuthBtn(props) {
             if (response.status === 200) {
               setAlarms(response.data);
             } else {
-              console.log("failure 발생");
+              // console.log("failure 발생");
             }
           })
           .catch((error) => {
-            alert("alarm 가져오는 중 오류 발생!");
+            // alert("alarm 가져오는 중 오류 발생!");
+            Swal.fire({
+              title:
+                "알람 정보를 불러오는 중 오류 발생가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+              confirmButtonText: "확인",
+            });
           });
       };
 

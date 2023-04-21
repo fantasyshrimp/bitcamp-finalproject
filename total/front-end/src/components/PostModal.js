@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal, Form, Spinner } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function PostModal(props) {
@@ -66,13 +67,22 @@ function PostModal(props) {
           props.setCurrentUser(response.data.data);
         } else {
           setCurrentUser(null);
-          alert("로그인 후 이용하세요");
+          // alert("로그인 후 이용하세요");
+          Swal.fire({
+            title: "로그인 후 이용하세요.",
+            confirmButtonText: "확인",
+          });
           navigate("/");
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("로그인 유저 가져오는 중 오류 발생!");
+        // alert("로그인 유저 가져오는 중 오류 발생!");
+        Swal.fire({
+          title:
+            "로그인 유저 정보를 가져오는 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
@@ -96,12 +106,22 @@ function PostModal(props) {
         if (response.data.status === "success") {
           // console.log("그림 생성 완료");
         } else {
-          alert("AI 그림 생성 중 이상 발생 했습니다.");
+          // alert("AI 그림 생성 중 이상 발생 했습니다.");
+          Swal.fire({
+            title:
+              "AI 그림 생성 중 이상 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("입력된 문자열 처리 중 오류가 발생 했습니다.");
+        // alert("입력된 문자열 처리 중 오류가 발생 했습니다.");
+        Swal.fire({
+          title:
+            "입력된 문자열 처리 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
