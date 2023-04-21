@@ -129,6 +129,7 @@ function Navbars(props) {
                 setIsLoginModal={props.setIsLoginModal}
                 showExternalLogin={props.showExternalLogin}
                 setShowExternalLogin={props.setShowExternalLogin}
+                message={message}
               />
             </Nav>
           </Navbar.Collapse>
