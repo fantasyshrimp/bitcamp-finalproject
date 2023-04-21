@@ -52,9 +52,25 @@ function AuthModal(props) {
 
   const handleClickAdminPage = () => {
     handleClose();
+    navigate("/admin/management");
   };
 
   const handleClickStats = () => {
+    handleClose();
+    navigate("/admin/stats");
+  };
+
+  const handleClickProfile = () => {
+    axios.get("http://localhost:8080/auth/user").then((response) => {
+      navigate("/Profile", {
+        state: { no: response.data.data.no },
+      });
+      handleClose();
+    });
+  };
+
+  const handleClickSettings = () => {
+    navigate("/personalSetting");
     handleClose();
   };
 
@@ -76,117 +92,95 @@ function AuthModal(props) {
       >
         <Modal.Body>
           {currentUser && currentUser.authLevel === 9 && (
-            <div>
-              <div className="mb-3">
-                <a
-                  href="/admin/management"
-                  className="auth-modal-link"
-                  onClick={handleClickAdminPage}
-                >
-                  <ShieldLock
-                    style={{
-                      fontSize: `var(--aim-nomal-font-size)`,
-                      position: "relative",
-                      bottom: "2px",
-                    }}
-                  />
-                  <span className="ms-3">관리 페이지</span>
-                </a>
+            <>
+              <div
+                className="mb-3 auth-modal-link"
+                onClick={handleClickAdminPage}
+              >
+                <ShieldLock
+                  style={{
+                    fontSize: `var(--aim-nomal-font-size)`,
+                    position: "relative",
+                    bottom: "2px",
+                  }}
+                />
+                <span className="ms-3 ">관리 페이지</span>
               </div>
-              <div className="mb-3">
-                <a
-                  href="/admin/stats"
-                  className="auth-modal-link"
-                  onClick={handleClickStats}
-                >
-                  <GraphUp
-                    style={{
-                      fontSize: `var(--aim-nomal-font-size)`,
-                      position: "relative",
-                      bottom: "2px",
-                    }}
-                  />
-                  <span className="ms-3">통계 페이지</span>
-                </a>
+              <div className="mb-3 auth-modal-link" onClick={handleClickStats}>
+                <GraphUp
+                  style={{
+                    fontSize: `var(--aim-nomal-font-size)`,
+                    position: "relative",
+                    bottom: "2px",
+                  }}
+                />
+                <span className="ms-3">통계 페이지</span>
               </div>
-            </div>
+            </>
           )}
-          <div className="mb-3">
-            <a
-              href={props.currentUser?.isGenerating === 0 ? "" : "#"}
-              className={`auth-modal-link ${
-                props.currentUser?.isGenerating && "auth-generating"
-              }`}
-              onClick={
-                props.currentUser?.isGenerating === 0
-                  ? handleClickPostModal
-                  : undefined
-              }
-            >
-              <Pencil
-                style={{
-                  fontSize: `var(--aim-nomal-font-size)`,
-                  position: "relative",
-                  bottom: "2px",
-                }}
-              />
-              <span className="ms-3">글쓰기</span>
-            </a>
-          </div>
-          <div className="mb-3">
-            <a
-              href="/"
-              className="auth-modal-link"
-              onClick={(e) => {
-                e.preventDefault();
-                axios
-                  .get("http://localhost:8080/auth/user")
-                  .then((response) => {
-                    navigate("/Profile", {
-                      state: { no: response.data.data.no },
-                    });
-                    handleClose();
-                  });
+          <div
+            className="mb-3 auth-modal-link"
+            onClick={
+              props.currentUser?.isGenerating === 1
+                ? undefined
+                : handleClickPostModal
+            }
+            style={{
+              cursor: `${
+                props.currentUser?.isGenerating === 1 ? "default" : "pointer"
+              }`,
+            }}
+          >
+            <Pencil
+              style={{
+                fontSize: `var(--aim-nomal-font-size)`,
+                position: "relative",
+                bottom: "2px",
               }}
+              color={
+                props.currentUser?.isGenerating === 1
+                  ? "#bbb"
+                  : `var(--aim-text-default)`
+              }
+            />
+            <span
+              className={`ms-3 ${
+                props.currentUser?.isGenerating === 1 ? "auth-generating" : ""
+              }`}
             >
-              <Person
-                style={{
-                  fontSize: `var(--aim-nomal-font-size)`,
-                  position: "relative",
-                  bottom: "2px",
-                }}
-              />
-              <span className="ms-3">내 프로필</span>
-            </a>
+              글쓰기
+            </span>
           </div>
-          <div className="mb-3">
-            <a
-              href="/personalSetting"
-              className="auth-modal-link"
-              onClick={handleClose}
-            >
-              <Gear
-                style={{
-                  fontSize: `var(--aim-nomal-font-size)`,
-                  position: "relative",
-                  bottom: "1px",
-                }}
-              />
-              <span className="ms-3">설정</span>
-            </a>
+          <div className="mb-3 auth-modal-link" onClick={handleClickProfile}>
+            <Person
+              style={{
+                fontSize: `var(--aim-nomal-font-size)`,
+                position: "relative",
+                bottom: "2px",
+              }}
+            />
+            <span className="ms-3">내 프로필</span>
           </div>
-          <div className="mb-0">
-            <a href="/" className="auth-modal-link" onClick={handleClickLogout}>
-              <BoxArrowRight
-                style={{
-                  fontSize: `var(--aim-nomal-font-size)`,
-                  position: "relative",
-                  left: "3px",
-                  bottom: "3px",
-                }}
-              />
-              <span className="ms-3">로그아웃</span>
-            </a>
+          <div className="mb-3 auth-modal-link" onClick={handleClickSettings}>
+            <Gear
+              style={{
+                fontSize: `var(--aim-nomal-font-size)`,
+                position: "relative",
+                bottom: "1px",
+              }}
+            />
+            <span className="ms-3">설정</span>
+          </div>
+          <div className="mb-0 auth-modal-link" onClick={handleClickLogout}>
+            <BoxArrowRight
+              style={{
+                fontSize: `var(--aim-nomal-font-size)`,
+                position: "relative",
+                left: "3px",
+                bottom: "3px",
+              }}
+            />
+            <span className="ms-3">로그아웃</span>
           </div>
         </Modal.Body>
       </Modal>
