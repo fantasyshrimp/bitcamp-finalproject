@@ -91,7 +91,7 @@ function Navbars(props) {
                       case "process":
                       default:
                         variant = "info";
-                        label = `생성 중 ${message?.count || ""}s`;
+                        label = `생성 중 ${message?.count || " "}s`;
                         animated = true;
                     }
 

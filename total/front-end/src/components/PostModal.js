@@ -67,7 +67,6 @@ function PostModal(props) {
 
     axios("http://localhost:8080/auth/user")
       .then((response) => {
-        console.log(response);
         if (response.data.status === "success") {
           if (response.data.data.isGenerating === 1) {
             Swal.fire({
