@@ -3,18 +3,13 @@ import axios from "axios";
 import { ResponsivePie } from "@nivo/pie";
 import "./Stats.css";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker, { registerLocale } from "react-datepicker";
-import ko from "date-fns/locale/ko";
-
-registerLocale("ko", ko); // 한국어 로캘 등록
+import CustomDatePicker from "./CustomDatePicker";
 
 const BoardReply = (props) => {
-  // const dateNow = new Date();
-  // const today = dateNow.toISOString().slice(0, 10);
   const [data, setData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(() => {
     const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setDate(yesterday.getDate());
     return yesterday;
   });
   // console.log("selectedDate:", selectedDate);
@@ -59,11 +54,11 @@ const BoardReply = (props) => {
     fetchData(selectedDate);
   }, [selectedDate]);
 
-  const handleBoardReplyDateChange = (date) => {
-    console.log(
-      "선택된 날짜:",
-      date.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
-    );
+  const handleDateChange = (date) => {
+    // console.log(
+    //   "선택된 날짜:",
+    //   date.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+    // );
     setSelectedDate(date);
   };
 
@@ -76,40 +71,9 @@ const BoardReply = (props) => {
   // 오늘 날짜를 maxDate 변수에 저장
   const maxDate = (() => {
     const today = new Date();
-    today.setDate(today.getDate() - 1);
+    today.setDate(today.getDate());
     return today;
   })();
-
-  const CustomHeader = ({
-    date,
-    decreaseMonth,
-    increaseMonth,
-    prevMonthButtonDisabled,
-    nextMonthButtonDisabled,
-  }) => (
-    <div className="custom-datepicker-header">
-      <button
-        onClick={decreaseMonth}
-        disabled={prevMonthButtonDisabled}
-        style={{ border: "none" }}
-      >
-        {"<"}
-      </button>
-      <span>
-        {date.toLocaleDateString("ko-KR", { month: "long", year: "numeric" })}
-      </span>
-      <button
-        onClick={increaseMonth}
-        disabled={nextMonthButtonDisabled}
-        style={{ border: "none" }}
-      >
-        {">"}
-      </button>
-      <button onClick={handleTodayButtonClick} style={{ border: "none" }}>
-        오늘
-      </button>
-    </div>
-  );
 
   return (
     <div id="BoardReply">
@@ -122,17 +86,12 @@ const BoardReply = (props) => {
       >
         {props.title}
       </h3>
-      <DatePicker
-        id="calendar"
-        selected={selectedDate}
-        // defaultValue={today}
-        onChange={handleBoardReplyDateChange}
-        dateFormat="yyyy-MM-dd"
+      <CustomDatePicker
+        selectedDate={selectedDate}
+        onDateChange={handleDateChange}
         maxDate={maxDate}
-        locale="ko"
-        renderCustomHeader={(props) => <CustomHeader {...props} />}
+        handleTodayButtonClick={handleTodayButtonClick}
       />
-
       <ResponsivePie
         data={data}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
