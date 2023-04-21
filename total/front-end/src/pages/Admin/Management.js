@@ -10,6 +10,7 @@ function Management() {
   const [menuNo, setMenuNo] = useState(
     location.state ? location.state.menuNo : 0
   );
+  console.log(location.state);
   const menu = ["회원 관리", "게시물 관리", "댓글 관리"];
 
   const [flexDirection, setFlexDirection] = useState("row");
