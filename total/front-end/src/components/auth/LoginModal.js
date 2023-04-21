@@ -61,16 +61,18 @@ function LoginModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          if (response.data.data.accountState === 1) {
-            // alert("메일 인증 후 로그인 하세요.");
-            Swal.fire({
-              title: "메일 인증 후 로그인 하세요.",
-              confirmButtonText: "확인",
-            });
-            return;
-          }
           handleClose();
           window.location.reload();
+        } else if (
+          response.data.status === "failure" &&
+          response.data.errorCode === "402"
+        ) {
+          // alert("메일 인증 후 로그인 하세요.");
+          Swal.fire({
+            title: "메일 인증 후 로그인 하세요.",
+            confirmButtonText: "확인",
+          });
+          return;
         } else {
           document.querySelector("#passwordHelpBlock").innerText =
             "이메일 또는 비밀번호가 틀렸습니다.";
