@@ -170,20 +170,20 @@ const Visitor = (props) => {
         axisBottom={{
           orient: "bottom",
           tickSize: 15,
-          tickPadding: 0,
+          tickPadding: 5,
           tickRotation: 0,
           legend: "날짜",
-          legendOffset: 45,
+          legendOffset: 60,
           legendPosition: "middle",
         }}
         axisLeft={{
           tickValues: 2, // 조회수 y축 셋팅값
           orient: "left",
-          tickSize: 5,
+          tickSize: 10,
           tickPadding: 5,
           tickRotation: 0,
           legend: "조회수",
-          legendOffset: -40,
+          legendOffset: -50,
           legendPosition: "middle",
         }}
         pointSize={10}
