@@ -138,6 +138,7 @@ const Visitor = (props) => {
           width: "250px",
           marginBottom: "5%",
           borderBottom: `1px solid var(--aim-border)`,
+          color: `var(--aim-text-default)`,
         }}
       >
         {props.title}

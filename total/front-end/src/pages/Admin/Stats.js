@@ -32,32 +32,34 @@ function Stats() {
         }}
       >
         <div style={{ height: "20%" }}></div>
-        <div style={{ marginRight: "5%" }}>
+        <div style={{ marginRight: "10%" }}>
           <h2
             style={{
-              paddingBottom: "10%",
+              paddingBottom: "5%",
               boxSizing: "border-box",
+              cursor: "default",
             }}
           >
             통계
           </h2>
-
-          {menu.map((title, index) => {
-            return (
-              <div
-                style={{
-                  // backgroundColor: "blue",
-                  paddingBottom: "5%",
-                }}
-                key={title + index}
-                onClick={() => {
-                  setMenuNo(index);
-                }}
-              >
-                {title}
-              </div>
-            );
-          })}
+          <div style={{ marginLeft: "10%", cursor: "pointer", hover: "blue" }}>
+            {menu.map((title, index) => {
+              return (
+                <div
+                  style={{
+                    // backgroundColor: "blue",
+                    paddingBottom: "5%",
+                  }}
+                  key={title + index}
+                  onClick={() => {
+                    setMenuNo(index);
+                  }}
+                >
+                  {title}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div id="Stats-content">

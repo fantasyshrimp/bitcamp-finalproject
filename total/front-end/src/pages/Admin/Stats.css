@@ -10,6 +10,7 @@
 }
 
 #Visitor {
+  cursor: default !important;
   display: block;
   font-size: 1rem;
   justify-content: center;
@@ -25,6 +26,7 @@
 }
 
 #BoardReply {
+  cursor: default !important;
   display: block;
   font-size: 1rem;
   justify-content: center;
@@ -46,5 +48,6 @@
 }
 
 g text {
-  fill: gray !important; /* X, Y축의 텍스트 색상변경 */
+  font-size: 1rem !important;
+  fill: var(--aim-text-default) !important; /* X, Y축의 텍스트 색상변경 */
 }
