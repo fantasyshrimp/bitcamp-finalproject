@@ -17,12 +17,6 @@
   cursor: pointer;
 }
 
-.auth-generating,
-.auth-generating:hover {
-  color: #999;
-  cursor: default;
-}
-
 #auth-modal .modal-body {
   background-color: var(--aim-base-tone-up);
 }

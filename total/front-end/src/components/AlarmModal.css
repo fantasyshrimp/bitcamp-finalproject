@@ -15,8 +15,8 @@
   color: var(--aim-text-default);
 }
 
-
-.modal-header, .modal-footer {
+.modal-header,
+.modal-footer {
   background-color: var(--aim-base-tone);
   border-color: var(--aim-base-tone);
 }
@@ -44,4 +44,14 @@
 
 #alarm-modal div {
   background-color: var(--aim-base-tone-up);
+}
+
+.alarm-modal-header {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.alarm-modal-footer {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }

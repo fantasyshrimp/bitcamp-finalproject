@@ -19,6 +19,38 @@ function AuthModal(props) {
   const { show, setShow } = props;
   let { currentUser, setCurrentUser } = props;
   const [postShow, setPostShow] = useState(false);
+  const [colorManageIcon, setColorManageIcon] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorManageText, setColorManageText] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorStatsIcon, setColorStatsIcon] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorStatsText, setColorStatsText] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorPostIcon, setColorPostIcon] = useState(`var(--aim-text-default)`);
+  const [colorPostText, setColorPostText] = useState(`var(--aim-text-default)`);
+  const [colorProfileIcon, setColorProfileIcon] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorProfileText, setColorProfileText] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorSettingsIcon, setColorSettingsIcon] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorSettingsText, setColorSettingsText] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorLogoutIcon, setColorLogoutIcon] = useState(
+    `var(--aim-text-default)`
+  );
+  const [colorLogoutText, setColorLogoutText] = useState(
+    `var(--aim-text-default)`
+  );
 
   const navigate = useNavigate();
 
@@ -96,6 +128,14 @@ function AuthModal(props) {
               <div
                 className="mb-3 auth-modal-link"
                 onClick={handleClickAdminPage}
+                onMouseEnter={() => {
+                  setColorManageIcon(`var(--aim-text-href)`);
+                  setColorManageText(`var(--aim-text-href)`);
+                }}
+                onMouseLeave={() => {
+                  setColorManageIcon(`var(--aim-text-default)`);
+                  setColorManageText(`var(--aim-text-default)`);
+                }}
               >
                 <ShieldLock
                   style={{
@@ -103,31 +143,60 @@ function AuthModal(props) {
                     position: "relative",
                     bottom: "2px",
                   }}
+                  color={colorManageIcon}
                 />
-                <span className="ms-3 ">관리 페이지</span>
+                <span className="ms-3 " style={{ color: colorManageText }}>
+                  관리 페이지
+                </span>
               </div>
-              <div className="mb-3 auth-modal-link" onClick={handleClickStats}>
+              <div
+                className="mb-3 auth-modal-link"
+                onClick={handleClickStats}
+                onMouseEnter={() => {
+                  setColorStatsIcon(`var(--aim-text-href)`);
+                  setColorStatsText(`var(--aim-text-href)`);
+                }}
+                onMouseLeave={() => {
+                  setColorStatsIcon(`var(--aim-text-default)`);
+                  setColorStatsText(`var(--aim-text-default)`);
+                }}
+              >
                 <GraphUp
                   style={{
                     fontSize: `var(--aim-nomal-font-size)`,
                     position: "relative",
                     bottom: "2px",
                   }}
+                  color={colorStatsIcon}
                 />
-                <span className="ms-3">통계 페이지</span>
+                <span className="ms-3" style={{ color: colorStatsText }}>
+                  통계 페이지
+                </span>
               </div>
             </>
           )}
           <div
             className="mb-3 auth-modal-link"
             onClick={
+              props.message?.status === "process" ||
               props.currentUser?.isGenerating === 1
                 ? undefined
                 : handleClickPostModal
             }
+            onMouseEnter={() => {
+              setColorPostIcon(`var(--aim-text-href)`);
+              setColorPostText(`var(--aim-text-href)`);
+            }}
+            onMouseLeave={() => {
+              setColorPostIcon(`var(--aim-text-default)`);
+              setColorPostText(`var(--aim-text-default)`);
+            }}
             style={{
               cursor: `${
-                props.currentUser?.isGenerating === 1 ? "default" : "pointer"
+                props.message?.status === "process" ||
+                props.currentUser?.isGenerating === 1
+                  ? "default"
+                  : "pointer"
               }`,
             }}
           >
@@ -138,40 +207,85 @@ function AuthModal(props) {
                 bottom: "2px",
               }}
               color={
+                props.message?.status === "process" ||
                 props.currentUser?.isGenerating === 1
-                  ? "#bbb"
-                  : `var(--aim-text-default)`
+                  ? `var(--aim-text-sub)`
+                  : colorPostIcon
               }
             />
             <span
-              className={`ms-3 ${
-                props.currentUser?.isGenerating === 1 ? "auth-generating" : ""
-              }`}
+              style={{
+                color:
+                  props.message?.status === "process" ||
+                  props.currentUser?.isGenerating === 1
+                    ? `var(--aim-text-sub)`
+                    : colorPostText,
+              }}
+              className="ms-3"
             >
               글쓰기
             </span>
           </div>
-          <div className="mb-3 auth-modal-link" onClick={handleClickProfile}>
+          <div
+            className="mb-3 auth-modal-link"
+            onClick={handleClickProfile}
+            onMouseEnter={() => {
+              setColorProfileIcon(`var(--aim-text-href)`);
+              setColorProfileText(`var(--aim-text-href)`);
+            }}
+            onMouseLeave={() => {
+              setColorProfileIcon(`var(--aim-text-default)`);
+              setColorProfileText(`var(--aim-text-default)`);
+            }}
+          >
             <Person
               style={{
                 fontSize: `var(--aim-nomal-font-size)`,
                 position: "relative",
                 bottom: "2px",
               }}
+              color={colorProfileIcon}
             />
-            <span className="ms-3">내 프로필</span>
+            <span className="ms-3" style={{ color: colorProfileText }}>
+              내 프로필
+            </span>
           </div>
-          <div className="mb-3 auth-modal-link" onClick={handleClickSettings}>
+          <div
+            className="mb-3 auth-modal-link"
+            onClick={handleClickSettings}
+            onMouseEnter={() => {
+              setColorSettingsIcon(`var(--aim-text-href)`);
+              setColorSettingsText(`var(--aim-text-href)`);
+            }}
+            onMouseLeave={() => {
+              setColorSettingsIcon(`var(--aim-text-default)`);
+              setColorSettingsText(`var(--aim-text-default)`);
+            }}
+          >
             <Gear
               style={{
                 fontSize: `var(--aim-nomal-font-size)`,
                 position: "relative",
                 bottom: "1px",
               }}
+              color={colorSettingsIcon}
             />
-            <span className="ms-3">설정</span>
+            <span className="ms-3" style={{ color: colorSettingsText }}>
+              설정
+            </span>
           </div>
-          <div className="mb-0 auth-modal-link" onClick={handleClickLogout}>
+          <div
+            className="mb-0 auth-modal-link"
+            onClick={handleClickLogout}
+            onMouseEnter={() => {
+              setColorLogoutIcon(`var(--aim-text-href)`);
+              setColorLogoutText(`var(--aim-text-href)`);
+            }}
+            onMouseLeave={() => {
+              setColorLogoutIcon(`var(--aim-text-default)`);
+              setColorLogoutText(`var(--aim-text-default)`);
+            }}
+          >
             <BoxArrowRight
               style={{
                 fontSize: `var(--aim-nomal-font-size)`,
@@ -179,8 +293,11 @@ function AuthModal(props) {
                 left: "3px",
                 bottom: "3px",
               }}
+              color={colorLogoutIcon}
             />
-            <span className="ms-3">로그아웃</span>
+            <span className="ms-3" style={{ color: colorLogoutText }}>
+              로그아웃
+            </span>
           </div>
         </Modal.Body>
       </Modal>

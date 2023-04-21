@@ -136,6 +136,7 @@ function AuthBtn(props) {
         setShow={setShow}
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
+        message={props.message}
       />
 
       <AlarmModal
