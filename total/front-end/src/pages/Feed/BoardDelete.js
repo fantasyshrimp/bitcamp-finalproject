@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function BoardDelete(props) {
   const replyNos = props.reply.map((reply) => reply.replyNo);
@@ -9,7 +10,11 @@ function BoardDelete(props) {
         data: replyNos,
       })
       .then((response) => {
-        alert("삭제되었습니다!");
+        // alert("삭제되었습니다!");
+        Swal.fire({
+          title: "삭제 되었습니다.",
+          confirmButtonText: "확인",
+        });
         window.location.reload();
       })
       .catch((error) => {

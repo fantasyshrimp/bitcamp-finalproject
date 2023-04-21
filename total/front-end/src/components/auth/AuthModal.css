@@ -13,19 +13,10 @@
 }
 
 .auth-modal-link {
-  text-decoration: none;
   color: var(--aim-text-default);
-}
-
-.auth-generating,
-.auth-generating:hover {
-  color: #888;
-  cursor: default;
+  cursor: pointer;
 }
 
 #auth-modal .modal-body {
   background-color: var(--aim-base-tone-up);
-}
-
-#auth-modal .modal-body .mb-3:hover {
 }

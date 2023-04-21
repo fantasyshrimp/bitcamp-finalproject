@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const NaverLoginHandler = () => {
   // useHistory 훅을 사용해 history 객체를 가져옵니다. 이 객체를 사용하여 라우터 내에서 리다이렉션을 수행할 수 있습니다.
@@ -27,16 +28,26 @@ const NaverLoginHandler = () => {
           params
         );
 
-        console.log(response);
-        alert(
-          `${
+        // console.log(response);
+        // alert(
+        //   `${
+        //     response.data?.data.link === "naver" ? "네이버 계정" : ""
+        //   } 회원가입이 완료 되었습니다.`
+        // );
+        Swal.fire({
+          title: `${
             response.data?.data.link === "naver" ? "네이버 계정" : ""
-          } 회원가입이 완료 되었습니다.`
-        );
+          } 회원가입이 완료 되었습니다.`,
+          confirmButtonText: "확인",
+        });
 
         if (response.data.status === "failure") {
           if (response.data.errorCode == "502") {
-            alert("Artify 계정으로 로그인 하세요");
+            // alert("Artify 계정으로 로그인 하세요");
+            Swal.fire({
+              title: "Artify 계정으로 로그인 하세요.",
+              confirmButtonText: "확인",
+            });
           }
         }
         window.location.href = "/"; // 인덱스 페이지로 이동

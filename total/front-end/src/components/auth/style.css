@@ -39,3 +39,7 @@
 .findpw2-modal-resend-clicked:hover {
   text-decoration: none;
 }
+
+.auth-generating {
+  color: #999;
+}

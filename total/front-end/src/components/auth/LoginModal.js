@@ -3,6 +3,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import authBtnStyle from "./style";
 import axios from "axios";
 import ExternalLogin from "./ExternalLogin";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function LoginModal(props) {
@@ -60,19 +61,29 @@ function LoginModal(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          if (response.data.data.accountState === 1) {
-            alert("메일 인증 후 로그인 하세요.");
-            return;
-          }
           handleClose();
           window.location.reload();
+        } else if (
+          response.data.status === "failure" &&
+          response.data.errorCode === "402"
+        ) {
+          // alert("메일 인증 후 로그인 하세요.");
+          Swal.fire({
+            title: "메일 인증 후 로그인 하세요.",
+            confirmButtonText: "확인",
+          });
+          return;
         } else {
           document.querySelector("#passwordHelpBlock").innerText =
             "이메일 또는 비밀번호가 틀렸습니다.";
         }
       })
       .catch((error) => {
-        alert("로그인 중 오류 발생");
+        // alert("로그인 중 오류 발생");
+        Swal.fire({
+          title: "로그인 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
@@ -160,7 +171,7 @@ function LoginModal(props) {
           >
             <Form.Group className="mb-4" controlId="email">
               <Form.Label className="text-light">
-                사용자의 이메일 주소를 입력해주세요
+                사용자의 이메일 주소를 입력해 주세요
               </Form.Label>
               <Form.Control
                 type="email"
@@ -180,7 +191,7 @@ function LoginModal(props) {
 
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="text-light">
-                사용자의 비밀번호를 입력해주세요
+                사용자의 비밀번호를 입력해 주세요
               </Form.Label>
               <Form.Control
                 type="password"

@@ -12,6 +12,7 @@ import getTimeBoard from "../../utils/DateBoard";
 import BoardUpdate from "./BoardUpdate";
 import BoardDelete from "./BoardDelete";
 import Money from "./Money";
+import Swal from "sweetalert2";
 
 function FeedModal(props) {
   const [data, setData] = useState([]);
@@ -26,6 +27,7 @@ function FeedModal(props) {
 
   function handleTagClick(e) {
     const keyword = e.target.getAttribute("value").replace("#", "");
+    console.log(keyword);
     axios
       .post(
         "http://localhost:8080/boards/keyword",
@@ -93,11 +95,19 @@ function FeedModal(props) {
           setIsUpdated(!isUpdated);
           setValue("");
         } else {
-          alert("입력실패");
+          // alert("입력실패");
+          Swal.fire({
+            title: "입력 실패 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
-        alert("로그인 후 입력가능합니다.");
+        // alert("로그인 후 입력가능합니다.");
+        Swal.fire({
+          title: "로그인 후 입력 가능합니다.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
@@ -134,10 +144,6 @@ function FeedModal(props) {
       : "0";
   };
 
-  if (!Array.isArray(data)) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
       <div id="feed-modal-image" style={{ display: "table" }}>
@@ -164,13 +170,15 @@ function FeedModal(props) {
             onClick={MoneyModalHandler}
           ></div>
           <div id="modal-money">{numberWithCommas(point)}</div>
-          {props.user.data.no !== writerNo && isMoneyModalOpen && (
-            <Money
-              boardNo={boardNo}
-              writerNo={writerNo}
-              MoneyModalHandler={MoneyModalHandler}
-            />
-          )}
+          {props.user &&
+            props.user.data.no !== writerNo &&
+            isMoneyModalOpen && (
+              <Money
+                boardNo={boardNo}
+                writerNo={writerNo}
+                MoneyModalHandler={MoneyModalHandler}
+              />
+            )}
         </div>
       </div>
       <div id="feed-modal-content">
@@ -203,18 +211,15 @@ function FeedModal(props) {
                 </div>
               ))}
             </div>
-            {props.user.data.no !== writerNo && (
+            {props.user && props.user.data.no !== writerNo && (
               <div id="feed-modal-boardreport" onClick={openModal}>
                 신고하기
               </div>
             )}
-            {props.user.data.no === writerNo && (
+            {props.user && props.user.data.no === writerNo && (
               <>
                 <div id="feed-modal-boarddelete" onClick={DeleteModalHandler}>
                   삭제하기
-                </div>
-                <div id="feed-modal-boardupdate" onClick={UpdateModalHandler}>
-                  수정하기
                 </div>
               </>
             )}

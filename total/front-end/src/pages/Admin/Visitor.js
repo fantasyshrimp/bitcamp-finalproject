@@ -12,7 +12,7 @@ const Visitor = (props) => {
   const [chartData, setChartData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(() => {
     const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setDate(yesterday.getDate());
     return yesterday;
   });
 
@@ -69,10 +69,10 @@ const Visitor = (props) => {
   }, [selectedDate]);
 
   const handleVisitorDateChange = (date) => {
-    console.log(
-      "선택된 날짜:",
-      date.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
-    );
+    // console.log(
+    //   "선택된 날짜:",
+    //   date.toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+    // );
     setSelectedDate(date);
   };
 
@@ -85,7 +85,7 @@ const Visitor = (props) => {
   // 오늘 날짜를 maxDate 변수에 저장
   const maxDate = (() => {
     const today = new Date();
-    today.setDate(today.getDate() - 1);
+    today.setDate(today.getDate());
     return today;
   })();
 
@@ -100,21 +100,32 @@ const Visitor = (props) => {
       <button
         onClick={decreaseMonth}
         disabled={prevMonthButtonDisabled}
-        style={{ border: "none" }}
+        style={{ color: "black", border: "none" }}
       >
         {"<"}
       </button>
-      <span>
+      <span
+        style={{
+          color: "black",
+          border: "none",
+        }}
+      >
         {date.toLocaleDateString("ko-KR", { month: "long", year: "numeric" })}
       </span>
       <button
         onClick={increaseMonth}
         disabled={nextMonthButtonDisabled}
-        style={{ border: "none" }}
+        style={{
+          color: "black",
+          border: "none",
+        }}
       >
         {">"}
       </button>
-      <button onClick={handleTodayButtonClick} style={{ border: "none" }}>
+      <button
+        onClick={handleTodayButtonClick}
+        style={{ color: "black", border: "none" }}
+      >
         오늘
       </button>
     </div>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./style.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function FindPw2Modal(props) {
@@ -78,7 +79,12 @@ function FindPw2Modal(props) {
         }
       })
       .catch((error) => {
-        alert("인증코드 전송 중 오류 발생");
+        // alert("인증코드 전송 중 오류 발생");
+        Swal.fire({
+          title:
+            "인증코드 전송 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
@@ -112,7 +118,12 @@ function FindPw2Modal(props) {
         }
       })
       .catch((error) => {
-        alert("인증코드 전송 중 오류 발생");
+        // alert("인증코드 전송 중 오류 발생");
+        Swal.fire({
+          title:
+            "인증코드 전송 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
@@ -150,7 +161,7 @@ function FindPw2Modal(props) {
           >
             <Form.Group className="mb-2" controlId="text">
               <Form.Label className="text-light">
-                이메일로 받은 인증코드를 입력해주세요.
+                이메일로 받은 인증코드를 입력해 주세요.
               </Form.Label>
               <Form.Control
                 type="text"

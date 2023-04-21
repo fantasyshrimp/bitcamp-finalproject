@@ -1,8 +1,8 @@
 * {
   xmargin: 5px;
   scroll-behavior: smooth;
-  xcolor: white;
-}
+  /* color: white; */
+  }
 
 section {
   width: 100%;

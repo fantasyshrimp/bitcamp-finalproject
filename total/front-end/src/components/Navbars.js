@@ -4,12 +4,14 @@ import axios from "axios";
 import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 import SSEContext from "../handler/SSEContext";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
   let [currentUser, setCurrentUser] = useState(null);
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +23,12 @@ function Navbars(props) {
           props.setCurrentUser(null);
         }
       } catch (error) {
-        alert("현재 서버가 꺼져 있어 로그인 유저 정보를 가져올 수 없습니다.");
+        // alert("현재 서버가 꺼져 있어 로그인 유저 정보를 가져올 수 없습니다.");
+        Swal.fire({
+          title:
+            "서버 문제로 유저 정보를 가져올 수 없습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
         console.log(error);
       }
     };
@@ -84,7 +91,7 @@ function Navbars(props) {
                       case "process":
                       default:
                         variant = "info";
-                        label = "생성 중";
+                        label = `생성 중 ${message?.count || " "}s`;
                         animated = true;
                     }
 
@@ -95,9 +102,10 @@ function Navbars(props) {
                         label={label}
                         animated={animated}
                         style={{
-                          width: "70px",
+                          width: "80px",
                           height: "20px",
                           fontSize: "0.75rem",
+                          borderRadius: "4px",
                         }}
                       />
                     );
@@ -121,6 +129,7 @@ function Navbars(props) {
                 setIsLoginModal={props.setIsLoginModal}
                 showExternalLogin={props.showExternalLogin}
                 setShowExternalLogin={props.setShowExternalLogin}
+                message={message}
               />
             </Nav>
           </Navbar.Collapse>

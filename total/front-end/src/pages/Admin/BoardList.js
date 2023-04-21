@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import BoardView from "./BoardView";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 function BoardList(props) {
   const [data, setData] = useState([]);
@@ -13,7 +15,11 @@ function BoardList(props) {
 
   useEffect(() => {
     if (props.currentUser && props.currentUser.authLevel !== 9) {
-      alert("권한이 없습니다.");
+      // alert("권한이 없습니다.");
+      Swal.fire({
+        title: "권한이 없습니다.",
+        confirmButtonText: "확인",
+      });
       navigate("/");
     }
   }, [props.currentUser]);
@@ -41,12 +47,8 @@ function BoardList(props) {
   return (
     <>
       <div className={styles.BoardList}>
-        <h1>게시물 관리</h1>
-        <h3>
-          <a href="./member">회원 목록</a>
-          <a href="./board">(test)게시물 목록</a>
-          <a href="./comment">(test)댓글 목록</a>
-        </h3>
+        <h1>관리 페이지</h1>
+        <NavBar />
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>
@@ -55,8 +57,6 @@ function BoardList(props) {
               <th>원본내용</th>
               <th>요약내용</th>
               <th>번역내용</th>
-              <th>좋아요</th>
-              <th>조회수</th>
               <th>작성일</th>
               <th>수정일</th>
               <th>신고횟수</th>
@@ -72,25 +72,26 @@ function BoardList(props) {
                   {board.writer.nickname}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.originContent}
+                  {board.originContent.length > 20
+                    ? board.originContent.substr(0, 20) + "..."
+                    : board.originContent}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.summaryContent}
+                  {board.summaryContent.length > 20
+                    ? board.summaryContent.substr(0, 20) + "..."
+                    : board.summaryContent}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.transContent}
+                  {board.transContent.length > 20
+                    ? board.transContent.substr(0, 20) + "..."
+                    : board.transContent}
+                </td>
+
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writeDt.substr(0, 10)}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.likeCnt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.viewCnt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.writeDt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.updateDt}
+                  {board.updateDt.substr(0, 10)}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
                   {board.reportCnt}

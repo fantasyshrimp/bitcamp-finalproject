@@ -12,7 +12,6 @@ function PointModal(props) {
   useEffect(() => {
     axios.get("http://localhost:8080/point/log").then((response) => {
       setPointLog(response.data);
-      console.log(pointLog);
     });
   }, [props.isOpen]);
 
@@ -42,7 +41,7 @@ function PointModal(props) {
       : "0";
   };
 
-  let beforeItem = {point:0};
+  let beforeItem = { point: 0 };
   return (
     <Modal
       isOpen={props.isOpen}
@@ -64,13 +63,13 @@ function PointModal(props) {
     >
       <div id="point">
         {pointLog.map((item) => {
-          if (beforeItem.getMemberNo !== undefined) {          
+          if (beforeItem.getMemberNo !== undefined) {
             if (props.memberNo === beforeItem.getMemberNo) {
               toPoint -= beforeItem.point;
             } else if (props.memberNo !== beforeItem.getMemberNo) {
               toPoint += beforeItem.point;
             }
-          }          
+          }
           beforeItem = item;
 
           return (

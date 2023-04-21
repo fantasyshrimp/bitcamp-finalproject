@@ -6,16 +6,23 @@ import axios from "axios";
 import BoardList from "./BoardList";
 import CommentList from "./CommentList";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 function MemberList(props) {
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
   const navigate = useNavigate();
+  const [point, setPoint] = useState(null);
 
   useEffect(() => {
     if (props.currentUser && props.currentUser.authLevel !== 9) {
-      alert("권한이 없습니다.");
+      // alert("권한이 없습니다.");
+      Swal.fire({
+        title: "권한이 없습니다.",
+        confirmButtonText: "확인",
+      });
       navigate("/");
     }
   }, [props.currentUser]);
@@ -45,12 +52,8 @@ function MemberList(props) {
     <>
       {props.currentUser && props.currentUser.authLevel === 9 && (
         <div className={styles.MemberList}>
-          <h1>회원 관리</h1>
-          <h3>
-            회원 목록
-            <a href="./board">(test)게시물 목록</a>
-            <a href="./comment">(test)댓글 목록</a>
-          </h3>
+          <h1>관리 페이지</h1>
+          <NavBar />
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
@@ -58,52 +61,24 @@ function MemberList(props) {
                 <th>닉네임</th>
                 <th>이메일</th>
                 <th>가입일</th>
-                <th>포인트</th>
                 <th>성별</th>
-                <th>포인트</th>
+                <th>계정상태</th>
                 <th>전화번호</th>
                 <th>비밀번호 변경일시</th>
-                <th>계정상태</th>
                 <th>권한레벨</th>
               </tr>
             </thead>
             <tbody>
               {data.map((member) => (
-                <tr key={member.no}>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.no}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.nickname}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.email}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.createdDate}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.point}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                <tr
+                  key={member.no}
+                  onClick={() => handleColumnSelect(member.no)}
+                >
+                  <td className="td">{member.no}</td>
+                  <td className="td">{member.nickname}</td>
+                  <td className="td">{member.email}</td>
+                  <td className="td">{member.createdDate}</td>
+                  <td className="td">
                     {member.gender === 0
                       ? "미정"
                       : member.gender === 1
@@ -112,28 +87,7 @@ function MemberList(props) {
                       ? "여"
                       : ""}
                   </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.point}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.tel}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
-                    {member.passwordDate}
-                  </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                  <td className="td">
                     {member.accountState === 0
                       ? "이메일 인증"
                       : member.accountState === 1
@@ -146,10 +100,9 @@ function MemberList(props) {
                       ? "정지"
                       : ""}
                   </td>
-                  <td
-                    className="td"
-                    onClick={() => handleColumnSelect(member.no)}
-                  >
+                  <td className="td">{member.tel}</td>
+                  <td className="td">{member.passwordDate}</td>
+                  <td className="td">
                     {member.authLevel === 0
                       ? "일반"
                       : member.authLevel === 9

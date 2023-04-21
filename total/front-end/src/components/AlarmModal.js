@@ -26,12 +26,11 @@ function AlarmModal(props) {
   const handleClickReadAll = (e) => {
     e.preventDefault();
     // ReadAll 처리하기
-    axios.put(`http://localhost:8080/alarm/readAll`)
-    .then((response) => {
+    axios.put(`http://localhost:8080/alarm/readAll`).then((response) => {
       if (response.data.status === "failure") {
         navigate("/");
       }
-    })
+    });
   };
 
   const moveProfile = (no) => {
@@ -63,7 +62,7 @@ function AlarmModal(props) {
     if (path === "/personalSetting") {
       window.location.reload();
     }
-  }
+  };
 
   return (
     <>
@@ -78,10 +77,13 @@ function AlarmModal(props) {
         contentClassName="alarm-modal-content"
         id="#alarm-modal"
       >
-        <Modal.Header className="pt-2 pb-2" style={{
-          color: `var(--aim-text-default)`,
-          backgroundColor: `var(--aim-base-tone-up)`
-          }}>
+        <Modal.Header
+          className="pt-2 pb-2 alarm-modal-header"
+          style={{
+            color: `var(--aim-text-default)`,
+            backgroundColor: `var(--aim-base-tone-up)`,
+          }}
+        >
           <div className="d-flex justify-content-between w-100">
             <div className="align-self-center" style={{ fontWeight: "bold" }}>
               알림
@@ -93,7 +95,11 @@ function AlarmModal(props) {
         </Modal.Header>
         <Modal.Body
           className="p-0"
-          style={{ maxHeight: "calc(56px * 5)", overflowY: "auto", backgroundColor: `var(--aim-base-tone-up)`, }}
+          style={{
+            maxHeight: "calc(56px * 5)",
+            overflowY: "auto",
+            backgroundColor: `var(--aim-base-tone-up)`,
+          }}
         >
           <Container className="">
             {alarms && alarms.logData.length > 0 ? (
@@ -115,7 +121,9 @@ function AlarmModal(props) {
 
                   <Col
                     style={{
-                      color: element.log.readFlag ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
+                      color: element.log.readFlag
+                        ? `var(--aim-text-sub)`
+                        : `var(--aim-text-default)`,
                       maxHeight: "40px",
                       overflow: "hidden",
                     }}
@@ -135,7 +143,8 @@ function AlarmModal(props) {
                       <span></span>
                     )} */}
                   </Col>
-                  {element.board === undefined || element.board.fileName === undefined ? (
+                  {element.board === undefined ||
+                  element.board.fileName === undefined ? (
                     <div />
                   ) : (
                     <div
@@ -154,8 +163,7 @@ function AlarmModal(props) {
                 </Row>
               ))
             ) : (
-              <div className="pb-2 pt-2 d-flex align-items-center"
-              >
+              <div className="pb-2 pt-2 d-flex align-items-center">
                 알림이 없습니다.
               </div>
             )}
@@ -178,8 +186,12 @@ function AlarmModal(props) {
             )}
           </Container>
         </Modal.Body>
-        <Modal.Footer className="p-2" style={{backgroundColor: `var(--aim-base-tone-up)`}}>
-          <div className="alarm-read-more"
+        <Modal.Footer
+          className="p-2 alarm-modal-footer"
+          style={{ backgroundColor: `var(--aim-base-tone-up)` }}
+        >
+          <div
+            className="alarm-read-more"
             onClick={navigateAllAlam}
             style={{
               padding: "1px",

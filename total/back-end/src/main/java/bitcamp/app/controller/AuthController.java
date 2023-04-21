@@ -114,6 +114,11 @@ public class AuthController {
     Member m = memberService.get(email, password);
 
     if (m != null) {
+      if (m.getAccountState() == 1) {
+        return new RestResult()
+            .setErrorCode(ErrorCode.rest.UNVERIFIED)
+            .setStatus(RestStatus.FAILURE);
+      }
       session.setAttribute("loginUser", m);
 
       //Member m = (Member) session.getAttribute("loginUser");
@@ -132,6 +137,7 @@ public class AuthController {
       return new RestResult()
           .setData(m)
           .setStatus(RestStatus.SUCCESS);
+
     } else {
       return new RestResult()
           .setErrorCode(ErrorCode.rest.NO_DATA)

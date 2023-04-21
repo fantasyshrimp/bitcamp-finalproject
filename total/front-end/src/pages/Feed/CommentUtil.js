@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FeedModal.css";
 import Report from "./Report";
+import Swal from "sweetalert2";
 
 function CommentUtil(props) {
   const [data, setData] = useState([]);
@@ -78,7 +79,11 @@ function CommentUtil(props) {
         if (response.data.status === "success") {
           handleSubmit();
         } else {
-          alert("삭제실패");
+          // alert("삭제실패");
+          Swal.fire({
+            title: "삭제 실패 했습니다. 잠시 후 다시 시도해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {});
@@ -108,10 +113,10 @@ function CommentUtil(props) {
           onClick={handleLike}
         ></div>
         {data[1] !== props.writerNo && (
-        <div id="feed-modal-commentreport" onClick={openModal}>
-          신고하기
-        </div>
-          )}
+          <div id="feed-modal-commentreport" onClick={openModal}>
+            신고하기
+          </div>
+        )}
         {data[1] === props.writerNo && (
           <div id="feed-modal-commentdelete" onClick={CommentDel}>
             삭제하기

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 function Verify() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -27,7 +28,11 @@ function Verify() {
 
   useEffect(() => {
     if (message) {
-      alert(message);
+      // alert(message);
+      Swal.fire({
+        title: message,
+        confirmButtonText: "확인",
+      });
       window.location.href = "../../";
     }
   }, [message]);

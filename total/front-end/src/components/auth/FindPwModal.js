@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 
 function FindPwModal(props) {
@@ -60,7 +61,11 @@ function FindPwModal(props) {
           props.setFindPw2Show(true);
           props.setFindPwEmail(email);
         } else {
-          alert("존재하지 않는 이메일입니다.");
+          // alert("존재하지 않는 이메일입니다.");
+          Swal.fire({
+            title: "존재하지 않는 이메일입니다. 이메일 주소를 확인해 주세요.",
+            confirmButtonText: "확인",
+          });
         }
       })
       .catch((error) => {
@@ -83,7 +88,12 @@ function FindPwModal(props) {
         }
       })
       .catch((error) => {
-        alert("인증코드 전송 중 오류가 발생 했습니다.");
+        // alert("인증코드 전송 중 오류가 발생 했습니다.");
+        Swal.fire({
+          title:
+            "인증코드 전송 중 오류가 발생 했습니다. 잠시 후 다시 시도해 주세요.",
+          confirmButtonText: "확인",
+        });
       });
   };
 
