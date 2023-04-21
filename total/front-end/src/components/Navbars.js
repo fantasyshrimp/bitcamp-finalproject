@@ -11,6 +11,7 @@ function Navbars(props) {
   let [currentUser, setCurrentUser] = useState(null);
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +91,7 @@ function Navbars(props) {
                       case "process":
                       default:
                         variant = "info";
-                        label = "생성 중";
+                        label = `생성 중 ${message?.count || ""}s`;
                         animated = true;
                     }
 
@@ -101,9 +102,10 @@ function Navbars(props) {
                         label={label}
                         animated={animated}
                         style={{
-                          width: "70px",
+                          width: "80px",
                           height: "20px",
                           fontSize: "0.75rem",
+                          borderRadius: "4px",
                         }}
                       />
                     );

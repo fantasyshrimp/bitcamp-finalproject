@@ -13,6 +13,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -108,10 +112,23 @@ public class BoardController {
               .POST(HttpRequest.BodyPublishers.ofString(requestBody))
               .build();
 
-          Map<String, String> sseMap = new HashMap<>();
-          sseMap.put("status", "process");
-          sseMap.put("message", "GPU Server 이미지 생성 중");
-          sseController.sendMessageToAll(sseMap);
+          AtomicInteger count = new AtomicInteger(0);
+
+          ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+          scheduler.scheduleAtFixedRate(() -> {
+            int currentCount = count.incrementAndGet();
+
+            if (currentCount >= 180) {
+              scheduler.shutdown();
+
+            } else {
+              Map<String, String> sseMap = new HashMap<>();
+              sseMap.put("status", "process");
+              sseMap.put("message", "GPU Server 이미지 생성 중");
+              sseMap.put("count", String.valueOf(currentCount));
+              sseController.sendMessageToAll(sseMap);
+            }
+          }, 0, 1, TimeUnit.SECONDS);
 
           try {
             // GPU 로 요청 보냄
@@ -169,6 +186,9 @@ public class BoardController {
               //사용자에게 완료 표시 및 알람
               log.info("DB에 게시글 및 파일 업로드 완료함");
 
+              scheduler.shutdown();
+
+              Map<String, String> sseMap = new HashMap<>();
               sseMap = new HashMap<>();
               sseMap.put("status", "success");
               sseMap.put("message", "GPU Server 이미지 생성, DB에 게시글, 파일 업로드 완료");
@@ -188,6 +208,9 @@ public class BoardController {
 
             log.error("GPU Server 에러 발생!: ", e);
 
+            scheduler.shutdown();
+
+            Map<String, String> sseMap = new HashMap<>();
             sseMap = new HashMap<>();
             sseMap.put("status", "failure");
             sseMap.put("message", "GPU Server 이미지 생성 중 에러 발생");
