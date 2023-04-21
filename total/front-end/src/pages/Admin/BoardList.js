@@ -55,8 +55,6 @@ function BoardList(props) {
               <th>원본내용</th>
               <th>요약내용</th>
               <th>번역내용</th>
-              <th>좋아요</th>
-              <th>조회수</th>
               <th>작성일</th>
               <th>수정일</th>
               <th>신고횟수</th>
@@ -72,25 +70,26 @@ function BoardList(props) {
                   {board.writer.nickname}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.originContent}
+                  {board.originContent.length > 20
+                    ? board.originContent.substr(0, 20) + "..."
+                    : board.originContent}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.summaryContent}
+                  {board.summaryContent.length > 20
+                    ? board.summaryContent.substr(0, 20) + "..."
+                    : board.summaryContent}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.transContent}
+                  {board.transContent.length > 20
+                    ? board.transContent.substr(0, 20) + "..."
+                    : board.transContent}
+                </td>
+
+                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                  {board.writeDt.substr(0, 10)}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.likeCnt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.viewCnt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.writeDt}
-                </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
-                  {board.updateDt}
+                  {board.updateDt.substr(0, 10)}
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)}>
                   {board.reportCnt}
