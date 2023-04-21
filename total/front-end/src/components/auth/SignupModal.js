@@ -335,7 +335,7 @@ function SignupModal(props) {
                 <ExternalLogin isLoginModal={props.isLoginModal} />
               )}
             </div>
-            <div className="text-light mt-2 mb-2">
+            <div className="text-light mt-4 mb-2">
               <span>이미 계정이 있으신가요? </span>
               <span className="signup-modal-login" onClick={handleClickLogin}>
                 로그인

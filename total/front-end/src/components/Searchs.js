@@ -42,18 +42,29 @@ function Searchs() {
   };
 
   return (
-    <Form className="d-flex">
+    <Form className="d-flex ms-3">
       <Form.Control
         type="search"
         placeholder="Search"
         className="me-2"
-        style={{color: `var(--aim-text-default)`, backgroundColor: `var(--aim-base-tone)`}}
+        style={{
+          color: `var(--aim-text-default)`,
+          backgroundColor: `var(--aim-base-tone)`,
+          borderRadius: "0",
+        }}
         aria-label="Search"
         value={searchTerm}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <Button variant="outline-success">Search</Button>
+      <Button
+        variant="success"
+        style={{
+          borderRadius: "0",
+        }}
+      >
+        Search
+      </Button>
     </Form>
   );
 }
