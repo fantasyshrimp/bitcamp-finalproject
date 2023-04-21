@@ -52,7 +52,7 @@ function AuthModal(props) {
 
   const handleClickAdminPage = () => {
     handleClose();
-    navigate("/admin/management");
+    navigate("/admin/member");
   };
 
   const handleClickStats = () => {
