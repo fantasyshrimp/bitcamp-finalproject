@@ -906,3 +906,40 @@ setSseMessage(parsedData);
 ## 시행착오 또는 기억할 것
 
 ### 1.
+
+# 4월21일 금
+
+## 작업내용
+
+### 1. 이메일 미인증 사용자 로그인 되는 버그 수정
+
+### 2. 그림 생성중인 사용자가 다시 그림 생성 요청시 그림 생성중 알림창 띄우도록 수정
+
+### 3. 그림 생성 중일때 '생성 중 1s' 처럼 시간 카운트 추가
+
+## 시행착오 또는 기억할 것
+
+### 1. 자바 count 클라이언트에 보내기 Executors 로 구현
+
+멀티스레딩 환경에서 동시성 문제를 해결하기 위해 AtomicInteger 를 사용한다.
+단순한 int 를 사용하면 여러 스레드에서 동시에 접근하게 되어 동시성 문제로 인해 예상치 못한 결과가 나올 수 있다.
+
+```java
+AtomicInteger count = new AtomicInteger(0);
+
+ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+scheduler.scheduleAtFixedRate(() -> {
+	int currentCount = count.incrementAndGet();
+
+	if (currentCount >= 180) {
+		scheduler.shutdown();
+
+	} else {
+		Map<String, String> sseMap = new HashMap<>();
+		sseMap.put("status", "process");
+		sseMap.put("message", "GPU Server 이미지 생성 중");
+		sseMap.put("count", String.valueOf(currentCount));
+		sseController.sendMessageToAll(sseMap);
+	}
+}, 0, 1, TimeUnit.SECONDS);
+```
