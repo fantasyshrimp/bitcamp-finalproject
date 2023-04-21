@@ -10,10 +10,11 @@ function MemberView(props) {
   const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
-  console.log(no);
+  const [point, setPoint] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(no);
       try {
         const response = await axios.get(`http://localhost:8080/admin/` + no);
         setData(response.data.data);
@@ -23,6 +24,22 @@ function MemberView(props) {
     };
     fetchData();
   }, [no, setShow]);
+  //
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(no);
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/admin/member/` + no
+        );
+        setPoint(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no]);
 
   return (
     <>
@@ -77,6 +94,7 @@ function MemberView(props) {
                   placeholder="password"
                   value={data ? data.password : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -89,6 +107,7 @@ function MemberView(props) {
                   placeholder="createdDate"
                   value={data ? data.createdDate : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -142,7 +161,7 @@ function MemberView(props) {
                 <Form.Control
                   type="text"
                   placeholder="point"
-                  value={data ? data.point : ""}
+                  value={data ? point : ""}
                   autoFocus
                 />
               </div>
@@ -198,27 +217,24 @@ function MemberView(props) {
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>계정상태</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="accountState"
-                  value={
-                    data
-                      ? data.accountState === 0
-                        ? "이메일 인증"
-                        : data.accountState === 1
-                        ? "이메일 미인증"
-                        : data.accountState === 2
-                        ? "휴면계정"
-                        : data.accountState === 3
-                        ? "탈퇴"
-                        : "정지"
-                      : ""
-                  }
-                  autoFocus
-                />
+                <Form.Select aria-label="계정상태" className={styles.option}>
+                  <option className={styles.option} value="0">
+                    이메일 인증
+                  </option>
+                  <option className={styles.option} value="1">
+                    이메일 미인증
+                  </option>
+                  <option className={styles.option} value="2">
+                    휴면계정
+                  </option>
+                  <option className={styles.option} value="3">
+                    탈퇴
+                  </option>
+                  <option className={styles.option}>정지</option>
+                </Form.Select>
               </div>
             </Form.Group>
 
