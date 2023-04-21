@@ -32,10 +32,6 @@ function BoardView(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleClose}>
-        Launch demo modal
-      </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
@@ -59,6 +55,13 @@ function BoardView(props) {
                 placeholder="nickname"
                 defaultValue={data && data.writer ? data.writer.nickname : ""}
                 autoFocus
+                value={data && data.writer ? data.writer.nickname : ""}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    writer: { ...data.writer, nickname: e.target.value },
+                  })
+                }
               />
             </Form.Group>
 
@@ -73,7 +76,10 @@ function BoardView(props) {
                 as="textarea"
                 rows={3}
                 placeholder="originContent"
-                defaultValue={data.originContent}
+                value={data.originContent}
+                onChange={(e) =>
+                  setData({ ...data, originContent: e.target.value })
+                }
               />
             </Form.Group>
 
@@ -83,7 +89,10 @@ function BoardView(props) {
                 as="textarea"
                 rows={3}
                 placeholder="summaryContent"
-                defaultValue={data.summaryContent}
+                value={data.summaryContent}
+                onChange={(e) =>
+                  setData({ ...data, summaryContent: e.target.value })
+                }
               />
             </Form.Group>
 
@@ -93,7 +102,10 @@ function BoardView(props) {
                 as="textarea"
                 rows={3}
                 placeholder="transContent"
-                defaultValue={data.transContent}
+                value={data.transContent}
+                onChange={(e) =>
+                  setData({ ...data, transContent: e.target.value })
+                }
               />
             </Form.Group>
 
@@ -103,56 +115,55 @@ function BoardView(props) {
                 <Form.Control
                   type="text"
                   placeholder="tag"
-                  defaultValue={data.tag}
-                  autoFocus
+                  value={data.tag}
+                  onChange={(e) => setData({ ...data, tag: e.target.value })}
                 />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
-                <Form.Label className={styles.short}>좋아요</Form.Label>
+                <Form.Label className={styles.shortTitle}>좋아요</Form.Label>
                 <Form.Control
+                  className={styles.shortContext}
                   type="text"
                   placeholder="likeCnt"
-                  defaultValue={data.likeCnt}
-                  autoFocus
+                  value={data.likeCnt}
+                  onChange={(e) =>
+                    setData({ ...data, likeCnt: e.target.value })
+                  }
                 />
-              </div>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <div className="d-flex align-items-center">
-                <Form.Label className={styles.short}>조회수</Form.Label>
+                <Form.Label className={styles.shortTitle2}>조회수</Form.Label>
                 <Form.Control
+                  className={styles.shortContext}
                   type="text"
                   placeholder="viewCnt"
-                  defaultValue={data.viewCnt}
-                  autoFocus
+                  value={data.viewCnt}
+                  onChange={(e) =>
+                    setData({ ...data, viewCnt: e.target.value })
+                  }
                 />
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <div className="d-flex align-items-center">
-                <Form.Label className={styles.long}>게시글 공개</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="boardPublic"
-                  defaultValue={data.boardPublic}
-                  autoFocus
+                <Form.Label className={styles.longTitle}>
+                  게시글 공개
+                </Form.Label>
+                <Form.Check
+                  className={styles.longContext}
+                  type="checkbox"
+                  id="boardPublic"
+                  defaultChecked={data.boardPublic}
                 />
-              </div>
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <div className="d-flex align-items-center">
-                <Form.Label className={styles.long}>댓글 공개</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="replyPublic"
-                  defaultValue={data.replyPublic}
-                  autoFocus
+                <Form.Label className={styles.longTitle}>댓글 공개</Form.Label>
+                <Form.Check
+                  className={styles.longContext}
+                  type="checkbox"
+                  id="replyPublic"
+                  defaultChecked={data.replyPublic}
                 />
               </div>
             </Form.Group>
@@ -165,6 +176,7 @@ function BoardView(props) {
                   placeholder="writeDt"
                   defaultValue={data.writeDt}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -177,6 +189,7 @@ function BoardView(props) {
                   placeholder="updateDt"
                   defaultValue={data.updateDt}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
