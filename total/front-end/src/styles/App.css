@@ -36,6 +36,9 @@
   /* font weight */
 }
 
+* body {
+  color: black;
+}
 /* 
 다크모드 스위치 패스
 #feed-modal-like css 용도 불명
