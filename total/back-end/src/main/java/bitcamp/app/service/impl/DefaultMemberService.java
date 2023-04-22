@@ -201,5 +201,9 @@ public class DefaultMemberService implements MemberService {
     memberDao.updatePassword(member);
   }
 
+  @Override
+  public void updateAccountState(Member member) {
+    memberDao.updateAccountState(member);
+  }
 
 }

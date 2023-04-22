@@ -14,7 +14,6 @@ function MemberView(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(no);
       try {
         const response = await axios.get(`http://localhost:8080/admin/` + no);
         setData(response.data.data);
@@ -24,7 +23,7 @@ function MemberView(props) {
     };
     fetchData();
   }, [no, setShow]);
-  //
+
   useEffect(() => {
     const fetchData = async () => {
       console.log(no);
@@ -33,13 +32,22 @@ function MemberView(props) {
           `http://localhost:8080/admin/member/` + no
         );
         setPoint(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
   }, [no]);
+
+  const handleSubmit = () => {
+    axios
+      .put(`http://localhost:8080/admin/member/accountState/${no}`, data)
+      .then((response) => {
+        console.log(data);
+        //handleClose();
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <>
@@ -128,6 +136,7 @@ function MemberView(props) {
                       : ""
                   }
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -151,6 +160,7 @@ function MemberView(props) {
                   placeholder="basicAddress"
                   value={data ? data.basicAddress : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -163,6 +173,7 @@ function MemberView(props) {
                   placeholder="point"
                   value={data ? point : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -175,6 +186,7 @@ function MemberView(props) {
                   placeholder="information"
                   value={data ? data.information : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -187,6 +199,7 @@ function MemberView(props) {
                   placeholder="birthDate"
                   value={data ? data.birthDate : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -199,6 +212,7 @@ function MemberView(props) {
                   placeholder="tel"
                   value={data ? data.tel : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -213,6 +227,7 @@ function MemberView(props) {
                   placeholder="passwordDate"
                   value={data ? data.passwordDate : ""}
                   autoFocus
+                  readOnly
                 />
               </div>
             </Form.Group>
@@ -220,7 +235,14 @@ function MemberView(props) {
             <Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
               <div className="d-flex align-items-center">
                 <Form.Label className={styles.label}>계정상태</Form.Label>
-                <Form.Select aria-label="계정상태" className={styles.option}>
+                <Form.Select
+                  aria-label="계정상태"
+                  className={styles.option}
+                  value={data.accountState}
+                  onChange={(e) =>
+                    setData({ ...data, accountState: e.target.value })
+                  }
+                >
                   <option className={styles.option} value="0">
                     이메일 인증
                   </option>
@@ -233,7 +255,9 @@ function MemberView(props) {
                   <option className={styles.option} value="3">
                     탈퇴
                   </option>
-                  <option className={styles.option}>정지</option>
+                  <option className={styles.option} value="">
+                    정지
+                  </option>
                 </Form.Select>
               </div>
             </Form.Group>
@@ -255,8 +279,8 @@ function MemberView(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>

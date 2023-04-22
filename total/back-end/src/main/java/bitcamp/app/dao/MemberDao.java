@@ -25,4 +25,5 @@ public interface MemberDao {
   void updateIsGenerating(Member m);
   void updateAuthCode(Member m);
   void updatePassword(Member member);
+  void updateAccountState(Member member);
 }

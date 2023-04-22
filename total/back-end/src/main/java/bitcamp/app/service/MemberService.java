@@ -22,4 +22,5 @@ public interface MemberService {
   List<Member> getFollowers(int no);
   Member updateByVerifyToken(String token);
   Member updateAndSendAuthCodeByEmail(Member member);
+  void updateAccountState(Member member);
 }
