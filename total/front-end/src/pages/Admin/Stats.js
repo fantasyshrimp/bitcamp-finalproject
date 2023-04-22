@@ -32,7 +32,13 @@ function Stats() {
         }}
       >
         <div style={{ height: "20%" }}></div>
-        <div style={{ marginRight: "10%" }}>
+        <div
+          style={
+            {
+              /*marginRight: "10%"*/
+            }
+          }
+        >
           <h2
             style={{
               paddingBottom: "5%",
@@ -57,7 +63,8 @@ function Stats() {
                   }}
                   style={{
                     cursor: "pointer",
-                    paddingBottom: "5%",
+                    padding: "5%",
+                    borderBottom: `solid 1px var(--aim-border)`,
                   }}
                 >
                   {title}

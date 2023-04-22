@@ -155,7 +155,7 @@ const Visitor = (props) => {
 
       <ResponsiveLine
         data={chartData}
-        margin={{ top: 30, right: 40, bottom: 70, left: 80 }}
+        margin={{ top: 30, right: 55, bottom: 70, left: 80 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
