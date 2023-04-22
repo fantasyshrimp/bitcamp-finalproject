@@ -42,17 +42,22 @@ function Stats() {
           >
             통계
           </h2>
-          <div style={{ marginLeft: "10%", cursor: "pointer", hover: "blue" }}>
+          <div
+            id="Stats-menu"
+            style={{
+              marginLeft: "10%",
+            }}
+          >
             {menu.map((title, index) => {
               return (
                 <div
-                  style={{
-                    // backgroundColor: "blue",
-                    paddingBottom: "5%",
-                  }}
                   key={title + index}
                   onClick={() => {
                     setMenuNo(index);
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    paddingBottom: "5%",
                   }}
                 >
                   {title}
@@ -72,7 +77,8 @@ function Stats() {
 
 export default Stats;
 
-<g transform="translate(0,74)" style="opacity: 1;">
+{
+  /* <g transform="translate(0,74)" style="opacity: 1;">
   <line
     x1="0"
     x2="-5"
@@ -84,8 +90,9 @@ export default Stats;
     dominant-baseline="central"
     text-anchor="end"
     transform="translate(-10,0) rotate(0)"
-    style="font-family: sans-serif; font-size: 11px; fill: rgb(51, 51, 51);"
+    style="font-family: sans-serif; font-size: 11px; fill: rgb(51, 51, 51); "
   >
     60
   </text>
-</g>;
+</g>; */
+}
