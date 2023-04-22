@@ -51,7 +51,7 @@ function Stats() {
           <div
             id="Stats-menu"
             style={{
-              marginLeft: "10%",
+              marginLeft: "5%",
             }}
           >
             {menu.map((title, index) => {
