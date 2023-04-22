@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
 import bitcamp.app.service.ObjectStorageService;
+import bitcamp.app.service.PointService;
 import bitcamp.app.service.ReplyService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
@@ -32,6 +34,7 @@ public class AdminController {
   @Autowired private BoardService boardService;
   @Autowired private LikeService likeService;
   @Autowired private ReplyService replyService;
+  @Autowired private PointService pointService;
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -53,6 +56,32 @@ public class AdminController {
           .setStatus(RestStatus.FAILURE)
           .setErrorCode(ErrorCode.rest.NO_DATA);
     }
+  }
+  
+  @GetMapping("member/{no}")
+  public int findPoint(@PathVariable int no) {
+
+    return pointService.findPoint(no);
+  }
+  
+  
+  @PutMapping("member/accountState/{no}")
+  public Object updateAccountState(
+      @RequestParam int state,
+      HttpSession session) {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    System.out.println("updateAccountState 실행");
+
+    if (loginUser == null) {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE)
+          .setErrorCode(ErrorCode.rest.UNAUTHORIZED)
+          .setData("로그인 요망");
+    }
+    loginUser.setAccountState(state);
+    memberService.updateAccountState(loginUser);
+    return new RestResult()
+        .setStatus(RestStatus.SUCCESS);
   }
   
   @GetMapping("/comment")

@@ -27,8 +27,8 @@ public class AdminInterceptor implements HandlerInterceptor {
         Member member = (Member) session.getAttribute("loginUser");
 
         if (member != null && member.getAuthLevel() == 9) {
-            System.out.println(member.getNo());
-            System.out.println(member.getAuthLevel());
+            //System.out.println(member.getNo());
+            //System.out.println(member.getAuthLevel());
             pointService.loginInsert(member.getNo());
             return true;
         } else {
