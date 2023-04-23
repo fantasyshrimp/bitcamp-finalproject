@@ -98,7 +98,7 @@ function AuthBtn(props) {
           </a>
           <Nav.Link
             onClick={handleClickUser}
-            style={{ padding: "0", color: `var(--aim-text-sub)` }}
+            style={{ padding: "0" }}
             className="d-flex"
           >
             <div

@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./DarkModeSwitch.css";
 
-function DarkModeSwitch() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+function DarkModeSwitch(props) {
   const root = document.querySelector(":root");
 
-  const setMode = () => {
-    const newMode = !isDarkMode;
-    localStorage.setItem("dark-light-mode", newMode ? "light" : "dark");
-    setIsDarkMode(newMode);
-  };
-
   useEffect(() => {
-    if (isDarkMode === true) {
+    if (props.isLightMode) {
       root.style.setProperty("--aim-base-tone", `#8C8C8C`);
       root.style.setProperty("--aim-base-tone-up", `#D9D9D9`);
       root.style.setProperty("--aim-base-tone-down", `#F2F2F2`);
@@ -33,16 +26,13 @@ function DarkModeSwitch() {
       root.style.setProperty("--aim-text-default", `white`);
       root.style.setProperty("--aim-text-sub", `gray`);
     }
-  }, [isDarkMode]);
+  }, [props.isLightMode]);
 
-  const handleInputChange = () => {
-    setMode();
+  const handleChange = () => {
+    const newMode = !props.isLightMode;
+    props.setIsLightMode(newMode);
+    localStorage.setItem("isLightMode", JSON.stringify(newMode));
   };
-
-  useEffect(() => {
-    const savedMode = localStorage.getItem("dark-light-mode");
-    setIsDarkMode(savedMode === "light");
-  }, []);
 
   return (
     <>
@@ -50,8 +40,8 @@ function DarkModeSwitch() {
         <label className="switch">
           <input
             type="checkbox"
-            checked={isDarkMode}
-            onChange={handleInputChange}
+            checked={props.isLightMode}
+            onChange={handleChange}
           />
           <span className="slider"></span>
         </label>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 // import { useNavigate } from "react-router-dom";
 
-function Searchs() {
+function Searchs(props) {
   const [searchTerm, setSearchTerm] = useState("");
   // const Navigate = useNavigate();
 
@@ -48,9 +48,8 @@ function Searchs() {
         placeholder="Search"
         className="me-2"
         style={{
-          color: `var(--aim-text-default)`,
-          backgroundColor: `var(--aim-base-tone)`,
           borderRadius: "0",
+          backgroundColor: props.isLightMode ? "#fff" : "#000",
         }}
         aria-label="Search"
         value={searchTerm}

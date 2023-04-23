@@ -45,8 +45,8 @@ function Navbars(props) {
       <Navbar
         collapseOnSelect
         expand="md"
-        variant="dark"
-        style={{ backgroundColor: `var(--aim-base-tone)` }}
+        bg={props.isLightMode ? "light" : "dark"}
+        variant={props.isLightMode ? "light" : "dark"}
       >
         <Container fluid>
           <Navbar.Brand href="/" style={{ color: `var(--aim-text-default)` }}>
@@ -55,13 +55,12 @@ function Navbars(props) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/feed/" style={{ color: `var(--aim-text-sub)` }}>
-                Feed
-              </Nav.Link>
-              <Nav.Link href="/faq/" style={{ color: `var(--aim-text-sub)` }}>
-                FAQ
-              </Nav.Link>
-              <Searchs />
+              <Nav.Link href="/feed/">Feed</Nav.Link>
+              <Nav.Link href="/faq/">FAQ</Nav.Link>
+              <Searchs
+                isLightMode={props.isLightMode}
+                setIsLightMode={props.setIsLightMode}
+              />
               <div className="text-light"></div>
             </Nav>
 
@@ -115,7 +114,10 @@ function Navbars(props) {
                 )}
               </div>
 
-              <DarkModeSwitch />
+              <DarkModeSwitch
+                isLightMode={props.isLightMode}
+                setIsLightMode={props.setIsLightMode}
+              />
               <AuthBtn
                 currentUser={props.currentUser}
                 setCurrentUser={props.setCurrentUser}

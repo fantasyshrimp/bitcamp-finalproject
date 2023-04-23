@@ -91,6 +91,9 @@ function App() {
   const [findPw2Show, setFindPw2Show] = useState(false);
   const [findPw3Show, setFindPw3Show] = useState(false);
   const [findPwEmail, setFindPwEmail] = useState(null);
+  const [isLightMode, setIsLightMode] = useState(
+    JSON.parse(localStorage.getItem("isLightMode")) || false
+  );
 
   const sendVisitorData = useCallback(async () => {
     try {
@@ -124,6 +127,8 @@ function App() {
               setSignupShow={setSignupShow}
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              isLightMode={isLightMode}
+              setIsLightMode={setIsLightMode}
             />
             <Routes>
               <Route
