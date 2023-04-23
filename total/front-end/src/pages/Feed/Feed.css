@@ -185,10 +185,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--aim-base-tone-down);
+  /* background-color: var(--aim-base-tone-down); */
   z-index: 99;
-  backdrop-filter: blur(5px);
-  opacity: 0.3;
+  backdrop-filter: blur(var(--aim-backdrop-blur));
+  opacity: 1;
   cursor: Default;
 }
 

@@ -151,6 +151,7 @@ function LoginModal(props) {
           border: "none",
         }}
         contentClassName="bg-dark"
+        className="blur-modal"
       >
         <Modal.Header
           closeButton

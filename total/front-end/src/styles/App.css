@@ -34,11 +34,20 @@
   --aim-largest-font-size: 3rem;
 
   /* font weight */
+
+  /* backdrop blur */
+  --aim-backdrop-blur: 20px;
 }
 
 * body {
   color: black;
 }
+
+.blur-modal.modal.show {
+  opacity: 1;
+  backdrop-filter: blur(var(--aim-backdrop-blur));
+}
+
 /* 
 다크모드 스위치 패스
 #feed-modal-like css 용도 불명

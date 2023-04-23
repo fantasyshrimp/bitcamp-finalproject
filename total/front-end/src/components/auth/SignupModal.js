@@ -226,6 +226,7 @@ function SignupModal(props) {
           backgroundColor: `var(--aim-base-alpa)`,
         }}
         contentClassName="bg-dark"
+        className="blur-modal"
       >
         <Modal.Header
           closeButton
