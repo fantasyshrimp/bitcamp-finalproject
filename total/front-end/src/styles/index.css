@@ -33,10 +33,6 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--aim-text-default) !important;
 }
 
-* body {
-  color: black;
-}
-
 .blur-modal.modal.show {
   opacity: 1;
   backdrop-filter: blur(var(--aim-backdrop-blur));

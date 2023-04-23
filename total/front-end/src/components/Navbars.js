@@ -47,6 +47,7 @@ function Navbars(props) {
         expand="md"
         bg={props.isLightMode ? "light" : "dark"}
         variant={props.isLightMode ? "light" : "dark"}
+        className="bg-gradient"
       >
         <Container fluid>
           <Navbar.Brand href="/" style={{ color: `var(--aim-text-default)` }}>
