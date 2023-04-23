@@ -84,7 +84,7 @@
   font-size: var(--aim-small-font-size);
   text-align: left;
   margin-top: 5%;
-  color: var(--aim-default-white);
+  color: #fff;
 }
 
 #feed-small-font-right {

@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 function BoardDelete(props) {
+  console.log("isLightMode >>> " + props.isLightMode);
   const replyNos = props.reply.map((reply) => reply.replyNo);
   function deleteBoard(boardNo) {
     axios
@@ -38,7 +39,9 @@ function BoardDelete(props) {
           <span
             id="report-close"
             onClick={props.DeleteModalHandler}
-            className="btn-close btn-close-white"
+            className={`btn-close btn-close-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+            }`}
           ></span>
           게시글 삭제
         </div>

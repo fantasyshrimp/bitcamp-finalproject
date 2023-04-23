@@ -83,7 +83,9 @@ function Report(props) {
           <div
             id="report-close"
             onClick={props.handleCloseModal}
-            className="btn-close btn-close-white"
+            className={`btn-close btn-close-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+            }`}
           ></div>
           신고
         </div>

@@ -155,7 +155,9 @@ function LoginModal(props) {
       >
         <Modal.Header
           closeButton
-          closeVariant="white"
+          closeVariant={
+            localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+          }
           style={{ borderBottom: "none" }}
         ></Modal.Header>
         <Modal.Header

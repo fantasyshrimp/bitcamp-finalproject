@@ -80,7 +80,11 @@ function FeedList(props) {
                 onClick={() => {
                   ShowModal();
                 }}
-                className="btn-close btn-close-white"
+                className={`btn-close btn-close-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "white"
+                }`}
               ></div>
               <FeedModal data={props.item} closeModal={ShowModal} user={user} />
             </div>

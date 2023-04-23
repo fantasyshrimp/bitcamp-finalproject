@@ -89,7 +89,9 @@ function Money(props) {
           <span
             id="report-close"
             onClick={props.MoneyModalHandler}
-            className="btn-close btn-close-white"
+            className={`btn-close btn-close-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+            }`}
           ></span>
           기부 하기
         </div>
