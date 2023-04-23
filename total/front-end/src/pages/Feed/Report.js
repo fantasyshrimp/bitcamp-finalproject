@@ -80,9 +80,11 @@ function Report(props) {
       ></div>
       <div id="report-main">
         <div id="report-title">
-          <span id="report-close" onClick={props.handleCloseModal}>
-            &times;
-          </span>
+          <div
+            id="report-close"
+            onClick={props.handleCloseModal}
+            className="btn-close btn-close-white"
+          ></div>
           신고
         </div>
         <div id="report-contentbox">

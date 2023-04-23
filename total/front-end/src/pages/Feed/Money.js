@@ -86,9 +86,11 @@ function Money(props) {
       ></div>
       <div id="money-main">
         <div id="report-title">
-          <span id="report-close" onClick={props.MoneyModalHandler}>
-            &times;
-          </span>
+          <span
+            id="report-close"
+            onClick={props.MoneyModalHandler}
+            className="btn-close btn-close-white"
+          ></span>
           기부 하기
         </div>
         <div id="report-contentbox">

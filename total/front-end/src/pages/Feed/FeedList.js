@@ -80,9 +80,8 @@ function FeedList(props) {
                 onClick={() => {
                   ShowModal();
                 }}
-              >
-                &times;
-              </div>
+                className="btn-close btn-close-white"
+              ></div>
               <FeedModal data={props.item} closeModal={ShowModal} user={user} />
             </div>
           </>

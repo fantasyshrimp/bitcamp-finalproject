@@ -327,9 +327,9 @@
 
 #report-close {
   position: absolute;
-  top: -6px;
+  top: 5px;
   right: 10px;
-  font-size: 24px;
+  font-size: 16px;
   cursor: pointer;
   color: var(--aim-emphasis-red);
 }

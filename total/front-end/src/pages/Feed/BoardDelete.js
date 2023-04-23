@@ -35,9 +35,11 @@ function BoardDelete(props) {
       ></div>
       <div id="report-delete">
         <div id="report-title">
-          <span id="report-close" onClick={props.DeleteModalHandler}>
-            &times;
-          </span>
+          <span
+            id="report-close"
+            onClick={props.DeleteModalHandler}
+            className="btn-close btn-close-white"
+          ></span>
           게시글 삭제
         </div>
         <div id="report-contentbox">
