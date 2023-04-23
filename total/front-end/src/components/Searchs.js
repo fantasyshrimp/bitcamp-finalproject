@@ -49,7 +49,8 @@ function Searchs(props) {
         className="me-2"
         style={{
           borderRadius: "0",
-          backgroundColor: props.isLightMode ? "#fff" : "#000",
+          backgroundColor: `var(--aim-base-tone)`,
+          color: `var(--aim-text-default)`,
         }}
         aria-label="Search"
         value={searchTerm}

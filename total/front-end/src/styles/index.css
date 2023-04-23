@@ -22,13 +22,26 @@ code {
 }
 
 .form-text {
-  color: #ff3d3d;
+  color: var(--aim-help-warning);
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px var(--bs-dark) inset !important;
-  -webkit-text-fill-color: var(--bs-gray-100) !important;
+  -webkit-box-shadow: 0 0 0 30px var(--aim-base-tone) inset !important;
+  -webkit-text-fill-color: var(--aim-text-default) !important;
+}
+
+* body {
+  color: black;
+}
+
+.blur-modal.modal.show {
+  opacity: 1;
+  backdrop-filter: blur(var(--aim-backdrop-blur));
+}
+
+.form-control::placeholder {
+  color: var(--aim-text-sub);
 }

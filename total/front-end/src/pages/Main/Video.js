@@ -27,13 +27,13 @@ function Video(props) {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <a
+        {/* <a
           href="/"
           className={`${styles.button} button`}
           onClick={handleShowLogin}
         >
           Try Artify
-        </a>
+        </a> */}
       </div>
     </div>
   );

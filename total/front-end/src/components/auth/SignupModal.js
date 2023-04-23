@@ -236,10 +236,16 @@ function SignupModal(props) {
           style={{ borderBottom: "none" }}
         ></Modal.Header>
         <Modal.Header
-          style={{ borderBottom: "none" }}
+          style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
-          <Modal.Title className="text-light">회원가입</Modal.Title>
+          <Modal.Title
+            className={`text-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "light"
+            }`}
+          >
+            회원가입
+          </Modal.Title>
         </Modal.Header>
 
         <Form>
@@ -248,7 +254,15 @@ function SignupModal(props) {
             style={{ backgroundColor: `var(--aim-base-tone)` }}
           >
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label className="text-light">이메일</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                이메일
+              </Form.Label>
               <InputGroup>
                 <Form.Control
                   type="email"
@@ -268,7 +282,15 @@ function SignupModal(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="nickname">
-              <Form.Label className="text-light">닉네임</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                닉네임
+              </Form.Label>
               <InputGroup>
                 <Form.Control
                   type="text"
@@ -287,7 +309,15 @@ function SignupModal(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-light">비밀번호</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                비밀번호
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="password"
@@ -302,7 +332,15 @@ function SignupModal(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="passwordConfirm">
-              <Form.Label className="text-light">비밀번호 확인</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                비밀번호 확인
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="passwordConfirm"
@@ -338,7 +376,13 @@ function SignupModal(props) {
                 <ExternalLogin isLoginModal={props.isLoginModal} />
               )}
             </div>
-            <div className="text-light mt-4 mb-2">
+            <div
+              className={`mt-4 mb-2 text-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "light"
+              }`}
+            >
               <span>이미 계정이 있으신가요? </span>
               <span className="signup-modal-login" onClick={handleClickLogin}>
                 로그인

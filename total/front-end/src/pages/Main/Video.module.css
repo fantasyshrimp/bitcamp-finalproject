@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  color: var(--aim-text-default);
+  color: #edeeef;
   gap: 2rem;
   padding: 0 3rem;
 }
@@ -49,7 +49,7 @@
   font-size: 1.3rem;
   width: 52%;
 
-  color: var(--aim-text-default);
+  color: #edeeef;
   border-right: 3px solid var(--aim-border);
   animation: blink 0.5s infinite, typing 2s steps(50);
   white-space: nowrap;
@@ -77,7 +77,7 @@
   padding: 0.9rem 1.8rem;
   font-weight: bold;
   border-radius: 8px;
-  color: var(--aim-text-default);
+  color: #edeeef;
   background-color: var(--aim-quarter-alpa);
   backdrop-filter: blur(6px);
 }

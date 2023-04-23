@@ -164,7 +164,13 @@ function LoginModal(props) {
           style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
-          <Modal.Title className="text-light">로그인</Modal.Title>
+          <Modal.Title
+            className={`text-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "light"
+            }`}
+          >
+            로그인
+          </Modal.Title>
         </Modal.Header>
 
         <Form>
@@ -173,7 +179,13 @@ function LoginModal(props) {
             style={{ backgroundColor: `var(--aim-base-tone)` }}
           >
             <Form.Group className="mb-4" controlId="email">
-              <Form.Label className="text-light">
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
                 사용자의 이메일 주소를 입력해 주세요
               </Form.Label>
               <Form.Control
@@ -193,7 +205,13 @@ function LoginModal(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-light">
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
                 사용자의 비밀번호를 입력해 주세요
               </Form.Label>
               <Form.Control
@@ -229,7 +247,13 @@ function LoginModal(props) {
                 <ExternalLogin isLoginModal={props.isLoginModal} />
               )}
             </div>
-            <div className="text-light mt-4 mb-2">
+            <div
+              className={` mt-4 mb-2 text-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "light"
+              }`}
+            >
               <span>아직 계정이 없으신가요? </span>
               <span className="login-modal-signup" onClick={handleClickSignup}>
                 회원가입

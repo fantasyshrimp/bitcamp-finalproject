@@ -5,7 +5,7 @@
 #footer-container {
   width: 100%;
   height: 300px;
-  background-color: var(--aim-fill-alpa);
+  background-color: var(--aim-base-tone);
 }
 
 #footer-logo-container {
@@ -16,7 +16,7 @@
 #footer-logo-item {
   text-align: center;
   font-size: 60px;
-  color: #dfdfdf;
+  color: var(--aim-text-default);
 }
 
 #footer-menu-container {
@@ -28,17 +28,17 @@
 #footer-menu-item {
   text-align: center;
   width: 110px;
-  color: #939393;
+  color: var(--aim-text-sub);
 }
 
 #menu-item {
   text-align: center;
   font-size: 15px;
-  color: #939393;
+  color: var(--aim-text-sub);
 }
 
 #menu-item:hover {
-  color: white;
+  color: var(--aim-text-default);
   cursor: pointer;
 }
 
@@ -51,7 +51,7 @@
 #footer-info-item {
   text-align: left;
   font-size: 11px;
-  color: #939393;
+  color: var(--aim-text-sub);
   margin-right: 40px;
 }
 
@@ -69,6 +69,7 @@
   background-position: center; /* 이미지를 div 요소 중앙에 배치 */
   background-repeat: no-repeat; /* 이미지 반복 없이 표시 */
   position: relative;
+  filter: var(--aim-git-icon-color);
 }
 
 #footer-git:hover {
@@ -84,7 +85,7 @@
 #footer-bottom-item {
   text-align: center;
   font-size: 13px;
-  color: #939393;
+  color: var(--aim-text-sub);
 }
 
 .git1::before {
@@ -93,8 +94,8 @@
   top: -40px;
   left: -7px;
   padding: 5px;
-  background-color: #101010;
-  border: 1px solid black;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-base-tone);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -104,8 +105,8 @@
   top: -40px;
   left: -27px;
   padding: 5px;
-  background-color: #101010;
-  border: 1px solid black;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-base-tone);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -115,8 +116,8 @@
   top: -40px;
   left: -26px;
   padding: 5px;
-  background-color: #101010;
-  border: 1px solid black;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-base-tone);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -126,8 +127,8 @@
   top: -40px;
   left: -23px;
   padding: 5px;
-  background-color: #101010;
-  border: 1px solid black;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-base-tone);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -137,8 +138,8 @@
   top: -40px;
   left: -11px;
   padding: 5px;
-  background-color: #101010;
-  border: 1px solid black;
+  background-color: var(--aim-base-tone);
+  border: 1px solid var(--aim-base-tone);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
