@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 function Report(props) {
-  const [data, setData] = useState([]);
+  const [reportMenu, setReportMenu] = useState([]);
   const [reportNum, setReportNum] = useState();
   const [reportTitle, setReportTitle] = useState("");
   const [select, setSelect] = useState(false);
@@ -15,13 +15,12 @@ function Report(props) {
 
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
-    console.log(textareaValue);
   };
 
   useEffect(() => {
     axios
       .get(`http://localhost:8080/report`)
-      .then((response) => setData(response.data))
+      .then((response) => setReportMenu(response.data))
       .catch((error) => console.log(error));
   }, []);
 
@@ -92,10 +91,10 @@ function Report(props) {
         <div id="report-contentbox">
           {!select && (
             <>
-              {data.map((item) => (
+              {reportMenu.map((item, index) => (
                 <div
                   id="report-menu"
-                  key={item}
+                  key={index}
                   onClick={() => {
                     setReportNum(item.reportNo);
                     setReportTitle(item.reportType);

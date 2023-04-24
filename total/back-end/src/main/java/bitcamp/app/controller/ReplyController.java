@@ -1,7 +1,6 @@
 package bitcamp.app.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +32,6 @@ public class ReplyController {
     Member loginUser = (Member) session.getAttribute("loginUser");
     reply.setWriter(loginUser);
 
-    System.out.println(reply);
     replyService.insert(reply);
     pointService.commentInsert(loginUser.getNo());
 
@@ -48,17 +46,9 @@ public class ReplyController {
   }
 
   @GetMapping("/like/{no}")
-  public List<Integer> countCommentLike(@PathVariable int no, HttpSession session) {
-    List<Integer> list = new ArrayList<>();
-    Member loginUser = (Member) session.getAttribute("loginUser");
+  public int countCommentLike(@PathVariable int no) {
 
-    list.add(replyService.countCommentLike(no));
-    if (loginUser == null) {
-      list.add(0);
-    } else {
-      list.add(loginUser.getNo());
-    }
-    return list;
+    return replyService.countCommentLike(no);
   }
 
   @DeleteMapping("/delete/{no}")

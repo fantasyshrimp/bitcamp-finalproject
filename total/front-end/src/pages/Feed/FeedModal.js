@@ -11,19 +11,21 @@ import getTimeReply from "../../utils/DateReply";
 import getTimeBoard from "../../utils/DateBoard";
 import BoardUpdate from "./BoardUpdate";
 import BoardDelete from "./BoardDelete";
-import Money from "./Money";
+import Point from "./Point";
 import Swal from "sweetalert2";
 
 function FeedModal(props) {
-  const [data, setData] = useState([]);
+  const [reply, setReply] = useState([]);
   const [value, setValue] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isMoneyModalOpen, setIsMoneyModalOpen] = useState(false);
+  const [isPointModalOpen, setIsPointModalOpen] = useState(false);
   const [point, setPoint] = useState();
   const [tag, setTag] = useState([]);
+  const boardNo = props.data.boardNo;
+  const writerNo = props.data.writer.no;
 
   function handleTagClick(e) {
     const keyword = e.target.getAttribute("value").replace("#", "");
@@ -69,16 +71,20 @@ function FeedModal(props) {
     setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
-  const MoneyModalHandler = () => {
-    setIsMoneyModalOpen(!isMoneyModalOpen);
+  const PointModalHandler = () => {
+    setIsPointModalOpen(!isPointModalOpen);
   };
 
-  const boardNo = props.data.boardNo;
-  const writerNo = props.data.writer.no;
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  function handleUpdate() {
+    setIsUpdated(!isUpdated);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     axios
       .post(
         "http://localhost:8080/reply",
@@ -111,18 +117,10 @@ function FeedModal(props) {
       });
   };
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  function handleUpdate() {
-    setIsUpdated(!isUpdated);
-  }
-
   useEffect(() => {
     axios
       .get(`http://localhost:8080/reply/${boardNo}`)
-      .then((response) => setData(response.data))
+      .then((response) => setReply(response.data))
       .catch((error) => console.log(error));
   }, [isUpdated]);
 
@@ -167,16 +165,16 @@ function FeedModal(props) {
               backgroundPosition: "center center",
               backgroundSize: "cover",
             }}
-            onClick={MoneyModalHandler}
+            onClick={PointModalHandler}
           ></div>
           <div id="modal-money">{numberWithCommas(point)}</div>
           {props.user &&
             props.user.data.no !== writerNo &&
-            isMoneyModalOpen && (
-              <Money
+            isPointModalOpen && (
+              <Point
                 boardNo={boardNo}
                 writerNo={writerNo}
-                MoneyModalHandler={MoneyModalHandler}
+                PointModalHandler={PointModalHandler}
               />
             )}
         </div>
@@ -201,10 +199,11 @@ function FeedModal(props) {
           </div>
           <div id="feed-modal-tag">
             <div id="feed-modal-tagdiv">
-              {tag.map((item) => (
+              {tag.map((item, index) => (
                 <div
                   id="feed-modal-t"
                   value={item.tag}
+                  key={index}
                   onClick={handleTagClick}
                 >
                   {item.tag}
@@ -235,9 +234,8 @@ function FeedModal(props) {
           {isDeleteModalOpen && (
             <BoardDelete
               boardNo={boardNo}
-              reply={data}
+              reply={reply}
               DeleteModalHandler={DeleteModalHandler}
-              originContent={props.data.originContent}
               closeModal={props.closeModal}
             />
           )}
@@ -262,8 +260,8 @@ function FeedModal(props) {
           </form>
         </div>
         <div id="feed-modal-comscroll">
-          {data.map((item) => (
-            <>
+          {reply.map((item, index) => (
+            <div key={item.replyNo}>
               <div id="feed-modal-comment">
                 <div
                   id="feed-modal-commentpic"
@@ -274,30 +272,32 @@ function FeedModal(props) {
                 ></div>
                 <div id="feed-modal-com">
                   <div id="feed-modal-commentwriter">
-                    <div id="feed-modal-comwriter" key={item.writer.nickname}>
+                    <div id="feed-modal-comwriter">
                       <SmallProfileName
                         no={item.writer.no}
                         nickname={item.writer.nickname}
                         modalClose={props.closeModal}
                       />
                     </div>
-                    <div id="feed-modal-comdt" key={item.writeDt}>
+                    <div id="feed-modal-comdt">
                       {getTimeReply(item.writeDt)}
                     </div>
                   </div>
-                  <div id="feed-modal-commentcontent" key={item.content}>
+                  <div id="feed-modal-commentcontent">
                     {item.content}
                     <CommentUtil
+                      key={index}
                       commentNo={item.replyNo}
                       writerNo={item.writer.no}
                       onUpdate={handleUpdate}
+                      loginUserNo={props.user.data.no}
                     />
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           ))}
-          {data.length === 0 && (
+          {reply.length === 0 && (
             <div id="nocommnet">댓글이 없습니다. 첫 댓글을 작성해보세요 !</div>
           )}
         </div>
