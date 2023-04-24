@@ -115,6 +115,7 @@ function AuthModal(props) {
         animation={false}
         aria-labelledby="auth-modal-sizes-title-sm"
         backdropClassName="auth-modal-backdrop"
+        contentClassName="auth-modal-content"
         dialogClassName={
           currentUser && currentUser.authLevel === 9
             ? "auth-modal-dialog auth-modal-dialog-wide"

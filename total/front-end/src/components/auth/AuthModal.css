@@ -17,6 +17,10 @@
   cursor: pointer;
 }
 
+.auth-modal-content {
+  border-radius: 0;
+}
+
 #auth-modal .modal-body {
   background-color: var(--aim-base-tone-up);
 }

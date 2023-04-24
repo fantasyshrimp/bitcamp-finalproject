@@ -46,7 +46,12 @@ function CommentList(props) {
       <div className={styles.CommentList}>
         <h1>관리 페이지</h1>
         <NavBar />
-        <Table striped bordered hover variant="dark">
+        <Table
+          striped
+          bordered
+          hover
+          variant={props.isLightMode === true ? "light" : "dark"}
+        >
           <thead>
             <tr>
               <th>댓글번호</th>

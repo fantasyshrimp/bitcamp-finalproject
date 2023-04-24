@@ -174,13 +174,21 @@ function App() {
                   <MemberList
                     currentUser={currentUser}
                     setCurrentUser={setCurrentUser}
+                    isLightMode={isLightMode}
                   />
                 }
               />
               <Route path="/admin/stats" element={<Stats />} />
               <Route path="/admin/management" element={<Management />} />
-              <Route path="/admin/board" element={<BoardList />} />
-              <Route path="/admin/comment" element={<CommentList />} />
+              <Route
+                path="/admin/board"
+                element={<BoardList isLightMode={isLightMode} />}
+              />
+              <Route
+                path="/admin/comment"
+                element={<CommentList isLightMode={isLightMode} />}
+              />
+
               <Route path="/auth/verify" element={<EmailVerifyHandler />} />
               <Route path="/auth/naverlogin" element={<NaverLoginHandler />} />
             </Routes>

@@ -49,7 +49,12 @@ function BoardList(props) {
       <div className={styles.BoardList}>
         <h1>관리 페이지</h1>
         <NavBar />
-        <Table striped bordered hover variant="dark">
+        <Table
+          striped
+          bordered
+          hover
+          variant={props.isLightMode === true ? "light" : "dark"}
+        >
           <thead>
             <tr>
               <th>게시글번호</th>

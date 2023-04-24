@@ -32,7 +32,7 @@
 }
 
 .findpw2-modal-resend-clicked {
-  color: #999;
+  color: var(--aim-text-sub);
   cursor: default;
 }
 
@@ -41,5 +41,5 @@
 }
 
 .auth-generating {
-  color: #999;
+  color: var(--aim-text-sub);
 }
