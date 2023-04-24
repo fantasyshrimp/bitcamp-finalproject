@@ -9,6 +9,7 @@ function BoardView(props) {
   const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
+  const [tag, setTag] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,22 @@ function BoardView(props) {
       console.log(data);
     }
   }, [data]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/admin/board/tag/` + no
+        );
+        const tag = response.data[0].tag;
+        console.log("Tag:", tag);
+        setData((prevData) => ({ ...prevData, tag })); // 이전 데이터를 복사한 후 tag만 업데이트
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no]);
 
   return (
     <>
