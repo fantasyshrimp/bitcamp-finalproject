@@ -111,5 +111,11 @@ public class AdminController {
     return boardService.get(no);
   }
 
+  @GetMapping("/board/tag/{no}")
+  public List<Board> findTag(@PathVariable int no) {
+
+    return boardService.listTag(no);
+  }
+
 }
 
