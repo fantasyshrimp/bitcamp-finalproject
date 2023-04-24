@@ -5,6 +5,8 @@ import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 import SSEContext from "../handler/SSEContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import FeedModal from "../pages/Feed/FeedModal";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
@@ -12,6 +14,12 @@ function Navbars(props) {
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
   const [count, setCount] = useState(0);
+  const [showFeedModal, setShowFeedModal] = useState(false);
+  const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+
+  const feedModalData = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +47,23 @@ function Navbars(props) {
   useEffect(() => {
     setMessage(sseMessage);
   }, [sseMessage]);
+
+  const handleClickProcessBar = (variant) => {
+    if (variant === "success") {
+      const board = JSON.parse(message.boardJson);
+      openFeedModal(board);
+    }
+  };
+
+  const openFeedModal = (data) => {
+    navigate("/feed");
+    feedModalData.current = data;
+    setIsFeedModalOpen(true);
+  };
+
+  const closeFeedModal = () => {
+    setIsFeedModalOpen(false);
+  };
 
   return (
     <>
@@ -107,6 +132,7 @@ function Navbars(props) {
                           fontSize: "0.75rem",
                           borderRadius: "4px",
                         }}
+                        onClick={() => handleClickProcessBar(variant)}
                       />
                     );
                   })()
@@ -138,6 +164,45 @@ function Navbars(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      {isFeedModalOpen && (
+        <div>
+          <div
+            id="modal-background"
+            style={{
+              opacity: 0.3,
+              backgroundColor: "black",
+              pointerEvents: "all",
+              cursor: "Default",
+            }}
+            onClick={() => {
+              closeFeedModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                closeFeedModal();
+              }}
+              className={`btn-close btn-close-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "white"
+              }`}
+            ></div>
+            <FeedModal
+              closeModal={closeFeedModal}
+              data={feedModalData.current}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
