@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
 
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function MemberView(props) {
   const { show, setShow, no } = props;
@@ -26,7 +27,6 @@ function MemberView(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(no);
       try {
         const response = await axios.get(
           `http://localhost:8080/admin/member/` + no
@@ -39,11 +39,18 @@ function MemberView(props) {
     fetchData();
   }, [no]);
 
-  const handleSubmit = () => {
+  const handleAccountStateChange = (e) => {
+    setData({ ...data, accountState: e.target.value });
+    console.log(e.target.value);
+    //data.accountState = e.target.value;
+
     axios
-      .put(`http://localhost:8080/admin/member/accountState/${no}`, data)
+      .put(`http://localhost:8080/admin/member/${no}/accountState`, {
+        state: e.target.value,
+      })
       .then((response) => {
-        console.log(data);
+        console.log("accountState");
+        console.log(data.accountState);
         //handleClose();
       })
       .catch((error) => console.error(error));
@@ -239,9 +246,7 @@ function MemberView(props) {
                   aria-label="계정상태"
                   className={styles.option}
                   value={data.accountState}
-                  onChange={(e) =>
-                    setData({ ...data, accountState: e.target.value })
-                  }
+                  onChange={handleAccountStateChange}
                 >
                   <option className={styles.option} value="0">
                     이메일 인증
@@ -255,7 +260,7 @@ function MemberView(props) {
                   <option className={styles.option} value="3">
                     탈퇴
                   </option>
-                  <option className={styles.option} value="">
+                  <option className={styles.option} value="4">
                     정지
                   </option>
                 </Form.Select>
@@ -279,7 +284,7 @@ function MemberView(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={handleAccountStateChange}>
             Save
           </Button>
         </Modal.Footer>

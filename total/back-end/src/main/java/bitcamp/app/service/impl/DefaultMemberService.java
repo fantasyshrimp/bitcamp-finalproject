@@ -202,8 +202,8 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public void updateAccountState(Member member) {
-    memberDao.updateAccountState(member);
+  public void updateAccountState(int memberNo, int state) {
+    memberDao.updateAccountState(memberNo, state);
   }
 
 }
