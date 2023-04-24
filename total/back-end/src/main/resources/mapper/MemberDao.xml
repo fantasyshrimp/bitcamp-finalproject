@@ -200,7 +200,7 @@
     where email=#{email}
   </update>
   
-  <update id="updateAccountState" parameterType="member">
+  <update id="updateAccountState">
     update aim_member
     set state=#{state}
     where member_no=#{no}

@@ -1,39 +1,40 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-// import { useNavigate } from "react-router-dom";
 
 function Searchs(props) {
   const [searchTerm, setSearchTerm] = useState("");
-  // const Navigate = useNavigate();
+
+  const handleSearch = () => {
+    console.log("검색어: ", searchTerm);
+    axios
+      .post(
+        "http://localhost:8080/boards/keyword",
+        {},
+        {
+          params: {
+            keyword: searchTerm,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "success") {
+          if (window.location.pathname === "/Feed") {
+            window.location.reload();
+          } else {
+            window.location.href = "/Feed";
+          }
+        } else {
+          console.log("에러");
+        }
+      })
+      .catch((error) => {});
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      console.log("검색어: ", searchTerm);
-      axios
-        .post(
-          "http://localhost:8080/boards/keyword",
-          {},
-          {
-            params: {
-              keyword: searchTerm,
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data.status === "success") {
-            if (window.location.pathname === "/Feed") {
-              window.location.reload();
-            } else {
-              // Navigate("/Feed");
-              window.location.href = "/Feed";
-            }
-          } else {
-            console.log("에러");
-          }
-        })
-        .catch((error) => {});
+      handleSearch();
     }
   };
 
@@ -62,6 +63,7 @@ function Searchs(props) {
         style={{
           borderRadius: "0",
         }}
+        onClick={handleSearch} // 버튼 클릭 이벤트에 handleSearch 함수 등록
       >
         Search
       </Button>
