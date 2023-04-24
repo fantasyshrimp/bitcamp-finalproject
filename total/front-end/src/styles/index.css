@@ -50,6 +50,14 @@ input:-webkit-autofill:active {
   font-size: 1.05rem;
 }
 
+.personalSetting-menu.nav-link {
+  color: var(--aim-text-sub);
+}
+
+.personalSetting-menu.nav-link.active {
+  color: var(--aim-text-default);
+}
+
 #small-profile,
 #setting-type-btn {
   cursor: pointer;
