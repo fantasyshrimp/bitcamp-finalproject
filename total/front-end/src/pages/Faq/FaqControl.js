@@ -1,7 +1,5 @@
 import React, { createElement, useState, useEffect } from "react";
-import SettingInput from "../personalSetting/SettingInput"
 import StyleButton from "./StyleButton";
-import "./FaqControl.css";
 
 function FaqControl(props) {
   const [title, setTitle] = useState("");
@@ -19,18 +17,21 @@ function FaqControl(props) {
       
       let currentNode = range.startContainer;
       if (currentNode === range.endContainer) { //한컨테이너에서 이루어지면?
-
         const first = range.startOffset;
         const second = range.endOffset - range.startOffset;
+        console.log(first);
+        console.log(second);
         const selectedNode = setStyleToNode(currentNode.sliceNode(first).sliceNode(second, true), styles);
-        
+        console.log(selectedNode);
+        //setStyleToNode(currentNode, styles);
         // 이런식으로 한번에 관리도 되나?
         // const endOffset = (currentNode === range.endContainer) ? range.endOffset : currentNode.nodeValue.length;
         // const startOffset = (currentNode === range.startContainer) ? range.startOffset : 0;    
-        range.setStart(selectedNode, 0);
-        range.setEnd(selectedNode, selectedNode.length);
+        // range.setStart(selectedNode, 0);
+        // range.setEnd(selectedNode, selectedNode.length);
         selection.removeAllRanges();
         selection.addRange(range);
+        console.log("한컨테이너 판정인가?");
 
         return;
       }
@@ -55,8 +56,29 @@ function FaqControl(props) {
       selection.removeAllRanges();
       selection.addRange(range);
 
-  }
+    } else {
+      console.log('적용된 스타일을 해제해야함');
+      const range = selection.getRangeAt(0);      
+      let currentNode = range.startContainer;
+      if (currentNode.parentNode.tagName === 'SPAN') {
+        const newText = document.createTextNode('');
+        console.log(newText);
+        currentNode.parentNode.parentNode.appendChild(newText);
+        range.setStartAfter(currentNode.parentNode);
+  
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
 }
+
+// 스타일 바깥으로 나가는 함수 -> 그냥 적용된 스타일을 취소하는 느낌으로 해야하나?
+
+function outStyle(targetNode) {
+
+}
+
+
 // 선택된 노드의 최하위 node를 가져오는 함수
 //-------------------------------------------------------------------
 
@@ -76,8 +98,8 @@ function getSelectedNodes(range) {
 }
 
 function getNextNode(node) {
-  if (node.firstChild && node.firstChild.textContent.length > 0) {
-    if (node.firstChild.firstChild && node.firstChild.firstChild.textContent.length > 0) {
+  if (node.firstChild && node.firstChild.textContent.length !== "") {
+    if (node.firstChild.firstChild && node.firstChild.firstChild.textContent.length !== "") {
       return node.firstChild.firstChild;
     }
     return node.firstChild;
@@ -121,8 +143,11 @@ function getNextNode(node) {
   
    let dstNode = this;  
    const parentNode = dstNode.parentNode;
-
-  if (this.nodeType === Node.TEXT_NODE) {    
+  if (offset === 0 || offset === dstNode.nodeValue.length) {
+    return dstNode;
+  }
+   
+  if (this.nodeType === Node.TEXT_NODE) {
     if (isFront) {
       dstNode = dstNode.splitText(offset).previousSibling;
     } else {
@@ -153,41 +178,61 @@ function getNextNode(node) {
   // -------------------------------------------------------------
  
   return (
-    <div style={{position: 'relative'}} >
-    <input 
-    style={{ 
-      width: '80%',
-      height: '50px',
-      display: 'block',
-      padding: '10px',
-      margin: '0 auto',
-      border: '1px solid white',
-      backgroundColor: `var(--aim-base-alpa)`,
-      color: 'white',
-      }} />
-    <div id="own-text-editer">
-      <div id="faq-body"
-        contentEditable={true}
-        onInput={handleChange} onKeyDown={(event) => {
-          if (event.key === 'Enter') {    
-          }
-        }}
 
-        style={{
-          width: '80%',
-          height: '600px',
-          padding: '10px',
-          margin: '0 auto',
-          border: '1px solid white',
-          color: 'white', 
-          overflow: 'auto',
-        }}
-
-      >
+    <div style={{display: "flex"}}>
+      <div style={{marginLeft: "5%", width: "250px",
+      borderRight: "1px solid white"
+    }}>
+      {/* 이곳은 왼쪽 메뉴? 카테고리 추가같은게 들어갈 예정 */}
       </div>
-      <StyleButton handleClick={handleClick} hi={'50px'} setStyle={[['color','red'],['backgroundColor','white']]}/>
-      <StyleButton handleClick={handleClick} hi={'150px'} setStyle={[['font-size','20px']]}/>
-    </div>
+
+      <div style={{marginLeft: "50px"}}>
+        <input 
+        style={{ 
+          width: '80%',
+          height: '50px',
+          display: 'block',
+          padding: '10px',
+          border: '1px solid white',
+          backgroundColor: `var(--aim-base-alpa)`,
+          color: 'white',
+          }} />
+
+        <div id="own-text-editer" style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "750px"
+        }}>
+            <div id="text-editor-header" style={{
+              display: "flex",
+              width: '80%',
+            }}>
+            <StyleButton handleClick={handleClick} hi={'50px'} setStyle={[['color','red'],['backgroundColor','white']]}/>
+            <StyleButton handleClick={handleClick} hi={'150px'} setStyle={[['font-size','20px']]}/>
+
+            </div>
+
+            <div id="text-editor-body"
+              contentEditable={true}
+              onInput={handleChange} onKeyDown={(event) => {
+                if (event.key === 'Enter') {    
+                }
+              }}
+
+              style={{
+                width: '80%',
+                height: '600px',
+                padding: '10px',
+                border: '1px solid white',
+                color: 'white', 
+                overflow: 'auto',
+              }}
+
+            >
+            </div>
+
+        </div>
+      </div>
     </div>
   );
 }

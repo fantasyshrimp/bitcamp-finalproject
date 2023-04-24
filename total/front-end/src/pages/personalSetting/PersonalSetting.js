@@ -33,11 +33,17 @@ function PersonalSetting() {
         color: `var(--aim-text-default)`
       }}>
         <div style={{height: "20%"}}></div>
-        <div style={{marginRight: "5%"}}>
+        <div>
           <h2 style={{boxSizing: "border-box"}}>설정</h2>
           
           {menu.map((title, index) => {
-            return (<div key={title + index} onClick={() => {setMenuNo(index)}}>{title}</div>);
+            return (<div key={title + index} onClick={() => {setMenuNo(index)}}
+            style={{
+              cursor: "pointer",
+              padding: "5%",
+              borderBottom: `solid 1px var(--aim-border)`,
+            }}
+            >{title}</div>);
           })}  
         </div>
 
