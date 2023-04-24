@@ -10,12 +10,10 @@ import FeedModal from "../pages/Feed/FeedModal";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
-  let [currentUser, setCurrentUser] = useState(null);
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
-  const [count, setCount] = useState(0);
-  const [showFeedModal, setShowFeedModal] = useState(false);
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const feedModalData = useRef(null);
 
@@ -27,6 +25,7 @@ function Navbars(props) {
         const result = await axios("http://localhost:8080/auth/user");
         if (result.data.status == "success") {
           props.setCurrentUser(result.data.data);
+          setUser({ data: props.currentUser });
         } else {
           props.setCurrentUser(null);
         }
@@ -59,6 +58,7 @@ function Navbars(props) {
     navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
+    console.log(user);
   };
 
   const closeFeedModal = () => {
@@ -169,12 +169,6 @@ function Navbars(props) {
         <div>
           <div
             id="modal-background"
-            style={{
-              opacity: 0.3,
-              backgroundColor: "black",
-              pointerEvents: "all",
-              cursor: "Default",
-            }}
             onClick={() => {
               closeFeedModal();
             }}
@@ -196,9 +190,12 @@ function Navbars(props) {
                   : "white"
               }`}
             ></div>
+            {console.log(feedModalData.current)}
             <FeedModal
-              closeModal={closeFeedModal}
+              key={feedModalData.current}
               data={feedModalData.current}
+              closeModal={closeFeedModal}
+              // user={user}
             />
           </div>
         </div>

@@ -3,7 +3,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 function BoardDelete(props) {
-  console.log("isLightMode >>> " + props.isLightMode);
   const replyNos = props.reply.map((reply) => reply.replyNo);
 
   function deleteBoard(boardNo) {

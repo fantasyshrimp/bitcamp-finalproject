@@ -72,30 +72,31 @@
   LIMIT #{pageSize} OFFSET #{offset}
 </select>
   
-    <select id="findByNo" resultMap="boardMap" parameterType="int">
+  <select id="findByNo" resultMap="boardMap" parameterType="int">
     select 
-    b.board_no,
-    b.member_no,
-    b.origin_content,
-    b.summary_content,
-    b.trans_content,
-    b.tag,
-    b.like_cnt,
-    b.view_cnt,
-    b.board_public,
-    b.reply_public,
-    b.write_dt,
-    b.update_dt,
-    b.report_cnt,
-      m.name, 
-      i.img_no, 
-      i.img_filename 
-    from 
-      aim_board b
-      inner join aim_member m on b.member_no = m.member_no 
-      inner join aim_generated_img i on b.board_no = i.board_no
-    where 
-      b.board_no=#{no}
+	    b.board_no,
+	    b.member_no,
+	    b.origin_content,
+	    b.summary_content,
+	    b.trans_content,
+	    b.tag,
+	    b.like_cnt,
+	    b.view_cnt,
+	    b.board_public,
+	    b.reply_public,
+	    b.write_dt,
+	    b.update_dt,
+	    b.report_cnt,
+	    m.name, 
+	    m.filename,
+	    i.img_no, 
+	    i.img_filename 
+	  from 
+	    aim_board b
+	    inner join aim_member m on b.member_no = m.member_no 
+	    inner join aim_generated_img i on b.board_no = i.board_no
+	  where 
+	    b.board_no=#{no}
   </select>
   
   <select id="findTag" resultMap="boardMap" parameterType="int">
