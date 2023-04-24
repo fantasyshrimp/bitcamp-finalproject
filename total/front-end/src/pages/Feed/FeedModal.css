@@ -11,6 +11,10 @@
   }
 } */
 
+.modal-money-container {
+  cursor: pointer;
+}
+
 #feed-modal-image {
   width: 60%;
   height: 100%;
@@ -495,7 +499,8 @@
   position: absolute;
   bottom: 28px;
   margin-left: 75px;
-  color: var(--aim-text-default);
+  color: #edeeef;
+  text-shadow: 1px 1px 2px var(--aim-text-sub);
 }
 
 #modal-money-icon:hover {

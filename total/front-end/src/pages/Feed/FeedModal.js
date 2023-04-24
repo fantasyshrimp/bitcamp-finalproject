@@ -159,17 +159,18 @@ function FeedModal(props) {
           <div id="modal-like-icon">
             <LikeIcon size={30} contentType={"board"} contentNo={boardNo} />
           </div>
-          <div
-            id="modal-money-icon"
-            style={{
-              backgroundImage: `url(/money.png)`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-            }}
-            onClick={MoneyModalHandler}
-          ></div>
-          <div id="modal-money">{numberWithCommas(point)}</div>
+          <div className="modal-money-container" onClick={MoneyModalHandler}>
+            <div
+              id="modal-money-icon"
+              style={{
+                backgroundImage: `url(/money.png)`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+              }}
+            ></div>
+            <div id="modal-money">{numberWithCommas(point)}</div>
+          </div>
           {props.user &&
             props.user.data.no !== writerNo &&
             isMoneyModalOpen && (
