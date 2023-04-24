@@ -56,15 +56,45 @@ function AuthModal(props) {
 
   const handleClose = () => setShow(false);
 
+  const handleClickAdminPage = () => {
+    handleClose();
+    handleMouseLeaveAdminPage();
+    navigate("/admin/member");
+  };
+
+  const handleClickStats = () => {
+    handleClose();
+    handleMouseLeaveStats();
+    navigate("/admin/stats");
+  };
+
   const handleClickPostModal = (e) => {
     e.preventDefault();
     setPostShow(true);
     setShow(false);
+    handleMouseLeavePost();
+  };
+
+  const handleClickProfile = () => {
+    axios.get("http://localhost:8080/auth/user").then((response) => {
+      navigate("/Profile", {
+        state: { no: response.data.data.no },
+      });
+      handleClose();
+    });
+    handleMouseLeaveProfile();
+  };
+
+  const handleClickSettings = () => {
+    navigate("/personalSetting");
+    handleMouseLeaveSettings();
+    handleClose();
   };
 
   const handleClickLogout = (e) => {
     e.preventDefault();
     handleClose();
+    handleMouseLeaveLogout();
 
     axios
       .get("http://localhost:8080/auth/logout")
@@ -82,28 +112,64 @@ function AuthModal(props) {
       });
   };
 
-  const handleClickAdminPage = () => {
-    handleClose();
-    navigate("/admin/member");
+  const handleMouseEnterAdminPage = () => {
+    setColorManageIcon(`var(--aim-text-href)`);
+    setColorManageText(`var(--aim-text-href)`);
   };
 
-  const handleClickStats = () => {
-    handleClose();
-    navigate("/admin/stats");
+  const handleMouseLeaveAdminPage = () => {
+    setColorManageIcon(`var(--aim-text-default)`);
+    setColorManageText(`var(--aim-text-default)`);
   };
 
-  const handleClickProfile = () => {
-    axios.get("http://localhost:8080/auth/user").then((response) => {
-      navigate("/Profile", {
-        state: { no: response.data.data.no },
-      });
-      handleClose();
-    });
+  const handleMouseEnterStats = () => {
+    setColorStatsIcon(`var(--aim-text-href)`);
+    setColorStatsText(`var(--aim-text-href)`);
   };
 
-  const handleClickSettings = () => {
-    navigate("/personalSetting");
-    handleClose();
+  const handleMouseLeaveStats = () => {
+    setColorStatsIcon(`var(--aim-text-default)`);
+    setColorStatsText(`var(--aim-text-default)`);
+  };
+
+  const handleMouseEnterPost = () => {
+    setColorPostIcon(`var(--aim-text-href)`);
+    setColorPostText(`var(--aim-text-href)`);
+  };
+
+  const handleMouseLeavePost = () => {
+    setColorPostIcon(`var(--aim-text-default)`);
+    setColorPostText(`var(--aim-text-default)`);
+  };
+
+  const handleMouseEnterProfile = () => {
+    setColorProfileIcon(`var(--aim-text-href)`);
+    setColorProfileText(`var(--aim-text-href)`);
+  };
+
+  const handleMouseLeaveProfile = () => {
+    setColorProfileIcon(`var(--aim-text-default)`);
+    setColorProfileText(`var(--aim-text-default)`);
+  };
+
+  const handleMouseEnterSettings = () => {
+    setColorSettingsIcon(`var(--aim-text-href)`);
+    setColorSettingsText(`var(--aim-text-href)`);
+  };
+
+  const handleMouseLeaveSettings = () => {
+    setColorSettingsIcon(`var(--aim-text-default)`);
+    setColorSettingsText(`var(--aim-text-default)`);
+  };
+
+  const handleMouseEnterLogout = () => {
+    setColorLogoutIcon(`var(--aim-text-href)`);
+    setColorLogoutText(`var(--aim-text-href)`);
+  };
+
+  const handleMouseLeaveLogout = () => {
+    setColorLogoutIcon(`var(--aim-text-default)`);
+    setColorLogoutText(`var(--aim-text-default)`);
   };
 
   return (
@@ -129,14 +195,8 @@ function AuthModal(props) {
               <div
                 className="mb-3 auth-modal-link"
                 onClick={handleClickAdminPage}
-                onMouseEnter={() => {
-                  setColorManageIcon(`var(--aim-text-href)`);
-                  setColorManageText(`var(--aim-text-href)`);
-                }}
-                onMouseLeave={() => {
-                  setColorManageIcon(`var(--aim-text-default)`);
-                  setColorManageText(`var(--aim-text-default)`);
-                }}
+                onMouseEnter={handleMouseEnterAdminPage}
+                onMouseLeave={handleMouseLeaveAdminPage}
               >
                 <ShieldLock
                   style={{
@@ -153,14 +213,8 @@ function AuthModal(props) {
               <div
                 className="mb-3 auth-modal-link"
                 onClick={handleClickStats}
-                onMouseEnter={() => {
-                  setColorStatsIcon(`var(--aim-text-href)`);
-                  setColorStatsText(`var(--aim-text-href)`);
-                }}
-                onMouseLeave={() => {
-                  setColorStatsIcon(`var(--aim-text-default)`);
-                  setColorStatsText(`var(--aim-text-default)`);
-                }}
+                onMouseEnter={handleMouseEnterStats}
+                onMouseLeave={handleMouseLeaveStats}
               >
                 <GraphUp
                   style={{
@@ -184,14 +238,8 @@ function AuthModal(props) {
                 ? undefined
                 : handleClickPostModal
             }
-            onMouseEnter={() => {
-              setColorPostIcon(`var(--aim-text-href)`);
-              setColorPostText(`var(--aim-text-href)`);
-            }}
-            onMouseLeave={() => {
-              setColorPostIcon(`var(--aim-text-default)`);
-              setColorPostText(`var(--aim-text-default)`);
-            }}
+            onMouseEnter={handleMouseEnterPost}
+            onMouseLeave={handleMouseLeavePost}
             style={{
               cursor: `${
                 props.message?.status === "process" ||
@@ -230,14 +278,8 @@ function AuthModal(props) {
           <div
             className="mb-3 auth-modal-link"
             onClick={handleClickProfile}
-            onMouseEnter={() => {
-              setColorProfileIcon(`var(--aim-text-href)`);
-              setColorProfileText(`var(--aim-text-href)`);
-            }}
-            onMouseLeave={() => {
-              setColorProfileIcon(`var(--aim-text-default)`);
-              setColorProfileText(`var(--aim-text-default)`);
-            }}
+            onMouseEnter={handleMouseEnterProfile}
+            onMouseLeave={handleMouseLeaveProfile}
           >
             <Person
               style={{
@@ -254,14 +296,8 @@ function AuthModal(props) {
           <div
             className="mb-3 auth-modal-link"
             onClick={handleClickSettings}
-            onMouseEnter={() => {
-              setColorSettingsIcon(`var(--aim-text-href)`);
-              setColorSettingsText(`var(--aim-text-href)`);
-            }}
-            onMouseLeave={() => {
-              setColorSettingsIcon(`var(--aim-text-default)`);
-              setColorSettingsText(`var(--aim-text-default)`);
-            }}
+            onMouseEnter={handleMouseEnterSettings}
+            onMouseLeave={handleMouseLeaveSettings}
           >
             <Gear
               style={{
@@ -278,14 +314,8 @@ function AuthModal(props) {
           <div
             className="mb-0 auth-modal-link"
             onClick={handleClickLogout}
-            onMouseEnter={() => {
-              setColorLogoutIcon(`var(--aim-text-href)`);
-              setColorLogoutText(`var(--aim-text-href)`);
-            }}
-            onMouseLeave={() => {
-              setColorLogoutIcon(`var(--aim-text-default)`);
-              setColorLogoutText(`var(--aim-text-default)`);
-            }}
+            onMouseEnter={handleMouseEnterLogout}
+            onMouseLeave={handleMouseLeaveLogout}
           >
             <BoxArrowRight
               style={{

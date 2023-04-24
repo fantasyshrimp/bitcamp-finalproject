@@ -4,6 +4,7 @@ import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 import AlamSetting from "./AlamSetting";
 import PersonalAlarms from "./PersonalAlarms";
+import { Nav } from "react-bootstrap";
 
 function PersonalSetting() {
   const location = useLocation();
@@ -47,22 +48,40 @@ function PersonalSetting() {
           color: `var(--aim-text-default)`,
         }}
       >
-        <div style={{ height: "20%" }}></div>
+        {/* <div style={{ height: "20%" }}></div> */}
         <div style={{ marginRight: "5%" }}>
-          <h2 style={{ boxSizing: "border-box" }}>설정</h2>
+          <h2
+            style={{
+              boxSizing: "border-box",
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            설정
+          </h2>
 
-          {menu.map((title, index) => {
-            return (
-              <div
-                key={title + index}
-                onClick={() => {
-                  setMenuNo(index);
-                }}
-              >
-                {title}
-              </div>
-            );
-          })}
+          <Nav className="flex-column" defaultActiveKey="#">
+            {menu.map((title, index) => {
+              return (
+                <Nav.Link
+                  eventKey={index}
+                  className={`personalSetting-menu ${
+                    index === menuNo ? "active" : ""
+                  }`}
+                  href={index === 0 && "#"}
+                >
+                  <div
+                    key={title + index}
+                    onClick={() => {
+                      setMenuNo(index);
+                    }}
+                  >
+                    {title}
+                  </div>
+                </Nav.Link>
+              );
+            })}
+          </Nav>
         </div>
       </div>
 
