@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import bitcamp.app.interceptor.AdminInterceptor;
 
@@ -30,10 +31,10 @@ public class App implements WebMvcConfigurer{
   @Autowired
   private AdminInterceptor adminInterceptor;
 
-  //  @Override
-  //  public void addInterceptors(InterceptorRegistry registry) {
-  //    registry.addInterceptor(adminInterceptor)
-  //    .addPathPatterns("/admin/**"); // 인터셉터를 /admin/** 경로에 적용
-  //  }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(adminInterceptor)
+    .addPathPatterns("/admin/**"); // 인터셉터를 /admin/** 경로에 적용
+  }
 
 }
