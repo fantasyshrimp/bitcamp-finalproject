@@ -18,7 +18,6 @@ function AlarmInfo(props) {
         navigate("/");
       }
     });
-    //읽음처리 필요
     switch (log.typeNo) {
       case 11:
         navigate("/Profile", {

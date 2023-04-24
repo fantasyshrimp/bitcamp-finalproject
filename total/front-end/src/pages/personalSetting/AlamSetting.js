@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import SettingPrompt from "./SettingPrompt"
+import {BellFill, BellSlashFill } from 'react-bootstrap-icons';
 
 function AlamSetting(props) {
   const [data, setData] = useState([]);
@@ -33,7 +34,9 @@ function AlamSetting(props) {
             description: settingList.description,
             rangeState: settingList.memberNo === 0 ? 1 : 2,
             memberNo: settingList.memberNo}}
-          settingType={"alarmSetting"} isFlag={true} requestBody={{ typeNo: "", memberNo: ""}} stateArray={[1,2]} />
+          settingType={"alarmSetting"} isFlag={true} requestBody={{ typeNo: "", memberNo: ""}} stateArray={[1,2]} 
+          settingIcon={[<BellSlashFill />, <BellFill />]}
+          />
         ))}
         </div>
       </div>

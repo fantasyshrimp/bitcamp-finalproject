@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import { EyeFill, EyeSlashFill } from 'react-bootstrap-icons';
 import axios from "axios";
 import SettingPrompt from "./SettingPrompt"
 
@@ -38,7 +39,9 @@ function PublicSetting(props) {
             description: settingList.description, 
             rangeState: settingList.rangeState,
             memberNo: settingList.memberNo}}
-          settingType={"publicSetting"} requestBody={{ typeNo: "", rangeNo: ""}} stateArray={[1,2]} />
+          settingType={"publicSetting"} requestBody={{ typeNo: "", rangeNo: ""}} stateArray={[1,2]} 
+          settingIcon={[<EyeSlashFill />, <EyeFill />]}
+          />
         ))}
         </div>
       </div>

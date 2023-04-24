@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./SettingPrompt.css"
-import { EyeFill, EyeSlashFill } from 'react-bootstrap-icons';
 
 function SettingPrompt(props) {
-  const {classKey, data, stateArray, settingType, requestBody} = props;
+  const {classKey, data, stateArray, settingType, requestBody, settingIcon} = props;
   const [selectedValue, setSelectedValue] = useState(data.rangeState === 0 ? 1 : data.rangeState);
   const [hideState, setHideState] = useState(selectedValue === 1 ? false : true);
   const root = document.querySelector(':root');
@@ -48,7 +47,7 @@ function SettingPrompt(props) {
 
   return (
     <div id="setting-prompt" style={{
-      position: "relative", marginBottom: "10px",
+      position: "relative", marginBottom: "20px",
       boxSizing: "border-box", borderBottom: "1px solid"
     }}>
       <div style={{width: "400px"}}>
@@ -64,7 +63,7 @@ function SettingPrompt(props) {
           <div key={value} data-value={value}></div>
         ))}
       <div className={controlClass}>
-        {hideState ? <EyeSlashFill /> : <EyeFill />}
+        {hideState ? settingIcon[0] : settingIcon[1]}
       </div>
       </div>
 
