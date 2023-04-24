@@ -162,20 +162,23 @@ function PostModal(props) {
         contentClassName="bg-dark"
       >
         <Modal.Header
-          style={{ borderBottom: "none", height: "70px" }}
+          closeButton
+          closeVariant={
+            localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+          }
+          className="d-flex"
+        ></Modal.Header>
+        <Modal.Header
+          style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0"
         >
-          <Modal.Title className="text-light">Post</Modal.Title>
-          <Modal.Header
-            closeButton
-            closeVariant="white"
-            style={{
-              position: "absolute",
-              right: "10px",
-              borderBottom: "none",
-            }}
-            className="d-flex p-0"
-          ></Modal.Header>
+          <Modal.Title
+            className={`text-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "light"
+            }`}
+          >
+            글쓰기
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body
@@ -220,7 +223,7 @@ function PostModal(props) {
             ) : isCompleted ? (
               "✓"
             ) : (
-              "Generate"
+              "그림 생성"
             )}
           </Button>
         </Modal.Footer>

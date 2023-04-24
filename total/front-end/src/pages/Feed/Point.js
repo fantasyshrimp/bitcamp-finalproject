@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-function Money(props) {
+function Point(props) {
   const [textValue, setTextValue] = useState("");
   const [mypoint, setMyPoint] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
@@ -39,7 +39,7 @@ function Money(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          props.MoneyModalHandler();
+          props.PointModalHandler();
           setIsUpdated(!isUpdated);
           setTextValue("");
         } else {
@@ -82,13 +82,13 @@ function Money(props) {
           pointerEvents: "all",
           cursor: "Default",
         }}
-        onClick={props.MoneyModalHandler}
+        onClick={props.PointModalHandler}
       ></div>
       <div id="money-main">
         <div id="report-title">
           <span
             id="report-close"
-            onClick={props.MoneyModalHandler}
+            onClick={props.PointModalHandler}
             className={`btn-close btn-close-${
               localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
             }`}
@@ -110,7 +110,7 @@ function Money(props) {
               <div id="money-btn" onClick={handleSubmit}>
                 기부
               </div>
-              <div id="money-btn2" onClick={props.MoneyModalHandler}>
+              <div id="money-btn2" onClick={props.PointModalHandler}>
                 취소
               </div>
             </div>
@@ -121,4 +121,4 @@ function Money(props) {
   );
 }
 
-export default Money;
+export default Point;

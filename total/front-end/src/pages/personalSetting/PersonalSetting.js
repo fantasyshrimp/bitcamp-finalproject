@@ -4,13 +4,16 @@ import ModifyProfile from "./ModifyProfile";
 import PublicSetting from "./PublicSetting";
 import AlamSetting from "./AlamSetting";
 import PersonalAlarms from "./PersonalAlarms";
+import { Nav } from "react-bootstrap";
 
 function PersonalSetting() {
   const location = useLocation();
 
-  const [menuNo, setMenuNo] = useState(location.state ? location.state.menuNo : 0);
+  const [menuNo, setMenuNo] = useState(
+    location.state ? location.state.menuNo : 0
+  );
   const menu = ["프로필 수정", "공개 설정", "알람 설정"];
-  
+
   const [flexDirection, setFlexDirection] = useState("row");
   useEffect(() => {
     function handleResize() {
@@ -26,34 +29,69 @@ function PersonalSetting() {
   }, []);
 
   return (
-    <div style={{display: "flex", height: "83vh", width: "100vw", minWidth: "600px"}}>
-        
-      <div style={{ width: "14.3%", minWidth: "100px", height: "100%", marginLeft: "5%",
-        boxSizing: "border-box", borderRight: `solid 1px var(--aim-border)`,
-        color: `var(--aim-text-default)`
-      }}>
-        <div style={{height: "20%"}}></div>
-        <div>
-          <h2 style={{boxSizing: "border-box"}}>설정</h2>
-          
-          {menu.map((title, index) => {
-            return (<div key={title + index} onClick={() => {setMenuNo(index)}}
+    <div
+      style={{
+        display: "flex",
+        height: "83vh",
+        width: "100vw",
+        minWidth: "600px",
+      }}
+    >
+      <div
+        style={{
+          width: "14.3%",
+          minWidth: "100px",
+          height: "100%",
+          marginLeft: "5%",
+          boxSizing: "border-box",
+          borderRight: `solid 1px var(--aim-border)`,
+          color: `var(--aim-text-default)`,
+        }}
+      >
+        {/* <div style={{ height: "20%" }}></div> */}
+        <div style={{ marginRight: "5%" }}>
+          <h2
             style={{
-              cursor: "pointer",
-              padding: "5%",
-              borderBottom: `solid 1px var(--aim-border)`,
+              boxSizing: "border-box",
+              marginTop: "20px",
+              marginBottom: "20px",
             }}
-            >{title}</div>);
-          })}  
-        </div>
+          >
+            설정
+          </h2>
 
+          <Nav className="flex-column" defaultActiveKey="#">
+            {menu.map((title, index) => {
+              return (
+                <Nav.Link
+                  eventKey={index}
+                  className={`personalSetting-menu ${
+                    index === menuNo ? "active" : ""
+                  }`}
+                  href={index === 0 && "#"}
+                >
+                  <div
+                    key={title + index}
+                    onClick={() => {
+                      setMenuNo(index);
+                    }}
+                  >
+                    {title}
+                  </div>
+                </Nav.Link>
+              );
+            })}
+          </Nav>
+        </div>
       </div>
-        
-      <div style={{width: "90%", height: "100%"}}>
-        {menuNo === 0 && <ModifyProfile title={menu[0]} flexDirection={flexDirection}/>}
-        {menuNo === 1 && <PublicSetting title={menu[1]}/>}
-        {menuNo === 2 && <AlamSetting title={menu[2]}/>}
-        {menuNo === 3 && <PersonalAlarms title={menu[3]}/>}
+
+      <div style={{ width: "90%", height: "100%" }}>
+        {menuNo === 0 && (
+          <ModifyProfile title={menu[0]} flexDirection={flexDirection} />
+        )}
+        {menuNo === 1 && <PublicSetting title={menu[1]} />}
+        {menuNo === 2 && <AlamSetting title={menu[2]} />}
+        {menuNo === 3 && <PersonalAlarms title={menu[3]} />}
       </div>
     </div>
   );

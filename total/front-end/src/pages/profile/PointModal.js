@@ -62,7 +62,7 @@ function PointModal(props) {
       }}
     >
       <div id="point">
-        {pointLog.map((item) => {
+        {pointLog.map((item, index) => {
           if (beforeItem.getMemberNo !== undefined) {
             if (props.memberNo === beforeItem.getMemberNo) {
               toPoint -= beforeItem.point;
@@ -73,7 +73,7 @@ function PointModal(props) {
           beforeItem = item;
 
           return (
-            <div id="point-log">
+            <div id="point-log" key={index}>
               <div id="point-log-content">
                 <div id="point-log-title">{getTypeName(item.type)}</div>
                 {props.memberNo === item.getMemberNo && (

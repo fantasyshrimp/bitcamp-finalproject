@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 function BoardDelete(props) {
   console.log("isLightMode >>> " + props.isLightMode);
   const replyNos = props.reply.map((reply) => reply.replyNo);
+
   function deleteBoard(boardNo) {
     axios
       .delete(`http://localhost:8080/boards/${boardNo}`, {
@@ -22,6 +23,7 @@ function BoardDelete(props) {
         console.error(error);
       });
   }
+
   return (
     <>
       <div

@@ -5,7 +5,7 @@ import Report from "./Report";
 import Swal from "sweetalert2";
 
 function CommentUtil(props) {
-  const [data, setData] = useState([]);
+  const [likeCnt, setLikeCnt] = useState();
   const [isLike, setIsLike] = useState(false);
   const [likeUpdate, setLikeUpdate] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,14 +44,12 @@ function CommentUtil(props) {
       axios
         .delete("http://localhost:8080/reply/like/" + props.commentNo)
         .then((response) => {
-          console.log(response);
           setLikeUpdate(!likeUpdate);
         })
         .catch((error) => {
           console.error(error);
         });
     } else {
-      console.log(props.replyNo);
       axios
         .post(
           "http://localhost:8080/reply/like",
@@ -63,7 +61,6 @@ function CommentUtil(props) {
           }
         )
         .then((response) => {
-          console.log(response);
           setLikeUpdate(!likeUpdate);
         })
         .catch((error) => {
@@ -92,18 +89,14 @@ function CommentUtil(props) {
   useEffect(() => {
     axios
       .get(`http://localhost:8080/reply/like/${props.commentNo}`)
-      .then((response) => setData(response.data))
+      .then((response) => setLikeCnt(response.data))
       .catch((error) => console.log(error));
   }, [likeUpdate]);
-
-  if (!Array.isArray(data)) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
       <div id="feed-modal-commentutil">
-        <div id="feed-modal-commentlike">좋아요 {data[0]}개</div>
+        <div id="feed-modal-commentlike">좋아요 {likeCnt}개</div>
         <div
           id="feed-modal-replylike"
           style={{
@@ -112,12 +105,12 @@ function CommentUtil(props) {
           }}
           onClick={handleLike}
         ></div>
-        {data[1] !== props.writerNo && (
+        {props.loginUserNo !== props.writerNo && (
           <div id="feed-modal-commentreport" onClick={openModal}>
             신고하기
           </div>
         )}
-        {data[1] === props.writerNo && (
+        {props.loginUserNo === props.writerNo && (
           <div id="feed-modal-commentdelete" onClick={CommentDel}>
             삭제하기
           </div>

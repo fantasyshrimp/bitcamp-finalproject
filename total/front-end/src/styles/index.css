@@ -41,3 +41,24 @@ input:-webkit-autofill:active {
 .form-control::placeholder {
   color: var(--aim-text-sub);
 }
+
+.profile-edit-nickname-icon {
+  cursor: pointer;
+}
+
+.setting-label {
+  font-size: 1.05rem;
+}
+
+.personalSetting-menu.nav-link {
+  color: var(--aim-text-sub);
+}
+
+.personalSetting-menu.nav-link.active {
+  color: var(--aim-text-default);
+}
+
+#small-profile,
+#setting-type-btn {
+  cursor: pointer;
+}

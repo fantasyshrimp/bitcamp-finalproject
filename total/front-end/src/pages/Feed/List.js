@@ -63,8 +63,9 @@ function List(props) {
 
   return (
     <div id="feed-main">
-      {data.map((item) => (
+      {data.map((item, index) => (
         <FeedList
+          key={index}
           item={item}
           auth={auth}
           loginShow={props.loginShow}

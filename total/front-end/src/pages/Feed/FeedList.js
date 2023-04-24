@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import "./Feed.css";
 import FeedModal from "./FeedModal";
 import axios from "axios";
 
 function FeedList(props) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [loginShow, setLoginShow] = useState(null);
-
-  function handleCloseModal() {
-    setModalOpen(false);
-  }
   const [user, setUser] = useState();
 
   function ShowModal() {
@@ -86,7 +80,12 @@ function FeedList(props) {
                     : "white"
                 }`}
               ></div>
-              <FeedModal data={props.item} closeModal={ShowModal} user={user} />
+              <FeedModal
+                key={props.item}
+                data={props.item}
+                closeModal={ShowModal}
+                user={user}
+              />
             </div>
           </>
         )}
