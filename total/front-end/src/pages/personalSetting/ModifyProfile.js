@@ -189,6 +189,7 @@ function ModifyProfile(props) {
                     {beforeNick}
                   </span>
                   <PencilSquare
+                    className="profile-edit-nickname-icon"
                     onClick={() => {
                       setIsNickDuplication(true);
                       setNicknameChageState(true);

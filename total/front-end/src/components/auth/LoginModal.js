@@ -186,7 +186,7 @@ function LoginModal(props) {
                     : "light"
                 }`}
               >
-                사용자의 이메일 주소를 입력해 주세요
+                이메일
               </Form.Label>
               <Form.Control
                 type="email"
@@ -212,7 +212,7 @@ function LoginModal(props) {
                     : "light"
                 }`}
               >
-                사용자의 비밀번호를 입력해 주세요
+                비밀번호
               </Form.Label>
               <Form.Control
                 type="password"

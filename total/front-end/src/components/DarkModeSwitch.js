@@ -7,7 +7,7 @@ function DarkModeSwitch(props) {
   useEffect(() => {
     if (props.isLightMode) {
       root.style.setProperty("--aim-base-tone", `#F8F9FA`);
-      root.style.setProperty("--aim-base-tone-up", `#EDEEEF`);
+      root.style.setProperty("--aim-base-tone-up", `#E9ECEF`);
       root.style.setProperty("--aim-base-tone-down", `#FFFFFF`);
       root.style.setProperty("--aim-base-tone-sub", `#594A4A`);
 
