@@ -22,7 +22,6 @@ function CommentList(props) {
     axios
       .get("http://localhost:8080/admin/comment")
       .then((response) => {
-        console.log("data : ");
         setData(response.data);
       })
       .catch((error) => console.error(error));
@@ -38,9 +37,9 @@ function CommentList(props) {
           `http://localhost:8080/admin/board/${selectedNo}`
         );
         setBoardData(response.data);
-        feedModalData.current = response.data;
-        if (feedModalData.current) {
-          openFeedModal(feedModalData.current);
+        // feedModalData.current = response.data;
+        if (response.data) {
+          openFeedModal(response.data);
         }
       } catch (error) {
         console.error(error);
@@ -55,6 +54,7 @@ function CommentList(props) {
   }, [boardData]);
 
   const openFeedModal = (boardData) => {
+    feedModalData.current = boardData;
     setIsFeedModalOpen(true);
   };
 
@@ -130,14 +130,13 @@ function CommentList(props) {
                   : "white"
               }`}
             ></div>
-
-            <FeedModal
-              key={feedModalData.current}
-              data={feedModalData.current}
-              closeModal={closeFeedModal}
-              user={feedModalUser.current}
-            />
           </div>
+          <FeedModal
+            key={feedModalData.current}
+            data={feedModalData.current}
+            closeModal={closeFeedModal}
+            //user={feedModalUser.current}
+          />
         </div>
       )}
     </>
