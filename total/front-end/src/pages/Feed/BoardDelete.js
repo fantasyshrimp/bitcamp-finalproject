@@ -56,11 +56,16 @@ function BoardDelete(props) {
                   deleteBoard(props.boardNo);
                   props.closeModal();
                 }}
+                className="btn btn-primary"
               >
-                네
+                예
               </div>
-              <div id="menu-btn2" onClick={props.DeleteModalHandler}>
-                아니요
+              <div
+                id="menu-btn2"
+                onClick={props.DeleteModalHandler}
+                className="btn btn-secondary"
+              >
+                아니오
               </div>
             </div>
           </div>

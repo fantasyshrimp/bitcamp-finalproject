@@ -144,14 +144,22 @@ function FindPw2Modal(props) {
       >
         <Modal.Header
           closeButton
-          closeVariant="white"
+          closeVariant={
+            localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+          }
           style={{ borderBottom: "none" }}
         ></Modal.Header>
         <Modal.Header
           style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
-          <Modal.Title className="text-light">인증코드 입력</Modal.Title>
+          <Modal.Title
+            className={`text-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "light"
+            }`}
+          >
+            인증코드 입력
+          </Modal.Title>
         </Modal.Header>
 
         <Form>
@@ -160,7 +168,13 @@ function FindPw2Modal(props) {
             style={{ backgroundColor: `var(--aim-base-tone)` }}
           >
             <Form.Group className="mb-2" controlId="text">
-              <Form.Label className="text-light">
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
                 이메일로 받은 인증코드를 입력해 주세요.
               </Form.Label>
               <Form.Control

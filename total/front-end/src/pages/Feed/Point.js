@@ -107,10 +107,18 @@ function Point(props) {
               보유 포인트: {numberWithCommas(mypoint)}
             </div>
             <div id="btn-div">
-              <div id="money-btn" onClick={handleSubmit}>
+              <div
+                id="money-btn"
+                onClick={handleSubmit}
+                className="btn btn-primary"
+              >
                 기부
               </div>
-              <div id="money-btn2" onClick={props.PointModalHandler}>
+              <div
+                id="money-btn2"
+                onClick={props.PointModalHandler}
+                className="btn btn-secondary"
+              >
                 취소
               </div>
             </div>

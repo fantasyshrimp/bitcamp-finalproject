@@ -144,14 +144,22 @@ function FindPw3Modal(props) {
       >
         <Modal.Header
           closeButton
-          closeVariant="white"
+          closeVariant={
+            localStorage.getItem("isLightMode") === "true" ? "dark" : "white"
+          }
           style={{ borderBottom: "none" }}
         ></Modal.Header>
         <Modal.Header
           style={{ borderBottom: "none", borderRadius: "0" }}
           className="d-flex justify-content-center p-0 pt-2 pb-2"
         >
-          <Modal.Title className="text-light">비밀번호 변경</Modal.Title>
+          <Modal.Title
+            className={`text-${
+              localStorage.getItem("isLightMode") === "true" ? "dark" : "light"
+            }`}
+          >
+            비밀번호 변경
+          </Modal.Title>
         </Modal.Header>
 
         <Form>
@@ -160,7 +168,15 @@ function FindPw3Modal(props) {
             style={{ backgroundColor: `var(--aim-base-tone)` }}
           >
             <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="text-light">비밀번호</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                비밀번호
+              </Form.Label>
 
               <Form.Control
                 type="password"
@@ -178,7 +194,15 @@ function FindPw3Modal(props) {
               <Form.Text id="passwordHelpBlock"></Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="passwordConfirm">
-              <Form.Label className="text-light">비밀번호 확인</Form.Label>
+              <Form.Label
+                className={`text-${
+                  localStorage.getItem("isLightMode") === "true"
+                    ? "dark"
+                    : "light"
+                }`}
+              >
+                비밀번호 확인
+              </Form.Label>
               <Form.Control
                 type="password"
                 name="passwordConfirm"
