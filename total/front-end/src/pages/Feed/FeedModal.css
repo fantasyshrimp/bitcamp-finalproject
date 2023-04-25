@@ -307,6 +307,7 @@
   color: var(--aim-text-default);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
+  padding-bottom: 10px;
 }
 
 #report-delete {
@@ -317,7 +318,7 @@
   height: auto;
   background-color: var(--aim-base-tone);
   border: 1px solid var(--aim-border);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   color: var(--aim-text-default);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;
@@ -327,6 +328,7 @@
   text-align: center;
   font-size: 24px;
   height: 13%;
+  margin-top: 22px;
 }
 
 #report-close {
@@ -393,15 +395,10 @@
   text-align: center;
   margin-left: 35%;
   margin-top: 3%;
-  background-color: var(--aim-base-tone);
-  border-radius: 10px;
-  color: var(--aim-emphasis-red);
+  /* background-color: var(--aim-base-tone); */
+  border-radius: 20px;
+  /* color: var(--aim-emphasis-red); */
   font-weight: bold;
-}
-
-#report-btn:hover {
-  background-color: var(--aim-base-tone-down);
-  cursor: pointer;
 }
 
 #feed-modal-boardreport {
@@ -443,36 +440,23 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-base-tone);
-  border-radius: 10px;
-  color: var(--aim-emphasis-red);
-  font-weight: bold;
+  /* background-color: var(--aim-base-tone); */
+  border-radius: 20px;
+  /* color: var(--aim-emphasis-red); */
+  /* font-weight: bold; */
   float: left;
   margin-bottom: 10px;
-}
-
-#menu-btn:hover {
-  background-color: var(--aim-base-tone-down);
-  cursor: pointer;
-}
-
-#btn-div {
 }
 
 #menu-btn2 {
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-base-tone-sub);
-  border-radius: 10px;
-  color: var(--aim-text-default);
+  /* background-color: var(--aim-base-tone-sub); */
+  border-radius: 20px;
+  /* color: var(--aim-text-default); */
   float: left;
   margin-bottom: 30px;
-}
-
-#menu-btn2:hover {
-  background-color: var(--aim-base-tone-down);
-  cursor: pointer;
 }
 
 #menu-text {
@@ -512,7 +496,7 @@
 }
 
 #feed-modal-moneyinput {
-  background-color: #1d1d1d;
+  background-color: var(--aim-base-tone);
   border-radius: 30px;
   width: 70%;
   height: 30px;
@@ -535,33 +519,23 @@
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-base-tone-sub);
-  border-radius: 10px;
-  color: var(--aim-text-href);
-  font-weight: bold;
+  /* background-color: var(--aim-base-tone-sub); */
+  border-radius: 20px;
+  /* color: var(--aim-text-href); */
+  /* font-weight: bold; */
   float: left;
   margin-bottom: 10px;
-}
-
-#money-btn:hover {
-  background-color: var(--aim-base-tone-down);
-  cursor: pointer;
 }
 
 #money-btn2 {
   width: 30%;
   text-align: center;
   margin-left: 14%;
-  background-color: var(--aim-base-tone-sub);
-  border-radius: 10px;
-  color: var(--aim-text-default);
+  /* background-color: var(--aim-base-tone-sub); */
+  border-radius: 20px;
+  /* color: var(--aim-text-default); */
   float: left;
   margin-bottom: 30px;
-}
-
-#money-btn2:hover {
-  background-color: var(--aim-base-tone-down);
-  cursor: pointer;
 }
 
 #money-main {
@@ -572,7 +546,7 @@
   height: auto;
   background-color: var(--aim-base-tone);
   border: 1px solid var(--aim-border);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   color: var(--aim-text-default);
   z-index: 200;
   animation: modal-show 0.1s ease-in-out;

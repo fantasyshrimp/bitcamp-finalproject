@@ -138,7 +138,11 @@ function Report(props) {
                     onChange={handleTextareaChange}
                   ></textarea>
                 </div>
-                <div id="report-btn" onClick={handleSubmit}>
+                <div
+                  id="report-btn"
+                  onClick={handleSubmit}
+                  className="btn btn-primary"
+                >
                   제출
                 </div>
               </div>

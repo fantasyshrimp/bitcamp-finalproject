@@ -44,7 +44,6 @@ function ProfileUpper(props) {
     setFollowingCount(followingCount + no);
   };
 
-
   useEffect(() => {
     if (props.directModal !== undefined) {
       setFollowerModalIsOpen(true);

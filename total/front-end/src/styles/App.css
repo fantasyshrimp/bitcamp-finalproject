@@ -37,11 +37,27 @@
   /* font weight */
 
   /* backdrop blur */
-  --aim-backdrop-blur: 20px;
+  --aim-backdrop-blur: 10px;
 
   --aim-help-warning: #dc3545;
 
   --aim-git-icon-color: invert(100%);
+
+  --aim-btn-confirm: #636af2;
+  --akm-btn-cancel: #7f7f7f;
+  --aim-text-light: #e9e9f2;
+  --aim-text-dark: #0d0d0d;
+}
+
+.btn-primary {
+  --bs-btn-bg: #1329cf;
+  --bs-btn-border-color: #1329cf;
+  --bs-btn-hover-bg: #2337d3;
+  --bs-btn-hover-border-color: #2337d3;
+  --bs-btn-active-bg: #6c38f0;
+  --bs-btn-active-border-color: #6c38f0;
+  --bs-btn-disabled-bg: #1329cf;
+  --bs-btn-disabled-border-color: #1329cf;
 }
 
 /* 
