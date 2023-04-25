@@ -47,13 +47,13 @@
 
 .p {
   font-size: 1.3rem;
-  width: 52%;
+  xwidth: 45%;
 
   color: #edeeef;
-  border-right: 3px solid var(--aim-border);
-  animation: blink 0.5s infinite, typing 2s steps(50);
-  white-space: nowrap;
-  overflow: hidden;
+  xborder-right: 3px solid var(--aim-border);
+  xanimation: blink 0.5s infinite, typing 2s steps(30);
+  xwhite-space: nowrap;
+  xoverflow: hidden;
 }
 
 @keyframes blink {

@@ -28,9 +28,9 @@ function Home(props) {
         showExternalLogin={props.showExternalLogin}
         setShowExternalLogin={props.setShowExternalLogin}
       />
+      <Services />
       <About />
       <AboutImage />
-      <Services />
     </div>
   );
 }

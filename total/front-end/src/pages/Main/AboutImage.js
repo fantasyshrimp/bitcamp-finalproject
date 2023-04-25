@@ -25,7 +25,7 @@ function AboutImage() {
         <div class={styles.imageSection}>
           <img
             src="https://readitquik.com/wp-content/uploads/2022/02/ai-1.gif"
-            width="600px"
+            width="500px"
           />
         </div>
       </div>
