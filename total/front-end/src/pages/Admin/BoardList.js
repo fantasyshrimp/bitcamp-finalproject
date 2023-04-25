@@ -6,7 +6,6 @@ import BoardView from "./BoardView";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavBar from "./NavBar";
-import CommentView from "./CommentView";
 
 function BoardList(props) {
   const [data, setData] = useState([]);

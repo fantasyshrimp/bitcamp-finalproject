@@ -1,13 +1,6 @@
-/* * {
-  color: white;
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-} */
-
 .section {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .container {
@@ -20,7 +13,7 @@
 .contentSection {
   color: var(--aim-text-default);
   float: right;
-  width: 45%;
+  width: 55%;
 }
 
 .imageSection {
