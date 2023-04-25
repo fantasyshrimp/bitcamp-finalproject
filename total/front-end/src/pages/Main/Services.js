@@ -43,9 +43,7 @@ function Services() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-      </div>
 
-      <div className="row">
         <div className="col-md-3 text-center">
           <div
             className="icon"
@@ -67,9 +65,7 @@ function Services() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-      </div>
 
-      <div className="row">
         <div className="col-md-3 text-center">
           <div
             className="icon"
@@ -91,9 +87,7 @@ function Services() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-      </div>
 
-      <div className="row">
         <div className="col-md-3 text-center">
           <div
             className="icon"
