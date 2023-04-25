@@ -70,7 +70,12 @@ input:-webkit-autofill:active {
   color: var(--aim-text-sub);
 }
 
-.profile-edit-nickname-icon {
+.profile-edit-nickname-icon,
+.progress-bar-success:hover,
+#small-profile,
+#setting-type-btn,
+.small-profile-nickname,
+.alarm-info-log {
   cursor: pointer;
 }
 
@@ -84,13 +89,4 @@ input:-webkit-autofill:active {
 
 .personalSetting-menu.nav-link.active {
   color: var(--aim-text-default);
-}
-
-.progress-bar-success:hover {
-  cursor: pointer;
-}
-
-#small-profile,
-#setting-type-btn {
-  cursor: pointer;
 }

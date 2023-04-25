@@ -86,6 +86,7 @@ function AlarmInfo(props) {
         borderBottom: "1px solid white",
         color: isRead ? `var(--aim-text-sub)` : `var(--aim-text-default)`,
       }}
+      className="alarm-info-log"
     >
       <div style={{ width: "80%" }}>
         <img
