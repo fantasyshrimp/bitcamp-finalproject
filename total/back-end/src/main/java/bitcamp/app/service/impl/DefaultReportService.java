@@ -27,4 +27,9 @@ public class DefaultReportService implements ReportService{
     reportDao.boardReport(report);
   }
 
+  @Override
+  public int findByBoardNo(int no) {
+    return reportDao.findByBoardNo(no);
+  }
+
 }

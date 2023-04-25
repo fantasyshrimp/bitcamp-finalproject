@@ -7,4 +7,5 @@ public interface ReportService {
   void replyReport(Report report);
   void boardReport(Report report);
   List<Report> findReportType();
+  int findByBoardNo(int no);
 }
