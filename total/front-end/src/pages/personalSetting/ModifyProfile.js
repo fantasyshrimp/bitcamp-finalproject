@@ -336,12 +336,14 @@ function ModifyProfile(props) {
                 style={{
                   width: "150px",
                   height: "30px",
-                  backgroundColor: `var(--aim-base-tone)`,
+                  backgroundColor: `var(--bs-primary)`,
                   borderRadius: "50px",
                   textAlign: "center",
                   lineHeight: "30px",
-                  color: `var(--aim-text-default)`,
+                  color: `var(--aim-text-light)`,
                   fontWeight: "bolder",
+                  cursor: "pointer",
+                  marginTop: "20px",
                 }}
               >
                 개인정보 수정
