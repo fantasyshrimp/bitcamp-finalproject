@@ -145,7 +145,6 @@ function SignupModal(props) {
     const password = document.getElementsByName("password")[0].value;
 
     setMessage("인증 메일이 발송 되었습니다");
-    handleClose();
 
     axios
       .post(
@@ -185,7 +184,6 @@ function SignupModal(props) {
         title: message,
         confirmButtonText: "확인",
       });
-      window.location.reload();
     }
   }, [message]);
 

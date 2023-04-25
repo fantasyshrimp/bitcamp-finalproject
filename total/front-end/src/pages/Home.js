@@ -3,6 +3,7 @@ import React from "react";
 import Video from "./Main/Video";
 import Parallax from "./Main/Parallax";
 import Image from "./Main/Image";
+import About from "./Main/About";
 import ImageText from "./Main/ImageText";
 import Scroll from "./Main/Scroll";
 
@@ -30,6 +31,7 @@ function Home(props) {
         setShowExternalLogin={props.setShowExternalLogin}
       />
       <Parallax />
+      <About />
       <Scroll />
       <Image />
     </div>

@@ -9,6 +9,7 @@ function BoardView(props) {
   const { show, setShow, no } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
+  const [tag, setTag] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,25 @@ function BoardView(props) {
       console.log(data);
     }
   }, [data]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/admin/board/tag/` + no
+        );
+        const tag = response.data[0].tag;
+        console.log("Tag:", tag);
+        setData((prevData) => ({
+          ...prevData,
+          tag: response.data[0].tag,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no]);
 
   return (
     <>
@@ -210,9 +230,6 @@ function BoardView(props) {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

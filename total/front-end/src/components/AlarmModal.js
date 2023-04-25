@@ -163,7 +163,12 @@ function AlarmModal(props) {
                 </Row>
               ))
             ) : (
-              <div className="pb-2 pt-2 d-flex align-items-center">
+              <div
+                className="pb-2 pt-2 d-flex align-items-center"
+                style={{
+                  color: `var(--aim-text-default)`,
+                }}
+              >
                 알림이 없습니다.
               </div>
             )}

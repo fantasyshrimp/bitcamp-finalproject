@@ -1,36 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./CommentList.module.css";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
-import FeedModal from "../Feed/FeedModal"; // FeedModal 컴포넌트 import
+import { useNavigate } from "react-router-dom";
+import FeedModal from "../Feed/FeedModal";
+
 import NavBar from "./NavBar";
 
 function CommentList(props) {
   const [data, setData] = useState([]);
+  const [boardData, setBoardData] = useState([]);
   const [selectedNo, setSelectedNo] = useState();
-  /*
-  //
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-  function handleCloseModal() {
-    setModalOpen(false);
-  }
+  const feedModalData = useRef({});
 
-  function ShowModal() {
-    setModalOpen(!modalOpen);
-    if (modalOpen !== true) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }
-  //*/
+  const feedModalUser = useRef({});
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/admin/comment")
       .then((response) => {
         console.log("data : ");
-        console.log(response.data);
         setData(response.data);
       })
       .catch((error) => console.error(error));
@@ -39,7 +31,36 @@ function CommentList(props) {
   function handleBoardSelect(selectedNo) {
     console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/admin/board/${selectedNo}`
+        );
+        setBoardData(response.data);
+        feedModalData.current = response.data;
+        if (feedModalData.current) {
+          openFeedModal(feedModalData.current);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }
+
+  useEffect(() => {
+    console.log(boardData);
+  }, [boardData]);
+
+  const openFeedModal = (boardData) => {
+    setIsFeedModalOpen(true);
+  };
+
+  const closeFeedModal = () => {
+    setIsFeedModalOpen(false);
+  };
 
   return (
     <>
@@ -84,10 +105,43 @@ function CommentList(props) {
           </tbody>
         </Table>
       </div>
+      {isFeedModalOpen && (
+        <div>
+          <div
+            id="modal-background"
+            onClick={() => {
+              closeFeedModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                closeFeedModal();
+              }}
+              className={`btn-close btn-close-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "white"
+              }`}
+            ></div>
+
+            <FeedModal
+              key={feedModalData.current}
+              data={feedModalData.current}
+              closeModal={closeFeedModal}
+              user={feedModalUser.current}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
 
 export default CommentList;
-
-//<FeedModal data={props.item} closeModal={ShowModal} />
