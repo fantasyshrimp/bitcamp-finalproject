@@ -7,7 +7,6 @@ import FollowBtn from "./FollowBtn";
 Modal.setAppElement('#root')
 
 function FollowListModal(props) {
-  
   return (
         <Modal isOpen={props.isOpen} onRequestClose={props.onRequestClose}
         style={{
@@ -27,7 +26,7 @@ function FollowListModal(props) {
               no={follow.no} imgUrl={follow.profilePhoto} nickname={follow.nickname} height='70' />
             <div>
             <FollowBtn key={follow.no + "FollowBtn"}
-              followerNo={follow.no} />
+              followerNo={follow.no} updateCount={props.countUpdate} />
             </div>
           </div>
           ))} 

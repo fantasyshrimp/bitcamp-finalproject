@@ -10,6 +10,7 @@ function ProfileUpper(props) {
   const { followingCnt, followerCnt, likeCnt } = props;
   const [followingList, setFollowingList] = useState([]);
   const [followingModalIsOpen, setFollowingModalIsOpen] = useState(false);
+  const [followingCount, setFollowingCount] = useState(followingCnt);
   const [pointModal, setPointModal] = useState(false);
   const [point, setPoint] = useState();
   const [user, setUser] = useState();
@@ -38,6 +39,11 @@ function ProfileUpper(props) {
     setFollowerModalIsOpen(false);
     document.body.style.overflow = "";
   };
+
+  const updateFollowingCount = (no) => {
+    setFollowingCount(followingCount + no);
+  };
+
 
   useEffect(() => {
     if (props.directModal !== undefined) {
@@ -90,7 +96,7 @@ function ProfileUpper(props) {
           <div className="profile-name">{props.member.nickname}</div>
           <div className="profile-detail">
             <div onClick={openFollowingModal} id="profile-menu">
-              <span>{followingCnt}</span> followings
+              <span>{followingCount}</span> followings
             </div>
             <div onClick={openFollowerModal} id="profile-menu">
               <span>{followerCnt}</span> followers
@@ -118,11 +124,13 @@ function ProfileUpper(props) {
         isOpen={followingModalIsOpen}
         onRequestClose={closeFollowingModal}
         follows={followingList}
+        countUpdate={updateFollowingCount}
       />
       <FollowListModal
         isOpen={followerModalIsOpen}
         onRequestClose={closeFollowerModal}
         follows={props.followers}
+        countUpdate={updateFollowingCount}
       />
       <PointModal
         isOpen={pointModal}

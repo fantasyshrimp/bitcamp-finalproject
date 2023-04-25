@@ -23,14 +23,21 @@ function FollowBtn(props) {
 
     const handleFollow = () => {
         setfollowState(!followState);
-
         if (followState) {
-            axios.delete("http://localhost:8080/follow/" + props.followerNo);
+            axios.delete("http://localhost:8080/follow/" + props.followerNo)
+            .then((response) => {
+              if(response.status === 200 && props.updateCount !== undefined) {
+                props.updateCount(-1);
+              }});
         } else {
             axios.post("http://localhost:8080/follow", {
               followingNo: props.followingNo,
               followerNo: props.followerNo
-            });
+            })
+            .then((response) => {
+              if(response.status === 200 && props.updateCount !== undefined) {
+                props.updateCount(1);
+              }});
         }
     };
 
