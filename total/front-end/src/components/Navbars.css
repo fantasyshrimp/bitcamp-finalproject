@@ -20,7 +20,7 @@
 }
 
 .navbar-sub-search-container {
-  flex-basis: calc(100% - 54px);
+  flex-basis: calc(100% - 60px);
 }
 
 /* @media (max-width: 688px) {
