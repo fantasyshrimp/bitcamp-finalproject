@@ -31,36 +31,54 @@ function PersonalSetting() {
   return (
     <div
       style={{
+        // backgroundColor: "gray",
         display: "flex",
-        height: "83vh",
+        height: "95vh",
         width: "100vw",
-        minWidth: "600px",
+        minWidth: "1200px",
       }}
     >
       <div
         style={{
-          width: "14.3%",
-          minWidth: "100px",
+          minWidth: "250px",
           height: "100%",
-          marginLeft: "5%",
           boxSizing: "border-box",
           borderRight: `solid 1px var(--aim-border)`,
           color: `var(--aim-text-default)`,
+          // backgroundColor: "gray",
         }}
       >
-        {/* <div style={{ height: "20%" }}></div> */}
-        <div style={{ marginRight: "5%" }}>
-          <h2
+        <div
+          style={{
+            height: "200px",
+            // backgroundColor: "gray",
+          }}
+        ></div>
+        <div
+          style={{
+            marginLeft: "60px",
+            // backgroundColor: "blue",
+          }}
+        >
+          <div
             style={{
+              fontSize: "35px",
+              paddingBottom: "5px",
+              marginLeft: "5px",
               boxSizing: "border-box",
-              marginTop: "20px",
-              marginBottom: "20px",
+              cursor: "default",
             }}
           >
             설정
-          </h2>
-
-          <Nav className="flex-column" defaultActiveKey="#">
+          </div>
+          <Nav
+            style={{
+              marginLeft: "15px",
+              // backgroundColor: "blue",
+            }}
+            className="flex-column"
+            defaultActiveKey="#"
+          >
             {menu.map((title, index) => {
               return (
                 <Nav.Link
@@ -69,11 +87,21 @@ function PersonalSetting() {
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}
+                  style={{
+                    padding: "0px",
+                    // backgroundColor: "blue",
+                  }}
                 >
                   <div
                     key={title + index}
                     onClick={() => {
                       setMenuNo(index);
+                    }}
+                    style={{
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      padding: "5px",
+                      // borderBottom: `solid 1px var(--aim-border)`,
                     }}
                   >
                     {title}
@@ -85,7 +113,19 @@ function PersonalSetting() {
         </div>
       </div>
 
-      <div style={{ width: "90%", height: "100%" }}>
+      <div
+        //  폭 수정해야함
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifycontent: "center",
+          fontsize: "0",
+          width: "70%",
+          height: "90%",
+          margin: "auto",
+          // backgroundColor: "red",
+        }}
+      >
         {menuNo === 0 && (
           <ModifyProfile title={menu[0]} flexDirection={flexDirection} />
         )}

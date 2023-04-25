@@ -132,17 +132,26 @@ const Visitor = (props) => {
   );
 
   return (
-    <div id="Visitor">
-      <h3
+    <div
+      id="Visitor"
+      style={
+        {
+          // backgroundColor: "gray",
+        }
+      }
+    >
+      <div
         style={{
-          width: "250px",
-          marginBottom: "5%",
+          width: "fit-content",
+          marginBottom: "60px",
           borderBottom: `1px solid var(--aim-border)`,
           color: `var(--aim-text-default)`,
+          fontSize: "30px",
+          // backgroundColor: "gray",
         }}
       >
         {props.title}
-      </h3>
+      </div>
       <DatePicker
         id="calendar"
         selected={selectedDate}

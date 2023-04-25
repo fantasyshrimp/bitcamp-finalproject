@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 import Visitor from "./Visitor";
 import BoardReply from "./BoardReply";
 import "./Stats.css";
+import { Nav } from "react-bootstrap";
 
 function Stats() {
-  const location = useLocation(); // 이 코드를 추가해 주세요.
+  const location = useLocation();
   const [menuNo, setMenuNo] = useState(
     location.state ? location.state.menuNo : 0
   );
@@ -14,64 +15,86 @@ function Stats() {
   return (
     <div
       style={{
-        // backgroundColor: "blue",
         display: "flex",
-        height: "83vh",
+        height: "95vh",
         width: "100vw",
+        minWidth: "1200px",
+        // backgroundColor: "gray",
       }}
     >
       <div
         style={{
-          width: "14.3%",
-          minWidth: "100px",
+          minWidth: "250px",
           height: "100%",
-          marginLeft: "5%",
           boxSizing: "border-box",
           borderRight: `solid 1px var(--aim-border)`,
           color: `var(--aim-text-default)`,
+          // backgroundColor: "gray",
         }}
       >
-        <div style={{ height: "20%" }}></div>
         <div
-          style={
-            {
-              /*marginRight: "10%"*/
-            }
-          }
+          style={{
+            height: "200px",
+            // backgroundColor: "gray",
+          }}
+        ></div>
+        <div
+          style={{
+            marginLeft: "60px",
+            // backgroundColor: "blue",
+          }}
         >
-          <h2
+          <div
             style={{
-              paddingBottom: "5%",
+              fontSize: "35px",
+              paddingBottom: "5px",
+              marginLeft: "5px",
               boxSizing: "border-box",
               cursor: "default",
             }}
           >
             통계
-          </h2>
-          <div
-            id="Stats-menu"
+          </div>
+          <Nav
             style={{
-              marginLeft: "5%",
+              marginLeft: "15px",
+              // backgroundColor: "blue",
             }}
+            className="flex-column"
+            defaultActiveKey="#"
           >
             {menu.map((title, index) => {
               return (
-                <div
-                  key={title + index}
-                  onClick={() => {
-                    setMenuNo(index);
-                  }}
+                <Nav.Link
+                  eventKey={index}
+                  className={`personalSetting-menu ${
+                    index === menuNo ? "active" : ""
+                  }`}
+                  href={index === 0 && "#"}
                   style={{
-                    cursor: "pointer",
-                    padding: "5%",
-                    borderBottom: `solid 1px var(--aim-border)`,
+                    padding: "0px",
+                    // backgroundColor: "blue",
                   }}
                 >
-                  {title}
-                </div>
+                  <div
+                    key={title + index}
+                    onClick={() => {
+                      setMenuNo(index);
+                    }}
+                    style={{
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      padding: "5px",
+                      // borderBottom: `solid 1px var(--aim-border)`,
+                      // backgroundColor: "blue",
+                    }}
+                  >
+                    {title}
+                  </div>
+                </Nav.Link>
               );
             })}
-          </div>
+          </Nav>
         </div>
       </div>
       <div id="Stats-content">
@@ -83,23 +106,3 @@ function Stats() {
 }
 
 export default Stats;
-
-{
-  /* <g transform="translate(0,74)" style="opacity: 1;">
-  <line
-    x1="0"
-    x2="-5"
-    y1="0"
-    y2="0"
-    style="stroke: rgb(119, 119, 119); stroke-width: 1;"
-  ></line>
-  <text
-    dominant-baseline="central"
-    text-anchor="end"
-    transform="translate(-10,0) rotate(0)"
-    style="font-family: sans-serif; font-size: 11px; fill: rgb(51, 51, 51); "
-  >
-    60
-  </text>
-</g>; */
-}

@@ -76,17 +76,25 @@ const BoardReply = (props) => {
   })();
 
   return (
-    <div id="BoardReply">
-      <h3
+    <div
+      id="BoardReply"
+      style={
+        {
+          // backgroundColor: "gray",
+        }
+      }
+    >
+      <div
         style={{
-          width: "250px",
-          marginBottom: "5%",
+          width: "fit-content",
+          marginBottom: "60px",
           borderBottom: `1px solid var(--aim-border)`,
           color: `var(--aim-text-default)`,
+          fontSize: "30px",
         }}
       >
         {props.title}
-      </h3>
+      </div>
       <CustomDatePicker
         selectedDate={selectedDate}
         onDateChange={handleDateChange}

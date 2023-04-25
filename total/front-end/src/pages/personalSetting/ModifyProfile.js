@@ -36,6 +36,7 @@ function ModifyProfile(props) {
     width: "300px",
     height: "300px",
     backgroundColor: `var(--aim-img-background)`,
+    // backgroundColor: `yellow`,
     position: "relative",
     cursor: "pointer",
     backgroundImage: `url(${imageUrl})`,
@@ -112,19 +113,27 @@ function ModifyProfile(props) {
       <div
         id="setting-feild"
         style={{
+          cursor: "default !important",
+          display: "block",
+          fontsize: "16px",
+          float: "left",
+          // justifycontent: "center ",
+          // margin: "auto",
+          margintop: "0",
           width: "100%",
-          height: "90%",
+          height: "100%",
           color: `var(--aim-text-default)`,
+          // backgroundColor: `#2e2e2e`,
         }}
       >
         <div
           style={{
-            width: "250px",
-            marginLeft: "5%",
-            marginTop: "5%",
-            marginBottom: "3%",
-            boxSizing: "border-box",
-            borderBottom: "1px solid rgba(255,255,255,0.5)",
+            width: "fit-content",
+            marginBottom: "60px",
+            borderBottom: `1px solid var(--aim-border)`,
+            color: `var(--aim-text-default)`,
+            fontSize: "30px",
+            // backgroundColor: `yellow`,
           }}
         >
           {props.title}
@@ -132,22 +141,24 @@ function ModifyProfile(props) {
 
         <div
           style={{
-            width: "90%",
-            height: "90%",
-            marginLeft: "5%",
+            width: "660px",
+            height: "fit-content",
+            margin: "auto",
             display: "flex",
             flexDirection: props.flexDirection,
             overflow: "auto",
+            // backgroundColor: `yellow`,
           }}
         >
           <div
             style={{
-              width: "30%",
-              height: "90%",
-              marginTop: "5%",
+              width: "400px",
+              height: "fit-content",
+              marginTop: "33px",
               display: "flex",
               flexDirection: "column",
               minWidth: "400px",
+              // backgroundColor: `yellow`,
             }}
           >
             <div
@@ -178,6 +189,7 @@ function ModifyProfile(props) {
                     alignItems: "flex-end",
                     height: "50px",
                     marginTop: "10px",
+                    // backgroundColor: `yellow`,
                   }}
                 >
                   <span
@@ -199,6 +211,7 @@ function ModifyProfile(props) {
                       width: "25px",
                       height: "25px",
                       paddingBottom: "5px",
+                      // backgroundColor: `yellow`,
                     }}
                   />
                 </div>
@@ -218,6 +231,7 @@ function ModifyProfile(props) {
                 props.flexDirection === "column"
                   ? `1px solid var(--aim-border)`
                   : "",
+              // backgroundColor: `yellow`,
             }}
           >
             <SettingInput
@@ -336,15 +350,13 @@ function ModifyProfile(props) {
                 style={{
                   width: "150px",
                   height: "30px",
-
+                  backgroundColor: `var(--aim-base-tone)`,
                   borderRadius: "50px",
                   textAlign: "center",
-                  color: `var(--aim-text-light)`,
+                  lineHeight: "30px",
+                  color: `var(--aim-text-default)`,
                   fontWeight: "bolder",
-                  cursor: "pointer",
-                  marginTop: "20px",
                 }}
-                className="btn btn-primary d-flex justify-content-center align-items-center"
               >
                 개인정보 수정
               </div>

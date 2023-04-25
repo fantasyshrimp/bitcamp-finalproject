@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import axios from "axios";
+import "./Faq.css";
 
-function FaqTitleContent({ selectedType }) {
+function FaqTitleContent({ selectedType, title }) {
   const [dbData, setDbData] = useState([]);
 
   useEffect(() => {
@@ -24,44 +25,47 @@ function FaqTitleContent({ selectedType }) {
   }
 
   return (
-    <Accordion
-      style={{
-        width: "100%",
-        color: `var(--aim-text-default)`,
-        backgroundColor: `var(--aim-base-alpa)`,
-      }}
-      defaultActiveKey="0"
-      flush
-    >
-      {dbData.map((data, index) => (
-        <Accordion.Item
-          style={{
-            color: `var(--aim-text-default)`,
-            backgroundColor: `var(--aim-base-alpa)`,
-          }}
-          key={index}
-          eventKey={index.toString()}
-        >
-          <Accordion.Header>{data.title}</Accordion.Header>
-          <Accordion.Body dangerouslySetInnerHTML={{ __html: data.content }} />
-        </Accordion.Item>
-      ))}
-    </Accordion>    
+    <div id="FaqTitleContent">
+      <div
+        style={{
+          width: "fit-content",
+          marginBottom: "60px",
+          borderBottom: `1px solid var(--aim-border)`,
+          color: `var(--aim-text-default)`,
+          fontSize: "30px",
+        }}
+      >
+        {title}
+      </div>
+      <Accordion
+        style={{
+          width: "100%",
+          color: `var(--aim-text-default)`,
+          backgroundColor: `var(--aim-base-alpa)`,
+          fontSize: "16px",
+        }}
+        defaultActiveKey="0"
+        flush
+      >
+        {dbData.map((data, index) => (
+          <Accordion.Item
+            style={{
+              color: `var(--aim-text-default)`,
+              backgroundColor: `var(--aim-base-alpa)`,
+              fontSize: "16px",
+            }}
+            key={index}
+            eventKey={index.toString()}
+          >
+            <Accordion.Header>{data.title}</Accordion.Header>
+            <Accordion.Body
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            />
+          </Accordion.Item>
+        ))}
+      </Accordion>
+    </div>
   );
 }
 
 export default FaqTitleContent;
-
-// useEffect(() => {
-//   if (selectedType) {
-//     axios
-//       .get(`http://localhost:8080/faqTitleContent`, {
-//         params: { faq_type_no: selectedType },
-//       })
-//       .then((response) => {
-//         console.log(response.data);
-//         setDbData(response.data);
-//       })
-//       .catch((error) => console.log(error));
-//   }
-// }, [selectedType]);

@@ -1,46 +1,32 @@
-#faq-container {
+#faqContent {
   height: 100vh;
   display: flex;
-  /* justify-content: center; */
-  align-items: center;
+  justify-content: center;
   font-size: 0;
+  width: 70%;
+  height: 90%;
+  margin: auto;
+  /* background-color: yellow; */
 }
 
-#type {
+#FaqTitleContent {
+  cursor: default !important;
   display: block;
-  font-size: 1rem;
+  font-size: 16px;
   justify-content: center;
-  min-width: 250px;
-  height: 100vh;
   float: left;
-  margin: 0% 10% 0% 5%;
-  border-right: 1px solid var(--aim-border);
-  /* background-color: red; */
-  /* border-right: 1px solid black; */
-  /* border: 1px solid black; */
-}
-
-#FaqType {
-  position: fixed;
-  /* top: 30%; */
-}
-
-#titleContent {
-  display: flex;
-  font-size: 1rem;
-  justify-content: center;
-  /* align-items: center; */
-  padding-top: 2%;
-  float: left;
-  width: 1100px;
-  height: 800px;
-  /* background-color: blue; */
-  /* border: 1px solid blue; */
+  margin: auto;
+  margin-top: 0;
+  width: 100%;
+  height: 80%;
+  color: black !important; /* (차트의 호버 텍스트포함) 색상변경 */
+  /* background-color: gray; */
 }
 
 .accordion-button {
   color: var(--aim-text-default);
   background-color: transparent !important;
+  font-size: 16px;
 }
 
 .accordion-button:active {
@@ -53,8 +39,9 @@ html {
 }
 
 .accordion {
-  --bs-accordion-btn-icon: none;
-  --bs-accordion-btn-active-icon: none;
+  color: var(--aim-text-default) !important;
+  /* --bs-accordion-btn-icon: none;
+  --bs-accordion-btn-active-icon: none; */
 }
 
 .accordion-button:focus {
