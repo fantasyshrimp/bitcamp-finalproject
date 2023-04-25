@@ -5,13 +5,20 @@ import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
 import SSEContext from "../handler/SSEContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import FeedModal from "../pages/Feed/FeedModal";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
-  let [currentUser, setCurrentUser] = useState(null);
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
-  const [count, setCount] = useState(0);
+  const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const feedModalData = useRef(null);
+  const feedModalUser = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +26,7 @@ function Navbars(props) {
         const result = await axios("http://localhost:8080/auth/user");
         if (result.data.status == "success") {
           props.setCurrentUser(result.data.data);
+          feedModalUser.current = { data: result.data.data };
         } else {
           props.setCurrentUser(null);
         }
@@ -39,6 +47,23 @@ function Navbars(props) {
   useEffect(() => {
     setMessage(sseMessage);
   }, [sseMessage]);
+
+  const handleClickProcessBar = (variant) => {
+    if (variant === "success") {
+      const board = JSON.parse(message.boardJson);
+      openFeedModal(board);
+    }
+  };
+
+  const openFeedModal = (data) => {
+    navigate("/feed");
+    feedModalData.current = data;
+    setIsFeedModalOpen(true);
+  };
+
+  const closeFeedModal = () => {
+    setIsFeedModalOpen(false);
+  };
 
   return (
     <>
@@ -107,6 +132,10 @@ function Navbars(props) {
                           fontSize: "0.75rem",
                           borderRadius: "4px",
                         }}
+                        className={
+                          variant === "success" ? "progress-bar-success" : ""
+                        }
+                        onClick={() => handleClickProcessBar(variant)}
                       />
                     );
                   })()
@@ -138,6 +167,42 @@ function Navbars(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      {isFeedModalOpen && (
+        <div>
+          <div
+            id="modal-background"
+            onClick={() => {
+              closeFeedModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                closeFeedModal();
+              }}
+              className={`btn-close btn-close-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "white"
+              }`}
+            ></div>
+
+            <FeedModal
+              key={feedModalData.current}
+              data={feedModalData.current}
+              closeModal={closeFeedModal}
+              user={feedModalUser.current}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

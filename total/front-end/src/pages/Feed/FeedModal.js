@@ -157,7 +157,6 @@ function FeedModal(props) {
           <div id="modal-like-icon">
             <LikeIcon size={30} contentType={"board"} contentNo={boardNo} />
           </div>
-
           <div className="modal-money-container" onClick={PointModalHandler}>
             <div
               id="modal-money-icon"

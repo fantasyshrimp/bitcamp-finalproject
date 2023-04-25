@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
@@ -39,6 +41,7 @@ import bitcamp.app.vo.GeneratedImg;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
 import bitcamp.util.GsonFilter;
+import bitcamp.util.LocalDateTimeAdapter;
 import bitcamp.util.NaverClovaSummary;
 import bitcamp.util.NaverPapagoTranslation;
 import bitcamp.util.RestResult;
@@ -192,6 +195,12 @@ public class BoardController {
               sseMap = new HashMap<>();
               sseMap.put("status", "success");
               sseMap.put("message", "GPU Server 이미지 생성, DB에 게시글, 파일 업로드 완료");
+
+              Gson gson = new GsonBuilder()
+                  .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                  .create();
+              Board boardGet = boardService.get(board.getBoardNo());
+              sseMap.put("boardJson", gson.toJson(boardGet));
               sseController.sendMessageToAll(sseMap);
 
               return new RestResult()
