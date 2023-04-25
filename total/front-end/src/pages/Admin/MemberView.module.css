@@ -1,7 +1,7 @@
 .label {
   width: 50%;
   text-align: center;
-  color: black;
+  color: var(--aim-text-default);
 }
 
 .img {
