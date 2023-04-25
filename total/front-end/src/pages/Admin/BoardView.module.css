@@ -23,7 +23,7 @@
 
 .shortTitle2 {
   padding-left: 10px;
-  color: black;
+  color: var(--aim-text-default);
   width: 60px;
 }
 

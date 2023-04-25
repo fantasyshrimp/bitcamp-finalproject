@@ -11,6 +11,7 @@ function BoardView(props) {
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
   const [tag, setTag] = useState({});
+  const [report, setReport] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +52,25 @@ function BoardView(props) {
     fetchData();
   }, [no]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/admin/board/report/` + no
+        );
+        setReport(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [no]);
+
+  useEffect(() => {
+    console.log("신고횟수");
+    console.log(report);
+  }, [report]);
+
   return (
     <>
       <Modal
@@ -90,7 +110,7 @@ function BoardView(props) {
                     <Form.Control
                       type="text"
                       placeholder="boardNo"
-                      defaultValue={data.boardNo}
+                      value={data.boardNo}
                       autoFocus
                       style={{
                         color: `var(--aim-text-default)`,
@@ -324,7 +344,8 @@ function BoardView(props) {
                       <Form.Control
                         type="text"
                         placeholder="reportCnt"
-                        defaultValue={data.reportCnt}
+                        report
+                        value={report}
                         autoFocus
                         style={{
                           color: `var(--aim-text-default)`,
