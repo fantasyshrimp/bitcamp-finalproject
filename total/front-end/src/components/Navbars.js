@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Container, Navbar, Nav, ProgressBar } from "react-bootstrap";
+import { Container, Navbar, Nav, ProgressBar, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { Post, Searchs, DarkModeSwitch } from "./";
 import { AuthBtn } from "./auth";
@@ -7,6 +7,7 @@ import SSEContext from "../handler/SSEContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import FeedModal from "../pages/Feed/FeedModal";
+import "./Navbars.css";
 axios.defaults.withCredentials = true; // SpringBoot + axios 사용 관련 AuthController 에서 HttpSession 동일 객체 사용을 위한 설정
 
 function Navbars(props) {
@@ -74,10 +75,11 @@ function Navbars(props) {
         variant={props.isLightMode ? "light" : "dark"}
         className="bg-gradient"
       >
-        <Container fluid>
+        <Container fluid className="navbar-main">
           <Navbar.Brand href="/" style={{ color: `var(--aim-text-default)` }}>
             Artify
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -89,80 +91,112 @@ function Navbars(props) {
               />
               <div className="text-light"></div>
             </Nav>
+          </Navbar.Collapse>
 
-            <Nav>
-              <div className="d-flex ms-2 me-2 justify-content-center align-items-center">
-                {message || props.currentUser?.isGenerating === 1 ? (
-                  (() => {
-                    let variant, label, animated, status;
+          <Nav className="process-bar-darkmode-auth-container">
+            <div className="d-flex ms-2 me-2 justify-content-center align-items-center">
+              {message || props.currentUser?.isGenerating === 1 ? (
+                (() => {
+                  let variant, label, animated, status;
 
-                    status = message
-                      ? message.status
-                      : props.currentUser?.isGenerating === 1
-                      ? "process"
-                      : "";
+                  status = message
+                    ? message.status
+                    : props.currentUser?.isGenerating === 1
+                    ? "process"
+                    : "";
 
-                    switch (status) {
-                      case "success":
-                        variant = "success";
-                        label = "생성 완료";
-                        animated = false;
-                        break;
-                      case "failure":
-                        variant = "danger";
-                        label = "에러 발생";
-                        animated = false;
-                        break;
-                      case "process":
-                      default:
-                        variant = "info";
-                        label = `생성 중 ${message?.count || " "}s`;
-                        animated = true;
-                    }
+                  switch (status) {
+                    case "success":
+                      variant = "success";
+                      label = "생성 완료";
+                      animated = false;
+                      break;
+                    case "failure":
+                      variant = "danger";
+                      label = "에러 발생";
+                      animated = false;
+                      break;
+                    case "process":
+                    default:
+                      variant = "info";
+                      label = `생성 중 ${message?.count || " "}s`;
+                      animated = true;
+                  }
 
-                    return (
-                      <ProgressBar
-                        variant={variant}
-                        now={100}
-                        label={label}
-                        animated={animated}
-                        style={{
-                          width: "80px",
-                          height: "20px",
-                          fontSize: "0.75rem",
-                          borderRadius: "4px",
-                        }}
-                        className={
-                          variant === "success" ? "progress-bar-success" : ""
-                        }
-                        onClick={() => handleClickProcessBar(variant)}
-                      />
-                    );
-                  })()
-                ) : (
-                  <div></div>
-                )}
-              </div>
+                  return (
+                    <ProgressBar
+                      variant={variant}
+                      now={100}
+                      label={label}
+                      animated={animated}
+                      style={{
+                        width: "80px",
+                        height: "20px",
+                        fontSize: "0.75rem",
+                        borderRadius: "4px",
+                      }}
+                      className={
+                        variant === "success" ? "progress-bar-success" : ""
+                      }
+                      onClick={() => handleClickProcessBar(variant)}
+                    />
+                  );
+                })()
+              ) : (
+                <div></div>
+              )}
+            </div>
 
-              <DarkModeSwitch
-                isLightMode={props.isLightMode}
-                setIsLightMode={props.setIsLightMode}
-              />
-              <AuthBtn
-                currentUser={props.currentUser}
-                setCurrentUser={props.setCurrentUser}
-                loginShow={props.loginShow}
-                setLoginShow={props.setLoginShow}
-                signupShow={props.signupShow}
-                setSignupShow={props.setSignupShow}
-                searchPwShow={props.searchPwShow}
-                setSearchPwShow={props.setSearchPwShow}
-                isLoginModal={props.isLoginModal}
-                setIsLoginModal={props.setIsLoginModal}
-                showExternalLogin={props.showExternalLogin}
-                setShowExternalLogin={props.setShowExternalLogin}
-                message={message}
-              />
+            <Row>
+              <Col xs="auto" className="d-flex align-items-center p-0">
+                <DarkModeSwitch
+                  isLightMode={props.isLightMode}
+                  setIsLightMode={props.setIsLightMode}
+                />
+              </Col>
+              <Col xs="auto" className="d-flex align-items-center">
+                <AuthBtn
+                  currentUser={props.currentUser}
+                  setCurrentUser={props.setCurrentUser}
+                  loginShow={props.loginShow}
+                  setLoginShow={props.setLoginShow}
+                  signupShow={props.signupShow}
+                  setSignupShow={props.setSignupShow}
+                  searchPwShow={props.searchPwShow}
+                  setSearchPwShow={props.setSearchPwShow}
+                  isLoginModal={props.isLoginModal}
+                  setIsLoginModal={props.setIsLoginModal}
+                  showExternalLogin={props.showExternalLogin}
+                  setShowExternalLogin={props.setShowExternalLogin}
+                  message={message}
+                />
+              </Col>
+            </Row>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Navbar
+        collapseOnSelect
+        expand="md"
+        bg={props.isLightMode ? "light" : "dark"}
+        variant={props.isLightMode ? "light" : "dark"}
+        className="navbar-sub"
+      >
+        <Container fluid>
+          <Nav className="navbar-sub-search-container">
+            <Searchs
+              isLightMode={props.isLightMode}
+              setIsLightMode={props.setIsLightMode}
+            />
+          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav-collapsed" />
+          <Navbar.Collapse id="responsive-navbar-nav-collapsed">
+            <Nav className="me-auto">
+              <Nav.Link href="/feed/">Feed</Nav.Link>
+              <Nav.Link href="/faq/">FAQ</Nav.Link>
+
+              <div className="text-light"></div>
             </Nav>
           </Navbar.Collapse>
         </Container>
