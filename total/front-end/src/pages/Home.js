@@ -1,11 +1,9 @@
 import React from "react";
 //import { createRoot } from "react-dom/client";
 import Video from "./Main/Video";
-import Parallax from "./Main/Parallax";
-import Image from "./Main/Image";
 import About from "./Main/About";
-import ImageText from "./Main/ImageText";
-import Scroll from "./Main/Scroll";
+import AboutImage from "./Main/AboutImage";
+import Services from "./Main/Services";
 
 /*
 const root = createRoot(document.getElementById("root"));
@@ -30,10 +28,8 @@ function Home(props) {
         showExternalLogin={props.showExternalLogin}
         setShowExternalLogin={props.setShowExternalLogin}
       />
-      <Parallax />
       <About />
-      <Scroll />
-      <Image />
+      <AboutImage />
     </div>
   );
 }

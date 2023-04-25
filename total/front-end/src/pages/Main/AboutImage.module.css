@@ -19,12 +19,12 @@
 
 .contentSection {
   color: var(--aim-text-default);
-  float: left;
-  width: 55%;
+  float: right;
+  width: 45%;
 }
 
 .imageSection {
-  float: right;
+  float: left;
   width: 40%;
 }
 
