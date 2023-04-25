@@ -108,7 +108,7 @@ function BoardList(props) {
         </Table>
       </div>
       <BoardView show={modalShow} setShow={setModalShow} no={selectedNo} />
-      <CommentView show={modalShow} setShow={setModalShow} no={selectedNo} />
+      {/* <CommentView show={modalShow} setShow={setModalShow} no={selectedNo} /> */}
     </>
   );
 }
