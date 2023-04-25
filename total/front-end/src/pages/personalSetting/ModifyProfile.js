@@ -336,15 +336,15 @@ function ModifyProfile(props) {
                 style={{
                   width: "150px",
                   height: "30px",
-                  backgroundColor: `var(--bs-primary)`,
+
                   borderRadius: "50px",
                   textAlign: "center",
-                  lineHeight: "30px",
                   color: `var(--aim-text-light)`,
                   fontWeight: "bolder",
                   cursor: "pointer",
                   marginTop: "20px",
                 }}
+                className="btn btn-primary d-flex justify-content-center align-items-center"
               >
                 개인정보 수정
               </div>

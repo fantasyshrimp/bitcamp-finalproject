@@ -8,9 +8,10 @@
 }
 
 .swal2-confirm {
-  background-color: var(--aim-btn-confirm) !important;
+  background-color: var(--aim-btn-primary) !important;
   color: var(--aim-text-light) !important;
   width: 100px;
+  margin: 0 15px;
 }
 
 .swal2-confirm:focus {
@@ -18,7 +19,8 @@
 }
 
 .swal2-cancel {
-  background-color: var(--akm-btn-cancel) !important;
+  background-color: var(--bs-secondary) !important;
   color: var(--aim-text-light) !important;
   width: 100px;
+  margin: 0 15px;
 }

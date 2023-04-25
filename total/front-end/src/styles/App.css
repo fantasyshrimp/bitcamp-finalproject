@@ -43,8 +43,7 @@
 
   --aim-git-icon-color: invert(100%);
 
-  --aim-btn-confirm: #636af2;
-  --akm-btn-cancel: #7f7f7f;
+  --aim-btn-primary: #1329cf;
   --aim-text-light: #e9e9f2;
   --aim-text-dark: #0d0d0d;
 }
@@ -58,6 +57,17 @@
   --bs-btn-active-border-color: #6c38f0;
   --bs-btn-disabled-bg: #1329cf;
   --bs-btn-disabled-border-color: #1329cf;
+}
+
+.btn-success {
+  --bs-btn-bg: #03c75a;
+  --bs-btn-border-color: #03c75a;
+  --bs-btn-hover-bg: #00b853;
+  --bs-btn-hover-border-color: #00b853;
+  --bs-btn-active-bg: #01a54b;
+  --bs-btn-active-border-color: #01a54b;
+  --bs-btn-disabled-bg: #03c75a;
+  --bs-btn-disabled-border-color: #03c75a;
 }
 
 /* 
