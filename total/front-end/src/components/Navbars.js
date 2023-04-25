@@ -57,7 +57,7 @@ function Navbars(props) {
   };
 
   const openFeedModal = (data) => {
-    navigate("/feed");
+    // navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
   };
