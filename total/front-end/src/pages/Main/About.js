@@ -24,8 +24,8 @@ function About() {
         </div>
         <div class={styles.imageSection}>
           <img
-            src="https://cdn.thescoop.co.kr/news/photo/202101/42365_60696_2520.jpg"
-            width="500px"
+            src="https://img.etimg.com/thumb/msid-80227542,width-1200,height-900,imgsize-820943,resizemode-8/20210112_mit-ai_01.jpg"
+            width="600px"
           />
         </div>
       </div>

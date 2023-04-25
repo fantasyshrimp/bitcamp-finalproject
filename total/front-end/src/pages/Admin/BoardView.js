@@ -39,7 +39,10 @@ function BoardView(props) {
         );
         const tag = response.data[0].tag;
         console.log("Tag:", tag);
-        setData((prevData) => ({ ...prevData, tag })); // 이전 데이터를 복사한 후 tag만 업데이트
+        setData((prevData) => ({
+          ...prevData,
+          tag: response.data[0].tag,
+        }));
       } catch (error) {
         console.error(error);
       }
@@ -227,9 +230,6 @@ function BoardView(props) {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

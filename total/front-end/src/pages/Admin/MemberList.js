@@ -68,7 +68,6 @@ function MemberList(props) {
                 <th>가입일</th>
                 <th>성별</th>
                 <th>계정상태</th>
-                <th>전화번호</th>
                 <th>비밀번호 변경일시</th>
                 <th>권한레벨</th>
               </tr>
@@ -105,7 +104,6 @@ function MemberList(props) {
                       ? "정지"
                       : ""}
                   </td>
-                  <td className="td">{member.tel}</td>
                   <td className="td">{member.passwordDate}</td>
                   <td className="td">
                     {member.authLevel === 0
