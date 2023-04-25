@@ -8,5 +8,6 @@ import bitcamp.app.vo.Report;
 public interface ReportDao {
   void replyReport(Report report);
   void boardReport(Report report);
+  int findByBoardNo(int no);
   List<Report> findReportType();
 }

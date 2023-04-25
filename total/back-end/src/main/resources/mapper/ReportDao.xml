@@ -30,4 +30,8 @@
     select * from aim_report
    </select>
   
+  <select id="findByBoardNo" resultType="int" parameterType="int">
+    SELECT COUNT(*) FROM aim_report_board WHERE board_no = #{no};
+   </select>
+   
   </mapper>

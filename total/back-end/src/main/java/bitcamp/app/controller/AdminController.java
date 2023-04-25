@@ -18,6 +18,7 @@ import bitcamp.app.service.MemberService;
 import bitcamp.app.service.ObjectStorageService;
 import bitcamp.app.service.PointService;
 import bitcamp.app.service.ReplyService;
+import bitcamp.app.service.ReportService;
 import bitcamp.app.vo.Board;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
@@ -33,6 +34,7 @@ public class AdminController {
   @Autowired private LikeService likeService;
   @Autowired private ReplyService replyService;
   @Autowired private PointService pointService;
+  @Autowired private ReportService reportService;
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -62,7 +64,6 @@ public class AdminController {
     return pointService.findPoint(no);
   }
 
-
   @PutMapping("member/{no}/accountState")
   public Object updateAccountState(
       @PathVariable int no,
@@ -78,14 +79,12 @@ public class AdminController {
         .setStatus(RestStatus.SUCCESS);
   }
 
-
-
   @GetMapping("/comment")
   public Object test3() {
     return replyService.list();
   }
 
-  @GetMapping("/board")
+  @GetMapping("/board") // Feed에 사용
   @ResponseBody
   public Map<String, Object> list(HttpSession session) {
     session.setAttribute("sort", "recent"); // sort 세션 속성을 "recent"로 설정
@@ -122,6 +121,13 @@ public class AdminController {
   public void delete(@PathVariable int boardNo, @RequestBody List<Integer> replyNos) {
     boardService.deleteBoard(boardNo, replyNos);
   }
+
+  @GetMapping("/board/report/{no}")
+  public int findByBoardNo(@PathVariable int no) {
+
+    return reportService.findByBoardNo(no);
+  }
+
 
 
 }
