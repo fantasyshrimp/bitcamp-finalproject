@@ -94,7 +94,7 @@ function Navbars(props) {
           </Navbar.Collapse>
 
           <Nav className="process-bar-darkmode-auth-container">
-            <div className="d-flex ms-2 me-2 justify-content-center align-items-center">
+            <div className="d-flex ms-2 me-4 justify-content-center align-items-center">
               {message || props.currentUser?.isGenerating === 1 ? (
                 (() => {
                   let variant, label, animated, status;
@@ -154,7 +154,7 @@ function Navbars(props) {
                   setIsLightMode={props.setIsLightMode}
                 />
               </Col>
-              <Col xs="auto" className="d-flex align-items-center">
+              <Col xs="auto" className="d-flex align-items-center ps-0">
                 <AuthBtn
                   currentUser={props.currentUser}
                   setCurrentUser={props.setCurrentUser}
