@@ -58,6 +58,10 @@ input:-webkit-autofill:active {
   color: var(--aim-text-default);
 }
 
+.progress-bar-success:hover {
+  cursor: pointer;
+}
+
 #small-profile,
 #setting-type-btn {
   cursor: pointer;

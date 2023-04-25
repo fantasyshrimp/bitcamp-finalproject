@@ -16,6 +16,7 @@ function Navbars(props) {
   const [user, setUser] = useState(null);
 
   const feedModalData = useRef(null);
+  const feedModalUser = useRef(null);
 
   const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ function Navbars(props) {
         const result = await axios("http://localhost:8080/auth/user");
         if (result.data.status == "success") {
           props.setCurrentUser(result.data.data);
-          setUser({ data: props.currentUser });
+          feedModalUser.current = { data: result.data.data };
         } else {
           props.setCurrentUser(null);
         }
@@ -58,7 +59,6 @@ function Navbars(props) {
     navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
-    console.log(user);
   };
 
   const closeFeedModal = () => {
@@ -132,6 +132,9 @@ function Navbars(props) {
                           fontSize: "0.75rem",
                           borderRadius: "4px",
                         }}
+                        className={
+                          variant === "success" ? "progress-bar-success" : ""
+                        }
                         onClick={() => handleClickProcessBar(variant)}
                       />
                     );
@@ -190,12 +193,12 @@ function Navbars(props) {
                   : "white"
               }`}
             ></div>
-            {console.log(feedModalData.current)}
+
             <FeedModal
               key={feedModalData.current}
               data={feedModalData.current}
               closeModal={closeFeedModal}
-              // user={user}
+              user={feedModalUser.current}
             />
           </div>
         </div>
