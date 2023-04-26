@@ -53,6 +53,14 @@ code {
   color: var(--aim-help-warning);
 }
 
+.form-control {
+  border-radius: var(--aim-btn-border-radius);
+}
+
+.btn {
+  border-radius: var(--aim-btn-border-radius);
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
