@@ -299,7 +299,9 @@ function FeedModal(props) {
             </div>
           ))}
           {reply.length === 0 && (
-            <div id="nocommnet">댓글이 없습니다. 첫 댓글을 작성해보세요 !</div>
+            <div id="nocommnet" className="d-flex justify-content-center">
+              댓글이 없습니다. 첫 댓글을 작성해보세요 !
+            </div>
           )}
         </div>
       </div>

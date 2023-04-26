@@ -117,7 +117,7 @@ function PersonalSetting() {
       <div
         //  폭 수정해야함
         style={{
-          height: "100vh",
+          height: "calc(100vh - 56px)",
           display: "flex",
           justifycontent: "center",
           fontsize: "0",

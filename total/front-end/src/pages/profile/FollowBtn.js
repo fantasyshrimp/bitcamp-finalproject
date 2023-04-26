@@ -51,21 +51,24 @@ function FollowBtn(props) {
       {isShow && (
         <div
           style={{
-            flexShrink: "0",
+            // flexShrink: "0",
             width: "100px",
             height: "30px",
-            backgroundColor: followState
-              ? `var(--bs-secondary)`
-              : `var(--bs-primary)`,
-            color: `var(--aim-text-light)`,
+            // backgroundColor: followState
+            //   ? `var(--bs-secondary)`
+            //   : `var(--bs-primary)`,
+            // color: `var(--aim-text-light)`,
             fontSize: "16px",
             fontWeight: "bold",
-            textAlign: "center",
-            lineHeight: "30px",
-            borderRadius: "5px",
+            // textAlign: "center",
+            // lineHeight: "30px",
+            borderRadius: `var(--aim-btn-border-radius)`,
             cursor: "pointer",
           }}
           onClick={handleFollow}
+          className={`btn btn-${
+            followState ? "secondary" : "primary"
+          } d-flex justify-content-center align-items-center`}
         >
           {followState ? "Unfollow" : "Follow"}
         </div>

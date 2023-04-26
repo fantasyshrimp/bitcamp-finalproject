@@ -90,3 +90,15 @@ input:-webkit-autofill:active {
 .personalSetting-menu.nav-link.active {
   color: var(--aim-text-default);
 }
+
+.tag-text {
+  position: relative;
+  top: -1px;
+}
+
+.btn-nickname {
+  width: 70px;
+  padding: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
