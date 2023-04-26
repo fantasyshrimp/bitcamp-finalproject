@@ -52,8 +52,6 @@ function ModifyProfile(props) {
       if (response.data.status === "failure") {
         navigate("/");
       }
-      console.log(response.data);
-
       setMemberData(response.data.data);
       setBeforeNick(response.data.data.nickname);
       setNickname(response.data.data.nickname);

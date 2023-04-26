@@ -12,7 +12,7 @@ function PersonalSetting() {
   const [menuNo, setMenuNo] = useState(
     location.state ? location.state.menuNo : 0
   );
-  const menu = ["프로필 수정", "공개 설정", "알람 설정"];
+  const menu = ["프로필 수정", "공개 설정", "알람 설정", "전체 알람"];
 
   const [flexDirection, setFlexDirection] = useState("row");
   useEffect(() => {
@@ -82,6 +82,7 @@ function PersonalSetting() {
             {menu.map((title, index) => {
               return (
                 <Nav.Link
+                  key={title}
                   eventKey={index}
                   className={`personalSetting-menu ${
                     index === menuNo ? "active" : ""
@@ -121,7 +122,7 @@ function PersonalSetting() {
           justifycontent: "center",
           fontsize: "0",
           width: "70%",
-          height: "90%",
+          //height: "90%",
           margin: "auto",
           // backgroundColor: "red",
         }}

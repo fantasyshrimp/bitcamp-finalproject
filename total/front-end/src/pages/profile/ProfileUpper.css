@@ -33,9 +33,15 @@
     color: var(--aim-text-default);
 }
 
+.profile-info .profile-information {
+    margin-right: 25px;
+    font-size: var(--aim-small-font-size);
+    color: var(--aim-text-sub);
+}
+
 .profile-info > .profile-detail {
     display: flex;
-    margin-top: 15px;
+    margin-top: 2px;
     color: var(--aim-text-default);
 }
 

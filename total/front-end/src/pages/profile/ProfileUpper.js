@@ -93,6 +93,7 @@ function ProfileUpper(props) {
         ></div>
         <div className="profile-info">
           <div className="profile-name">{props.member.nickname}</div>
+          <div className="profile-information">{props.member.information}</div>
           <div className="profile-detail">
             <div onClick={openFollowingModal} id="profile-menu">
               <span>{followingCount}</span> followings
