@@ -28,7 +28,6 @@ function CommentList(props) {
   }, []);
 
   function handleBoardSelect(selectedNo) {
-    console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
 
     const fetchData = async () => {
@@ -49,10 +48,6 @@ function CommentList(props) {
     fetchData();
   }
 
-  useEffect(() => {
-    console.log(boardData);
-  }, [boardData]);
-
   const openFeedModal = (boardData) => {
     feedModalData.current = boardData;
     setIsFeedModalOpen(true);
@@ -71,9 +66,6 @@ function CommentList(props) {
       })
       .catch((error) => console.error(error));
   }, []);
-
-  console.log("user : ", user);
-  console.log("feedModalUser.current : ", feedModalUser.current);
 
   return (
     <>

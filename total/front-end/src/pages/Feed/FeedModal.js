@@ -83,9 +83,6 @@ function FeedModal(props) {
     setIsUpdated(!isUpdated);
   }
 
-  console.log("props");
-  console.log(props);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     axios

@@ -28,7 +28,6 @@ function BoardList(props) {
     axios
       .get("http://localhost:8080/admin/board")
       .then((response) => {
-        console.log(response.data);
         setData(response.data.data);
       })
       .catch((error) => console.error(error));
@@ -38,8 +37,6 @@ function BoardList(props) {
     if (!selectedNo) {
       return;
     }
-
-    console.log("Selected board:", selectedNo);
     setSelectedNo(selectedNo);
     setModalShow(true);
   }
@@ -70,35 +67,35 @@ function BoardList(props) {
           <tbody>
             {data.map((board) => (
               <tr key={board.boardNo}>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.boardNo}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.writer.nickname}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.originContent.length > 20
                     ? board.originContent.substr(0, 20) + "..."
                     : board.originContent}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.summaryContent.length > 20
                     ? board.summaryContent.substr(0, 20) + "..."
                     : board.summaryContent}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.transContent.length > 20
                     ? board.transContent.substr(0, 20) + "..."
                     : board.transContent}
                 </td>
 
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.writeDt.substr(0, 10)}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.updateDt.substr(0, 10)}
                 </td>
-                <td onClick={() => handleBoardSelect(board.boardNo)}>
+                <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.reportCnt}
                 </td>
               </tr>
