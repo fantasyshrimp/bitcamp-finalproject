@@ -39,7 +39,7 @@ function Faq() {
       >
         <div
           style={{
-            height: "200px",
+            height: "150px",
             // backgroundColor: "gray"
           }}
         ></div>
@@ -56,6 +56,7 @@ function Faq() {
               marginLeft: "5px",
               boxSizing: "border-box",
               cursor: "default",
+              marginBottom: "30px",
             }}
           >
             고객센터
@@ -72,7 +73,7 @@ function Faq() {
               return (
                 <Nav.Link
                   eventKey={index}
-                  className={`personalSetting-menu ${
+                  className={`m-2 personalSetting-menu ${
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}

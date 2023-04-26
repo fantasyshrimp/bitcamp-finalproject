@@ -18,7 +18,7 @@
   background-color: var(--aim-fill-green);
   width: 400px;
   border: 1.111px solid var(--aim-fill-green);
-  border-radius: 0.375rem;
+  border-radius: var(--aim-btn-border-radius);
   cursor: pointer;
 }
 

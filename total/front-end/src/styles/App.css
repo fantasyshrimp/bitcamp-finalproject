@@ -105,6 +105,10 @@
   --bs-btn-disabled-border-color: #f5f5f5;
 }
 
+.modal {
+  --bs-modal-border-radius: 5px;
+}
+
 /* 
 다크모드 스위치 패스
 #feed-modal-like css 용도 불명

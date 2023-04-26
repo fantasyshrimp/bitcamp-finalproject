@@ -34,7 +34,7 @@ function Stats() {
       >
         <div
           style={{
-            height: "200px",
+            height: "150px",
             // backgroundColor: "gray",
           }}
         ></div>
@@ -51,6 +51,7 @@ function Stats() {
               marginLeft: "5px",
               boxSizing: "border-box",
               cursor: "default",
+              marginBottom: "30px",
             }}
           >
             통계
@@ -67,7 +68,7 @@ function Stats() {
               return (
                 <Nav.Link
                   eventKey={index}
-                  className={`personalSetting-menu ${
+                  className={`m-2 personalSetting-menu ${
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}

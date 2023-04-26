@@ -50,7 +50,7 @@ function PersonalSetting() {
       >
         <div
           style={{
-            height: "200px",
+            height: "150px",
             // backgroundColor: "gray",
           }}
         ></div>
@@ -67,6 +67,7 @@ function PersonalSetting() {
               marginLeft: "5px",
               boxSizing: "border-box",
               cursor: "default",
+              marginBottom: "30px",
             }}
           >
             설정
@@ -84,7 +85,7 @@ function PersonalSetting() {
                 <Nav.Link
                   key={title}
                   eventKey={index}
-                  className={`personalSetting-menu ${
+                  className={`m-2 personalSetting-menu ${
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}
@@ -117,7 +118,7 @@ function PersonalSetting() {
       <div
         //  폭 수정해야함
         style={{
-          height: "calc(100vh - 56px)",
+          height: "calc(100vh - 56px - 84px)",
           display: "flex",
           justifycontent: "center",
           fontsize: "0",
@@ -126,6 +127,7 @@ function PersonalSetting() {
           margin: "auto",
           // backgroundColor: "red",
         }}
+        className="d-flex align-items-center"
       >
         {menuNo === 0 && (
           <ModifyProfile title={menu[0]} flexDirection={flexDirection} />

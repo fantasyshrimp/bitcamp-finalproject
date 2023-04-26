@@ -37,7 +37,7 @@ function PublicSetting(props) {
         style={{
           width: "fit-content",
           marginBottom: "60px",
-          borderBottom: `1px solid var(--aim-border)`,
+          borderBottom: `5px solid var(--aim-border)`,
           color: `var(--aim-text-default)`,
           fontSize: "30px",
           // backgroundColor: `yellow`,
