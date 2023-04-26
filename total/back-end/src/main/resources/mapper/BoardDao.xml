@@ -132,6 +132,8 @@
       inner join aim_generated_img i on b.board_no = i.board_no 
     where 
       m.member_no=#{no}
+    order by
+      write_dt desc
   </select>
   
     <select id="findAllHot" resultMap="boardMap">
