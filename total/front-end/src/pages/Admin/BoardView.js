@@ -66,11 +66,6 @@ function BoardView(props) {
     fetchData();
   }, [no]);
 
-  useEffect(() => {
-    console.log("신고횟수");
-    console.log(report);
-  }, [report]);
-
   return (
     <>
       <Modal

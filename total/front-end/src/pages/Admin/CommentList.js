@@ -12,10 +12,10 @@ function CommentList(props) {
   const [boardData, setBoardData] = useState([]);
   const [selectedNo, setSelectedNo] = useState();
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
 
   const feedModalData = useRef({});
-
   const feedModalUser = useRef({});
 
   useEffect(() => {
@@ -62,6 +62,19 @@ function CommentList(props) {
     setIsFeedModalOpen(false);
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/admin/user")
+      .then((response) => {
+        setUser(response.data);
+        feedModalUser.current = response.data;
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  console.log("user : ", user);
+  console.log("feedModalUser.current : ", feedModalUser.current);
+
   return (
     <>
       <div className={styles.CommentList}>
@@ -106,7 +119,7 @@ function CommentList(props) {
         </Table>
       </div>
       {isFeedModalOpen && (
-        <div>
+        <>
           <div
             id="modal-background"
             onClick={() => {
@@ -130,14 +143,14 @@ function CommentList(props) {
                   : "white"
               }`}
             ></div>
+            <FeedModal
+              key={feedModalData.current}
+              data={feedModalData.current}
+              closeModal={closeFeedModal}
+              user={feedModalUser.current}
+            />
           </div>
-          <FeedModal
-            key={feedModalData.current}
-            data={feedModalData.current}
-            closeModal={closeFeedModal}
-            //user={feedModalUser.current}
-          />
-        </div>
+        </>
       )}
     </>
   );
