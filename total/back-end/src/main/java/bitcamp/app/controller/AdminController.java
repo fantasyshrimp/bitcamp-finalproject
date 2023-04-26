@@ -128,6 +128,20 @@ public class AdminController {
     return reportService.findByBoardNo(no);
   }
 
+  @GetMapping("/user")
+  public Object user(HttpSession session) {
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    if (loginUser != null) {
+      return new RestResult()
+          .setStatus(RestStatus.SUCCESS)
+          .setData(loginUser);
+    } else {
+      return new RestResult()
+          .setStatus(RestStatus.FAILURE);
+    }
+  }
 
 
 }
