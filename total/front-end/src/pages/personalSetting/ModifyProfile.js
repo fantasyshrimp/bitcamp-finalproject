@@ -23,8 +23,8 @@ function ModifyProfile(props) {
   const [nickCheckState, setNickCheckState] = useState(false);
   const [isNickDuplication, setIsNickDuplication] = useState(true);
 
-  const [information,setInformation] = useState("");
-  const [informationChageState,setInformationChageState] = useState(false);
+  const [information, setInformation] = useState("");
+  const [informationChageState, setInformationChageState] = useState(false);
 
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -57,8 +57,11 @@ function ModifyProfile(props) {
       setMemberData(response.data.data);
       setBeforeNick(response.data.data.nickname);
       setNickname(response.data.data.nickname);
-      setInformation(response.data.data.information === null ?
-         "" : response.data.data.information);
+      setInformation(
+        response.data.data.information === null
+          ? ""
+          : response.data.data.information
+      );
       setImageUrl(response.data.data.profilePhoto);
       setGender(response.data.data.gender);
       setBirthdate(response.data.data.birthDate);
@@ -211,18 +214,47 @@ function ModifyProfile(props) {
                 />
               </div>
               <div style={{ textAlign: "right" }}>{memberData.email}</div>
-              <div style={{ marginTop: "10px"}}>
-                {informationChageState 
-                ? <div style={{position: "relative"}}>
-                  <textarea placeholder="소개를 입력해주세요!"
-                    value={information}
-                    onChange={(e) => {setInformation(e.target.value)}}
+              <div style={{ marginTop: "10px" }}>
+                {informationChageState ? (
+                  <div style={{ position: "relative" }}>
+                    <textarea
+                      placeholder="소개를 입력해주세요!"
+                      value={information}
+                      onChange={(e) => {
+                        setInformation(e.target.value);
+                      }}
+                      style={{
+                        appearance: "none",
+                        WebkitAppearance: "none",
+                        MozAppearance: "none",
+                        outline: "none",
+                        resize: "none",
+                        width: "100%",
+                        height: "110px",
+                        backgroundColor: `var(--aim-base-tone)`,
+                        border: `1px solid var(--aim-border)`,
+                        borderRadius: "0.375rem",
+                        padding: "0.375rem 0.75rem",
+                        color: `var(--aim-text-default)`,
+                      }}
+                    ></textarea>
+                    <Save2Fill
+                      onClick={() => {
+                        setInformationChageState(false);
+                      }}
+                      style={{
+                        position: "absolute",
+                        right: "5px",
+                        bottom: "15px",
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div
                     style={{
-                      appearance: "none",
-                      WebkitAppearance : "none",
-                      MozAppearance: "none",
-                      outline: "none",
-                      resize: "none",
+                      position: "relative",
                       width: "100%",
                       height: "110px",
                       backgroundColor: `var(--aim-base-tone)`,
@@ -230,42 +262,25 @@ function ModifyProfile(props) {
                       borderRadius: "0.375rem",
                       padding: "0.375rem 0.75rem",
                       color: `var(--aim-text-default)`,
-                    }}></textarea>
-                  <Save2Fill onClick={() => {setInformationChageState(false)}}
-                    style={{
-                      position: "absolute",
-                      right : "5px",
-                      bottom : "15px",
-                      width: "25px",
-                      height: "25px",                    
-                    }}/> 
-                </div> 
-                : <div style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "110px",
-                    backgroundColor: `var(--aim-base-tone)`,
-                    border: `1px solid var(--aim-border)`,
-                    borderRadius: "0.375rem",
-                    padding: "0.375rem 0.75rem",
-                    color: `var(--aim-text-default)`,
-                  }}>
+                    }}
+                  >
                     <p>{information}</p>
                     <PencilSquare
-                    className="profile-edit-nickname-icon"
-                    onClick={() => {
-                      setInformationChageState(true);
-                    }}
-                    style={{
-                      position: "absolute",
-                      right : "5px",
-                      bottom : "5px",
-                      width: "25px",
-                      height: "25px",                    
-                    }}/></div>}
+                      className="profile-edit-nickname-icon"
+                      onClick={() => {
+                        setInformationChageState(true);
+                      }}
+                      style={{
+                        position: "absolute",
+                        right: "5px",
+                        bottom: "5px",
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    />
+                  </div>
+                )}
               </div>
-
-
             </div>
           </div>
           <div
@@ -398,14 +413,16 @@ function ModifyProfile(props) {
               <div
                 style={{
                   width: "150px",
-                  height: "30px",
-                  backgroundColor: `var(--aim-base-tone)`,
-                  borderRadius: "50px",
+                  height: "35px",
+                  // backgroundColor: `var(--aim-base-tone)`,
+                  borderRadius: "70px",
                   textAlign: "center",
-                  lineHeight: "30px",
-                  color: `var(--aim-text-default)`,
+                  color: `var(--aim-text-light)`,
                   fontWeight: "bolder",
+                  marginTop: "20px",
+                  cursor: "pointer",
                 }}
+                className="btn btn-primary d-flex justify-content-center align-items-center"
               >
                 개인정보 수정
               </div>
