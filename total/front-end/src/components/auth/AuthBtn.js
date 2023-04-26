@@ -63,11 +63,34 @@ function AuthBtn(props) {
     }
   }, [currentUser]);
 
+  // alarms.logData 배열에서 log.readFlag가 false인 요소가 있는지 확인하는 함수
+  const hasUnreadAlarms = () => {
+    if (!alarms || !alarms.logData) return false;
+    return alarms.logData.some((element) => !element.log.readFlag);
+  };
+
   useEffect(() => {
-    if (alarms !== null && alarms.logData.length > 0) {
-      document.querySelector("#auth-has-alarm").style.visibility = "visible";
+    const authHasAlarmElement = document.querySelector("#auth-has-alarm");
+    if (authHasAlarmElement) {
+      if (alarms !== null && hasUnreadAlarms()) {
+        authHasAlarmElement.style.visibility = "visible";
+      } else {
+        authHasAlarmElement.style.visibility = "hidden";
+      }
     }
-  }, [alarms]);
+  }, [alarms, hasUnreadAlarms]);
+
+  const markAllAlarmsAsRead = () => {
+    if (alarms && alarms.logData) {
+      setAlarms({
+        ...alarms,
+        logData: alarms.logData.map((element) => ({
+          ...element,
+          log: { ...element.log, readFlag: true },
+        })),
+      });
+    }
+  };
 
   return (
     <>
@@ -90,7 +113,7 @@ function AuthBtn(props) {
                 left: "21px",
                 bottom: "8px",
                 visibility: "hidden",
-                color: `var(--aim-text-default)`,
+                // color: `var(--aim-text-default)`,
                 fontSize: "9px",
               }}
             ></div>
@@ -149,6 +172,7 @@ function AuthBtn(props) {
         alarmClickEvent={alarmClickEvent}
         setAlarmClickEvent={setAlarmClickEvent}
         setSignupShow={setSignupShow}
+        markAllAlarmsAsRead={markAllAlarmsAsRead}
       />
     </>
   );

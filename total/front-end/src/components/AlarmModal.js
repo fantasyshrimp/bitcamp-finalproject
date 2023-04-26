@@ -14,6 +14,7 @@ function AlarmModal(props) {
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
   const feedModalData = useRef(null);
   const [displayedAlarmsCount, setDisplayedAlarmsCount] = useState(5);
+  const { markAllAlarmsAsRead } = props;
 
   useEffect(() => {
     if (props.alarms !== null) {
@@ -29,9 +30,31 @@ function AlarmModal(props) {
     axios.put(`http://localhost:8080/alarm/readAll`).then((response) => {
       if (response.data.status === "failure") {
         navigate("/");
+      } else {
+        // 알람을 모두 읽음으로 표시
+        setAlarms((prevAlarms) => {
+          return {
+            ...prevAlarms,
+            logData: prevAlarms.logData.map((element) => ({
+              ...element,
+              log: { ...element.log, readFlag: true },
+            })),
+          };
+        });
       }
     });
+
+    markAllAlarmsAsRead();
   };
+
+  useEffect(() => {
+    if (props.alarms !== null) {
+      setAlarms(props.alarms);
+    }
+  }, [props.alarms]);
+
+  // alarms가 변경될 때마다 컴포넌트를 다시 렌더링하도록 함
+  useEffect(() => {}, [alarms]);
 
   const moveProfile = (no) => {
     handleClose();
