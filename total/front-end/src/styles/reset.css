@@ -134,3 +134,38 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Color candidate */
+/* Color Theme Swatches in Hex */
+.PLNT-System-1-hex {
+  color: #636af2;
+}
+.PLNT-System-2-hex {
+  color: #2f3273;
+}
+.PLNT-System-3-hex {
+  color: #777df2;
+}
+.PLNT-System-4-hex {
+  color: #e9e9f2;
+}
+.PLNT-System-5-hex {
+  color: #0d0d0d;
+}
+
+/* Color Theme Swatches in Hex */
+.진한-보라-1-hex {
+  color: #c714a8;
+}
+.진한-보라-2-hex {
+  color: #9413cf;
+}
+.진한-보라-3-hex {
+  color: #4719b8;
+}
+.진한-보라-4-hex {
+  color: #1329cf;
+}
+.진한-보라-5-hex {
+  color: #126dc4;
+}
