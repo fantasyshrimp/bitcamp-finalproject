@@ -33,10 +33,11 @@
 }
 
 .longTitle {
+  padding-left: 10px;
   color: var(--aim-text-default);
   width: 100px;
 }
 
 .longContext {
-  width: 50px;
+  width: 30px;
 }
