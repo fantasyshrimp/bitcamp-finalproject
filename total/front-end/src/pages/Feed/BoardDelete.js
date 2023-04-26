@@ -59,7 +59,7 @@ function BoardDelete(props) {
                   deleteBoard(props.boardNo);
                   props.closeModal();
                 }}
-                className="btn btn-primary"
+                className="btn btn-danger"
               >
                 예
               </div>

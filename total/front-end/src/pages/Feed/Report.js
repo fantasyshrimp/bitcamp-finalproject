@@ -141,7 +141,7 @@ function Report(props) {
                 <div
                   id="report-btn"
                   onClick={handleSubmit}
-                  className="btn btn-primary"
+                  className="btn btn-danger d-flex justify-content-center align-items-center"
                 >
                   제출
                 </div>
