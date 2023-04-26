@@ -28,19 +28,12 @@ function BoardView(props) {
   }, [no, setShow]);
 
   useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `http://localhost:8080/admin/board/tag/` + no
         );
         const tag = response.data[0].tag;
-        console.log("Tag:", tag);
         setData((prevData) => ({
           ...prevData,
           tag: response.data[0].tag,
@@ -107,6 +100,7 @@ function BoardView(props) {
                       placeholder="boardNo"
                       value={data.boardNo}
                       autoFocus
+                      readOnly
                       style={{
                         color: `var(--aim-text-default)`,
                         backgroundColor: `var(--aim-base-tone)`,
@@ -342,6 +336,7 @@ function BoardView(props) {
                         report
                         value={report}
                         autoFocus
+                        readOnly
                         style={{
                           color: `var(--aim-text-default)`,
                           backgroundColor: `var(--aim-base-tone)`,
