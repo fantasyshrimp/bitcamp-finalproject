@@ -11,7 +11,7 @@ function SmallProfile(props) {
       style={{
         display: "flex",
         alignItems: "center",
-        width: height * 3,
+        width: height * 4,
         height: height,
         padding: height / 20,
       }}

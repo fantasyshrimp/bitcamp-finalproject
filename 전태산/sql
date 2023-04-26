@@ -293,3 +293,277 @@ ALTER TABLE aim_log
     select * from aim_log
     where type_no=31 and content_no=12
 order by log_no DESC;
+
+
+
+
+      //(101, 'cloneMember1', 'cloneMember1@clonemail.com', sha2(1,256), 0, 0)
+
+    insert into aim_member(member_no, name, email, pw, pt, state)
+    values
+ (102, 'cloneMember2', 'cloneMember2@clonemail.com', sha2(1,256), 0, 0),
+ (103, 'cloneMember3', 'cloneMember3@clonemail.com', sha2(1,256), 0, 0),
+ (104, 'cloneMember4', 'cloneMember4@clonemail.com', sha2(1,256), 0, 0),
+ (105, 'cloneMember5', 'cloneMember5@clonemail.com', sha2(1,256), 0, 0),
+ (106, 'cloneMember6', 'cloneMember6@clonemail.com', sha2(1,256), 0, 0),
+ (107, 'cloneMember7', 'cloneMember7@clonemail.com', sha2(1,256), 0, 0),
+ (108, 'cloneMember8', 'cloneMember8@clonemail.com', sha2(1,256), 0, 0),
+ (109, 'cloneMember9', 'cloneMember9@clonemail.com', sha2(1,256), 0, 0),
+ (110, 'cloneMember10', 'cloneMember10@clonemail.com', sha2(1,256), 0, 0),
+ (111, 'cloneMember11', 'cloneMember11@clonemail.com', sha2(1,256), 0, 0),
+ (112, 'cloneMember12', 'cloneMember12@clonemail.com', sha2(1,256), 0, 0),
+ (113, 'cloneMember13', 'cloneMember13@clonemail.com', sha2(1,256), 0, 0),
+ (114, 'cloneMember14', 'cloneMember14@clonemail.com', sha2(1,256), 0, 0),
+ (115, 'cloneMember15', 'cloneMember15@clonemail.com', sha2(1,256), 0, 0),
+ (116, 'cloneMember16', 'cloneMember16@clonemail.com', sha2(1,256), 0, 0),
+ (117, 'cloneMember17', 'cloneMember17@clonemail.com', sha2(1,256), 0, 0),
+ (118, 'cloneMember18', 'cloneMember18@clonemail.com', sha2(1,256), 0, 0),
+ (119, 'cloneMember19', 'cloneMember19@clonemail.com', sha2(1,256), 0, 0),
+ (120, 'cloneMember20', 'cloneMember20@clonemail.com', sha2(1,256), 0, 0),
+ (121, 'cloneMember21', 'cloneMember21@clonemail.com', sha2(1,256), 0, 0),
+ (122, 'cloneMember22', 'cloneMember22@clonemail.com', sha2(1,256), 0, 0),
+ (123, 'cloneMember23', 'cloneMember23@clonemail.com', sha2(1,256), 0, 0),
+ (124, 'cloneMember24', 'cloneMember24@clonemail.com', sha2(1,256), 0, 0),
+ (125, 'cloneMember25', 'cloneMember25@clonemail.com', sha2(1,256), 0, 0),
+ (126, 'cloneMember26', 'cloneMember26@clonemail.com', sha2(1,256), 0, 0),
+ (127, 'cloneMember27', 'cloneMember27@clonemail.com', sha2(1,256), 0, 0),
+ (128, 'cloneMember28', 'cloneMember28@clonemail.com', sha2(1,256), 0, 0),
+ (129, 'cloneMember29', 'cloneMember29@clonemail.com', sha2(1,256), 0, 0),
+ (130, 'cloneMember30', 'cloneMember30@clonemail.com', sha2(1,256), 0, 0),
+ (131, 'cloneMember31', 'cloneMember31@clonemail.com', sha2(1,256), 0, 0),
+ (132, 'cloneMember32', 'cloneMember32@clonemail.com', sha2(1,256), 0, 0),
+ (133, 'cloneMember33', 'cloneMember33@clonemail.com', sha2(1,256), 0, 0),
+ (134, 'cloneMember34', 'cloneMember34@clonemail.com', sha2(1,256), 0, 0),
+ (135, 'cloneMember35', 'cloneMember35@clonemail.com', sha2(1,256), 0, 0),
+ (136, 'cloneMember36', 'cloneMember36@clonemail.com', sha2(1,256), 0, 0),
+ (137, 'cloneMember37', 'cloneMember37@clonemail.com', sha2(1,256), 0, 0),
+ (138, 'cloneMember38', 'cloneMember38@clonemail.com', sha2(1,256), 0, 0),
+ (139, 'cloneMember39', 'cloneMember39@clonemail.com', sha2(1,256), 0, 0),
+ (140, 'cloneMember40', 'cloneMember40@clonemail.com', sha2(1,256), 0, 0),
+ (141, 'cloneMember41', 'cloneMember41@clonemail.com', sha2(1,256), 0, 0),
+ (142, 'cloneMember42', 'cloneMember42@clonemail.com', sha2(1,256), 0, 0),
+ (143, 'cloneMember43', 'cloneMember43@clonemail.com', sha2(1,256), 0, 0),
+ (144, 'cloneMember44', 'cloneMember44@clonemail.com', sha2(1,256), 0, 0),
+ (145, 'cloneMember45', 'cloneMember45@clonemail.com', sha2(1,256), 0, 0),
+ (146, 'cloneMember46', 'cloneMember46@clonemail.com', sha2(1,256), 0, 0),
+ (147, 'cloneMember47', 'cloneMember47@clonemail.com', sha2(1,256), 0, 0),
+ (148, 'cloneMember48', 'cloneMember48@clonemail.com', sha2(1,256), 0, 0),
+ (149, 'cloneMember49', 'cloneMember49@clonemail.com', sha2(1,256), 0, 0),
+ (150, 'cloneMember50', 'cloneMember50@clonemail.com', sha2(1,256), 0, 0),
+ (151, 'cloneMember51', 'cloneMember51@clonemail.com', sha2(1,256), 0, 0),
+ (152, 'cloneMember52', 'cloneMember52@clonemail.com', sha2(1,256), 0, 0),
+ (153, 'cloneMember53', 'cloneMember53@clonemail.com', sha2(1,256), 0, 0),
+ (154, 'cloneMember54', 'cloneMember54@clonemail.com', sha2(1,256), 0, 0),
+ (155, 'cloneMember55', 'cloneMember55@clonemail.com', sha2(1,256), 0, 0),
+ (156, 'cloneMember56', 'cloneMember56@clonemail.com', sha2(1,256), 0, 0),
+ (157, 'cloneMember57', 'cloneMember57@clonemail.com', sha2(1,256), 0, 0),
+ (158, 'cloneMember58', 'cloneMember58@clonemail.com', sha2(1,256), 0, 0),
+ (159, 'cloneMember59', 'cloneMember59@clonemail.com', sha2(1,256), 0, 0),
+ (160, 'cloneMember60', 'cloneMember60@clonemail.com', sha2(1,256), 0, 0),
+ (161, 'cloneMember61', 'cloneMember61@clonemail.com', sha2(1,256), 0, 0),
+ (162, 'cloneMember62', 'cloneMember62@clonemail.com', sha2(1,256), 0, 0),
+ (163, 'cloneMember63', 'cloneMember63@clonemail.com', sha2(1,256), 0, 0),
+ (164, 'cloneMember64', 'cloneMember64@clonemail.com', sha2(1,256), 0, 0),
+ (165, 'cloneMember65', 'cloneMember65@clonemail.com', sha2(1,256), 0, 0),
+ (166, 'cloneMember66', 'cloneMember66@clonemail.com', sha2(1,256), 0, 0),
+ (167, 'cloneMember67', 'cloneMember67@clonemail.com', sha2(1,256), 0, 0),
+ (168, 'cloneMember68', 'cloneMember68@clonemail.com', sha2(1,256), 0, 0),
+ (169, 'cloneMember69', 'cloneMember69@clonemail.com', sha2(1,256), 0, 0),
+ (170, 'cloneMember70', 'cloneMember70@clonemail.com', sha2(1,256), 0, 0),
+ (171, 'cloneMember71', 'cloneMember71@clonemail.com', sha2(1,256), 0, 0),
+ (172, 'cloneMember72', 'cloneMember72@clonemail.com', sha2(1,256), 0, 0),
+ (173, 'cloneMember73', 'cloneMember73@clonemail.com', sha2(1,256), 0, 0),
+ (174, 'cloneMember74', 'cloneMember74@clonemail.com', sha2(1,256), 0, 0),
+ (175, 'cloneMember75', 'cloneMember75@clonemail.com', sha2(1,256), 0, 0),
+ (176, 'cloneMember76', 'cloneMember76@clonemail.com', sha2(1,256), 0, 0),
+ (177, 'cloneMember77', 'cloneMember77@clonemail.com', sha2(1,256), 0, 0),
+ (178, 'cloneMember78', 'cloneMember78@clonemail.com', sha2(1,256), 0, 0),
+ (179, 'cloneMember79', 'cloneMember79@clonemail.com', sha2(1,256), 0, 0),
+ (180, 'cloneMember80', 'cloneMember80@clonemail.com', sha2(1,256), 0, 0),
+ (181, 'cloneMember81', 'cloneMember81@clonemail.com', sha2(1,256), 0, 0),
+ (182, 'cloneMember82', 'cloneMember82@clonemail.com', sha2(1,256), 0, 0),
+ (183, 'cloneMember83', 'cloneMember83@clonemail.com', sha2(1,256), 0, 0),
+ (184, 'cloneMember84', 'cloneMember84@clonemail.com', sha2(1,256), 0, 0),
+ (185, 'cloneMember85', 'cloneMember85@clonemail.com', sha2(1,256), 0, 0),
+ (186, 'cloneMember86', 'cloneMember86@clonemail.com', sha2(1,256), 0, 0),
+ (187, 'cloneMember87', 'cloneMember87@clonemail.com', sha2(1,256), 0, 0),
+ (188, 'cloneMember88', 'cloneMember88@clonemail.com', sha2(1,256), 0, 0),
+ (189, 'cloneMember89', 'cloneMember89@clonemail.com', sha2(1,256), 0, 0),
+ (190, 'cloneMember90', 'cloneMember90@clonemail.com', sha2(1,256), 0, 0),
+ (191, 'cloneMember91', 'cloneMember91@clonemail.com', sha2(1,256), 0, 0),
+ (192, 'cloneMember92', 'cloneMember92@clonemail.com', sha2(1,256), 0, 0),
+ (193, 'cloneMember93', 'cloneMember93@clonemail.com', sha2(1,256), 0, 0),
+ (194, 'cloneMember94', 'cloneMember94@clonemail.com', sha2(1,256), 0, 0),
+ (195, 'cloneMember95', 'cloneMember95@clonemail.com', sha2(1,256), 0, 0),
+ (196, 'cloneMember96', 'cloneMember96@clonemail.com', sha2(1,256), 0, 0),
+ (197, 'cloneMember97', 'cloneMember97@clonemail.com', sha2(1,256), 0, 0),
+ (198, 'cloneMember98', 'cloneMember98@clonemail.com', sha2(1,256), 0, 0),
+ (199, 'cloneMember99', 'cloneMember99@clonemail.com', sha2(1,256), 0, 0);
+
+
+ update aim_member set name='버즈라이트이어' where member_no=103;
+ update aim_member set name='맘맘모스' where member_no=104;
+ update aim_member set name='물티슈슈' where member_no=105;
+ update aim_member set name='치약솔' where member_no=106;
+ update aim_member set name='눈누난나' where member_no=107;
+ update aim_member set name='띠롤레이히' where member_no=108;
+ update aim_member set name='너는나의' where member_no=109;
+ update aim_member set name='럼블갬블' where member_no=110;
+ update aim_member set name='아침은킹받게' where member_no=111;
+ update aim_member set name='대한민국만세' where member_no=112;
+ update aim_member set name='평강온달' where member_no=113;
+ update aim_member set name='레테' where member_no=114;
+ update aim_member set name='GTX5060' where member_no=115;
+ update aim_member set name='헛개나무추출물' where member_no=116;
+ update aim_member set name='자진모리장단' where member_no=117;
+ update aim_member set name='레몬' where member_no=118;
+ update aim_member set name='넹넹녱녱' where member_no=119;
+ update aim_member set name='프루나' where member_no=120;
+ update aim_member set name='닉네임은여덟글자' where member_no=121;
+ update aim_member set name='추추트레인' where member_no=122;
+ update aim_member set name='바나나씨유' where member_no=123;
+ update aim_member set name='GS간텍스' where member_no=124;
+ update aim_member set name='문에발톱낌' where member_no=125;
+ update aim_member set name='엄마쟤흙먹어' where member_no=126;
+ update aim_member set name='T없E맑은i' where member_no=127;
+ update aim_member set name='언노운' where member_no=128;
+ update aim_member set name='환상병현' where member_no=129;
+ update aim_member set name='파랑파란' where member_no=130;
+ update aim_member set name='모몬' where member_no=131;
+ update aim_member set name='sideffect' where member_no=132;
+ update aim_member set name='종이빨대극혐' where member_no=133;
+ update aim_member set name='근육교육' where member_no=134;
+ update aim_member set name='마리아케이츠' where member_no=135;
+ update aim_member set name='홀롤' where member_no=136;
+ update aim_member set name='프란체스카' where member_no=137;
+ update aim_member set name='마리' where member_no=138;
+ update aim_member set name='일렉트로' where member_no=139;
+ update aim_member set name='오드리' where member_no=140;
+ update aim_member set name='아라' where member_no=141;
+ update aim_member set name='공병수거달인' where member_no=142;
+ update aim_member set name='강남역13출구' where member_no=143;
+ update aim_member set name='집으로가는버스안' where member_no=144;
+ update aim_member set name='계피계단' where member_no=145;
+ update aim_member set name='쌰이다' where member_no=146;
+ update aim_member set name='깅깅' where member_no=147;
+ update aim_member set name='충전기빌려줄사람' where member_no=148;
+ update aim_member set name='스벅카공족' where member_no=149;
+ update aim_member set name='탑티모장인' where member_no=150;
+ update aim_member set name='선유미후라면' where member_no=151;
+ update aim_member set name='니캉내캉' where member_no=152;
+ update aim_member set name='전압110V' where member_no=153;
+ update aim_member set name='aneomumana' where member_no=154;
+ update aim_member set name='흰머리개당2천원' where member_no=155;
+ update aim_member set name='5월4일입대함' where member_no=156;
+ update aim_member set name='5월4일전역함' where member_no=157;
+ update aim_member set name='휴가나온이등병' where member_no=158;
+ update aim_member set name='이등병여자친구' where member_no=159;
+ update aim_member set name='31세기혼남' where member_no=160;
+ update aim_member set name='당당한당근' where member_no=161;
+ update aim_member set name='촉촉한워터멜론' where member_no=162;
+ update aim_member set name='세렝게티' where member_no=163;
+ update aim_member set name='비내리는호남선남' where member_no=164;
+ update aim_member set name='퍼밀' where member_no=165;
+ update aim_member set name='게이볼그펀치' where member_no=166;
+ update aim_member set name='컴온블랙로즈' where member_no=167;
+ update aim_member set name='쾅타타타타탕' where member_no=168;
+ update aim_member set name='원탑마기꾼' where member_no=169;
+ update aim_member set name='렝렝이' where member_no=170;
+ update aim_member set name='십쎈치1' where member_no=171;
+ update aim_member set name='영등포왕감자' where member_no=172;
+ update aim_member set name='대치동수학강사' where member_no=173;
+ update aim_member set name='수아맘' where member_no=174;
+ update aim_member set name='페이지컨트롤러' where member_no=175;
+ update aim_member set name='directx12.0' where member_no=176;
+ update aim_member set name='짬뽕은몽고반점' where member_no=177;
+ update aim_member set name='63호베레모' where member_no=178;
+ update aim_member set name='여행용치약' where member_no=179;
+ update aim_member set name='생선치킨X' where member_no=180;
+ update aim_member set name='오디따러오디가냐' where member_no=181;
+ update aim_member set name='실험체EC-051-D' where member_no=182;
+ update aim_member set name='대출은활활중개소' where member_no=183;
+ update aim_member set name='중고차판매DM' where member_no=184;
+ update aim_member set name='로컬호스트8080' where member_no=185;
+ update aim_member set name='리액트마스터' where member_no=186;
+ update aim_member set name='GPT야고마워' where member_no=187;
+ update aim_member set name='쏠라빔' where member_no=188;
+ update aim_member set name='금주3일차' where member_no=189;
+ update aim_member set name='다이어튼내일부터' where member_no=190;
+ update aim_member set name='튼살엔후시딘' where member_no=191;
+ update aim_member set name='매너빼면시체' where member_no=192;
+ update aim_member set name='영끌코인족' where member_no=193;
+ update aim_member set name='내일부터마왕' where member_no=194;
+ update aim_member set name='흙맛카레' where member_no=195;
+ update aim_member set name='에어컨에어건' where member_no=196;
+ update aim_member set name='쏴리질러' where member_no=197;
+ update aim_member set name='나는화가앙' where member_no=198;
+ update aim_member set name='무명' where member_no=199;
+ 
+
+ insert into aim_follow(following_no, follower_no) values
+ (101, 1),
+ (1, 101),
+ (104, 1),
+ (1, 104),
+ (107, 1),
+ (1, 107),
+ (110, 1),
+ (1, 110),
+ (113, 1),
+ (1, 113),
+ (116, 1),
+ (1, 116),
+ (119, 1),
+ (1, 119),
+ (122, 1),
+ (1, 122),
+ (125, 1),
+ (1, 125),
+ (128, 1),
+ (1, 128),
+ (131, 1),
+ (1, 131),
+ (134, 1),
+ (1, 134),
+ (137, 1),
+ (1, 137),
+ (140, 1),
+ (1, 140),
+ (143, 1),
+ (1, 143),
+ (146, 1),
+ (1, 146),
+ (149, 1),
+ (1, 149),
+ (152, 1),
+ (1, 152),
+ (155, 1),
+ (1, 155),
+ (158, 1),
+ (1, 158),
+ (161, 1),
+ (1, 161),
+ (164, 1),
+ (1, 164),
+ (167, 1),
+ (1, 167),
+ (170, 1),
+ (1, 170),
+ (173, 1),
+ (1, 173),
+ (176, 1),
+ (1, 176),
+ (179, 1),
+ (1, 179),
+ (182, 1),
+ (1, 182),
+ (185, 1),
+ (1, 185),
+ (188, 1),
+ (1, 188),
+ (191, 1),
+ (1, 191),
+ (194, 1),
+ (1, 194),
+ (197, 1),
+ (1, 197);

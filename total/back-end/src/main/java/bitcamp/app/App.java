@@ -34,7 +34,9 @@ public class App implements WebMvcConfigurer{
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(adminInterceptor)
-    .addPathPatterns("/admin/**"); // 인터셉터를 /admin/** 경로에 적용
+    .addPathPatterns("/admin/**")
+    .addPathPatterns("/visitors/**")
+    ; // 인터셉터를 /admin/** 경로에 적용
   }
 
 }
