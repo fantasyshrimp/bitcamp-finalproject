@@ -59,7 +59,6 @@ public class PublicSettingController {
   @PutMapping
   public Object update(@RequestBody PublicSetting ps, HttpSession session) {
     Member loginUser = (Member) session.getAttribute("loginUser");
-    System.out.println(ps);
     if (loginUser == null) {
       return new RestResult()
           .setStatus(RestStatus.FAILURE)

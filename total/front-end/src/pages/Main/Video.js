@@ -10,7 +10,7 @@ function Video(props) {
   return (
     <div className={styles.frame}>
       <video className={styles.video} autoPlay muted loop>
-        <source src="video.mp4" type="video/mp4" />
+        <source src="smoothvideo.mp4" type="video/mp4" />
       </video>
       <div className={styles.container}>
         <h1 className={styles.h1}>
