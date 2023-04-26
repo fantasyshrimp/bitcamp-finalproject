@@ -294,7 +294,7 @@ function FeedModal(props) {
                       commentNo={item.replyNo}
                       writerNo={item.writer.no}
                       onUpdate={handleUpdate}
-                      loginUserNo={props.user.data.no}
+                      loginUserNo={props.user?.data.no}
                     />
                   </div>
                 </div>
