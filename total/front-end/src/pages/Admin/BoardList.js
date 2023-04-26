@@ -55,6 +55,7 @@ function BoardList(props) {
           <thead>
             <tr>
               <th>게시글번호</th>
+              <th>이미지</th>
               <th>닉네임</th>
               <th>원본내용</th>
               <th>요약내용</th>
@@ -69,6 +70,22 @@ function BoardList(props) {
               <tr key={board.boardNo}>
                 <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.boardNo}
+                </td>
+                <td
+                  onClick={() => handleBoardSelect(board.boardNo)}
+                  readOnly
+                  className="p-0"
+                >
+                  <div
+                    style={{
+                      height: "100px",
+                      width: "100px",
+                      backgroundImage: `url(${board.fileName})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                    }}
+                  ></div>
                 </td>
                 <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.writer.nickname}

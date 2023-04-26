@@ -186,6 +186,33 @@ function MemberView(props) {
                     </div>
                   </Form.Group>
 
+                  {data && data.fileName && (
+                    <img src={data.fileName} className={styles.img} alt="" />
+                  )}
+
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <div className="d-flex align-items-center">
+                      <Form.Label className={styles.label}>
+                        프로필 사진 &nbsp;&nbsp;
+                      </Form.Label>
+                      <div
+                        className={styles.img}
+                        style={{
+                          backgroundImage: `url(${data.profilePhoto})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center center",
+                          width: "215px",
+                          height: "215px",
+                        }}
+                      />
+                    </div>
+                  </Form.Group>
+                </Col>
+
+                <Col>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
@@ -214,33 +241,6 @@ function MemberView(props) {
                     </div>
                   </Form.Group>
 
-                  {data && data.fileName && (
-                    <img src={data.fileName} className={styles.img} alt="" />
-                  )}
-
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput1"
-                  >
-                    <div className="d-flex align-items-center">
-                      <Form.Label className={styles.label}>
-                        프로필 사진 &nbsp;&nbsp;
-                      </Form.Label>
-                      <div
-                        className={styles.img}
-                        style={{
-                          backgroundImage: `url(${data.profilePhoto})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center center",
-                          width: "150px",
-                          height: "150px",
-                        }}
-                      />
-                    </div>
-                  </Form.Group>
-                </Col>
-
-                <Col>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
