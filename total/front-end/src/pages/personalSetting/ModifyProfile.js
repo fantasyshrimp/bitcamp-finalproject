@@ -44,7 +44,7 @@ function ModifyProfile(props) {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    borderRadius: "20%",
+    borderRadius: "50%",
   };
 
   useEffect(() => {
@@ -230,10 +230,10 @@ function ModifyProfile(props) {
                         outline: "none",
                         resize: "none",
                         width: "100%",
-                        height: "110px",
+                        height: "106px",
                         backgroundColor: `var(--aim-base-tone)`,
                         border: `1px solid var(--aim-border)`,
-                        borderRadius: "0.375rem",
+                        borderRadius: `var(--aim-btn-border-radius)`,
                         padding: "0.375rem 0.75rem",
                         color: `var(--aim-text-default)`,
                       }}
@@ -256,10 +256,10 @@ function ModifyProfile(props) {
                     style={{
                       position: "relative",
                       width: "100%",
-                      height: "110px",
+                      height: "106px",
                       backgroundColor: `var(--aim-base-tone)`,
                       border: `1px solid var(--aim-border)`,
-                      borderRadius: "0.375rem",
+                      borderRadius: `var(--aim-btn-border-radius)`,
                       padding: "0.375rem 0.75rem",
                       color: `var(--aim-text-default)`,
                     }}
@@ -415,11 +415,11 @@ function ModifyProfile(props) {
                   width: "150px",
                   height: "35px",
                   // backgroundColor: `var(--aim-base-tone)`,
-                  borderRadius: "70px",
+                  borderRadius: `var(--aim-btn-border-radius)`,
                   textAlign: "center",
                   color: `var(--aim-text-light)`,
                   fontWeight: "bolder",
-                  marginTop: "20px",
+                  marginTop: "40px",
                   cursor: "pointer",
                 }}
                 className="btn btn-primary d-flex justify-content-center align-items-center"
@@ -450,7 +450,8 @@ function ModifyProfile(props) {
         <div
           style={{
             width: "100%",
-            height: "45%",
+            height: "30%",
+            paddingBottom: "5%",
             borderBottom: `1px solid var(--aim-border)`,
             display: "flex",
             justifyContent: "center",
@@ -488,7 +489,7 @@ function ModifyProfile(props) {
               marginTop: "10px",
               backgroundColor: `var(--aim-base-tone)`,
               border: `1px solid var(--aim-border)`,
-              borderRadius: "0.375rem",
+              borderRadius: `var(--aim-btn-border-radius)`,
               padding: "0.375rem 0.75rem",
               color: `var(--aim-text-default)`,
               fontSize: `var(--aim-nomal-font-size)`,
@@ -532,12 +533,12 @@ function ModifyProfile(props) {
               }
             }}
             style={{
-              marginLeft: "20px",
+              marginLeft: "15px",
               marginTop: "20px",
-              backgroundColor:
-                nickCheckState && !isNickDuplication
-                  ? `var(--aim-base-tone-sub)`
-                  : `var(--aim-base-tone-down)`,
+              // backgroundColor:
+              //   nickCheckState && !isNickDuplication
+              //     ? `var(--aim-base-tone-sub)`
+              //     : `var(--aim-base-tone-down)`,
               color:
                 nickCheckState && !isNickDuplication
                   ? `var(--aim-text-default)`
@@ -546,39 +547,36 @@ function ModifyProfile(props) {
               textAlign: "center",
               fontSize: `var(--aim-small-font-size)`,
               cursor: "pointer",
-              borderRadius: "6px",
+              borderRadius: `var(--aim-btn-border-radius)`,
             }}
           >
             {nickCheckState && !isNickDuplication ? (
-              <span>변경하기</span>
+              <span className="btn btn-primary btn-nickname">변경하기</span>
             ) : (
-              <span>중복확인</span>
+              <span className="btn btn-secondary btn-nickname">중복확인</span>
             )}
           </div>
         </div>
-        {nickCheckState ? (
-          isNickDuplication ? (
-            <div
-              style={{
-                marginLeft: "5px",
-                fontSize: `var(--aim-small-font-size)`,
-              }}
-            >
-              사용 불가능한 닉네임입니다.
-            </div>
+        <div
+          style={{
+            marginLeft: "5px",
+            fontSize: `var(--aim-small-font-size)`,
+            position: "relative",
+            top: "-5px",
+          }}
+        >
+          {nickCheckState ? (
+            isNickDuplication ? (
+              <div style={{ color: `var(--aim-help-warning)` }}>
+                사용 불가능한 닉네임입니다.
+              </div>
+            ) : (
+              <div>사용 가능한 닉네임입니다.</div>
+            )
           ) : (
-            <div
-              style={{
-                marginLeft: "5px",
-                fontSize: `var(--aim-small-font-size)`,
-              }}
-            >
-              사용 가능한 닉네임입니다.
-            </div>
-          )
-        ) : (
-          ""
-        )}
+            ""
+          )}
+        </div>
       </Modal>
     </>
   );

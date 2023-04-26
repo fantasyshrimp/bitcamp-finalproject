@@ -49,7 +49,7 @@ function Searchs(props) {
         placeholder="Search"
         className="me-2"
         style={{
-          borderRadius: "0",
+          borderRadius: `var(--aim-btn-border-radius)`,
           backgroundColor: `var(--aim-base-tone)`,
           color: `var(--aim-text-default)`,
         }}
@@ -61,7 +61,7 @@ function Searchs(props) {
       <Button
         variant="success"
         style={{
-          borderRadius: "0",
+          borderRadius: `var(--aim-btn-border-radius)`,
         }}
         onClick={handleSearch} // 버튼 클릭 이벤트에 handleSearch 함수 등록
       >
