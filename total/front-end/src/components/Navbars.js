@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Container, Navbar, Nav, ProgressBar, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { Post, Searchs, DarkModeSwitch } from "./";
+import { Post, Searchs, DarkModeSwitch } from ".";
 import { AuthBtn } from "./auth";
 import SSEContext from "../handler/SSEContext";
 import Swal from "sweetalert2";

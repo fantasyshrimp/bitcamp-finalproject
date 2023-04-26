@@ -178,7 +178,15 @@ function App() {
                   />
                 }
               />
-              <Route path="/admin/stats" element={<Stats />} />
+              <Route
+                path="/admin/stats"
+                element={
+                  <Stats
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
               <Route path="/admin/management" element={<Management />} />
               <Route
                 path="/admin/board"

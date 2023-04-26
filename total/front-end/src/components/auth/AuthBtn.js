@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SignupModal, LoginModal, Logout, AuthModal } from "../auth";
+import { SignupModal, LoginModal, Logout, AuthModal } from ".";
 import { Nav } from "react-bootstrap";
 import { Bell, BellFill } from "react-bootstrap-icons";
 import AlarmModal from "../AlarmModal";

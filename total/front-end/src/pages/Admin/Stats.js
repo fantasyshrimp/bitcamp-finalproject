@@ -15,7 +15,8 @@ function Stats(props) {
   );
   const menu = ["방문자 주간조회", "콘텐츠 일별조회"];
 
-  console.log(props.currentUser);
+  console.log("props.currentUser:", props.currentUser);
+
   useEffect(() => {
     if (
       props.currentUser === null ||
