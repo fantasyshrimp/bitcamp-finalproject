@@ -145,6 +145,7 @@
       birth_dt=#{birthDate},
       tel=#{tel},
       addr=#{basicAddress},
+      info=#{information},
       pw=CASE WHEN #{password} IS NOT NULL THEN sha2(#{password}, 256) ELSE pw END
     where member_no=#{no}
   </update>

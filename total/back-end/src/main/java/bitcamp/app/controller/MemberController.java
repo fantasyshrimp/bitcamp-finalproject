@@ -99,6 +99,7 @@ public class MemberController {
     loginUser.setBirthDate(member.getBirthDate() != null ?  member.getBirthDate() : loginUser.getBirthDate());
     loginUser.setTel(member.getTel() != null ?  member.getTel() : loginUser.getTel());
     loginUser.setBasicAddress(member.getBasicAddress() != null ?  member.getBasicAddress() : loginUser.getBasicAddress());
+    loginUser.setInformation(member.getInformation() != null ?  member.getInformation() : loginUser.getInformation());
 
     memberService.update(loginUser);
     return new RestResult()

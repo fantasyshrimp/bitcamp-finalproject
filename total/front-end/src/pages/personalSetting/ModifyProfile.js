@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { PencilSquare } from "react-bootstrap-icons";
+import { PencilSquare, Save2Fill } from "react-bootstrap-icons";
 import Swal from "sweetalert2";
 import "./SweetAlert.css";
 import ImageResizer from "react-image-file-resizer";
@@ -23,6 +23,9 @@ function ModifyProfile(props) {
   const [nickCheckState, setNickCheckState] = useState(false);
   const [isNickDuplication, setIsNickDuplication] = useState(true);
 
+  const [information,setInformation] = useState("");
+  const [informationChageState,setInformationChageState] = useState(false);
+
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [gender, setGender] = useState("");
@@ -36,7 +39,6 @@ function ModifyProfile(props) {
     width: "300px",
     height: "300px",
     backgroundColor: `var(--aim-img-background)`,
-    // backgroundColor: `yellow`,
     position: "relative",
     cursor: "pointer",
     backgroundImage: `url(${imageUrl})`,
@@ -50,9 +52,13 @@ function ModifyProfile(props) {
       if (response.data.status === "failure") {
         navigate("/");
       }
+      console.log(response.data);
+
       setMemberData(response.data.data);
       setBeforeNick(response.data.data.nickname);
       setNickname(response.data.data.nickname);
+      setInformation(response.data.data.information === null ?
+         "" : response.data.data.information);
       setImageUrl(response.data.data.profilePhoto);
       setGender(response.data.data.gender);
       setBirthdate(response.data.data.birthDate);
@@ -88,7 +94,6 @@ function ModifyProfile(props) {
             },
           }
         );
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -123,7 +128,6 @@ function ModifyProfile(props) {
           width: "100%",
           height: "100%",
           color: `var(--aim-text-default)`,
-          // backgroundColor: `#2e2e2e`,
         }}
       >
         <div
@@ -133,7 +137,6 @@ function ModifyProfile(props) {
             borderBottom: `1px solid var(--aim-border)`,
             color: `var(--aim-text-default)`,
             fontSize: "30px",
-            // backgroundColor: `yellow`,
           }}
         >
           {props.title}
@@ -147,18 +150,15 @@ function ModifyProfile(props) {
             display: "flex",
             flexDirection: props.flexDirection,
             overflow: "auto",
-            // backgroundColor: `yellow`,
           }}
         >
           <div
             style={{
               width: "400px",
               height: "fit-content",
-              marginTop: "33px",
               display: "flex",
               flexDirection: "column",
               minWidth: "400px",
-              // backgroundColor: `yellow`,
             }}
           >
             <div
@@ -179,44 +179,93 @@ function ModifyProfile(props) {
               />
             </div>
             <div style={{ width: "300px" }}>
-              {false ? (
-                ""
-              ) : (
-                <div
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
+                  height: "50px",
+                  marginTop: "10px",
+                }}
+              >
+                <span
                   style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    alignItems: "flex-end",
-                    height: "50px",
-                    marginTop: "10px",
-                    // backgroundColor: `yellow`,
+                    fontWeight: "bolder",
+                    fontSize: `var(--aim-nomal-font-size)`,
                   }}
                 >
-                  <span
+                  {beforeNick}
+                </span>
+                <PencilSquare
+                  className="profile-edit-nickname-icon"
+                  onClick={() => {
+                    setIsNickDuplication(true);
+                    setNicknameChageState(true);
+                    setNickCheckState(false);
+                  }}
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    paddingBottom: "5px",
+                  }}
+                />
+              </div>
+              <div style={{ textAlign: "right" }}>{memberData.email}</div>
+              <div style={{ marginTop: "10px"}}>
+                {informationChageState 
+                ? <div style={{position: "relative"}}>
+                  <textarea placeholder="소개를 입력해주세요!"
+                    value={information}
+                    onChange={(e) => {setInformation(e.target.value)}}
                     style={{
-                      fontWeight: "bolder",
-                      fontSize: `var(--aim-nomal-font-size)`,
-                    }}
-                  >
-                    {beforeNick}
-                  </span>
-                  <PencilSquare
+                      appearance: "none",
+                      WebkitAppearance : "none",
+                      MozAppearance: "none",
+                      outline: "none",
+                      resize: "none",
+                      width: "100%",
+                      height: "110px",
+                      backgroundColor: `var(--aim-base-tone)`,
+                      border: `1px solid var(--aim-border)`,
+                      borderRadius: "0.375rem",
+                      padding: "0.375rem 0.75rem",
+                      color: `var(--aim-text-default)`,
+                    }}></textarea>
+                  <Save2Fill onClick={() => {setInformationChageState(false)}}
+                    style={{
+                      position: "absolute",
+                      right : "5px",
+                      bottom : "15px",
+                      width: "25px",
+                      height: "25px",                    
+                    }}/> 
+                </div> 
+                : <div style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "110px",
+                    backgroundColor: `var(--aim-base-tone)`,
+                    border: `1px solid var(--aim-border)`,
+                    borderRadius: "0.375rem",
+                    padding: "0.375rem 0.75rem",
+                    color: `var(--aim-text-default)`,
+                  }}>
+                    <p>{information}</p>
+                    <PencilSquare
                     className="profile-edit-nickname-icon"
                     onClick={() => {
-                      setIsNickDuplication(true);
-                      setNicknameChageState(true);
-                      setNickCheckState(false);
+                      setInformationChageState(true);
                     }}
                     style={{
+                      position: "absolute",
+                      right : "5px",
+                      bottom : "5px",
                       width: "25px",
-                      height: "25px",
-                      paddingBottom: "5px",
-                      // backgroundColor: `yellow`,
-                    }}
-                  />
-                </div>
-              )}
-              <div style={{ textAlign: "right" }}>{memberData.email}</div>
+                      height: "25px",                    
+                    }}/></div>}
+              </div>
+
+
             </div>
           </div>
           <div
@@ -231,7 +280,6 @@ function ModifyProfile(props) {
                 props.flexDirection === "column"
                   ? `1px solid var(--aim-border)`
                   : "",
-              // backgroundColor: `yellow`,
             }}
           >
             <SettingInput
@@ -341,6 +389,7 @@ function ModifyProfile(props) {
                       birthDate: birthdate,
                       tel: phone,
                       basicAddress: address,
+                      information: information,
                     });
                   }
                 });
