@@ -203,7 +203,7 @@
   
   <update id="updateAccountState">
     update aim_member
-    set state=#{state}
+    set state=#{accountState}
     where member_no=#{no}
   </update>
   

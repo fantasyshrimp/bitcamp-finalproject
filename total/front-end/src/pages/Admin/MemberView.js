@@ -43,10 +43,11 @@ function MemberView(props) {
   const handleAccountStateChange = (e) => {
     setData({ ...data, accountState: e.target.value });
     console.log(e.target.value);
+    console.log("put 실행");
     //data.accountState = e.target.value;
 
     axios
-      .put(`http://localhost:8080/admin/member/${no}/accountState`, {
+      .put(`http://localhost:8080/admin/member/${no}/accountState/`, {
         state: e.target.value,
       })
       .then((response) => {
@@ -213,7 +214,9 @@ function MemberView(props) {
                     </div>
                   </Form.Group>
 
-                  <img src={data.fileName} className={styles.img} alt="" />
+                  {data && data.fileName && (
+                    <img src={data.fileName} className={styles.img} alt="" />
+                  )}
 
                   <Form.Group
                     className="mb-3"

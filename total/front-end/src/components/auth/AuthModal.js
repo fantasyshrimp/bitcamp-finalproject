@@ -80,6 +80,12 @@ function AuthModal(props) {
       navigate("/Profile", {
         state: { no: response.data.data.no },
       });
+      response.setHeader(
+        "Access-Control-Allow-Origin",
+        "http://localhost:3000"
+      );
+      response.setHeader("Access-Control-Allow-Credentials", "true");
+
       handleClose();
     });
     handleMouseLeaveProfile();
@@ -101,6 +107,11 @@ function AuthModal(props) {
       .then((response) => {
         setCurrentUser(null);
         window.location.href = "http://localhost:3000";
+        response.setHeader(
+          "Access-Control-Allow-Origin",
+          "http://localhost:3000"
+        );
+        response.setHeader("Access-Control-Allow-Credentials", "true");
       })
       .catch((error) => {
         // alert("로그아웃 중 오류 발생!");
