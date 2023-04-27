@@ -23,7 +23,7 @@ function Profile() {
       setError(error);
       setIsLoading(false);
     });
-  }, [no]);
+  }, [no, location.state]);
 
   if (isLoading) {
     return <div>Loading...</div>;

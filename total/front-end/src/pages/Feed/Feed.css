@@ -41,6 +41,7 @@
   overflow: auto;
   text-align: center;
   width: 100%;
+  min-height: 800px;
 }
 
 #feed-list {
