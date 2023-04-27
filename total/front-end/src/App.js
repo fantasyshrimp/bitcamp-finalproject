@@ -162,7 +162,10 @@ function App() {
                   />
                 }
               ></Route>
-              <Route path="/Profile" element={<Profile />}></Route>
+              <Route
+                path="/Profile"
+                element={<Profile currentUser={currentUser} />}
+              ></Route>
               <Route
                 path="/PersonalSetting"
                 element={<PersonalSetting />}
