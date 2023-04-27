@@ -8,6 +8,17 @@
   background-color: var(--aim-base-tone);
 }
 
+#footer-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 30px;
+  background: linear-gradient(
+    to bottom,
+    var(--aim-base-tone-down),
+    var(--aim-base-tone)
+  );
+}
+
 #footer-logo-container {
   display: flex;
   flex-direction: column;

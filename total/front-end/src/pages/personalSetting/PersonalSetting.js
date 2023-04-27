@@ -5,6 +5,7 @@ import PublicSetting from "./PublicSetting";
 import AlamSetting from "./AlamSetting";
 import PersonalAlarms from "./PersonalAlarms";
 import { Nav } from "react-bootstrap";
+import subMenu from "../../styles/style";
 
 function PersonalSetting() {
   const location = useLocation();
@@ -38,16 +39,7 @@ function PersonalSetting() {
         minWidth: "1200px",
       }}
     >
-      <div
-        style={{
-          minWidth: "250px",
-          height: "100%",
-          boxSizing: "border-box",
-          borderRight: `solid 1px var(--aim-border)`,
-          color: `var(--aim-text-default)`,
-          // backgroundColor: "gray",
-        }}
-      >
+      <div style={subMenu}>
         <div
           style={{
             height: "150px",
@@ -85,7 +77,7 @@ function PersonalSetting() {
                 <Nav.Link
                   key={title}
                   eventKey={index}
-                  className={`m-2 personalSetting-menu ${
+                  className={`mt-2 mb-2 personalSetting-menu ${
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}

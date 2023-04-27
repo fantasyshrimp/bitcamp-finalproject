@@ -26,12 +26,12 @@ function FeedList(props) {
     }
   }, [props.directModal]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/auth/user`)
-      .then((response) => setUser(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8080/auth/user`)
+  //     .then((response) => setUser(response.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   return (
     <>
@@ -84,7 +84,7 @@ function FeedList(props) {
                 key={props.item}
                 data={props.item}
                 closeModal={ShowModal}
-                user={user}
+                user={{ data: props.currentUser }}
               />
             </div>
           </>
