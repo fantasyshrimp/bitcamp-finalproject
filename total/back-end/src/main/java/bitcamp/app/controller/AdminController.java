@@ -74,12 +74,13 @@ public class AdminController {
       @RequestBody Map<String, String> paramMap,
       HttpSession session) {
 
+    log.debug("accountState 입력");
     log.debug(paramMap.get("accountState"));
 
-    //    System.out.println("updateAccountState 실행");
-    //    System.out.println("state >>> " + paramMap.get("state"));
-    //
-    //    memberService.updateAccountState(no, Integer.parseInt(paramMap.get("state"))); // 필요한 속성만 전달
+    System.out.println("updateAccountState 실행");
+    System.out.println("state >>> " + paramMap.get("accountState"));
+
+    memberService.updateAccountState(no, Integer.parseInt(paramMap.get("accountState"))); // 필요한 속성만 전달
 
     //
     //    Member member = memberService.get(no);
