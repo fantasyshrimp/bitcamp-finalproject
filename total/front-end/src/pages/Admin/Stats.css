@@ -40,6 +40,7 @@
   text-align: center;
   /* background-color: blue; */
   width: 110px;
+  cursor: pointer;
 }
 
 g text {

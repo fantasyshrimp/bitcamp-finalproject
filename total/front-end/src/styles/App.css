@@ -47,6 +47,8 @@
   --aim-btn-border-radius: 3px;
   --aim-img-border-radius: 5px;
   --aim-modal-border-radius: 5px;
+
+  --aim-btn-primary: #1329cf;
 }
 
 .btn-primary {
