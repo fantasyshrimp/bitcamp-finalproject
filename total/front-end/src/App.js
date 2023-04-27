@@ -158,6 +158,7 @@ function App() {
                     setLoginShow={setLoginShow}
                     signupShow={signupShow}
                     setSignupShow={setSignupShow}
+                    currentUser={currentUser}
                   />
                 }
               ></Route>

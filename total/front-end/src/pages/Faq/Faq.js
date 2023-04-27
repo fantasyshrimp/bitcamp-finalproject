@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import FaqTitleContent from "./FaqTitleContent";
 import "./Faq.css";
 import { Nav } from "react-bootstrap";
+import subMenu from "../../styles/style";
 
 function Faq() {
   const location = useLocation();
@@ -27,16 +28,7 @@ function Faq() {
         minWidth: "1200px",
       }}
     >
-      <div
-        style={{
-          minWidth: "250px",
-          height: "100%",
-          boxSizing: "border-box",
-          borderRight: `solid 1px var(--aim-border)`,
-          color: `var(--aim-text-default)`,
-          // backgroundColor: "gray",
-        }}
-      >
+      <div style={subMenu}>
         <div
           style={{
             height: "150px",
@@ -73,7 +65,7 @@ function Faq() {
               return (
                 <Nav.Link
                   eventKey={index}
-                  className={`m-2 personalSetting-menu ${
+                  className={`mt-2 mb-2 personalSetting-menu ${
                     index === menuNo ? "active" : ""
                   }`}
                   href={index === 0 && "#"}
