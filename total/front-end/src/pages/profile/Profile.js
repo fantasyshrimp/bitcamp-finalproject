@@ -26,7 +26,7 @@ function Profile() {
   }, [no, location.state]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div style={{minHeight: "900px"}}>Loading...</div>;
   }
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -44,7 +44,7 @@ function Profile() {
         directModal={location.state && location.state.directModal && location.state.directModal.type === "follow"
            ? location.state.directModal : undefined}
       />
-      <ProfileUnder boards={data["boards"]} 
+      <ProfileUnder boards={data["boards"]}
       directModal={location.state && location.state.directModal && location.state.directModal.type === "board"
          ? location.state.directModal : undefined}
       />

@@ -145,7 +145,6 @@ public class MemberController {
     if (filename == null) {
       System.out.println("파일명 null");
     }
-    System.out.println(filename);
     //기존에 올라가있던 프로필 사진 삭제
     //objectStorageService.deleteFile(loginUser.getProfilePhoto());
 
