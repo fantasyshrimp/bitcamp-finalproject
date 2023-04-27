@@ -3,8 +3,6 @@ import styles from "./MemberList.module.css";
 import Table from "react-bootstrap/Table";
 import MemberView from "./MemberView";
 import axios from "axios";
-import BoardList from "./BoardList";
-import CommentList from "./CommentList";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavBar from "./NavBar";
@@ -14,14 +12,12 @@ function MemberList(props) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
   const navigate = useNavigate();
-  const [point, setPoint] = useState(null);
 
   useEffect(() => {
     if (
       props.currentUser === null ||
       (props.currentUser && props.currentUser.authLevel !== 9)
     ) {
-      // alert("권한이 없습니다.");
       Swal.fire({
         title: "권한이 없습니다.",
         confirmButtonText: "확인",
