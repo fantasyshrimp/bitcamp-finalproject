@@ -55,6 +55,7 @@
 ## Prototype
 
 > Figma : https://www.figma.com/file/UwoJlyVR5gidLHMGsa1caY/Untitled?t=Ne6edFYJB6gtG90N-0
+> use-case : https://www.figma.com/file/OqWG6u7P5kjgVNeTgq2srb/Untitled?type=whiteboard&node-id=0-1&t=AZC4dSmGefhmdHLO-0
 
 ## ERD
 

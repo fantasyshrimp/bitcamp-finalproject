@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
-function Searchs(props) {
+function Searchs() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {

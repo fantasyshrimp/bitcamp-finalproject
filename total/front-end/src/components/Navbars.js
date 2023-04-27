@@ -14,12 +14,9 @@ function Navbars(props) {
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
-  const [user, setUser] = useState(null);
 
   const feedModalData = useRef(null);
   const feedModalUser = useRef(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +54,6 @@ function Navbars(props) {
   };
 
   const openFeedModal = (data) => {
-    // navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
   };
@@ -88,10 +84,14 @@ function Navbars(props) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/feed/" className="ms-1 me-1">
+              <Nav.Link href="/feed/" className="ms-3 me-2">
                 Feed
               </Nav.Link>
-              <Nav.Link href="/faq/" className="ms-1 me-4">
+              <Nav.Link
+                href="/faq/"
+                className="ms-3"
+                style={{ marginRight: "33px" }}
+              >
                 FAQ
               </Nav.Link>
               <Searchs

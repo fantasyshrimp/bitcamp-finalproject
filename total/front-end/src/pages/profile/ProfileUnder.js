@@ -24,6 +24,7 @@ function ProfileUnder(props) {
               ? props.directModal
               : undefined
           }
+          currentUser={props.currentUser}
         />
       ))}
     </div>

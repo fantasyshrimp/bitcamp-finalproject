@@ -50,7 +50,7 @@ function List(props) {
         currentPage: currentPage,
       },
     });
-    
+
     setKeyState(response.data.key);
 
     if (response.data.state) {
@@ -77,6 +77,7 @@ function List(props) {
           setIsLoginModal={props.setIsLoginModal}
           showExternalLogin={props.showExternalLogin}
           setShowExternalLogin={props.setShowExternalLogin}
+          currentUser={props.currentUser}
         />
       ))}
     </div>

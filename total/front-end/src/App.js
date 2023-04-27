@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
@@ -21,11 +21,9 @@ import {
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 import SSEProvider from "./handler/SSEProvider";
-import SSEContext from "./handler/SSEContext";
 import axios from "axios";
 import BoardList from "./pages/Admin/BoardList";
 import CommentList from "./pages/Admin/CommentList";
-import Management from "./pages/Admin/Management";
 
 // 로컬스토리지 강제 삭제
 // function clearLocalStorage() {
@@ -158,10 +156,14 @@ function App() {
                     setLoginShow={setLoginShow}
                     signupShow={signupShow}
                     setSignupShow={setSignupShow}
+                    currentUser={currentUser}
                   />
                 }
               ></Route>
-              <Route path="/Profile" element={<Profile />}></Route>
+              <Route
+                path="/Profile"
+                element={<Profile currentUser={currentUser} />}
+              ></Route>
               <Route
                 path="/PersonalSetting"
                 element={<PersonalSetting />}
@@ -187,7 +189,6 @@ function App() {
                   />
                 }
               />
-              <Route path="/admin/management" element={<Management />} />
               <Route
                 path="/admin/board"
                 element={<BoardList isLightMode={isLightMode} />}

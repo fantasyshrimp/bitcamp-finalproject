@@ -89,7 +89,7 @@ function CommentList(props) {
           </thead>
           <tbody>
             {data.map((comment) => (
-              <tr key={comment.replyNo}>
+              <tr key={comment.replyNo} style={{ cursor: "pointer" }}>
                 <td onClick={() => handleBoardSelect(comment.boardNo)}>
                   {comment.replyNo}
                 </td>

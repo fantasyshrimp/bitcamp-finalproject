@@ -3,15 +3,15 @@ package bitcamp.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.app.service.BoardService;
@@ -29,7 +29,6 @@ import bitcamp.util.RestStatus;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/admin")
 public class AdminController {
   @Autowired private MemberService memberService;
@@ -38,6 +37,8 @@ public class AdminController {
   @Autowired private ReplyService replyService;
   @Autowired private PointService pointService;
   @Autowired private ReportService reportService;
+
+  Logger log = LogManager.getLogger(getClass());
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -70,18 +71,29 @@ public class AdminController {
   @PutMapping("member/{no}/accountState")
   public Object updateAccountState(
       @PathVariable int no,
-      @RequestParam int accountState,
+      @RequestBody Map<String, String> paramMap,
       HttpSession session) {
 
-    Member member = memberService.get(no);
+    log.debug("accountState 입력");
+    log.debug(paramMap.get("accountState"));
 
     System.out.println("updateAccountState 실행");
+    System.out.println("state >>> " + paramMap.get("accountState"));
 
-    member.setAccountState(accountState);
-    memberService.updateAccountState(member);
+    memberService.updateAccountState(no, Integer.parseInt(paramMap.get("accountState"))); // 필요한 속성만 전달
+
+    //
+    //    Member member = memberService.get(no);
+    //
+    //    System.out.println("updateAccountState 실행");
+    //
+    //    member.setAccountState(accountState);
+    //    memberService.updateAccountState(member);
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
   }
+
+
 
 
   @GetMapping("/comment")

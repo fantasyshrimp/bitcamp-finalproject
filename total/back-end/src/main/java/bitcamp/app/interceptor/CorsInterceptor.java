@@ -1,11 +1,10 @@
 package bitcamp.app.interceptor;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Component
+//@Component
 public class CorsInterceptor implements HandlerInterceptor {
 
   @Override

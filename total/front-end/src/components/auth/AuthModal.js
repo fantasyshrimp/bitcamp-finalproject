@@ -76,6 +76,8 @@ function AuthModal(props) {
   };
 
   const handleClickProfile = () => {
+    handleClose();
+
     axios.get("http://localhost:8080/auth/user").then((response) => {
       navigate("/Profile", {
         state: { no: response.data.data.no },
@@ -85,8 +87,6 @@ function AuthModal(props) {
         "http://localhost:3000"
       );
       response.setHeader("Access-Control-Allow-Credentials", "true");
-
-      handleClose();
     });
     handleMouseLeaveProfile();
   };
@@ -107,11 +107,6 @@ function AuthModal(props) {
       .then((response) => {
         setCurrentUser(null);
         window.location.href = "http://localhost:3000";
-        response.setHeader(
-          "Access-Control-Allow-Origin",
-          "http://localhost:3000"
-        );
-        response.setHeader("Access-Control-Allow-Credentials", "true");
       })
       .catch((error) => {
         // alert("로그아웃 중 오류 발생!");

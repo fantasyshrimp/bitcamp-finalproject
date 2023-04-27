@@ -2,15 +2,32 @@ import React, { useEffect, useState } from "react";
 import { FaRandom } from "react-icons/fa";
 import { RiHistoryLine, RiUserFollowLine } from "react-icons/ri";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-function Sortbar(props) {
+function Sortbar() {
   const [auth, setAuth] = useState(false);
-  const navigate = useNavigate();
+  const currentPath = window.location.pathname.split("/")[2] || "random";
+
+  if (currentPath !== "random") {
+    axios
+      .post(
+        "http://localhost:8080/boards/sort",
+        {},
+        {
+          params: {
+            sort: currentPath,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "success") {
+        } else {
+          console.log("에러");
+        }
+      })
+      .catch((error) => {});
+  }
 
   const Click = (param) => {
-    // console.log(param);
-
     axios
       .post(
         "http://localhost:8080/boards/sort",
@@ -23,15 +40,7 @@ function Sortbar(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          if (param === "hot") {
-            window.location.href = "/feed/hot";
-          } else if (param === "recent") {
-            window.location.href = "/feed/recent";
-          } else if (param === "follow") {
-            window.location.href = "/feed/follow";
-          } else {
-            window.location.href = "/feed";
-          }
+          window.location.href = `/feed/${param === "random" ? "" : param}`;
         } else {
           console.log("에러");
         }

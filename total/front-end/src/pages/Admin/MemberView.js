@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import styles from "./MemberView.module.css";
@@ -44,19 +43,30 @@ function MemberView(props) {
     setData({ ...data, accountState: e.target.value });
     console.log(e.target.value);
     console.log("put 실행");
-    //data.accountState = e.target.value;
 
     axios
-      .put(`http://localhost:8080/admin/member/${no}/accountState/`, {
-        state: e.target.value,
-      })
+      .put(
+        `http://localhost:8080/admin/member/${no}/state`,
+        {
+          accountState: e.target.value,
+        },
+        {
+          headers: {
+            "X-HTTP-Method-Override": "PUT", // 이 부분 추가
+          },
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         console.log("accountState");
         console.log(data.accountState);
-        //handleClose();
       })
       .catch((error) => console.error(error));
   };
+
+  axios.get(`http://localhost:8080/admin/member/${no}/accountState`, {
+    withCredentials: true,
+  });
 
   return (
     <>
@@ -186,33 +196,6 @@ function MemberView(props) {
                     </div>
                   </Form.Group>
 
-                  {data && data.fileName && (
-                    <img src={data.fileName} className={styles.img} alt="" />
-                  )}
-
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput1"
-                  >
-                    <div className="d-flex align-items-center">
-                      <Form.Label className={styles.label}>
-                        프로필 사진 &nbsp;&nbsp;
-                      </Form.Label>
-                      <div
-                        className={styles.img}
-                        style={{
-                          backgroundImage: `url(${data.profilePhoto})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center center",
-                          width: "215px",
-                          height: "215px",
-                        }}
-                      />
-                    </div>
-                  </Form.Group>
-                </Col>
-
-                <Col>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
@@ -241,6 +224,33 @@ function MemberView(props) {
                     </div>
                   </Form.Group>
 
+                  {data && data.fileName && (
+                    <img src={data.fileName} className={styles.img} alt="" />
+                  )}
+
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <div className="d-flex align-items-center">
+                      <Form.Label className={styles.label}>
+                        프로필 사진 &nbsp;&nbsp;
+                      </Form.Label>
+                      <div
+                        className={styles.img}
+                        style={{
+                          backgroundImage: `url(${data.profilePhoto})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center center",
+                          width: "150px",
+                          height: "150px",
+                        }}
+                      />
+                    </div>
+                  </Form.Group>
+                </Col>
+
+                <Col>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
