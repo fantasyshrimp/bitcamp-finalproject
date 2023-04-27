@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Video.module.css";
 
 function Video(props) {
-  const handleShowLogin = (e) => {
-    e.preventDefault();
-    props.setLoginShow(true);
-  };
+  // const handleShowLogin = (e) => {
+  //   e.preventDefault();
+  //   props.setLoginShow(true);
+  // };
 
   return (
     <div className={styles.frame}>
@@ -17,8 +17,9 @@ function Video(props) {
           <span className={styles.span}>Artify</span>
         </h1>
         <p className={styles.p}>
-          표현하고 싶었지만 표현할 방법을 몰랐다면, AI 그림 생성 서비스 Artify를
-          이용해보세요!
+          Artify 는 한글로 그림을 그려주는, SNS 와 AI 를 결합한 서비스 입니다.{" "}
+          <br />
+          당신의 일상을 그림으로 만들어 보세요.
         </p>
       </div>
     </div>

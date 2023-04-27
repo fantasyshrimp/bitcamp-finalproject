@@ -144,6 +144,7 @@ function AuthBtn(props) {
                 display: "inline-block",
                 borderRadius: "50%",
               }}
+              className="ms-2 me-1"
             />
           </Nav.Link>
         </>
