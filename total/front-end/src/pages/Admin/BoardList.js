@@ -14,8 +14,10 @@ function BoardList(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (props.currentUser && props.currentUser.authLevel !== 9) {
-      // alert("권한이 없습니다.");
+    if (
+      props.currentUser === null ||
+      (props.currentUser && props.currentUser.authLevel !== 9)
+    ) {
       Swal.fire({
         title: "권한이 없습니다.",
         confirmButtonText: "확인",

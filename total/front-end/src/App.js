@@ -191,11 +191,23 @@ function App() {
               />
               <Route
                 path="/admin/board"
-                element={<BoardList isLightMode={isLightMode} />}
+                element={
+                  <BoardList
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    isLightMode={isLightMode}
+                  />
+                }
               />
               <Route
                 path="/admin/comment"
-                element={<CommentList isLightMode={isLightMode} />}
+                element={
+                  <CommentList
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    isLightMode={isLightMode}
+                  />
+                }
               />
 
               <Route path="/auth/verify" element={<EmailVerifyHandler />} />

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.app.service.BoardReplyService;
 import bitcamp.app.service.BoardService;
 import bitcamp.app.service.LikeService;
 import bitcamp.app.service.MemberService;
@@ -22,6 +25,7 @@ import bitcamp.app.service.PointService;
 import bitcamp.app.service.ReplyService;
 import bitcamp.app.service.ReportService;
 import bitcamp.app.vo.Board;
+import bitcamp.app.vo.BoardReply;
 import bitcamp.app.vo.Member;
 import bitcamp.util.ErrorCode;
 import bitcamp.util.RestResult;
@@ -37,6 +41,7 @@ public class AdminController {
   @Autowired private ReplyService replyService;
   @Autowired private PointService pointService;
   @Autowired private ReportService reportService;
+  @Autowired private BoardReplyService boardReplyService;
 
   Logger log = LogManager.getLogger(getClass());
 
@@ -77,11 +82,7 @@ public class AdminController {
     log.debug("accountState 입력");
     log.debug(paramMap.get("accountState"));
 
-    System.out.println("updateAccountState 실행");
-    System.out.println("state >>> " + paramMap.get("accountState"));
-
     memberService.updateAccountState(no, Integer.parseInt(paramMap.get("accountState"))); // 필요한 속성만 전달
-
 
     return new RestResult()
         .setStatus(RestStatus.SUCCESS);
@@ -126,10 +127,7 @@ public class AdminController {
     return boardService.listTag(no);
   }
 
-  @DeleteMapping("/board/delete/{boardNo}")
-  public void delete(@PathVariable int boardNo, @RequestBody List<Integer> replyNos) {
-    boardService.deleteBoard(boardNo, replyNos);
-  }
+
 
   @GetMapping("/board/report/{no}")
   public int findByBoardNo(@PathVariable int no) {
@@ -150,6 +148,39 @@ public class AdminController {
       return new RestResult()
           .setStatus(RestStatus.FAILURE);
     }
+  }
+
+  // 게시물 삭제
+
+  // @RequestMapping(value="/board/delete/{boardNo}", method=RequestMethod.DELETE)
+  @DeleteMapping("/board/delete/{boardNo}")
+  public void delete(@PathVariable int boardNo, @RequestBody List<Integer> replyNos) {
+    log.debug("deleteBoard 실행");
+    boardService.deleteBoard(boardNo, replyNos);
+  }
+
+
+  @GetMapping("/boardreply/board/{date}")
+  public ResponseEntity<BoardReply> getBoardCountByDate(@PathVariable("date") String date) {
+    int count = boardReplyService.getBoardCountByDate(date);
+    BoardReply boardReply = new BoardReply();
+    boardReply.setType("게시글");
+    boardReply.setCount(count);
+    return new ResponseEntity<>(boardReply, HttpStatus.OK);
+  }
+
+  @GetMapping("/boardreply/reply/{date}")
+  public ResponseEntity<BoardReply> getReplyCountByDate(@PathVariable("date") String date) {
+    int count = boardReplyService.getReplyCountByDate(date);
+    BoardReply boardReply = new BoardReply();
+    boardReply.setType("댓글");
+    boardReply.setCount(count);
+    return new ResponseEntity<>(boardReply, HttpStatus.OK);
+  }
+
+  @GetMapping("/reply")
+  public Object reply() {
+    return replyService.list();
   }
 
 
