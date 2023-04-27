@@ -46,14 +46,11 @@ function MemberView(props) {
 
     axios
       .put(
-        `http://localhost:8080/admin/member/${no}/state`,
+        `http://localhost:8080/admin/member/${no}/accountState`,
         {
           accountState: e.target.value,
         },
         {
-          headers: {
-            "X-HTTP-Method-Override": "PUT", // 이 부분 추가
-          },
           withCredentials: true,
         }
       )
