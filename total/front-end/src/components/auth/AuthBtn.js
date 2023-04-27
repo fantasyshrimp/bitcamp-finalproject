@@ -117,7 +117,11 @@ function AuthBtn(props) {
                 fontSize: "9px",
               }}
             ></div>
-            <Bell size="1.4rem" style={{ color: `var(--aim-text-default)` }} />
+            <Bell
+              size="1.4rem"
+              style={{ color: `var(--aim-text-default)` }}
+              className="m-2"
+            />
           </a>
           <Nav.Link
             onClick={handleClickUser}
@@ -145,10 +149,10 @@ function AuthBtn(props) {
         </>
       ) : (
         <>
-          <Nav.Link>
+          <Nav.Link className="ms-1 me-1">
             <div onClick={handleSignupShow}>회원가입</div>
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link className="ms-1 me-1">
             <div onClick={handleLoginShow}>로그인</div>
           </Nav.Link>
         </>

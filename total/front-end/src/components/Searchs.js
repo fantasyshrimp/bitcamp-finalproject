@@ -43,7 +43,7 @@ function Searchs(props) {
   };
 
   return (
-    <Form className="d-flex ms-3">
+    <Form className="d-flex">
       <Form.Control
         type="search"
         placeholder="Search"

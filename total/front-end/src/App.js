@@ -147,7 +147,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/Feed"
+                path="/Feed/*"
                 element={
                   <Feed
                     isLoginModal={isLoginModal}
