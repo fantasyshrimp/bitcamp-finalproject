@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbars from "./components/Navbars";
 import Footer from "./components/Footer";
@@ -21,7 +21,6 @@ import {
 import NaverLoginHandler from "./handler/NaverLoginHandler";
 import EmailVerifyHandler from "./handler/EmailVerifyHandler";
 import SSEProvider from "./handler/SSEProvider";
-import SSEContext from "./handler/SSEContext";
 import axios from "axios";
 import BoardList from "./pages/Admin/BoardList";
 import CommentList from "./pages/Admin/CommentList";

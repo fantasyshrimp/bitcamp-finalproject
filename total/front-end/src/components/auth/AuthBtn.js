@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { SignupModal, LoginModal, Logout, AuthModal } from ".";
+import { AuthModal } from ".";
 import { Nav } from "react-bootstrap";
 import { Bell, BellFill } from "react-bootstrap-icons";
 import AlarmModal from "../AlarmModal";
 import axios from "axios";
-import { resolvePath } from "react-router-dom";
 import Swal from "sweetalert2";
 axios.defaults.withCredentials = true;
 

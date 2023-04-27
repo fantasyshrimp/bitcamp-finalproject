@@ -3,7 +3,7 @@ import { FaRandom } from "react-icons/fa";
 import { RiHistoryLine, RiUserFollowLine } from "react-icons/ri";
 import axios from "axios";
 
-function Sortbar(props) {
+function Sortbar() {
   const [auth, setAuth] = useState(false);
   const currentPath = window.location.pathname.split("/")[2] || "random";
 

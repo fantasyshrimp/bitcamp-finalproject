@@ -80,6 +80,7 @@ function MemberList(props) {
                 <tr
                   key={member.no}
                   onClick={() => handleColumnSelect(member.no)}
+                  style={{ cursor: "pointer" }}
                 >
                   <td className="td">{member.no}</td>
                   <td className="td">{member.nickname}</td>

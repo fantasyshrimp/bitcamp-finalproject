@@ -14,12 +14,9 @@ function Navbars(props) {
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
-  const [user, setUser] = useState(null);
 
   const feedModalData = useRef(null);
   const feedModalUser = useRef(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +54,6 @@ function Navbars(props) {
   };
 
   const openFeedModal = (data) => {
-    // navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
   };
