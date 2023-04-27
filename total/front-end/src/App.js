@@ -25,7 +25,6 @@ import SSEContext from "./handler/SSEContext";
 import axios from "axios";
 import BoardList from "./pages/Admin/BoardList";
 import CommentList from "./pages/Admin/CommentList";
-import Management from "./pages/Admin/Management";
 
 // 로컬스토리지 강제 삭제
 // function clearLocalStorage() {
@@ -187,7 +186,6 @@ function App() {
                   />
                 }
               />
-              <Route path="/admin/management" element={<Management />} />
               <Route
                 path="/admin/board"
                 element={<BoardList isLightMode={isLightMode} />}

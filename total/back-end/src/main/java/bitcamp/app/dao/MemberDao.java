@@ -3,6 +3,7 @@ package bitcamp.app.dao;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import bitcamp.app.vo.Member;
 
 @Mapper
@@ -25,5 +26,5 @@ public interface MemberDao {
   void updateIsGenerating(Member m);
   void updateAuthCode(Member m);
   void updatePassword(Member member);
-  void updateAccountState(Member m);
+  void updateAccountState(@Param("no") int memberNo, @Param("state") int state);
 }
