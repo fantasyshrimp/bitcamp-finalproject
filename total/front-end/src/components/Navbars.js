@@ -14,12 +14,9 @@ function Navbars(props) {
   const sseMessage = useContext(SSEContext);
   const [message, setMessage] = useState(null);
   const [isFeedModalOpen, setIsFeedModalOpen] = useState(false);
-  const [user, setUser] = useState(null);
 
   const feedModalData = useRef(null);
   const feedModalUser = useRef(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +54,6 @@ function Navbars(props) {
   };
 
   const openFeedModal = (data) => {
-    // navigate("/feed");
     feedModalData.current = data;
     setIsFeedModalOpen(true);
   };
@@ -69,22 +65,35 @@ function Navbars(props) {
   return (
     <>
       <Navbar
+        key="lg"
         collapseOnSelect
-        expand="md"
+        expand="lg"
         bg={props.isLightMode ? "light" : "dark"}
         variant={props.isLightMode ? "light" : "dark"}
         className="bg-gradient"
       >
-        <Container fluid className="navbar-main">
-          <Navbar.Brand href="/" style={{ color: `var(--aim-text-default)` }}>
+        <Container fluid className="navbar-main ms-2 me-2">
+          <Navbar.Brand
+            href="/"
+            style={{ color: `var(--aim-text-default)` }}
+            className=""
+          >
             Artify
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/feed/">Feed</Nav.Link>
-              <Nav.Link href="/faq/">FAQ</Nav.Link>
+              <Nav.Link href="/feed/" className="ms-3 me-2">
+                Feed
+              </Nav.Link>
+              <Nav.Link
+                href="/faq/"
+                className="ms-3"
+                style={{ marginRight: "33px" }}
+              >
+                FAQ
+              </Nav.Link>
               <Searchs
                 isLightMode={props.isLightMode}
                 setIsLightMode={props.setIsLightMode}
@@ -94,69 +103,71 @@ function Navbars(props) {
           </Navbar.Collapse>
 
           <Nav className="process-bar-darkmode-auth-container">
-            {props.currentUser && (
-              <div className="d-flex ms-2 me-4 justify-content-center align-items-center">
-                {message || props.currentUser?.isGenerating === 1 ? (
-                  (() => {
-                    let variant, label, animated, status;
-
-                    status = message
-                      ? message.status
-                      : props.currentUser?.isGenerating === 1
-                      ? "process"
-                      : "";
-
-                    switch (status) {
-                      case "success":
-                        variant = "success";
-                        label = "생성 완료";
-                        animated = false;
-                        break;
-                      case "failure":
-                        variant = "danger";
-                        label = "에러 발생";
-                        animated = false;
-                        break;
-                      case "process":
-                      default:
-                        variant = "info";
-                        label = `생성 중 ${message?.count || " "}s`;
-                        animated = true;
-                    }
-
-                    return (
-                      <ProgressBar
-                        variant={variant}
-                        now={100}
-                        label={label}
-                        animated={animated}
-                        style={{
-                          width: "80px",
-                          height: "20px",
-                          fontSize: "0.75rem",
-                          borderRadius: "4px",
-                        }}
-                        className={
-                          variant === "success" ? "progress-bar-success" : ""
-                        }
-                        onClick={() => handleClickProcessBar(variant)}
-                      />
-                    );
-                  })()
-                ) : (
-                  <div></div>
-                )}
-              </div>
-            )}
-
             <Row>
-              <Col xs="auto" className="d-flex align-items-center p-0">
+              <Col className="d-flex align-items-center ps-0">
+                {props.currentUser && (
+                  <div className="d-flex me-4 justify-content-center align-items-center">
+                    {message || props.currentUser?.isGenerating === 1 ? (
+                      (() => {
+                        let variant, label, animated, status;
+
+                        status = message
+                          ? message.status
+                          : props.currentUser?.isGenerating === 1
+                          ? "process"
+                          : "";
+
+                        switch (status) {
+                          case "success":
+                            variant = "success";
+                            label = "생성 완료";
+                            animated = false;
+                            break;
+                          case "failure":
+                            variant = "danger";
+                            label = "에러 발생";
+                            animated = false;
+                            break;
+                          case "process":
+                          default:
+                            variant = "info";
+                            label = `생성 중 ${message?.count || " "}s`;
+                            animated = true;
+                        }
+
+                        return (
+                          <ProgressBar
+                            variant={variant}
+                            now={100}
+                            label={label}
+                            animated={animated}
+                            style={{
+                              width: "80px",
+                              height: "20px",
+                              fontSize: "0.75rem",
+                              borderRadius: "4px",
+                            }}
+                            className={
+                              variant === "success"
+                                ? "progress-bar-success"
+                                : ""
+                            }
+                            onClick={() => handleClickProcessBar(variant)}
+                          />
+                        );
+                      })()
+                    ) : (
+                      <div></div>
+                    )}
+                  </div>
+                )}
+
+                {/* <Col xs="auto" className="d-flex align-items-center p-0"></Col> */}
+
                 <DarkModeSwitch
                   isLightMode={props.isLightMode}
                   setIsLightMode={props.setIsLightMode}
                 />
-              </Col>
-              <Col xs="auto" className="d-flex align-items-center ps-0">
                 <AuthBtn
                   currentUser={props.currentUser}
                   setCurrentUser={props.setCurrentUser}
@@ -180,7 +191,8 @@ function Navbars(props) {
 
       <Navbar
         collapseOnSelect
-        expand="md"
+        key="lg"
+        expand="lg"
         bg={props.isLightMode ? "light" : "dark"}
         variant={props.isLightMode ? "light" : "dark"}
         className="navbar-sub"

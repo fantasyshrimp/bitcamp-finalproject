@@ -17,6 +17,7 @@ function Feed(props) {
           setIsLoginModal={props.setIsLoginModal}
           showExternalLogin={props.showExternalLogin}
           setShowExternalLogin={props.setShowExternalLogin}
+          currentUser={props.currentUser}
         />
       </div>
     </div>

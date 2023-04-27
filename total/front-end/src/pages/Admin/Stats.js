@@ -6,6 +6,7 @@ import "./Stats.css";
 import { Nav } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import subMenu from "../../styles/style";
 
 function Stats(props) {
   const location = useLocation();
@@ -43,19 +44,10 @@ function Stats(props) {
             // backgroundColor: "gray",
           }}
         >
-          <div
-            style={{
-              minWidth: "250px",
-              height: "100%",
-              boxSizing: "border-box",
-              borderRight: `solid 1px var(--aim-border)`,
-              color: `var(--aim-text-default)`,
-              // backgroundColor: "gray",
-            }}
-          >
+          <div style={subMenu}>
             <div
               style={{
-                height: "200px",
+                height: "150px",
                 // backgroundColor: "gray",
               }}
             ></div>
@@ -72,6 +64,7 @@ function Stats(props) {
                   marginLeft: "5px",
                   boxSizing: "border-box",
                   cursor: "default",
+                  marginBottom: "30px",
                 }}
               >
                 통계
@@ -88,7 +81,7 @@ function Stats(props) {
                   return (
                     <Nav.Link
                       eventKey={index}
-                      className={`personalSetting-menu ${
+                      className={`mt-2 mb-2 personalSetting-menu ${
                         index === menuNo ? "active" : ""
                       }`}
                       href={index === 0 && "#"}

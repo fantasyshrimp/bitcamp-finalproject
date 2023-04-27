@@ -86,7 +86,7 @@ function ModifyProfile(props) {
         "base64"
       );
       try {
-        const response = await axios.put(
+        await axios.put(
           "http://localhost:8080/member/upload/profileImg",
           formData,
           {
@@ -100,19 +100,6 @@ function ModifyProfile(props) {
       }
     }
   };
-
-  const handleNickNameChage = () => {
-    setNicknameChageState(false);
-  };
-
-  function handleKeyDown(event) {
-    if (event.keyCode === 13) {
-      // 엔터키가 눌렸을 때
-      console.log("엔터키 입력됨");
-      // 원하는 동작을 수행합니다.
-      handleNickNameChage(event);
-    }
-  }
 
   return (
     <>

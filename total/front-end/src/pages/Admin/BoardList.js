@@ -67,7 +67,7 @@ function BoardList(props) {
           </thead>
           <tbody>
             {data.map((board) => (
-              <tr key={board.boardNo}>
+              <tr key={board.boardNo} style={{ cursor: "pointer" }}>
                 <td onClick={() => handleBoardSelect(board.boardNo)} readOnly>
                   {board.boardNo}
                 </td>

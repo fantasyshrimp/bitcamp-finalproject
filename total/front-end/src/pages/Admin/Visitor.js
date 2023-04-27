@@ -160,6 +160,7 @@ const Visitor = (props) => {
         maxDate={maxDate}
         locale="ko"
         renderCustomHeader={(props) => <CustomHeader {...props} />}
+        style={{ cursor: "pointer", userSelect: "none" }}
       />
 
       <ResponsiveLine

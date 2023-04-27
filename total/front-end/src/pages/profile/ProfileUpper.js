@@ -50,6 +50,11 @@ function ProfileUpper(props) {
     }
   }, [props.directModal]);
 
+  useEffect(()=>{
+    setFollowingCount(followingCnt);
+  },[followingCnt])
+
+
   const pointModalHandler = () => {
     setPointModal(!pointModal);
     if (!pointModal) {

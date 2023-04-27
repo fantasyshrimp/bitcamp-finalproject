@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
-function Searchs(props) {
+function Searchs() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
@@ -43,7 +43,7 @@ function Searchs(props) {
   };
 
   return (
-    <Form className="d-flex ms-3">
+    <Form className="d-flex">
       <Form.Control
         type="search"
         placeholder="Search"

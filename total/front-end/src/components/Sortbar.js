@@ -3,10 +3,31 @@ import { FaRandom } from "react-icons/fa";
 import { RiHistoryLine, RiUserFollowLine } from "react-icons/ri";
 import axios from "axios";
 
-function Sortbar(props) {
+function Sortbar() {
   const [auth, setAuth] = useState(false);
+  const currentPath = window.location.pathname.split("/")[2] || "random";
+
+  if (currentPath !== "random") {
+    axios
+      .post(
+        "http://localhost:8080/boards/sort",
+        {},
+        {
+          params: {
+            sort: currentPath,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "success") {
+        } else {
+          console.log("에러");
+        }
+      })
+      .catch((error) => {});
+  }
+
   const Click = (param) => {
-    console.log(param);
     axios
       .post(
         "http://localhost:8080/boards/sort",
@@ -19,12 +40,7 @@ function Sortbar(props) {
       )
       .then((response) => {
         if (response.data.status === "success") {
-          if (window.location.pathname === "/Feed") {
-            window.location.reload();
-          } else {
-            // Navigate("/Feed");
-            window.location.href = "/Feed";
-          }
+          window.location.href = `/feed/${param === "random" ? "" : param}`;
         } else {
           console.log("에러");
         }
@@ -34,7 +50,7 @@ function Sortbar(props) {
 
   function handleClick(event) {
     event.preventDefault();
-    window.location.reload();
+    window.location.href = "/feed/";
   }
 
   useEffect(() => {
@@ -44,25 +60,36 @@ function Sortbar(props) {
       .catch((error) => console.log(error));
   }, []);
 
+  const getButtonClass = (param) => {
+    let btnTagLast = "";
+
+    if (
+      window.location.pathname.split("/")[2] === param ||
+      (param === "random" &&
+        (window.location.pathname.split("/")[2] === "" ||
+          window.location.pathname.split("/").length === 2))
+    ) {
+      btnTagLast =
+        localStorage.getItem("isLightMode") === "true" ? "dark" : "white";
+    } else {
+      btnTagLast =
+        localStorage.getItem("isLightMode") === "true" ? "white" : "dark";
+    }
+
+    const baseClass = `tag btn btn-tag-${btnTagLast}`;
+
+    return baseClass;
+  };
+
   return (
     <div id="tag-bar" className="d-flex align-items-center">
-      <div
-        onClick={handleClick}
-        className={`tag btn btn-tag-${
-          localStorage.getItem("isLightMode") === "true" ? "white" : "dark"
-        }`}
-      >
+      <div onClick={handleClick} className={getButtonClass("random")}>
         <div className="d-flex justify-content-center align-items-center">
           <FaRandom className="me-1" />
           <span className="tag-text">Random</span>
         </div>
       </div>
-      <div
-        onClick={() => Click("hot")}
-        className={`tag btn btn-tag-${
-          localStorage.getItem("isLightMode") === "true" ? "white" : "dark"
-        }`}
-      >
+      <div onClick={() => Click("hot")} className={getButtonClass("hot")}>
         <div className="d-flex justify-content-center align-items-center">
           <div
             id="tag-image"
@@ -75,23 +102,16 @@ function Sortbar(props) {
           HOT
         </div>
       </div>
-      <div
-        onClick={() => Click("recent")}
-        className={`tag btn btn-tag-${
-          localStorage.getItem("isLightMode") === "true" ? "white" : "dark"
-        }`}
-      >
+      <div onClick={() => Click("recent")} className={getButtonClass("recent")}>
         <div className="d-flex justify-content-center align-items-center">
           <RiHistoryLine className="me-1" />{" "}
-          <span className="tag-text">Recently</span>
+          <span className="tag-text">Recent</span>
         </div>
       </div>
       {auth && (
         <div
           onClick={() => Click("follow")}
-          className={`tag btn btn-tag-${
-            localStorage.getItem("isLightMode") === "true" ? "white" : "dark"
-          }`}
+          className={getButtonClass("follow")}
         >
           <div className="d-flex justify-content-center align-items-center">
             <RiUserFollowLine className="me-1" />{" "}
