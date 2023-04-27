@@ -25,13 +25,13 @@
 }
 
 #point-log-title {
-  width: 75%;
+  width: 65%;
   float: left;
   height: 30px;
 }
 
 #point-log-getpoint {
-  width: 22%;
+  width: 32%;
   float: left;
   height: auto;
   text-align: right;
@@ -39,7 +39,7 @@
 }
 
 #point-log-sendpoint {
-  width: 22%;
+  width: 32%;
   float: left;
   height: auto;
   text-align: right;
@@ -50,7 +50,7 @@
   width: 35%;
   color: var(--aim-text-sub);
   height: 20px;
-  font-size: 12px;
+  font-size: 11px;
   float: left;
 }
 
