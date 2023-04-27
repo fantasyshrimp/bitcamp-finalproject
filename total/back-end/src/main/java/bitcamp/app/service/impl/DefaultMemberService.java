@@ -203,7 +203,6 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public void updateAccountState(int memberNo, int state) {
-    System.out.println("updateAccountState 실행");
     memberDao.updateAccountState(memberNo, state);
   }
 

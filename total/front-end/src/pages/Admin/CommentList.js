@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FeedModal from "../Feed/FeedModal";
+import Swal from "sweetalert2";
 
 import NavBar from "./NavBar";
 
@@ -17,6 +18,19 @@ function CommentList(props) {
 
   const feedModalData = useRef({});
   const feedModalUser = useRef({});
+
+  useEffect(() => {
+    if (
+      props.currentUser === null ||
+      (props.currentUser && props.currentUser.authLevel !== 9)
+    ) {
+      Swal.fire({
+        title: "권한이 없습니다.",
+        confirmButtonText: "확인",
+      });
+      navigate("/");
+    }
+  }, [props.currentUser]);
 
   useEffect(() => {
     axios
