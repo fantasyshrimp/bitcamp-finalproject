@@ -2,11 +2,20 @@
 
 # Artify
 
-> **네이버 클라우드 캠프 1기** <br/> 개발 기간 : 2023-04-01 ~ 2023-05-04
+> **네이버 클라우드 캠프 1기** <br/> 개발 기간 : 2023-03-02 ~ 2023-05-04
 
 ## 멤버 구성
 
-> 신지윤 [@zyoonshin](https://github.com/zyoonshin), 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun), 윤종광 [@jongkwangyun](https://github.com/jongkwangyun), 전태산 [@fshrimp](https://github.com/fantasyshrimp), 한대호 [@das7945](https://github.com/das7945)
+- 신지윤 [@zyoonshin](https://github.com/zyoonshin)
+  - Admin(Interceptor, 관리 페이지)
+- 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun)
+  - Feed, Search
+- 윤종광 [@jongkwangyun](https://github.com/jongkwangyun)
+  - Log in / out, Alarm, AI Service
+- 전태산 [@fshrimp](https://github.com/fantasyshrimp)
+  - Profile, Personal Setting
+- 한대호 [@das7945](https://github.com/das7945)
+  - FAQ, Admin(통계 페이지)
 
 ## 소개
 
@@ -16,7 +25,7 @@
 
 > 인스타, 페이스북 같은 sns는 있지만, 이는 작성자가 본인이 표현하고 싶은 내용을 **글로 표현**하는 플랫폼 입니다. 그러나 Artify는 본인이 표현하고 싶은 내용을 입력창에 입력하면, AI가 이를 **그림으로 표현**해줍니다. <br /><br /> Artify는 그림으로 사용자 간의 자유로운 의사 소통과 정보공유 등을 통해 사회적 관계를 생성하고 소통을 강화시켜주는 온라인 플랫폼 입니다.
 
-## Stacks 📚
+## Stacks
 
 ### Back-end
 
@@ -94,7 +103,7 @@ ChatGPT
 - 작성자 본인일 경우, 게시글 삭제
 - react bootstrap 사용
 
-### F&Q
+### FAQ
 
 - 자주 묻는 질문들
 - 주제 별로 FAQ를 드롭다운으로 등장
@@ -134,6 +143,12 @@ ChatGPT
 ### Profile
 
 - 팔로잉 수, 팔로워 수, 좋아요 수, 포인트 수
+- 내가 작성한 게시글 관리
+- 내가 팔로잉 한 회원 팔로잉 관리
+- 내가 팔로우 한 회원 팔로우 관리
+
+### Personal Setting
+
 - 프로필 수정(닉네임, 자기소개, 비밀번호 수정, 성별, 생년월일, 전화번호, 주소)
 - 공개 설정(성별, 생일, 전화번호, 주소, 게시물, 좋아요 및 조회수, 댓글)
 - 알람 설정(게시글 작성, 게시글 좋아요, 댓글 작성, 댓글 좋아요, 팔로우)
