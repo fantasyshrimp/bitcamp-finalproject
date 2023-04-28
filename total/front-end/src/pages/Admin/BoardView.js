@@ -7,11 +7,13 @@ import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 
 function BoardView(props) {
-  const { show, setShow, no } = props;
+  const { show, setShow, no, reply } = props;
   const handleClose = () => setShow(false);
   const [data, setData] = useState({});
   const [tag, setTag] = useState({});
   const [report, setReport] = useState({});
+
+  console.log(props);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -344,6 +346,7 @@ function BoardView(props) {
                       />
                     </div>
                   </Form.Group>
+                  <Button variant="primary">Delete</Button>
                 </Col>
               </Row>
             </Container>
