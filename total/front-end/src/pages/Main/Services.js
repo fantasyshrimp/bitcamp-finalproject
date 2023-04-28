@@ -12,10 +12,7 @@ function Services() {
     <div
       className="container"
       style={{
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         color: "var(--aim-text-default)",
-        height: "50vh",
       }}
     >
       <div

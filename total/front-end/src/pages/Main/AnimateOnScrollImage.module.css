@@ -1,0 +1,36 @@
+.section {
+  margin-top: 100px;
+}
+
+.container {
+  width: 83.333%;
+  min-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: 20px;
+}
+
+.imageBox {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; /* 가로 세로 비율 유지 */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#img1 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/1621f176-37f3-4266-8458-27952d566326");
+}
+
+#img2 {
+  margin-top: 33.333%;
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/babba361-bb89-4c85-a68f-f8bc6d81daf1");
+}
+
+#img3 {
+  margin-top: 66.666%;
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/0c2a7deb-73cb-4aa7-b166-39f369962a56");
+}

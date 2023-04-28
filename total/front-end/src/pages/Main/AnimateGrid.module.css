@@ -1,0 +1,102 @@
+.section {
+  margin-top: 100px;
+}
+
+.container {
+  width: 83.333%;
+  min-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.imageBox {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; /* 가로 세로 비율 유지 */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#img1 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/aca849a9-9181-4f97-8fd2-fbc28c28412a");
+}
+
+#img2 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/6a207c13-49dd-4437-b06f-652d3f7594af");
+}
+
+#img3 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/f7ac167c-0334-4ffa-a236-93f5b101b161");
+}
+
+#img4 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/f0bec6b9-98dc-40fd-8137-5d1b8e7744f6");
+}
+
+#img5 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/17d4e860-1519-4704-8265-ce9f58e5e31c");
+}
+
+#img6 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/217ee526-00db-4ae1-a8ac-29e970f7a160");
+}
+
+#img7 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/5ae48b1d-d427-49b2-a1bf-331d4dd029dc");
+}
+
+#img8 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/8d81757b-5fd6-4b18-9364-700169623607");
+}
+
+#img9 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/6c84d337-6079-491e-9367-a9be1eeccaf5");
+}
+
+#img10 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/350d9e5a-612d-4e63-a24c-039a967abbca");
+}
+
+#img11 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/fb1522a0-e285-4e35-906e-839a66c925e4");
+}
+
+#img12 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/c581a5fd-9b2c-4609-97c8-9ddffeca7ca2");
+}
+
+#img13 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/48eeea4f-7475-4850-adac-5a3b118d4458");
+}
+
+#img14 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/ecc9c2f2-b354-4b21-97ce-b5aee054f9e8");
+}
+
+#img15 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/dc6f7d0d-1688-4a31-b3c6-515435da6bcb");
+}
+
+#img16 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/d67bb4d0-8835-44f2-9f56-b390cc242422");
+}
+
+#img17 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/ebf41006-62c1-41b0-b4f9-44c1475b4b2a");
+}
+
+#img18 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/28044b46-0582-4f56-9f08-8cf5ea8f6ecc");
+}
+
+#img19 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/5c7c2793-5ab6-4a57-aaf3-1b817516e54e");
+}
+
+#img20 {
+  background-image: url("https://artify-bucket.kr.object.ncloudstorage.com/board/cfef1e9f-efe7-49dd-b235-e3f4f957b4ea");
+}
