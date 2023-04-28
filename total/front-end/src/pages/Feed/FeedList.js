@@ -55,40 +55,6 @@ function FeedList(props) {
           }
         }}
       >
-        {modalOpen && (
-          <>
-            <div
-              id="modal-background"
-              onClick={() => {
-                ShowModal();
-              }}
-            ></div>
-            <div
-              id="feed-modal"
-              onClick={(event) => {
-                event.stopPropagation();
-              }}
-            >
-              <div
-                id="feed-close"
-                onClick={() => {
-                  ShowModal();
-                }}
-                className={`btn-close btn-close-${
-                  localStorage.getItem("isLightMode") === "true"
-                    ? "dark"
-                    : "white"
-                }`}
-              ></div>
-              <FeedModal
-                key={props.item}
-                data={props.item}
-                closeModal={ShowModal}
-                user={{ data: props.currentUser }}
-              />
-            </div>
-          </>
-        )}
         <div id="feed-writer" className="feed-item">
           <div
             id="feed-writer-pic"
@@ -124,6 +90,40 @@ function FeedList(props) {
           </p>
         </div>
       </div>
+      {modalOpen && (
+        <>
+          <div
+            id="modal-background"
+            onClick={() => {
+              ShowModal();
+            }}
+          ></div>
+          <div
+            id="feed-modal"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <div
+              id="feed-close"
+              onClick={() => {
+                ShowModal();
+              }}
+              className={`btn-close btn-close-${
+                localStorage.getItem("isLightMode") === "true"
+                  ? "dark"
+                  : "white"
+              }`}
+            ></div>
+            <FeedModal
+              key={props.item}
+              data={props.item}
+              closeModal={ShowModal}
+              user={{ data: props.currentUser }}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 }
