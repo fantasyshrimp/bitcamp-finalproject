@@ -37,7 +37,7 @@ public class AdminInterceptor implements HandlerInterceptor {
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter out = response.getWriter();
       out.print("<script>alert('권한이 없습니다.');history.back();</script>");
-      response.sendRedirect("http://localhost:3000");
+      //response.sendRedirect("http://localhost:3000");
       return false;
     }
   }
