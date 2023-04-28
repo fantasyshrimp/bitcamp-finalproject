@@ -3,8 +3,6 @@ package bitcamp.app.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +39,7 @@ public class AdminController {
   @Autowired private ReportService reportService;
   @Autowired private BoardReplyService boardReplyService;
 
-  Logger log = LogManager.getLogger(getClass());
+  //Logger log = LogManager.getLogger(getClass());
 
   @Autowired private ObjectStorageService objectStorageService;
   private String bucketName = "bitcamp-bucket04-member-photo";
@@ -77,8 +75,8 @@ public class AdminController {
       @RequestBody Map<String, String> paramMap,
       HttpSession session) {
 
-    log.debug("accountState 입력");
-    log.debug(paramMap.get("accountState"));
+    //log.debug("accountState 입력");
+    //log.debug(paramMap.get("accountState"));
 
     memberService.updateAccountState(no, Integer.parseInt(paramMap.get("accountState"))); // 필요한 속성만 전달
 
@@ -153,14 +151,14 @@ public class AdminController {
   // @RequestMapping(value="/board/delete/{boardNo}", method=RequestMethod.DELETE)
   @DeleteMapping("/board/delete/{boardNo}")
   public void delete(@PathVariable int boardNo, @RequestBody List<Integer> replyNos) {
-    log.debug("deleteBoard 실행");
+    //log.debug("deleteBoard 실행");
     boardService.deleteBoard(boardNo, replyNos);
   }
 
   // 게시물 번호에 따른 댓글 목록들 불러오기
   @GetMapping("/reply/{no}")
   public List<Reply> viewReply(@PathVariable int no) {
-    log.debug("viewReply 실행");
+    //log.debug("viewReply 실행");
     return replyService.get(no);
   }
 
