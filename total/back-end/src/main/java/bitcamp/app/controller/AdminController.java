@@ -157,14 +157,10 @@ public class AdminController {
     boardService.deleteBoard(boardNo, replyNos);
   }
 
-  @GetMapping("/reply")
-  public Object reply() {
-    return replyService.list();
-  }
-
+  // 게시물 번호에 따른 댓글 목록들 불러오기
   @GetMapping("/reply/{no}")
   public List<Reply> viewReply(@PathVariable int no) {
-
+    log.debug("viewReply 실행");
     return replyService.get(no);
   }
 

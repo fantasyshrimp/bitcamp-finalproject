@@ -12,6 +12,7 @@ function BoardView(props) {
   const [data, setData] = useState({});
   const [tag, setTag] = useState({});
   const [report, setReport] = useState({});
+  const [boardNo, setBoardNo] = useState();
 
   console.log(props);
 
@@ -60,6 +61,32 @@ function BoardView(props) {
     };
     fetchData();
   }, [no]);
+
+  // 게시물 삭제
+  const deleteBoard = (no, replyNos) => {
+    axios
+      .delete(`http://localhost:8080/admin/board/delete/${no}`, {
+        data: replyNos,
+      })
+      .then((response) => {
+        console.log("Successfully deleted board and replies:", response);
+      })
+      .catch((error) => {
+        console.error("Error deleting board and replies:", error);
+      });
+  };
+
+  const handleDeleteClick = () => {
+    axios
+      .get(`http://localhost:8080/admin/reply/${no}`)
+      .then((response) => {
+        const replyNos = response.data;
+        deleteBoard(no, replyNos);
+      })
+      .catch((error) => {
+        console.error("Error getting reply numbers:", error);
+      });
+  };
 
   return (
     <>
@@ -346,7 +373,9 @@ function BoardView(props) {
                       />
                     </div>
                   </Form.Group>
-                  <Button variant="primary">Delete</Button>
+                  <Button variant="primary" onClick={handleDeleteClick}>
+                    Delete
+                  </Button>
                 </Col>
               </Row>
             </Container>
