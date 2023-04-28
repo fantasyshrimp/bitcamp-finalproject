@@ -1,28 +1,29 @@
 .section {
   width: 100%;
-  min-height: 80vh;
+  margin-top: 100px;
 }
 
 .container {
-  width: 80%;
-  display: block;
+  width: 83.333%;
+  min-width: 1200px;
+  display: flex;
+  justify-content: space-between;
   margin: auto;
-  padding-top: 100px;
 }
 
 .contentSection {
   color: var(--aim-text-default);
-  float: right;
-  width: 55%;
+  width: 60%;
+  display: inline-block;
 }
 
 .imageSection {
-  float: left;
-  width: 40%;
+  width: 480px;
+  display: inline-block;
 }
 
 .contentSection .title {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 28px;
 }
 
