@@ -12,6 +12,7 @@ function BoardList(props) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedNo, setSelectedNo] = useState();
   const navigate = useNavigate();
+  const [reply, setReply] = useState([]);
 
   useEffect(() => {
     if (
@@ -42,6 +43,17 @@ function BoardList(props) {
     setSelectedNo(selectedNo);
     setModalShow(true);
   }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/admin/reply")
+      .then((response) => {
+        setReply(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  console.log(reply);
 
   return (
     <>
@@ -122,8 +134,12 @@ function BoardList(props) {
           </tbody>
         </Table>
       </div>
-      <BoardView show={modalShow} setShow={setModalShow} no={selectedNo} />
-      {/* <CommentView show={modalShow} setShow={setModalShow} no={selectedNo} /> */}
+      <BoardView
+        show={modalShow}
+        setShow={setModalShow}
+        no={selectedNo}
+        reply={setReply}
+      />
     </>
   );
 }

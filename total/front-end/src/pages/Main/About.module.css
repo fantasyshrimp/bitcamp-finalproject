@@ -37,22 +37,6 @@
   line-height: 1.5;
 }
 
-.contentSection .content .button {
-  margin-top: 30px;
-}
-
-.contentSection .content .button a {
-  padding: 12px 40px;
-  text-decoration: none;
-  font-size: 25px;
-  letter-spacing: 1.5px;
-}
-
-.contentSection .content .button a:hover {
-  background-color: bisque;
-  color: aquamarine;
-}
-
 @media screen and (max-width: 768px) {
   .container {
     width: 80%;
@@ -78,13 +62,5 @@
   .contentSection .title {
     text-transform: center;
     font-size: 19px;
-  }
-
-  .contentSection .content .button {
-    text-transform: center;
-  }
-
-  .contentSection .content .button a {
-    padding: 9px 30px;
   }
 }
