@@ -13,7 +13,7 @@
 - 윤종광 [@jongkwangyun](https://github.com/jongkwangyun)
   - Log in / out, Alarm, AI Service, 일정 관리,
 - 전태산 [@fshrimp](https://github.com/fantasyshrimp)
-  - Profile, Personal Setting
+  - Profile, Personal Setting, 시연 영상 촬영 및 편집
 - 한대호 [@das7945](https://github.com/das7945)
   - FAQ, Admin(통계 페이지)
 
