@@ -7,11 +7,11 @@
 ## 멤버 구성
 
 - 신지윤 [@zyoonshin](https://github.com/zyoonshin)
-  - Admin(Interceptor, 관리 페이지)
+  - Admin(Interceptor, 관리 페이지), README 관리
 - 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun)
   - Feed, Search
 - 윤종광 [@jongkwangyun](https://github.com/jongkwangyun)
-  - Log in / out, Alarm, AI Service
+  - Log in / out, Alarm, AI Service, 일정 관리,
 - 전태산 [@fshrimp](https://github.com/fantasyshrimp)
   - Profile, Personal Setting
 - 한대호 [@das7945](https://github.com/das7945)
@@ -60,6 +60,7 @@ ChatGPT
 - Server
 - Object Storage
 - Cloud DB for MySQL
+- GPU Server
 
 ## AI Service 💻
 
@@ -168,3 +169,60 @@ ChatGPT
   - 방문자 주간 조회
   - 콘텐츠 일별 조회
   - Chart.js 사용
+
+### 회원 가입
+
+- 메일 중복 확인, 닉네임 중복 확인, 비밀번호 양식 확인 (윤종광)
+- 인증 안내 Alert, 인증 메일 발송, 네이버 계정 토큰 승인 (윤종광)
+
+### 로그인
+
+- 계정 상태 확인, 비밀번호 확인 (윤종광)
+
+### 피드
+
+- 게시글 정렬, 게시글 검색, 게시글 미리보기 (오병현)
+
+### 게시글
+
+- 게시글 이미지 생성 (Stable Diffusion in GPU Server) (윤종광)
+- 게시글 태그 생성, 게시글 상세보기, 게시글 신고, 게시글 삭제 (오병현)
+- 게시글 좋아요 (전태산)
+
+### 댓글
+
+- 댓글 작성, 댓글 삭제, 댓글 좋아요, 댓글 신고 (오병현)
+
+### 포인트
+
+- 포인트 수급, 포인트 기부, 포인트 로그 (오병현)
+
+### 프로필
+
+- 팔로우 리스트 확인, 팔로우/언팔로우, 프로필 이동 (전태산)
+- 프로필 이미지 수정, 닉네임 변경, 개인정보 수정 (전태산)
+
+### 설정
+
+- 공개 설정, 알람 설정 (전태산)
+- 알람로그 확인 (윤종광/전태산)
+
+### FAQ
+
+- FAQ 목록 작성, FAQ 내용 작성 (한대호)
+
+### Admin
+
+- 회원목록, 회원 계정 상태 관리 (신지윤)
+- 게시글 목록, 게시글 상세 정보, 게시글 삭제 (신지윤)
+- 댓글 목록 (신지윤)
+- 일간 방문자 조회, 일간 콘텐츠 조회 (한대호)
+
+### UI
+
+- UI 구성 : 한대호, 윤종광, 전태산, 오병현, 신지윤
+- 메인 페이지 디자인 및 구현 - 신지윤, 윤종광
+- Navbar 디자인 및 구현 (윤종광)
+- Footer 디자인 및 구현 (오병현)
+- 다크모드 색상 설정 (윤종광)
+- 반응형 UI 설정 (윤종광)
