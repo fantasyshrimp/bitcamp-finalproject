@@ -7,11 +7,11 @@
 ## 멤버 구성
 
 - 신지윤 [@zyoonshin](https://github.com/zyoonshin)
-  - Admin(Interceptor, 관리 페이지), README 관리
+  - Home, Admin(Interceptor, 관리 페이지), README 관리, 포트폴리오 관리
 - 오병현 [@ohbyunghyun](https://github.com/ohbyunghyun)
-  - Feed, Search
+  - Feed, Search, 서버 배포
 - 윤종광 [@jongkwangyun](https://github.com/jongkwangyun)
-  - Log in / out, Alarm, AI Service, 일정 관리,
+  - Home, Log in / out, Alarm, AI Service, 일정 관리,
 - 전태산 [@fshrimp](https://github.com/fantasyshrimp)
   - Profile, Personal Setting, 시연 영상 촬영 및 편집
 - 한대호 [@das7945](https://github.com/das7945)
